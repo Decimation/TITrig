@@ -1,0 +1,1634 @@
+; Zilog eZ80 ANSI C Compiler Release 3.4
+; -debug -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -localcse -const=ROM 
+	FILE	"..\SRC\GRAPHICSEXT.C"
+	.assume ADL=1
+.DEBUG "C"
+	SEGMENT CODE
+.BEGREC "NONAME0",6
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "rem"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME0"
+.BEGREC "NONAME1",8
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 5
+.ENDEF
+.DEFINE "rem"
+.VALUE 4
+.CLASS 8
+.TYPE 5
+.ENDEF
+.ENDREC "NONAME1"
+.BEGREC "header",6
+.DEFINE "s"
+.VALUE 0
+.CLASS 11
+.TAG "NONAME2"
+.TYPE 8
+.ENDEF
+.DEFINE "x"
+.VALUE 0
+.CLASS 11
+.TYPE 2
+.ENDEF
+.ENDREC "header"
+.BEGREC "NONAME2",6
+.DEFINE "ptr"
+.VALUE 0
+.CLASS 8
+.TAG "header"
+.TYPE 40
+.ENDEF
+.DEFINE "size"
+.VALUE 3
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME2"
+.BEGREC "NONAME3",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME3"
+.BEGREC "NONAME4",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME4"
+.BEGREC "NONAME5",6
+.DEFINE "x"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "y"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME5"
+.BEGREC "NONAME6",12
+.DEFINE "xmin"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymin"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "xmax"
+.VALUE 6
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymax"
+.VALUE 9
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME6"
+.BEGREC "NONAME7",18
+.DEFINE "map"
+.VALUE 0
+.CLASS 8
+.TYPE 44
+.ENDEF
+.DEFINE "tiles"
+.VALUE 3
+.CLASS 8
+.TAG "NONAME3"
+.TYPE 296
+.ENDEF
+.DEFINE "tile_height"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "tile_width"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_height"
+.VALUE 8
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_width"
+.VALUE 9
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_width"
+.VALUE 10
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_height"
+.VALUE 11
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 12
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "width"
+.VALUE 13
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "y_loc"
+.VALUE 14
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "x_loc"
+.VALUE 15
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME7"
+.BEGREC "NONAME8",9
+.DEFINE "sign"
+.VALUE 0
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "mant"
+.VALUE 2
+.CLASS 8
+.DIM 7
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME8"
+.BEGREC "NONAME9",18
+.DEFINE "real"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "imag"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME9"
+.BEGREC "NONAME10",11
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME8"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME10"
+.BEGREC "NONAME11",20
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME9"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME11"
+.BEGREC "NONAME12",11
+.DEFINE "cols"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "rows"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME8"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME12"
+.BEGREC "NONAME13",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME13"
+.BEGREC "NONAME14",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME14"
+.BEGREC "NONAME15",3
+.DEFINE "size"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME15"
+.BEGREC "NONAME16",26
+.DEFINE "point"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME5"
+.TYPE 8
+.ENDEF
+.DEFINE "label"
+.VALUE 6
+.CLASS 8
+.DIM 20
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME16"
+.BEGREC "NONAME17",72
+.DEFINE "A"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "B"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "C"
+.VALUE 18
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "a"
+.VALUE 27
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "b"
+.VALUE 36
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "c"
+.VALUE 45
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "area"
+.VALUE 54
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "perimeter"
+.VALUE 63
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME17"
+.BEGREC "NONAME18",8
+.DEFINE "a"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "b"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "c"
+.VALUE 2
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "A"
+.VALUE 3
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "B"
+.VALUE 4
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "C"
+.VALUE 5
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "complete"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "isSSA"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.ENDREC "NONAME18"
+.BEGREC "fmt_type",19
+.DEFINE "status"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "flags"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "size"
+.VALUE 2
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "chr"
+.VALUE 3
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "type"
+.VALUE 4
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "field_width"
+.VALUE 5
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "precision"
+.VALUE 6
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "set_begin"
+.VALUE 7
+.CLASS 8
+.TYPE 34
+.ENDEF
+.DEFINE "set_end"
+.VALUE 10
+.CLASS 8
+.TYPE 34
+.ENDEF
+.DEFINE "pad_whole"
+.VALUE 13
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_pre_fract"
+.VALUE 14
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_post_fract"
+.VALUE 15
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_at"
+.VALUE 16
+.CLASS 8
+.TYPE 34
+.ENDEF
+.ENDREC "fmt_type"
+.BEGREC "flt_info",12
+.DEFINE "flags"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "digits"
+.VALUE 2
+.CLASS 8
+.DIM 10
+.TYPE 108
+.ENDEF
+.ENDREC "flt_info"
+.BEGREC "__stdio_file",1
+.DEFINE "slot"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.ENDREC "__stdio_file"
+;    1	//
+;    2	// Created by Decimation on 4/27/2018.
+;    3	//
+;    4	
+;    5	#include "GraphicsExt.h"
+;    6	#include "Library.h"
+;    7	#include "Triangle.h"
+;    8	#include <tice.h>
+;    9	#include <graphx.h>
+;   10	#include <stdlib.h>
+;   11	#include <string.h>
+;   12	#include <debug.h>
+;   13	#include <stdbool.h>
+;   14	
+;   15	void gfx_Clear(superpoint_t* p)
+;   16	{
+_gfx_Clear:
+.DEFINE "_gfx_Clear"
+
+.VALUE _gfx_Clear
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "gfx_Clear",16,"_gfx_Clear"
+
+.LINE 16
+
+.DEFINE "p"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+.DEFINE "w"
+
+.CLASS 65
+
+.VALUE -3
+
+.TYPE 4
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+	PUSH	BC
+;   17		int w = gfx_GetStringWidth(p->label);
+.LINE 17
+
+	LD	IY,(IX+6)
+	PEA	IY+6
+	CALL	_gfx_GetStringWidth
+	POP	BC
+	LD	(IX+-3),HL
+;   18		gfx_SetColor(gfx_white);
+.LINE 18
+
+	LD	BC,255
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   19		gfx_FillRectangle(p->point.x, p->point.y, w, 9);
+.LINE 19
+
+	LD	IY,(IX+6)
+	LEA	BC,IY+0
+	LD	(IX+-6),BC
+	LD	BC,9
+	PUSH	BC
+	LD	BC,(IX+-3)
+	PUSH	BC
+	LD	IY,(IX+-6)
+	LD	BC,(IY+3)
+	PUSH	BC
+	LD	BC,(IY+0)
+	PUSH	BC
+	CALL	_gfx_FillRectangle
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   20		gfx_SetColor(gfx_blue);
+.LINE 20
+
+	LD	BC,16
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   21	}
+.LINE 21
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _gfx_Clear ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_FillRectangle                  IMPORT  -----   function
+;_gfx_SetColor                       IMPORT  -----   function
+;_gfx_GetStringWidth                 IMPORT  -----   function
+;w                                     IX-3      3   variable
+;p                                     IX+6      3   parameter
+
+
+; Stack Frame Size: 15 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "gfx_Clear",21,"_gfx_Clear"
+;   22	
+;   23	void gfx_Print(const superpoint_t* p)
+;   24	{
+_gfx_Print:
+.DEFINE "_gfx_Print"
+
+.VALUE _gfx_Print
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "gfx_Print",24,"_gfx_Print"
+
+.LINE 24
+
+.DEFINE "p"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 200
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+;   25		gfx_PrintStringXY(p->label, p->point.x, p->point.y);
+.LINE 25
+
+	LD	IY,(IX+6)
+	LEA	BC,IY+0
+	LD	(IX+-3),BC
+	LD	IY,(IX+-3)
+	LD	BC,(IY+3)
+	PUSH	BC
+	LD	BC,(IY+0)
+	PUSH	BC
+	LD	IY,(IX+6)
+	PEA	IY+6
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;   26	}
+.LINE 26
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _gfx_Print ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_PrintStringXY                  IMPORT  -----   function
+;p                                     IX+6      3   parameter
+
+
+; Stack Frame Size: 12 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "gfx_Print",26,"_gfx_Print"
+;   27	
+;   28	void sp_SetLabel(superpoint_t* p, const char* s)
+;   29	{
+_sp_SetLabel:
+.DEFINE "_sp_SetLabel"
+
+.VALUE _sp_SetLabel
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "sp_SetLabel",29,"_sp_SetLabel"
+
+.LINE 29
+
+.DEFINE "p"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+.DEFINE "s"
+
+.CLASS 65
+
+.VALUE 9
+
+.TYPE 194
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;   30		gfx_Clear(p);
+.LINE 30
+
+	LD	BC,(IX+6)
+	PUSH	BC
+	CALL	_gfx_Clear
+	POP	BC
+;   31		lib_MemZero(p->label, 20);
+.LINE 31
+
+	LD	BC,20
+	PUSH	BC
+	LD	IY,(IX+6)
+	PEA	IY+6
+	CALL	_lib_MemZero
+	POP	BC
+	POP	BC
+;   32		strncpy(p->label, s, strlen(s));
+.LINE 32
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_strlen
+	POP	BC
+	PUSH	HL
+	LD	BC,(IX+9)
+	PUSH	BC
+	LD	IY,(IX+6)
+	PEA	IY+6
+	CALL	_strncpy
+	POP	BC
+	POP	BC
+	POP	BC
+;   33	}
+.LINE 33
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _sp_SetLabel ***************************
+;Name                         Addr/Register   Size   Type
+;_strlen                             IMPORT  -----   function
+;_strncpy                            IMPORT  -----   function
+;_lib_MemZero                        IMPORT  -----   function
+;_gfx_Clear                          IMPORT  -----   function
+;s                                     IX+9      3   parameter
+;p                                     IX+6      3   parameter
+
+
+; Stack Frame Size: 12 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "sp_SetLabel",33,"_sp_SetLabel"
+;   34	
+;   35	real_t io_gfx_ReadReal(superpoint_t* point)
+;   36	{
+_io_gfx_ReadReal:
+.DEFINE "_io_gfx_ReadReal"
+
+.VALUE _io_gfx_ReadReal
+
+.CLASS 2
+
+.TAG "NONAME8"
+
+.TYPE 72
+
+.ENDEF
+
+.BEGFUNC "io_gfx_ReadReal",36,"_io_gfx_ReadReal"
+
+.LINE 36
+
+.DEFINE "point"
+
+.CLASS 65
+
+.VALUE 9
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+.DEFINE "i"
+
+.CLASS 65
+
+.VALUE -1
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "key"
+
+.CLASS 65
+
+.VALUE -2
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "isNeg"
+
+.CLASS 65
+
+.VALUE -3
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "rbuffer"
+
+.CLASS 65
+
+.VALUE -15
+
+.TAG "NONAME8"
+
+.TYPE 8
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	LEA	HL,IX+-42
+	LD	SP,HL
+;   37		bool        isNeg    = false;
+.LINE 37
+
+	LD	(IX+-3),0
+;   38		uint8_t     key, i   = 0;
+.LINE 38
+
+	LD	(IX+-1),0
+;   39		real_t      rbuffer;
+;   40		static char lchars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+.LINE 40
+
+.DEFINE "lchars"
+
+.ALIAS "_0lchars"
+
+.CLASS 69
+
+.VALUE _0lchars
+
+.DIM 57
+
+.TYPE 98
+
+.ENDEF
+
+;   41		gfx_Clear(point);
+.LINE 41
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_Clear
+	POP	BC
+;   42		lib_MemZero(point->label, 20);
+.LINE 42
+
+	LD	BC,20
+	PUSH	BC
+	LD	IY,(IX+9)
+	PEA	IY+6
+	CALL	_lib_MemZero
+	POP	BC
+	POP	BC
+;   43	
+;   44	
+;   45	
+;   46		lchars[33] = '0';
+.LINE 46
+
+	LD	IY,_0lchars
+	LEA	HL,IY+33
+	LD	(HL),48
+;   47		lchars[18] = '3';
+.LINE 47
+
+	LEA	HL,IY+18
+	LD	(HL),51
+;   48	
+;   49		while ((key = os_GetCSC()) != sk_Enter)
+.LINE 49
+
+	JR	L_12
+L_13:
+;   50		{
+;   51	
+;   52			if (key == sk_Del)
+.LINE 52
+
+	LD	A,(IX+-2)
+	CP	A,56
+	JR	NZ,L_10
+;   53			{
+;   54				gfx_Clear(point);
+.LINE 54
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_Clear
+	POP	BC
+;   55				point->label[--i] = '\0';
+.LINE 55
+
+	DEC	(IX+-1)
+	LD	A,(IX+-1)
+	UEXT	HL
+	LD	L,A
+	LD	BC,HL
+	LD	IY,(IX+9)
+	LEA	HL,IY+6
+	ADD	HL,BC
+	LD	(HL),0
+;   56				gfx_Clear(point);
+.LINE 56
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_Clear
+	POP	BC
+;   57				gfx_Print(point);
+.LINE 57
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_Print
+	POP	BC
+;   58			}
+L_10:
+.LINE 58
+
+;   59	
+;   60			if (key == 0x11) // todo: remove negative number support in GFX as our triangles can't have signed values
+.LINE 60
+
+	LD	A,(IX+-2)
+	CP	A,17
+	JR	NZ,L_9
+;   61			{
+;   62				dbg_sprintf(dbgout, "Negative sign detected\n");
+.LINE 62
+
+	LD	BC,L__5
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+;   63				point->label[i++] = char_Neg;
+.LINE 63
+
+	LD	A,(IX+-1)
+	UEXT	HL
+	LD	L,A
+	LD	BC,HL
+	LD	IY,(IX+9)
+	LEA	HL,IY+6
+	ADD	HL,BC
+	LD	A,(_char_Neg)
+	LD	(HL),A
+	INC	(IX+-1)
+;   64				gfx_Clear(point);
+.LINE 64
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_Clear
+	POP	BC
+;   65				gfx_Print(point);
+.LINE 65
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_Print
+	POP	BC
+;   66				isNeg = true;
+.LINE 66
+
+	LD	(IX+-3),1
+;   67			}
+;   68	
+;   69			else if (lchars[key] && i + 1 <= gDigitThreshold)
+.LINE 69
+
+	JR	L_11
+L_9:
+	LD	A,(IX+-2)
+	UEXT	HL
+	LD	L,A
+	LD	BC,_0lchars
+	ADD	HL,BC
+	LD	(IX+-6),HL
+	LD	A,(HL)
+	OR	A,A
+	JR	Z,L_11
+	LD	A,(IX+-1)
+	UEXT	HL
+	LD	L,A
+	LD	BC,HL
+	INC	BC
+	LD	A,(_gDigitThreshold)
+	UEXT	HL
+	LD	L,A
+	OR	A,A
+	SBC	HL,BC
+	JP	M,L_11
+;   70			{
+;   71				point->label[i++] = lchars[key];
+.LINE 71
+
+	LD	IY,(IX+-6)
+	LD	(IX+-42),IY	; spill
+	LD	A,(IX+-1)
+	UEXT	HL
+	LD	L,A
+	LD	BC,HL
+	LD	IY,(IX+9)
+	LEA	HL,IY+6
+	ADD	HL,BC
+	LD	IY,(IX+-42)	; unspill
+	LD	A,(IY)
+	LD	(HL),A
+	INC	(IX+-1)
+;   72			}
+L_11:
+.LINE 72
+
+;   73			gfx_Print(point);
+.LINE 73
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_Print
+	POP	BC
+;   74	
+;   75			gfx_HorizLine(point->point.x, point->point.y + 8, gfx_GetStringWidth(point->label));
+.LINE 75
+
+	LD	IY,(IX+9)
+	LEA	BC,IY+0
+	LD	(IX+-18),BC
+	PEA	IY+6
+	CALL	_gfx_GetStringWidth
+	POP	BC
+	PUSH	HL
+	LD	IY,(IX+-18)
+	LD	IY,(IY+3)
+	LEA	BC,IY+8
+	PUSH	BC
+	LD	IY,(IX+-18)
+	LD	BC,(IY+0)
+	PUSH	BC
+	CALL	_gfx_HorizLine
+	POP	BC
+	POP	BC
+	POP	BC
+;   76		}
+L_12:
+.LINE 76
+
+	CALL	_os_GetCSC
+	LD	(IX+-2),A
+	CP	A,9
+	JR	NZ,L_13
+;   77	
+;   78		rbuffer = os_StrToReal(point->label ,NULL);
+.LINE 78
+
+	LD	BC,0
+	PUSH	BC
+	LD	IY,(IX+9)
+	PEA	IY+6
+	PEA	IX+-27
+	CALL	_os_StrToReal
+	POP	BC
+	POP	BC
+	POP	BC
+	LEA	DE,IX+-15
+	LD	BC,9
+	LDIR	
+;   79		if (isNeg) rbuffer = os_RealNeg(&rbuffer);
+.LINE 79
+
+	LD	A,(IX+-3)
+	OR	A,A
+	JR	Z,L_16
+	PEA	IX+-15
+	PEA	IX+-36
+	CALL	_os_RealNeg
+	POP	BC
+	POP	BC
+	LEA	DE,IX+-15
+	LD	BC,9
+	LDIR	
+L_16:
+;   80	
+;   81		/**/
+;   82		lib_StrReplace(point->label, char_Neg, '-');
+.LINE 82
+
+	LD	BC,45
+	PUSH	BC
+	LD	A,(_char_Neg)
+	LD	C,A
+	LD	B,0
+	PUSH	BC
+	LD	IY,(IX+9)
+	PEA	IY+6
+	CALL	_lib_StrReplace
+	POP	BC
+	POP	BC
+	POP	BC
+;   83		dbg_sprintf(dbgout, "[IO In] %s\n", point->label);
+.LINE 83
+
+	LD	IY,(IX+9)
+	PEA	IY+6
+	LD	BC,L__10
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+;   84	
+;   85		return rbuffer;
+.LINE 85
+
+	LEA	HL,IX+6
+	LD	DE,(HL)
+	LEA	HL,IX+-15
+	LD	BC,9
+	LDIR	
+	LD	HL,(IX+6)
+;   86	}
+.LINE 86
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _io_gfx_ReadReal ***************************
+;Name                         Addr/Register   Size   Type
+;_lib_StrReplace                     IMPORT  -----   function
+;_os_RealNeg                         IMPORT  -----   function
+;_os_StrToReal                       IMPORT  -----   function
+;_os_GetCSC                          IMPORT  -----   function
+;_gfx_GetStringWidth                 IMPORT  -----   function
+;_gfx_HorizLine                      IMPORT  -----   function
+;_gDigitThreshold                    IMPORT      1   variable
+;_char_Neg                           IMPORT      1   variable
+;_sprintf                            IMPORT  -----   function
+;_gfx_Print                          IMPORT  -----   function
+;_0lchars                            STATIC     57   variable
+;_lib_MemZero                        IMPORT  -----   function
+;_gfx_Clear                          IMPORT  -----   function
+;rbuffer                              IX-15      9   variable
+;G_0                                   IX-6      3   variable
+;isNeg                                 IX-3      1   variable
+;key                                   IX-2      1   variable
+;i                                     IX-1      1   variable
+;point                                 IX+9      3   parameter
+
+
+; Stack Frame Size: 54 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "io_gfx_ReadReal",86,"_io_gfx_ReadReal"
+	SEGMENT STRSECT
+L__5:
+	DB	"Negative sign detected"
+	DB	10,0
+L__10:
+	DB	"[IO In] %s"
+	DB	10,0
+	SEGMENT DATA
+_0lchars:
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	34
+	DB	45
+	DB	82
+	DB	77
+	DB	72
+	DB	0
+	DB	0
+	DB	63
+	DB	91
+	DB	54
+	DB	57
+	DB	76
+	DB	71
+	DB	0
+	DB	0
+	DB	46
+	DB	50
+	DB	53
+	DB	56
+	DB	75
+	DB	70
+	DB	67
+	DB	0
+	DB	32
+	DB	49
+	DB	52
+	DB	55
+	DB	74
+	DB	69
+	DB	66
+	DB	0
+	DB	0
+	DB	88
+	DB	83
+	DB	78
+	DB	73
+	DB	68
+	DB	65
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	SEGMENT CODE
+;   87	
+;   88	
+;   89	bool PointEq(superpoint_t a, superpoint_t b)
+;   90	{
+_PointEq:
+.DEFINE "_PointEq"
+
+.VALUE _PointEq
+
+.CLASS 2
+
+.TYPE 76
+
+.ENDEF
+
+.BEGFUNC "PointEq",90,"_PointEq"
+
+.LINE 90
+
+.DEFINE "a"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 8
+
+.ENDEF
+
+.DEFINE "b"
+
+.CLASS 65
+
+.VALUE 33
+
+.TAG "NONAME16"
+
+.TYPE 8
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+;   91		return a.point.x == b.point.x && a.point.y == b.point.y;
+.LINE 91
+
+	LD	BC,(IX+33)
+	LD	HL,(IX+6)
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_20
+	LD	BC,(IX+36)
+	LD	HL,(IX+9)
+	OR	A,A
+	SBC	HL,BC
+	JR	NZ,L_20
+;   92	}
+.LINE 92
+
+	LD	BC,1
+	LD	(IX+-3),BC
+	JR	L_21
+L_20:
+	LD	BC,0
+	LD	(IX+-3),BC
+L_21:
+	LD	A,(IX+-3)
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _PointEq ***************************
+;Name                         Addr/Register   Size   Type
+;temp22                                IX-3      3   variable
+;b                                    IX+33     26   parameter
+;a                                     IX+6     26   parameter
+
+
+; Stack Frame Size: 63 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "PointEq",92,"_PointEq"
+;   93	
+;   94	void gfx_ClearHighlight(superpoint_t* p)
+;   95	{
+_gfx_ClearHighlight:
+.DEFINE "_gfx_ClearHighlight"
+
+.VALUE _gfx_ClearHighlight
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "gfx_ClearHighlight",95,"_gfx_ClearHighlight"
+
+.LINE 95
+
+.DEFINE "p"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;   96		gfx_Clear(p);
+.LINE 96
+
+	LD	BC,(IX+6)
+	PUSH	BC
+	CALL	_gfx_Clear
+	POP	BC
+;   97		gfx_PrintColor(p, gfx_black);
+.LINE 97
+
+	LD	BC,0
+	PUSH	BC
+	LD	BC,(IX+6)
+	PUSH	BC
+	CALL	_gfx_PrintColor
+	POP	BC
+	POP	BC
+;   98	}
+.LINE 98
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _gfx_ClearHighlight ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_PrintColor                     IMPORT  -----   function
+;_gfx_Clear                          IMPORT  -----   function
+;p                                     IX+6      3   parameter
+
+
+; Stack Frame Size: 9 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "gfx_ClearHighlight",98,"_gfx_ClearHighlight"
+;   99	
+;  100	void gfx_PrintColor(superpoint_t* p, uint8_t color)
+;  101	{
+_gfx_PrintColor:
+.DEFINE "_gfx_PrintColor"
+
+.VALUE _gfx_PrintColor
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "gfx_PrintColor",101,"_gfx_PrintColor"
+
+.LINE 101
+
+.DEFINE "p"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+.DEFINE "color"
+
+.CLASS 65
+
+.VALUE 9
+
+.TYPE 12
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	PUSH	BC
+;  102		gfx_SetTextFGColor(color);
+.LINE 102
+
+	LD	C,(IX+9)
+	LD	B,0
+	PUSH	BC
+	CALL	_gfx_SetTextFGColor
+	POP	BC
+;  103		gfx_PrintStringXY(p->label, p->point.x, p->point.y);
+.LINE 103
+
+	LD	IY,(IX+6)
+	LEA	BC,IY+0
+	LD	(IX+-3),BC
+	LD	IY,(IX+-3)
+	LD	BC,(IY+3)
+	PUSH	BC
+	LD	BC,(IY+0)
+	PUSH	BC
+	LD	IY,(IX+6)
+	PEA	IY+6
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;  104		gfx_SetTextFGColor(gfx_black);
+.LINE 104
+
+	LD	BC,0
+	PUSH	BC
+	CALL	_gfx_SetTextFGColor
+	POP	BC
+;  105	}
+.LINE 105
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _gfx_PrintColor ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_PrintStringXY                  IMPORT  -----   function
+;_gfx_SetTextFGColor                 IMPORT  -----   function
+;color                                 IX+9      1   parameter
+;p                                     IX+6      3   parameter
+
+
+; Stack Frame Size: 15 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "gfx_PrintColor",105,"_gfx_PrintColor"
+;  106	
+;  107	void gfx_HighlightPoint(superpoint_t* p)
+;  108	{
+_gfx_HighlightPoint:
+.DEFINE "_gfx_HighlightPoint"
+
+.VALUE _gfx_HighlightPoint
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "gfx_HighlightPoint",108,"_gfx_HighlightPoint"
+
+.LINE 108
+
+.DEFINE "p"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;  109		gfx_PrintColor(p, gfx_red);
+.LINE 109
+
+	LD	BC,224
+	PUSH	BC
+	LD	BC,(IX+6)
+	PUSH	BC
+	CALL	_gfx_PrintColor
+	POP	BC
+	POP	BC
+.LINE 110
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _gfx_HighlightPoint ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_PrintColor                     IMPORT  -----   function
+;p                                     IX+6      3   parameter
+
+
+; Stack Frame Size: 9 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "gfx_HighlightPoint",110,"_gfx_HighlightPoint"
+	XREF _sprintf:ROM
+	XREF _strlen:ROM
+	XREF _strncpy:ROM
+	XREF _char_Neg:ROM
+	XREF _lib_StrReplace:ROM
+	XREF _lib_MemZero:ROM
+	XREF _gDigitThreshold:ROM
+	XREF _os_GetCSC:ROM
+	XREF _os_StrToReal:ROM
+	XREF _os_RealNeg:ROM
+	XREF _gfx_GetStringWidth:ROM
+	XREF _gfx_SetTextFGColor:ROM
+	XREF _gfx_PrintStringXY:ROM
+	XREF _gfx_FillRectangle:ROM
+	XREF _gfx_HorizLine:ROM
+	XREF _gfx_SetColor:ROM
+	XDEF _gfx_HighlightPoint
+	XDEF _gfx_PrintColor
+	XDEF _gfx_ClearHighlight
+	XDEF _PointEq
+	XDEF _io_gfx_ReadReal
+	XDEF _sp_SetLabel
+	XDEF _gfx_Print
+	XDEF _gfx_Clear
+	END
