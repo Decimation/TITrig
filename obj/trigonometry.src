@@ -280,15 +280,14 @@ _PI:
 ;    4	
 ;    5	
 ;    6	#include "Trigonometry.h"
-;    7	#include <tice.h>
-;    8	#include <debug.h>
-;    9	#include <math.h>
-;   10	
-;   11	static const float PI = 3.141592654f;
+;    7	#include <debug.h>
+;    8	#include <math.h>
+;    9	
+;   10	static const float PI = 3.141592654f;
 	SEGMENT CODE
-;   12	
-;   13	float CosineDeg(float f)
-;   14	{
+;   11	
+;   12	float CosineDeg(float f)
+;   13	{
 _CosineDeg:
 .DEFINE "_CosineDeg"
 
@@ -300,9 +299,9 @@ _CosineDeg:
 
 .ENDEF
 
-.BEGFUNC "CosineDeg",14,"_CosineDeg"
+.BEGFUNC "CosineDeg",13,"_CosineDeg"
 
-.LINE 14
+.LINE 13
 
 .DEFINE "f"
 
@@ -317,8 +316,8 @@ _CosineDeg:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;   15		return (float) (cos(f / 180 * PI));
-.LINE 15
+;   14		return (float) (cos(f / 180 * PI));
+.LINE 14
 
 	LD	HL,3407872
 	LD	E,67
@@ -336,8 +335,8 @@ _CosineDeg:
 	CALL	_cos
 	POP	BC
 	POP	BC
-;   16	}
-.LINE 16
+;   15	}
+.LINE 15
 
 	LD	SP,IX
 	POP	IX
@@ -354,10 +353,10 @@ _CosineDeg:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "CosineDeg",16,"_CosineDeg"
-;   17	
-;   18	float ASinDeg(float f)
-;   19	{
+.ENDFUNC "CosineDeg",15,"_CosineDeg"
+;   16	
+;   17	float ASinDeg(float f)
+;   18	{
 _ASinDeg:
 .DEFINE "_ASinDeg"
 
@@ -369,9 +368,9 @@ _ASinDeg:
 
 .ENDEF
 
-.BEGFUNC "ASinDeg",19,"_ASinDeg"
+.BEGFUNC "ASinDeg",18,"_ASinDeg"
 
-.LINE 19
+.LINE 18
 
 .DEFINE "f"
 
@@ -386,8 +385,8 @@ _ASinDeg:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;   20		return (float) (asin(f) * 180 / PI);
-.LINE 20
+;   19		return (float) (asin(f) * 180 / PI);
+.LINE 19
 
 	LD	C,(IX+9)
 	LD	B,0
@@ -407,8 +406,8 @@ _ASinDeg:
 	CALL	__fdiv
 	LD	E,A
 	LD	HL,BC
-;   21	}
-.LINE 21
+;   20	}
+.LINE 20
 
 	LD	SP,IX
 	POP	IX
@@ -425,10 +424,10 @@ _ASinDeg:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "ASinDeg",21,"_ASinDeg"
-;   22	
-;   23	float SinDeg(float f)
-;   24	{
+.ENDFUNC "ASinDeg",20,"_ASinDeg"
+;   21	
+;   22	float SinDeg(float f)
+;   23	{
 _SinDeg:
 .DEFINE "_SinDeg"
 
@@ -440,9 +439,9 @@ _SinDeg:
 
 .ENDEF
 
-.BEGFUNC "SinDeg",24,"_SinDeg"
+.BEGFUNC "SinDeg",23,"_SinDeg"
 
-.LINE 24
+.LINE 23
 
 .DEFINE "f"
 
@@ -457,8 +456,8 @@ _SinDeg:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;   25		return (float) (sin(f / 180 * PI));
-.LINE 25
+;   24		return (float) (sin(f / 180 * PI));
+.LINE 24
 
 	LD	HL,3407872
 	LD	E,67
@@ -476,8 +475,8 @@ _SinDeg:
 	CALL	_sin
 	POP	BC
 	POP	BC
-;   26	}
-.LINE 26
+;   25	}
+.LINE 25
 
 	LD	SP,IX
 	POP	IX
@@ -494,10 +493,10 @@ _SinDeg:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "SinDeg",26,"_SinDeg"
-;   27	
-;   28	real_t os_RealAcosDeg(real_t r)
-;   29	{
+.ENDFUNC "SinDeg",25,"_SinDeg"
+;   26	
+;   27	real_t os_RealAcosDeg(real_t r)
+;   28	{
 _os_RealAcosDeg:
 .DEFINE "_os_RealAcosDeg"
 
@@ -511,9 +510,9 @@ _os_RealAcosDeg:
 
 .ENDEF
 
-.BEGFUNC "os_RealAcosDeg",29,"_os_RealAcosDeg"
+.BEGFUNC "os_RealAcosDeg",28,"_os_RealAcosDeg"
 
-.LINE 29
+.LINE 28
 
 .DEFINE "r"
 
@@ -544,10 +543,10 @@ _os_RealAcosDeg:
 	ADD	IX,SP
 	LEA	HL,IX+-36
 	LD	SP,HL
-;   30		real_t rbuf;
-;   31	
-;   32		rbuf = os_FloatToReal((float) acos(os_RealToFloat(&r)));
-.LINE 32
+;   29		real_t rbuf;
+;   30	
+;   31		rbuf = os_FloatToReal((float) acos(os_RealToFloat(&r)));
+.LINE 31
 
 	PEA	IX+9
 	CALL	_os_RealToFloat
@@ -571,8 +570,8 @@ _os_RealAcosDeg:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   33		rbuf = os_FloatToReal(os_RealToFloat(&rbuf) * 180.0f / PI);
-.LINE 33
+;   32		rbuf = os_FloatToReal(os_RealToFloat(&rbuf) * 180.0f / PI);
+.LINE 32
 
 	PEA	IX+-9
 	CALL	_os_RealToFloat
@@ -598,8 +597,8 @@ _os_RealAcosDeg:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   34		return os_RealRound(&rbuf, 1);
-.LINE 34
+;   33		return os_RealRound(&rbuf, 1);
+.LINE 33
 
 	LD	BC,1
 	PUSH	BC
@@ -614,8 +613,8 @@ _os_RealAcosDeg:
 	LD	BC,9
 	LDIR	
 	LD	HL,(IX+6)
-;   35	}
-.LINE 35
+;   34	}
+.LINE 34
 
 	LD	SP,IX
 	POP	IX
@@ -636,10 +635,10 @@ _os_RealAcosDeg:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "os_RealAcosDeg",35,"_os_RealAcosDeg"
-;   36	
-;   37	real_t loc_Angle_x(real_t c, real_t a, real_t b)
-;   38	{
+.ENDFUNC "os_RealAcosDeg",34,"_os_RealAcosDeg"
+;   35	
+;   36	real_t loc_Angle_x(real_t c, real_t a, real_t b)
+;   37	{
 _loc_Angle_x:
 .DEFINE "_loc_Angle_x"
 
@@ -653,9 +652,9 @@ _loc_Angle_x:
 
 .ENDEF
 
-.BEGFUNC "loc_Angle_x",38,"_loc_Angle_x"
+.BEGFUNC "loc_Angle_x",37,"_loc_Angle_x"
 
-.LINE 38
+.LINE 37
 
 .DEFINE "c"
 
@@ -807,10 +806,10 @@ _loc_Angle_x:
 	LD	HL,-185
 	ADD	HL,SP
 	LD	SP,HL
-;   39		char   buf[20];
-;   40		//cos B = (c2 + a2 − b2) / 2ca
-;   41		real_t real2 = os_Int24ToReal(2);
-.LINE 41
+;   38		char   buf[20];
+;   39		//cos B = (c2 + a2 − b2) / 2ca
+;   40		real_t real2 = os_Int24ToReal(2);
+.LINE 40
 
 	LD	BC,2
 	PUSH	BC
@@ -821,10 +820,10 @@ _loc_Angle_x:
 	LEA	DE,IX+-45
 	LD	BC,9
 	LDIR	
-;   42		real_t csq, asq, bsq, res, term, term2, rbuf;
-;   43	
-;   44		os_RealToStr(buf, &c, 0, 0, 6);
-.LINE 44
+;   41		real_t csq, asq, bsq, res, term, term2, rbuf;
+;   42	
+;   43		os_RealToStr(buf, &c, 0, 0, 6);
+.LINE 43
 
 	LD	BC,6
 	PUSH	BC
@@ -839,8 +838,8 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   45		dbg_sprintf(dbgout, "c = %s\n", buf);
-.LINE 45
+;   44		dbg_sprintf(dbgout, "c = %s\n", buf);
+.LINE 44
 
 	PEA	IX+-92
 	LD	BC,L__4
@@ -851,8 +850,8 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   46		os_RealToStr(buf, &a, 0, 0, 6);
-.LINE 46
+;   45		os_RealToStr(buf, &a, 0, 0, 6);
+.LINE 45
 
 	LD	BC,6
 	PUSH	BC
@@ -867,8 +866,8 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   47		dbg_sprintf(dbgout, "a = %s\n", buf);
-.LINE 47
+;   46		dbg_sprintf(dbgout, "a = %s\n", buf);
+.LINE 46
 
 	PEA	IX+-92
 	LD	BC,L__5
@@ -879,8 +878,8 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   48		os_RealToStr(buf, &b, 0, 0, 6);
-.LINE 48
+;   47		os_RealToStr(buf, &b, 0, 0, 6);
+.LINE 47
 
 	LD	BC,6
 	PUSH	BC
@@ -895,8 +894,8 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   49		dbg_sprintf(dbgout, "b = %s\n", buf);
-.LINE 49
+;   48		dbg_sprintf(dbgout, "b = %s\n", buf);
+.LINE 48
 
 	PEA	IX+-92
 	LD	BC,L__6
@@ -907,9 +906,9 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   50	
-;   51		bsq  = os_RealMul(&b, &b);
-.LINE 51
+;   49	
+;   50		bsq  = os_RealMul(&b, &b);
+.LINE 50
 
 	PEA	IX+27
 	PEA	IX+27
@@ -921,8 +920,8 @@ _loc_Angle_x:
 	LEA	DE,IX+-72
 	LD	BC,9
 	LDIR	
-;   52		csq  = os_RealMul(&c, &c);
-.LINE 52
+;   51		csq  = os_RealMul(&c, &c);
+.LINE 51
 
 	PEA	IX+9
 	PEA	IX+9
@@ -934,8 +933,8 @@ _loc_Angle_x:
 	LEA	DE,IX+-54
 	LD	BC,9
 	LDIR	
-;   53		asq  = os_RealMul(&a, &a);
-.LINE 53
+;   52		asq  = os_RealMul(&a, &a);
+.LINE 52
 
 	PEA	IX+18
 	PEA	IX+18
@@ -947,8 +946,8 @@ _loc_Angle_x:
 	LEA	DE,IX+-63
 	LD	BC,9
 	LDIR	
-;   54		term = os_RealAdd(&csq, &asq);
-.LINE 54
+;   53		term = os_RealAdd(&csq, &asq);
+.LINE 53
 
 	PEA	IX+-63
 	PEA	IX+-54
@@ -964,8 +963,8 @@ _loc_Angle_x:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   55		term = os_RealSub(&term, &bsq);
-.LINE 55
+;   54		term = os_RealSub(&term, &bsq);
+.LINE 54
 
 	PEA	IX+-72
 	PEA	IX+-9
@@ -981,9 +980,9 @@ _loc_Angle_x:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   56	
-;   57		term2 = os_RealMul(&c, &a);
-.LINE 57
+;   55	
+;   56		term2 = os_RealMul(&c, &a);
+.LINE 56
 
 	PEA	IX+18
 	PEA	IX+9
@@ -999,8 +998,8 @@ _loc_Angle_x:
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;   58		term2 = os_RealMul(&real2, &term2);
-.LINE 58
+;   57		term2 = os_RealMul(&real2, &term2);
+.LINE 57
 
 	PEA	IX+-18
 	PEA	IX+-45
@@ -1016,9 +1015,9 @@ _loc_Angle_x:
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;   59	
-;   60		res = os_RealDiv(&term, &term2);
-.LINE 60
+;   58	
+;   59		res = os_RealDiv(&term, &term2);
+.LINE 59
 
 	PEA	IX+-18
 	PEA	IX+-9
@@ -1034,8 +1033,8 @@ _loc_Angle_x:
 	LEA	DE,IX+-27
 	LD	BC,9
 	LDIR	
-;   61		os_RealToStr(buf, &res, 0, 0, 6);
-.LINE 61
+;   60		os_RealToStr(buf, &res, 0, 0, 6);
+.LINE 60
 
 	LD	DE,6
 	PUSH	DE
@@ -1058,9 +1057,9 @@ _loc_Angle_x:
 	POP	DE
 	POP	DE
 	POP	DE
-;   62	
-;   63		rbuf = os_RealAcosDeg(res);
-.LINE 63
+;   61	
+;   62		rbuf = os_RealAcosDeg(res);
+.LINE 62
 
 	PUSH	BC
 	PUSH	BC
@@ -1085,8 +1084,8 @@ _loc_Angle_x:
 	LEA	DE,IX+-36
 	LD	BC,9
 	LDIR	
-;   64		os_RealToStr(buf, &rbuf, 0, 0, 6);
-.LINE 64
+;   63		os_RealToStr(buf, &rbuf, 0, 0, 6);
+.LINE 63
 
 	LD	BC,6
 	PUSH	BC
@@ -1101,9 +1100,9 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   65	
-;   66		return rbuf;
-.LINE 66
+;   64	
+;   65		return rbuf;
+.LINE 65
 
 	LEA	HL,IX+6
 	LD	DE,(HL)
@@ -1111,8 +1110,8 @@ _loc_Angle_x:
 	LD	BC,9
 	LDIR	
 	LD	HL,(IX+6)
-;   67	}
-.LINE 67
+;   66	}
+.LINE 66
 
 	LD	SP,IX
 	POP	IX
@@ -1147,7 +1146,7 @@ _loc_Angle_x:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "loc_Angle_x",67,"_loc_Angle_x"
+.ENDFUNC "loc_Angle_x",66,"_loc_Angle_x"
 	SEGMENT STRSECT
 L__4:
 	DB	"c = %s"
@@ -1159,9 +1158,9 @@ L__6:
 	DB	"b = %s"
 	DB	10,0
 	SEGMENT CODE
-;   68	
-;   69	real_t los_Side_x(real_t X, real_t y, real_t Y)
-;   70	{
+;   67	
+;   68	real_t los_Side_x(real_t X, real_t y, real_t Y)
+;   69	{
 _los_Side_x:
 .DEFINE "_los_Side_x"
 
@@ -1175,9 +1174,9 @@ _los_Side_x:
 
 .ENDEF
 
-.BEGFUNC "los_Side_x",70,"_los_Side_x"
+.BEGFUNC "los_Side_x",69,"_los_Side_x"
 
-.LINE 70
+.LINE 69
 
 .DEFINE "X"
 
@@ -1230,9 +1229,9 @@ _los_Side_x:
 	ADD	IX,SP
 	LEA	HL,IX+-21
 	LD	SP,HL
-;   71		//a = (sin(A) * c) / sin(C);
-;   72		float fbuf = (os_RealToFloat(&y) * SinDeg(os_RealToFloat(&X))) / SinDeg(os_RealToFloat(&Y));
-.LINE 72
+;   70		//a = (sin(A) * c) / sin(C);
+;   71		float fbuf = (os_RealToFloat(&y) * SinDeg(os_RealToFloat(&X))) / SinDeg(os_RealToFloat(&Y));
+.LINE 71
 
 	PEA	IX+9
 	CALL	_os_RealToFloat
@@ -1271,8 +1270,8 @@ _los_Side_x:
 	CALL	__fdiv
 	LD	(IX+-4),BC
 	LD	(IX+-1),A
-;   73		return os_FloatToReal(fbuf);
-.LINE 73
+;   72		return os_FloatToReal(fbuf);
+.LINE 72
 
 	LD	C,(IX+-1)
 	LD	B,0
@@ -1289,8 +1288,8 @@ _los_Side_x:
 	LD	BC,9
 	LDIR	
 	LD	HL,(IX+6)
-;   74	}
-.LINE 74
+;   73	}
+.LINE 73
 
 	LD	SP,IX
 	POP	IX
@@ -1312,10 +1311,10 @@ _los_Side_x:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "los_Side_x",74,"_los_Side_x"
-;   75	
-;   76	real_t los_Angle_x(real_t x, real_t Y, real_t y)
-;   77	{
+.ENDFUNC "los_Side_x",73,"_los_Side_x"
+;   74	
+;   75	real_t los_Angle_x(real_t x, real_t Y, real_t y)
+;   76	{
 _los_Angle_x:
 .DEFINE "_los_Angle_x"
 
@@ -1329,9 +1328,9 @@ _los_Angle_x:
 
 .ENDEF
 
-.BEGFUNC "los_Angle_x",77,"_los_Angle_x"
+.BEGFUNC "los_Angle_x",76,"_los_Angle_x"
 
-.LINE 77
+.LINE 76
 
 .DEFINE "x"
 
@@ -1414,36 +1413,36 @@ _los_Angle_x:
 	ADD	IX,SP
 	LEA	HL,IX+-25
 	LD	SP,HL
-;   78		// A = asin((a * sin(B) / b));
-;   79		// X = asin((x * sin(Y) / y))
-;   80	
-;   81		float xf, Yf, yf, sol;
-;   82		xf  = os_RealToFloat(&x);
-.LINE 82
+;   77		// A = asin((a * sin(B) / b));
+;   78		// X = asin((x * sin(Y) / y))
+;   79	
+;   80		float xf, Yf, yf, sol;
+;   81		xf  = os_RealToFloat(&x);
+.LINE 81
 
 	PEA	IX+9
 	CALL	_os_RealToFloat
 	POP	BC
 	LD	(IX+-4),HL
 	LD	(IX+-1),E
-;   83		Yf  = os_RealToFloat(&Y);
-.LINE 83
+;   82		Yf  = os_RealToFloat(&Y);
+.LINE 82
 
 	PEA	IX+18
 	CALL	_os_RealToFloat
 	POP	BC
 	LD	(IX+-8),HL
 	LD	(IX+-5),E
-;   84		yf  = os_RealToFloat(&y);
-.LINE 84
+;   83		yf  = os_RealToFloat(&y);
+.LINE 83
 
 	PEA	IX+27
 	CALL	_os_RealToFloat
 	POP	BC
 	LD	(IX+-12),HL
 	LD	(IX+-9),E
-;   85		sol = ASinDeg((SinDeg(Yf) * xf) / yf);
-.LINE 85
+;   84		sol = ASinDeg((SinDeg(Yf) * xf) / yf);
+.LINE 84
 
 	LD	C,(IX+-5)
 	LD	B,0
@@ -1471,8 +1470,8 @@ _los_Angle_x:
 	POP	BC
 	LD	(IX+-16),HL
 	LD	(IX+-13),E
-;   86		return os_FloatToReal(sol);
-.LINE 86
+;   85		return os_FloatToReal(sol);
+.LINE 85
 
 	LD	C,(IX+-13)
 	LD	B,0
@@ -1489,8 +1488,8 @@ _los_Angle_x:
 	LD	BC,9
 	LDIR	
 	LD	HL,(IX+6)
-;   87	}
-.LINE 87
+;   86	}
+.LINE 86
 
 	LD	SP,IX
 	POP	IX
@@ -1516,10 +1515,10 @@ _los_Angle_x:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "los_Angle_x",87,"_los_Angle_x"
-;   88	
-;   89	real_t loc_Side_x(real_t a, real_t b, real_t angle)
-;   90	{
+.ENDFUNC "los_Angle_x",86,"_los_Angle_x"
+;   87	
+;   88	real_t loc_Side_x(real_t a, real_t b, real_t angle)
+;   89	{
 _loc_Side_x:
 .DEFINE "_loc_Side_x"
 
@@ -1533,9 +1532,9 @@ _loc_Side_x:
 
 .ENDEF
 
-.BEGFUNC "loc_Side_x",90,"_loc_Side_x"
+.BEGFUNC "loc_Side_x",89,"_loc_Side_x"
 
-.LINE 90
+.LINE 89
 
 .DEFINE "a"
 
@@ -1608,34 +1607,34 @@ _loc_Side_x:
 	ADD	IX,SP
 	LEA	HL,IX+-33
 	LD	SP,HL
-;   91		//c = sqrt(a^2 + b^2 - 2*a*b*cos(c))
-;   92		float af, bf, anglef;
-;   93		af     = os_RealToFloat(&a);
-.LINE 93
+;   90		//c = sqrt(a^2 + b^2 - 2*a*b*cos(c))
+;   91		float af, bf, anglef;
+;   92		af     = os_RealToFloat(&a);
+.LINE 92
 
 	PEA	IX+9
 	CALL	_os_RealToFloat
 	POP	BC
 	LD	(IX+-4),HL
 	LD	(IX+-1),E
-;   94		bf     = os_RealToFloat(&b);
-.LINE 94
+;   93		bf     = os_RealToFloat(&b);
+.LINE 93
 
 	PEA	IX+18
 	CALL	_os_RealToFloat
 	POP	BC
 	LD	(IX+-8),HL
 	LD	(IX+-5),E
-;   95		anglef = os_RealToFloat(&angle);
-.LINE 95
+;   94		anglef = os_RealToFloat(&angle);
+.LINE 94
 
 	PEA	IX+27
 	CALL	_os_RealToFloat
 	POP	BC
 	LD	(IX+-12),HL
 	LD	(IX+-9),E
-;   96		return os_FloatToReal(sqrt((af * af) + (bf * bf) - 2 * af * bf * CosineDeg(anglef)));
-.LINE 96
+;   95		return os_FloatToReal(sqrt((af * af) + (bf * bf) - 2 * af * bf * CosineDeg(anglef)));
+.LINE 95
 
 	LD	HL,(IX+-4)
 	LD	E,(IX+-1)
@@ -1705,8 +1704,8 @@ _loc_Side_x:
 	LD	BC,9
 	LDIR	
 	LD	HL,(IX+6)
-;   97	}
-.LINE 97
+;   96	}
+.LINE 96
 
 	LD	SP,IX
 	POP	IX
@@ -1731,12 +1730,11 @@ _loc_Side_x:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "loc_Side_x",97,"_loc_Side_x"
+.ENDFUNC "loc_Side_x",96,"_loc_Side_x"
+;   97	
 ;   98	
-;   99	
-;  100	
-;  101	real_t os_RealSinDeg(real_t r)
-;  102	{
+;   99	real_t os_RealSinDeg(real_t r)
+;  100	{
 _os_RealSinDeg:
 .DEFINE "_os_RealSinDeg"
 
@@ -1750,9 +1748,9 @@ _os_RealSinDeg:
 
 .ENDEF
 
-.BEGFUNC "os_RealSinDeg",102,"_os_RealSinDeg"
+.BEGFUNC "os_RealSinDeg",100,"_os_RealSinDeg"
 
-.LINE 102
+.LINE 100
 
 .DEFINE "r"
 
@@ -1819,8 +1817,8 @@ _os_RealSinDeg:
 	ADD	IX,SP
 	LEA	HL,IX+-81
 	LD	SP,HL
-;  103		const real_t real180 = os_Int24ToReal(180);
-.LINE 103
+;  101		const real_t real180 = os_Int24ToReal(180);
+.LINE 101
 
 	LD	BC,180
 	PUSH	BC
@@ -1831,8 +1829,8 @@ _os_RealSinDeg:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;  104		const real_t realpi  = os_FloatToReal(PI);
-.LINE 104
+;  102		const real_t realpi  = os_FloatToReal(PI);
+.LINE 102
 
 	LD	C,64
 	LD	B,0
@@ -1847,8 +1845,8 @@ _os_RealSinDeg:
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;  105		real_t       buf     = os_RealDiv(&r, &real180);
-.LINE 105
+;  103		real_t       buf     = os_RealDiv(&r, &real180);
+.LINE 103
 
 	PEA	IX+-9
 	PEA	IX+9
@@ -1860,8 +1858,8 @@ _os_RealSinDeg:
 	LEA	DE,IX+-27
 	LD	BC,9
 	LDIR	
-;  106		real_t       buf2    = os_RealMul(&buf, &realpi);
-.LINE 106
+;  104		real_t       buf2    = os_RealMul(&buf, &realpi);
+.LINE 104
 
 	PEA	IX+-18
 	PEA	IX+-27
@@ -1873,8 +1871,8 @@ _os_RealSinDeg:
 	LEA	DE,IX+-36
 	LD	BC,9
 	LDIR	
-;  107		return os_RealSinRad(&buf2);
-.LINE 107
+;  105		return os_RealSinRad(&buf2);
+.LINE 105
 
 	PEA	IX+-36
 	PEA	IX+-81
@@ -1886,7 +1884,7 @@ _os_RealSinDeg:
 	LD	BC,9
 	LDIR	
 	LD	HL,(IX+6)
-.LINE 108
+.LINE 106
 
 	LD	SP,IX
 	POP	IX
@@ -1911,7 +1909,7 @@ _os_RealSinDeg:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "os_RealSinDeg",108,"_os_RealSinDeg"
+.ENDFUNC "os_RealSinDeg",106,"_os_RealSinDeg"
 	XREF _sqrt:ROM
 	XREF _sin:ROM
 	XREF _cos:ROM

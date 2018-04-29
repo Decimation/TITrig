@@ -512,11 +512,10 @@
 ;    6	#include <tice.h>
 ;    7	#include <debug.h>
 ;    8	#include "Geometry.h"
-;    9	#include "GraphicsExt.h"
+;    9	
 ;   10	
-;   11	
-;   12	void geo_RoundTriangle(triangle_t* triangle, uint8_t places)
-;   13	{
+;   11	void geo_RoundTriangle(triangle_t* triangle, uint8_t places)
+;   12	{
 _geo_RoundTriangle:
 .DEFINE "_geo_RoundTriangle"
 
@@ -528,9 +527,9 @@ _geo_RoundTriangle:
 
 .ENDEF
 
-.BEGFUNC "geo_RoundTriangle",13,"_geo_RoundTriangle"
+.BEGFUNC "geo_RoundTriangle",12,"_geo_RoundTriangle"
 
-.LINE 13
+.LINE 12
 
 .DEFINE "triangle"
 
@@ -569,31 +568,31 @@ _geo_RoundTriangle:
 	ADD	IX,SP
 	LEA	HL,IX+-12
 	LD	SP,HL
-;   14		//char buf[20];
-;   15		int i = 0;
-.LINE 15
+;   13		//char buf[20];
+;   14		int i = 0;
+.LINE 14
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;   16		real_t* mem = (real_t*) triangle;
-;   17		for (; i < sizeof(*triangle) / sizeof(real_t); i++)
-.LINE 17
+;   15		real_t* mem = (real_t*) triangle;
+;   16		for (; i < sizeof(*triangle) / sizeof(real_t); i++)
+.LINE 16
 
 	JR	L_3
 L_1:
-;   18		{
-;   19			/*int24_t iPart = os_RealToInt24(&mem[i]);
-;   20			real_t iPart_r = os_Int24ToReal(iPart);
-;   21			real_t fPart = os_RealSub(&iPart_r, &mem[i]);
-;   22	
-;   23			os_RealToStr(buf, &iPart_r,0,0,6);
-;   24			dbg_sprintf(dbgout, "[Geo] iPart: %s | fPart: ", buf);
-;   25	
-;   26			os_RealToStr(buf, &fPart,0,0,6);
-;   27			dbg_sprintf(dbgout, "%s\n", buf);*/
-;   28	
-;   29			mem[i] = os_RealRound(&mem[i], places);
-.LINE 29
+;   17		{
+;   18			/*int24_t iPart = os_RealToInt24(&mem[i]);
+;   19			real_t iPart_r = os_Int24ToReal(iPart);
+;   20			real_t fPart = os_RealSub(&iPart_r, &mem[i]);
+;   21	
+;   22			os_RealToStr(buf, &iPart_r,0,0,6);
+;   23			dbg_sprintf(dbgout, "[Geo] iPart: %s | fPart: ", buf);
+;   24	
+;   25			os_RealToStr(buf, &fPart,0,0,6);
+;   26			dbg_sprintf(dbgout, "%s\n", buf);*/
+;   27	
+;   28			mem[i] = os_RealRound(&mem[i], places);
+.LINE 28
 
 	LD	C,(IX+9)
 	LD	B,0
@@ -619,8 +618,8 @@ L_1:
 	LD	HL,BC
 	LD	BC,9
 	LDIR	
-;   30			dbg_sprintf(dbgout, "[Geo] Rounded real_t memory @ 0x%p\n", &mem[i]);
-.LINE 30
+;   29			dbg_sprintf(dbgout, "[Geo] Rounded real_t memory @ 0x%p\n", &mem[i]);
+.LINE 29
 
 	LD	HL,(IX+-3)
 	LD	A,9
@@ -639,16 +638,16 @@ L_1:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;   31		}
+;   30		}
 L_3:
-.LINE 31
+.LINE 30
 
 	LD	BC,8
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	JR	C,L_1
-.LINE 32
+.LINE 31
 
 	LD	SP,IX
 	POP	IX
@@ -668,7 +667,7 @@ L_3:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "geo_RoundTriangle",32,"_geo_RoundTriangle"
+.ENDFUNC "geo_RoundTriangle",31,"_geo_RoundTriangle"
 	SEGMENT STRSECT
 L__0:
 	DB	"[Geo] Rounded real_t memory @ 0x%p"

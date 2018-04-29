@@ -15,6 +15,8 @@
 //				   [ 1	1	1 ] |
 //void AreaFrom3Points();
 
+void trig_SolveTriangle();
+
 void ui_DispData();
 
 void trig_HeronsFormula();
@@ -37,7 +39,7 @@ void trig_SelectAngle();
 
 void trig_Redraw();
 
-void trig_SolveTriangle();
+
 
 void trig_Quit();
 

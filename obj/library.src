@@ -565,7 +565,8 @@ L_7:
 
 .ENDFUNC "lib_StrIndexOf",32,"_lib_StrIndexOf"
 ;   33	
-;   34	void lib_StrReplace(char* in, char c, char r) {
+;   34	void lib_StrReplace(char* in, char c, char r)
+;   35	{
 _lib_StrReplace:
 .DEFINE "_lib_StrReplace"
 
@@ -577,9 +578,9 @@ _lib_StrReplace:
 
 .ENDEF
 
-.BEGFUNC "lib_StrReplace",34,"_lib_StrReplace"
+.BEGFUNC "lib_StrReplace",35,"_lib_StrReplace"
 
-.LINE 34
+.LINE 35
 
 .DEFINE "in"
 
@@ -625,8 +626,8 @@ _lib_StrReplace:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;   35		const int index = lib_StrIndexOf(in, c);
-.LINE 35
+;   36		const int index = lib_StrIndexOf(in, c);
+.LINE 36
 
 	LD	C,(IX+9)
 	LD	B,0
@@ -637,9 +638,9 @@ _lib_StrReplace:
 	POP	BC
 	POP	BC
 	LD	(IX+-3),HL
-;   36	
-;   37		if (index != -1) in[index] = r;
-.LINE 37
+;   37	
+;   38		if (index != -1) in[index] = r;
+.LINE 38
 
 	LD	BC,16777215
 	LD	HL,(IX+-3)
@@ -651,9 +652,9 @@ _lib_StrReplace:
 	ADD	HL,BC
 	LD	A,(IX+12)
 	LD	(HL),A
-;   38	}
+;   39	}
 L_10:
-.LINE 38
+.LINE 39
 
 	LD	SP,IX
 	POP	IX
@@ -673,10 +674,10 @@ L_10:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_StrReplace",38,"_lib_StrReplace"
-;   39	
-;   40	void lib_MemZero(char* ptr, int c)
-;   41	{
+.ENDFUNC "lib_StrReplace",39,"_lib_StrReplace"
+;   40	
+;   41	void lib_MemZero(char* ptr, int c)
+;   42	{
 _lib_MemZero:
 .DEFINE "_lib_MemZero"
 
@@ -688,9 +689,9 @@ _lib_MemZero:
 
 .ENDEF
 
-.BEGFUNC "lib_MemZero",41,"_lib_MemZero"
+.BEGFUNC "lib_MemZero",42,"_lib_MemZero"
 
-.LINE 41
+.LINE 42
 
 .DEFINE "ptr"
 
@@ -726,13 +727,13 @@ _lib_MemZero:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;   42		int i = 0;
-.LINE 42
+;   43		int i = 0;
+.LINE 43
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;   43		dbg_sprintf(dbgout, "[lib_MemZero] Zeroing memory from 0x%p to 0x%p\n", (void*) ptr, &ptr + c);
-.LINE 43
+;   44		dbg_sprintf(dbgout, "[lib_MemZero] Zeroing memory from 0x%p to 0x%p\n", (void*) ptr, &ptr + c);
+.LINE 44
 
 	LD	HL,(IX+9)
 	LD	BC,HL
@@ -753,14 +754,14 @@ _lib_MemZero:
 	POP	BC
 	POP	BC
 	POP	BC
-;   44		for (; i < c; i++)
-.LINE 44
+;   45		for (; i < c; i++)
+.LINE 45
 
 	JR	L_14
 L_12:
-;   45		{
-;   46			ptr[i] = (char) NULL;
-.LINE 46
+;   46		{
+;   47			ptr[i] = (char) NULL;
+.LINE 47
 
 	LD	BC,(IX+-3)
 	LD	HL,(IX+6)
@@ -769,9 +770,9 @@ L_12:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;   47		}
+;   48		}
 L_14:
-.LINE 47
+.LINE 48
 
 	LD	BC,(IX+9)
 	LD	HL,(IX+-3)
@@ -779,7 +780,7 @@ L_14:
 	SBC	HL,BC
 	CALL	__setflag
 	JP	M,L_12
-.LINE 48
+.LINE 49
 
 	LD	SP,IX
 	POP	IX
@@ -798,7 +799,7 @@ L_14:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_MemZero",48,"_lib_MemZero"
+.ENDFUNC "lib_MemZero",49,"_lib_MemZero"
 	SEGMENT STRSECT
 L__7:
 	DB	"[lib_MemZero] Zeroing memory from 0x%p to 0x%p"

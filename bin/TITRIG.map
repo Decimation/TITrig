@@ -1,6 +1,6 @@
 Segment  Base   Top    High   Length
 -------- ------ ------ ------ -------
-bss      D031F6 D03247 D13FD6     51h
+bss      D031F6 D03298 D13FD6     A2h
 header   D1A87F D1A882             3h
 icon     D1A882 D1A882             0h
 launcher D1A882 D1A8D2            50h
@@ -8,10 +8,10 @@ libs     D1A8D2 D1A907            35h
 startup  D1A907 D1A942            3Bh
 cleanup  D1A942 D1A956            14h
 exit     D1A956 D1A95C             6h
-code     D1A95C D1D76F          2E13h
-data     D1D76F D1D91E           1AFh
-strsect  D1D91E D1DB53           235h
-text     D1DB53 D1DCAD           15Ah
+code     D1A95C D21131          67D5h
+data     D21131 D2149A           369h
+strsect  D2149A D21C00           766h
+text     D21C00 D21E1B           21Bh
 
 Label                            Value
 ------------------------------   ------
@@ -40,50 +40,81 @@ _lib_MemZero                   = D1B3B0
 _lib_StrReplace                = D1B377
 _lib_StrIndexOf                = D1B332
 _lib_StrCut                    = D1B2AD
-_char_Neg                      = D1DB53
+_char_Neg                      = D21C00
 _main                          = D1B40D
-_right_SolveTriangle           = D1D2B7
-_right_SelectAngle             = D1CD49
-_right_SelectSide              = D1C7DF
-_ui_SwitchDispSimpRoot         = D1C792
-_ui_ClearDispSimpRoot          = D1C760
-_ui_ClearArea                  = D1C71E
-_disp_Simplified               = D1C679
-_sohcahtoa_Draw90              = D1C55D
-_right_Redraw                  = D1C4DC
-_sohcahtoa_DrawB               = D1BEAF
-_sohcahtoa_DrawA               = D1B886
-_ui_ClearFraction              = D1B845
-_CheckForInt                   = D1B7C3
-_pythag_CheckSolvability       = D1B5F2
-_right_TruncateLabels          = D1B571
-_right_Sync                    = D1B45D
-_set_Menu                      = D1D40C
-_gDigitThreshold               = D1D8E9
-_gRound                        = D1D8E8
-_SimplifyRadical               = D1D6E6
-_SimplifyRadicalStr            = D1D6AE
-_SimplifyRadicalStrFromDecimal = D1D65F
-_SimplifyRadicalFromDecimal    = D1D62C
-_DecimalToRoot                 = D1D5A7
-_RealDecimalToRoot             = D1D588
-_RoundIEEE754                  = D1D4DA
-_IsEven                        = D1D481
+_right_SolveTriangle           = D1D2CC
+_right_SelectAngle             = D1CD5E
+_right_SelectSide              = D1C7F4
+_ui_SwitchDispSimpRoot         = D1C7A7
+_ui_ClearDispSimpRoot          = D1C775
+_ui_ClearArea                  = D1C733
+_disp_Simplified               = D1C68E
+_sohcahtoa_Draw90              = D1C572
+_right_Redraw                  = D1C4F1
+_sohcahtoa_DrawB               = D1BEC4
+_sohcahtoa_DrawA               = D1B89B
+_ui_ClearFraction              = D1B85A
+_pythag_CheckSolvability       = D1B689
+_right_TruncateLabels          = D1B608
+_right_Sync                    = D1B4F4
+_set_Menu                      = D1D421
+_gDigitThreshold               = D212AB
+_gRound                        = D212AA
+_SimplifyRadical               = D1D6FB
+_SimplifyRadicalStr            = D1D6C3
+_SimplifyRadicalStrFromDecimal = D1D674
+_SimplifyRadicalFromDecimal    = D1D641
+_DecimalToRoot                 = D1D5BC
+_RealDecimalToRoot             = D1D59D
+_RoundIEEE754                  = D1D4EF
+_IsEven                        = D1D496
+_trig_SolveTriangle            = D20AA1
+_ui_DispAngleSideData          = D208AF
+_ui_DispMeasurements           = D2075E
+_trig_SelectAngle              = D20256
+_ui_DispData                   = D20230
+_trig_DrawTriangleSides        = D2015B
+_trig_Reset                    = D1FF95
+_trig_Quit                     = D1FF6F
+_trig_SelectSide               = D1FA52
+_ui_ClearAngleSideData         = D1F9E9
+_ui_ClearMeasurements          = D1F998
+_trig_CheckSolvability         = D1E12C
+_trig_TruncateLabels           = D1E0AB
+_trig_SolveMissingAngle        = D1DF9B
+_trig_SolveSSS                 = D1DE2A
+_trig_HeronsFormula            = D1DC9A
+_trig_AreaBySin                = D1DBF4
+_trig_Sync                     = D1DA93
+_dbg_printTriangle             = D1D839
+_trig_Redraw                   = D1D77F
+_os_RealSinDeg                 = D2108F
+_loc_Side_x                    = D20FA9
+_los_Angle_x                   = D20F10
+_los_Side_x                    = D20E83
+_loc_Angle_x                   = D20C57
+_os_RealAcosDeg                = D20BC0
+_SinDeg                        = D20B8B
+_ASinDeg                       = D20B53
+_CosineDeg                     = D20B1E
 __fadd                         = 000270
 __fcmp                         = 000274
 __fdiv                         = 000278
 __ftol                         = 00027C
 __fmul                         = 000288
 __fsub                         = 000290
-__icmpzero                     = D1D76A
+__icmpzero                     = D21122
 __idivs                        = 00013C
+__ildix                        = 000148
 __imuls                        = 000154
 __imul_b                       = 000158
 __imul_b                       = 000150
 __irems                        = 00016C
 __ishru_b                      = 000184
 __ishru_b                      = 000188
+__istix                        = 00018C
 _memmove                       = 0000A8
+__OS                           = D21127
 __setflag                      = 000218
 _sprintf                       = 0000BC
 _strchr                        = 0000C4
@@ -202,8 +233,12 @@ _asm_DisableAPD                = 021134
 _asm_EnableAPD                 = 021138
 _asm_DrawStatusBar             = 021A3C
 _asm_ArcChk                    = 022040
+_acos                          = 022100
+_asin                          = 022104
+_cos                           = 02211C
 _floor                         = 0220F4
 _modf                          = 0220EC
+_sin                           = 022118
 _sqrt                          = 02213C
 _gfx_Begin                     = D1A8DB
 _gfx_End                       = D1A8DF
