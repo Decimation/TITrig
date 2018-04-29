@@ -86,7 +86,7 @@ static const gfx_point_t func2FracPoints[3] = {
 };
 
 
-void right_Sync()
+static void right_Sync()
 {
 	dbg_sprintf(dbgout, "Synchronizing right triangle...\n");
 	geo_RoundTriangle(&triangle, gRound);
@@ -115,7 +115,7 @@ void right_Sync()
 	right_Redraw();
 }
 
-void right_TruncateLabels(int len)
+static void right_TruncateLabels(int len)
 {
 	int i = 0;
 	for (; i < 3; i++)
@@ -126,7 +126,7 @@ void right_TruncateLabels(int len)
 }
 
 // todo: check domain and imaginary numbers
-void pythag_CheckSolvability()
+static void pythag_CheckSolvability()
 {
 	real_t       apow, bpow, cpow;
 	const real_t real2 = os_Int24ToReal(2);
@@ -167,7 +167,7 @@ void pythag_CheckSolvability()
 }
 
 // For right triangle only
-void ui_ClearFraction(gfx_point_t point)
+static void ui_ClearFraction(gfx_point_t point)
 {
 	static const uint8_t w = 60;
 	static const uint8_t h = 35;
@@ -176,7 +176,7 @@ void ui_ClearFraction(gfx_point_t point)
 	ui_ClearArea(point, w, h);
 }
 
-void sohcahtoa_DrawA()
+static void sohcahtoa_DrawA()
 {
 	int     index = 0;
 	int24_t rad[2], rad2[2];
@@ -267,7 +267,7 @@ void sohcahtoa_DrawA()
 	}
 }
 
-void sohcahtoa_DrawB()
+static void sohcahtoa_DrawB()
 {
 	int     index = 0;
 	int24_t rad[2], rad2[2];
@@ -355,7 +355,7 @@ void sohcahtoa_DrawB()
 	}
 }
 
-void right_Redraw()
+static void right_Redraw()
 {
 	int index = 0;
 
@@ -369,7 +369,7 @@ void right_Redraw()
 	}
 }
 
-void sohcahtoa_Draw90()
+static void sohcahtoa_Draw90()
 {
 	int index = 0;
 	// Draw nothing when 90 is selected
@@ -387,7 +387,7 @@ void sohcahtoa_Draw90()
 	}
 }
 
-void disp_Simplified(real_t* r)
+static void disp_Simplified(real_t* r)
 {
 	int24_t rad[2];
 
@@ -406,20 +406,20 @@ void disp_Simplified(real_t* r)
 	gfx_Clear(&ui_Wait);
 }
 
-void ui_ClearArea(gfx_point_t point, uint8_t w, uint8_t h)
+static void ui_ClearArea(gfx_point_t point, uint8_t w, uint8_t h)
 {
 	gfx_SetColor(gfx_white);
 	gfx_FillRectangle(point.x, point.y, w, h);
 	gfx_SetColor(gfx_black);
 }
 
-void ui_ClearDispSimpRoot()
+static void ui_ClearDispSimpRoot()
 {
 	static const gfx_point_t point = {230, 20};
 	ui_ClearArea(point, 70, 35);
 }
 
-void ui_SwitchDispSimpRoot()
+static void ui_SwitchDispSimpRoot()
 {
 	if (ui_dispSimpRoot)
 	{
@@ -434,7 +434,7 @@ void ui_SwitchDispSimpRoot()
 	}
 }
 
-void right_SelectSide()
+static void right_SelectSide()
 {
 	uint8_t key;
 	superpoint_t* currentSelection;
@@ -586,7 +586,7 @@ void right_SelectSide()
 	goto RECURSE;
 }
 
-void right_SelectAngle()
+static void right_SelectAngle()
 {
 	uint8_t key;
 	superpoint_t* currentSelection;

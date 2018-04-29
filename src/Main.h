@@ -10,10 +10,9 @@
 
 #include "GraphicsExt.h"
 #include "RightTriangle.h"
-
-
 #include "Triangle.h"
 #include "debug.h"
 
 int main(void);
+
 #endif //TITRIG_MAIN_H

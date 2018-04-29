@@ -64,7 +64,7 @@ static superpoint_t xsidesData[3] = {
 
 static superpoint_t data_X_ex = {10, 215, "*X = "};
 
-void trig_Redraw()
+static void trig_Redraw()
 {
 	int index = 0;
 	for (index = 0; index < 3; index++)
@@ -79,7 +79,7 @@ void trig_Redraw()
 	}
 }
 
-void dbg_printTriangle()
+static void dbg_printTriangle()
 {
 	char buf[20];
 	os_RealToStr(buf, &triangle.A, 0, 0, -1);
@@ -108,7 +108,7 @@ void dbg_printTriangle()
 	dbg_sprintf(dbgout, "Perimeter: %s\n", buf);
 }
 
-void trig_Sync()
+static void trig_Sync()
 {
 	dbg_sprintf(dbgout, "[Trig] Synchronizing...\n");
 	geo_RoundTriangle(&triangle, gRound);
@@ -158,7 +158,7 @@ real_t trig_AreaBySin(real_t a, real_t b, real_t C)
 	return os_RealMul(&buf, &C);
 }
 
-void trig_HeronsFormula()
+static void trig_HeronsFormula()
 {
 	real_t       num, s, root;
 	real_t       sma, smb, smc;
@@ -186,7 +186,7 @@ void trig_HeronsFormula()
 	dbg_sprintf(dbgout, "[Trig] Solved for area\n");
 }
 
-void trig_SolveSSS()
+static void trig_SolveSSS()
 {
 	real_t       buf;
 	const real_t real180 = os_Int24ToReal(180);
@@ -208,7 +208,7 @@ void trig_SolveSSS()
 	trig_Sync();
 }
 
-void trig_SolveMissingAngle()
+static void trig_SolveMissingAngle()
 {
 	const real_t real180 = os_Int24ToReal(180);
 	real_t       buf;
@@ -233,7 +233,7 @@ void trig_SolveMissingAngle()
 	}
 }
 
-void trig_TruncateLabels(int len)
+static void trig_TruncateLabels(int len)
 {
 	int i = 0;
 	for (; i < 3; i++)
@@ -244,7 +244,7 @@ void trig_TruncateLabels(int len)
 	}
 }
 
-void trig_CheckSolvability()
+static void trig_CheckSolvability()
 {
 	real_t       rbuf;
 	char         cbuf[20];
@@ -572,7 +572,7 @@ void trig_CheckSolvability()
 	}
 }
 
-void ui_ClearMeasurements()
+static void ui_ClearMeasurements()
 {
 	int i = 0;
 	for (; i < 2; i++)
@@ -582,7 +582,7 @@ void ui_ClearMeasurements()
 	dbg_sprintf(dbgout, "[UI] Cleared measurements\n");
 }
 
-void ui_ClearAngleSideData()
+static void ui_ClearAngleSideData()
 {
 	int i = 0;
 	for (; i < 3; i++)
@@ -593,7 +593,7 @@ void ui_ClearAngleSideData()
 	dbg_sprintf(dbgout, "[UI] Cleared angle and side data\n");
 }
 
-void trig_SelectSide()
+static void trig_SelectSide()
 {
 	uint8_t key;
 	superpoint_t* currentSelection = &xsides[1]; // start at b
@@ -714,14 +714,14 @@ void trig_SelectSide()
 
 }
 
-void trig_Quit()
+static void trig_Quit()
 {
 	gfx_ZeroScreen();
 	gfx_End();
 	dbg_sprintf(dbgout, "[Trig] Zeroed screen and ended GFX\n");
 }
 
-void trig_Reset()
+static void trig_Reset()
 {
 	int i = 0;
 	bool  * bptr = (bool*) &trigstatus;
@@ -762,7 +762,7 @@ void trig_Reset()
 	trig_Sync();
 }
 
-void trig_DrawTriangleSides()
+static void trig_DrawTriangleSides()
 {
 	int index = 0;
 
@@ -793,7 +793,7 @@ void trig_DrawTriangleSides()
 	}
 }
 
-void ui_DispData()
+static void ui_DispData()
 {
 	if (ui_bDispMeasurements)
 	{
@@ -805,7 +805,7 @@ void ui_DispData()
 	}
 }
 
-void trig_SelectAngle()
+static void trig_SelectAngle()
 {
 	uint8_t key;
 	superpoint_t* currentSelection = &xangles[0];
@@ -925,7 +925,7 @@ void trig_SelectAngle()
 	goto RECURSE;
 }
 
-void ui_DispMeasurements()
+static void ui_DispMeasurements()
 {
 	char         buffer[20];
 	const real_t real0 = os_Int24ToReal(0);
@@ -964,7 +964,7 @@ void ui_DispMeasurements()
 	}
 }
 
-void ui_DispAngleSideData()
+static void ui_DispAngleSideData()
 {
 	int i = 0;
 	for (; i < 3; i++)

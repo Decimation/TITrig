@@ -1319,14 +1319,14 @@ _data_X_ex:
 ;   65	static superpoint_t data_X_ex = {10, 215, "*X = "};
 	SEGMENT CODE
 ;   66	
-;   67	void trig_Redraw()
+;   67	static void trig_Redraw()
 ;   68	{
 _trig_Redraw:
 .DEFINE "_trig_Redraw"
 
 .VALUE _trig_Redraw
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -1473,14 +1473,14 @@ L__0:
 	DB	10,0
 	SEGMENT CODE
 ;   81	
-;   82	void dbg_printTriangle()
+;   82	static void dbg_printTriangle()
 ;   83	{
 _dbg_printTriangle:
 .DEFINE "_dbg_printTriangle"
 
 .VALUE _dbg_printTriangle
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -1945,14 +1945,14 @@ L__30:
 	DB	10,0
 	SEGMENT CODE
 ;  110	
-;  111	void trig_Sync()
+;  111	static void trig_Sync()
 ;  112	{
 _trig_Sync:
 .DEFINE "_trig_Sync"
 
 .VALUE _trig_Sync
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -2216,11 +2216,11 @@ L_41:
 
 ;**************************** _trig_Sync ***************************
 ;Name                         Addr/Register   Size   Type
-;_dbg_printTriangle                  IMPORT  -----   function
-;_trig_Redraw                        IMPORT  -----   function
+;_dbg_printTriangle                  STATIC  -----   function
+;_trig_Redraw                        STATIC  -----   function
 ;_gDigitThreshold                    IMPORT      1   variable
-;_trig_TruncateLabels                IMPORT  -----   function
-;_ui_DispData                        IMPORT  -----   function
+;_trig_TruncateLabels                STATIC  -----   function
+;_ui_DispData                        STATIC  -----   function
 ;_xsides                             STATIC     78   variable
 ;_xangles                            STATIC     78   variable
 ;_os_RealToStr                       IMPORT  -----   function
@@ -2440,14 +2440,14 @@ _trig_AreaBySin:
 
 .ENDFUNC "trig_AreaBySin",159,"_trig_AreaBySin"
 ;  160	
-;  161	void trig_HeronsFormula()
+;  161	static void trig_HeronsFormula()
 ;  162	{
 _trig_HeronsFormula:
 .DEFINE "_trig_HeronsFormula"
 
 .VALUE _trig_HeronsFormula
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -2797,14 +2797,14 @@ L__44:
 	DB	10,0
 	SEGMENT CODE
 ;  188	
-;  189	void trig_SolveSSS()
+;  189	static void trig_SolveSSS()
 ;  190	{
 _trig_SolveSSS:
 .DEFINE "_trig_SolveSSS"
 
 .VALUE _trig_SolveSSS
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -3048,8 +3048,8 @@ _trig_SolveSSS:
 
 ;**************************** _trig_SolveSSS ***************************
 ;Name                         Addr/Register   Size   Type
-;_trig_Sync                          IMPORT  -----   function
-;_trig_HeronsFormula                 IMPORT  -----   function
+;_trig_Sync                          STATIC  -----   function
+;_trig_HeronsFormula                 STATIC  -----   function
 ;_os_RealSub                         IMPORT  -----   function
 ;_os_RealAdd                         IMPORT  -----   function
 ;_trigstatus                         STATIC      8   variable
@@ -3082,14 +3082,14 @@ L__49:
 	DB	10,0
 	SEGMENT CODE
 ;  210	
-;  211	void trig_SolveMissingAngle()
+;  211	static void trig_SolveMissingAngle()
 ;  212	{
 _trig_SolveMissingAngle:
 .DEFINE "_trig_SolveMissingAngle"
 
 .VALUE _trig_SolveMissingAngle
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -3304,14 +3304,14 @@ L_54:
 
 .ENDFUNC "trig_SolveMissingAngle",234,"_trig_SolveMissingAngle"
 ;  235	
-;  236	void trig_TruncateLabels(int len)
+;  236	static void trig_TruncateLabels(int len)
 ;  237	{
 _trig_TruncateLabels:
 .DEFINE "_trig_TruncateLabels"
 
 .VALUE _trig_TruncateLabels
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -3434,14 +3434,14 @@ L_58:
 
 .ENDFUNC "trig_TruncateLabels",245,"_trig_TruncateLabels"
 ;  246	
-;  247	void trig_CheckSolvability()
+;  247	static void trig_CheckSolvability()
 ;  248	{
 _trig_CheckSolvability:
 .DEFINE "_trig_CheckSolvability"
 
 .VALUE _trig_CheckSolvability
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -6986,12 +6986,12 @@ L_113:
 ;_loc_Side_x                         IMPORT  -----   function
 ;_lbl_SAS                            STATIC      4   variable
 ;_lbl_ASA                            STATIC      4   variable
-;_trig_HeronsFormula                 IMPORT  -----   function
+;_trig_HeronsFormula                 STATIC  -----   function
 ;_triangle                           STATIC     72   variable
 ;_los_Side_x                         IMPORT  -----   function
 ;_lbl_AAS                            STATIC      4   variable
 ;_xangles                            STATIC     78   variable
-;_trig_SolveSSS                      IMPORT  -----   function
+;_trig_SolveSSS                      STATIC  -----   function
 ;_gfx_PrintColor                     IMPORT  -----   function
 ;_lbl_SSS                            STATIC      4   variable
 ;_sp_SetLabel                        IMPORT  -----   function
@@ -6999,9 +6999,9 @@ L_113:
 ;_gfx_Clear                          IMPORT  -----   function
 ;_xsides                             STATIC     78   variable
 ;_trigstatus                         STATIC      8   variable
-;_trig_Sync                          IMPORT  -----   function
-;_trig_SolveMissingAngle             IMPORT  -----   function
-;_ui_DispData                        IMPORT  -----   function
+;_trig_Sync                          STATIC  -----   function
+;_trig_SolveMissingAngle             STATIC  -----   function
+;_ui_DispData                        STATIC  -----   function
 ;_sprintf                            IMPORT  -----   function
 ;_os_Int24ToReal                     IMPORT  -----   function
 ;cbuf2                                IX-58     20   variable
@@ -7087,14 +7087,14 @@ L__122:
 	DB	10,0
 	SEGMENT CODE
 ;  574	
-;  575	void ui_ClearMeasurements()
+;  575	static void ui_ClearMeasurements()
 ;  576	{
 _ui_ClearMeasurements:
 .DEFINE "_ui_ClearMeasurements"
 
 .VALUE _ui_ClearMeasurements
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -7189,14 +7189,14 @@ L__125:
 	DB	10,0
 	SEGMENT CODE
 ;  584	
-;  585	void ui_ClearAngleSideData()
+;  585	static void ui_ClearAngleSideData()
 ;  586	{
 _ui_ClearAngleSideData:
 .DEFINE "_ui_ClearAngleSideData"
 
 .VALUE _ui_ClearAngleSideData
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -7304,14 +7304,14 @@ L__128:
 	DB	10,0
 	SEGMENT CODE
 ;  595	
-;  596	void trig_SelectSide()
+;  596	static void trig_SelectSide()
 ;  597	{
 _trig_SelectSide:
 .DEFINE "_trig_SelectSide"
 
 .VALUE _trig_SelectSide
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -8113,24 +8113,24 @@ L_165:
 
 ;**************************** _trig_SelectSide ***************************
 ;Name                         Addr/Register   Size   Type
-;_trig_CheckSolvability              IMPORT  -----   function
+;_trig_CheckSolvability              STATIC  -----   function
 ;_trigstatus                         STATIC      8   variable
 ;_triangle                           STATIC     72   variable
 ;_io_gfx_ReadReal                    IMPORT  -----   function
 ;_sprintf                            IMPORT  -----   function
 ;_os_GetCSC                          IMPORT  -----   function
 ;_PointEq                            IMPORT  -----   function
-;_trig_SelectAngle                   IMPORT  -----   function
+;_trig_SelectAngle                   STATIC  -----   function
 ;_gfx_ClearHighlight                 IMPORT  -----   function
 ;_gfx_Print                          IMPORT  -----   function
 ;_lbl_AngleMode                      STATIC     11   variable
 ;_sp_SetLabel                        IMPORT  -----   function
 ;_ui_Mode                            STATIC     26   variable
 ;_gfx_Clear                          IMPORT  -----   function
-;_trig_Reset                         IMPORT  -----   function
-;_ui_DispData                        IMPORT  -----   function
-;_ui_ClearAngleSideData              IMPORT  -----   function
-;_ui_ClearMeasurements               IMPORT  -----   function
+;_trig_Reset                         STATIC  -----   function
+;_ui_DispData                        STATIC  -----   function
+;_ui_ClearAngleSideData              STATIC  -----   function
+;_ui_ClearMeasurements               STATIC  -----   function
 ;_ui_bDispMeasurements               STATIC      1   variable
 ;_gfx_HighlightPoint                 IMPORT  -----   function
 ;_xsides                             STATIC     78   variable
@@ -8162,14 +8162,14 @@ L__154:
 	DB	10,0
 	SEGMENT CODE
 ;  716	
-;  717	void trig_Quit()
+;  717	static void trig_Quit()
 ;  718	{
 _trig_Quit:
 .DEFINE "_trig_Quit"
 
 .VALUE _trig_Quit
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -8224,14 +8224,14 @@ L__156:
 	DB	10,0
 	SEGMENT CODE
 ;  723	
-;  724	void trig_Reset()
+;  724	static void trig_Reset()
 ;  725	{
 _trig_Reset:
 .DEFINE "_trig_Reset"
 
 .VALUE _trig_Reset
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -8544,9 +8544,9 @@ L_179:
 
 ;**************************** _trig_Reset ***************************
 ;Name                         Addr/Register   Size   Type
-;_trig_Sync                          IMPORT  -----   function
-;_trig_DrawTriangleSides             IMPORT  -----   function
-;_trig_Redraw                        IMPORT  -----   function
+;_trig_Sync                          STATIC  -----   function
+;_trig_DrawTriangleSides             STATIC  -----   function
+;_trig_Redraw                        STATIC  -----   function
 ;_xsides                             STATIC     78   variable
 ;_xangles                            STATIC     78   variable
 ;_sp_SetLabel                        IMPORT  -----   function
@@ -8589,14 +8589,14 @@ L__166:
 	DB	0
 	SEGMENT CODE
 ;  764	
-;  765	void trig_DrawTriangleSides()
+;  765	static void trig_DrawTriangleSides()
 ;  766	{
 _trig_DrawTriangleSides:
 .DEFINE "_trig_DrawTriangleSides"
 
 .VALUE _trig_DrawTriangleSides
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -8775,7 +8775,7 @@ L_187:
 ;Name                         Addr/Register   Size   Type
 ;_xsides                             STATIC     78   variable
 ;_gfx_Print                          IMPORT  -----   function
-;_trig_Redraw                        IMPORT  -----   function
+;_trig_Redraw                        STATIC  -----   function
 ;_gfx_Line                           IMPORT  -----   function
 ;_0temp183                           STATIC     18   variable
 ;verts                                IX-36     18   variable
@@ -8808,14 +8808,14 @@ _0temp183:
 	DB	0
 	SEGMENT CODE
 ;  795	
-;  796	void ui_DispData()
+;  796	static void ui_DispData()
 ;  797	{
 _ui_DispData:
 .DEFINE "_ui_DispData"
 
 .VALUE _ui_DispData
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -8863,8 +8863,8 @@ L_192:
 
 ;**************************** _ui_DispData ***************************
 ;Name                         Addr/Register   Size   Type
-;_ui_DispAngleSideData               IMPORT  -----   function
-;_ui_DispMeasurements                IMPORT  -----   function
+;_ui_DispAngleSideData               STATIC  -----   function
+;_ui_DispMeasurements                STATIC  -----   function
 ;_ui_bDispMeasurements               STATIC      1   variable
 
 
@@ -8874,14 +8874,14 @@ L_192:
 
 .ENDFUNC "ui_DispData",806,"_ui_DispData"
 ;  807	
-;  808	void trig_SelectAngle()
+;  808	static void trig_SelectAngle()
 ;  809	{
 _trig_SelectAngle:
 .DEFINE "_trig_SelectAngle"
 
 .VALUE _trig_SelectAngle
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -9674,24 +9674,24 @@ L_231:
 
 ;**************************** _trig_SelectAngle ***************************
 ;Name                         Addr/Register   Size   Type
-;_trig_CheckSolvability              IMPORT  -----   function
+;_trig_CheckSolvability              STATIC  -----   function
 ;_trigstatus                         STATIC      8   variable
 ;_triangle                           STATIC     72   variable
 ;_io_gfx_ReadReal                    IMPORT  -----   function
 ;_sprintf                            IMPORT  -----   function
 ;_os_GetCSC                          IMPORT  -----   function
 ;_PointEq                            IMPORT  -----   function
-;_trig_SelectSide                    IMPORT  -----   function
+;_trig_SelectSide                    STATIC  -----   function
 ;_gfx_ClearHighlight                 IMPORT  -----   function
 ;_gfx_Print                          IMPORT  -----   function
 ;_lbl_SideMode                       STATIC     10   variable
 ;_sp_SetLabel                        IMPORT  -----   function
 ;_ui_Mode                            STATIC     26   variable
 ;_gfx_Clear                          IMPORT  -----   function
-;_trig_Reset                         IMPORT  -----   function
-;_ui_DispData                        IMPORT  -----   function
-;_ui_ClearAngleSideData              IMPORT  -----   function
-;_ui_ClearMeasurements               IMPORT  -----   function
+;_trig_Reset                         STATIC  -----   function
+;_ui_DispData                        STATIC  -----   function
+;_ui_ClearAngleSideData              STATIC  -----   function
+;_ui_ClearMeasurements               STATIC  -----   function
 ;_ui_bDispMeasurements               STATIC      1   variable
 ;_gfx_HighlightPoint                 IMPORT  -----   function
 ;_xangles                            STATIC     78   variable
@@ -9723,14 +9723,14 @@ L__196:
 	DB	10,0
 	SEGMENT CODE
 ;  927	
-;  928	void ui_DispMeasurements()
+;  928	static void ui_DispMeasurements()
 ;  929	{
 _ui_DispMeasurements:
 .DEFINE "_ui_DispMeasurements"
 
 .VALUE _ui_DispMeasurements
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -10029,14 +10029,14 @@ L_245:
 
 .ENDFUNC "ui_DispMeasurements",965,"_ui_DispMeasurements"
 ;  966	
-;  967	void ui_DispAngleSideData()
+;  967	static void ui_DispAngleSideData()
 ;  968	{
 _ui_DispAngleSideData:
 .DEFINE "_ui_DispAngleSideData"
 
 .VALUE _ui_DispAngleSideData
 
-.CLASS 2
+.CLASS 3
 
 .TYPE 65
 
@@ -10489,9 +10489,9 @@ _trig_SolveTriangle:
 
 ;**************************** _trig_SolveTriangle ***************************
 ;Name                         Addr/Register   Size   Type
-;_trig_Quit                          IMPORT  -----   function
-;_trig_SelectAngle                   IMPORT  -----   function
-;_trig_Reset                         IMPORT  -----   function
+;_trig_Quit                          STATIC  -----   function
+;_trig_SelectAngle                   STATIC  -----   function
+;_trig_Reset                         STATIC  -----   function
 ;_ui_btn_Data                        STATIC     26   variable
 ;_ui_btn_Clear                       STATIC     26   variable
 ;_ui_btn_Mode                        STATIC     26   variable
@@ -10559,23 +10559,5 @@ _trig_SolveTriangle:
 	XREF __icmpzero:ROM
 	XREF __imul_b:ROM
 	XDEF _trig_SolveTriangle
-	XDEF _ui_DispAngleSideData
-	XDEF _ui_DispMeasurements
-	XDEF _trig_SelectAngle
-	XDEF _ui_DispData
-	XDEF _trig_DrawTriangleSides
-	XDEF _trig_Reset
-	XDEF _trig_Quit
-	XDEF _trig_SelectSide
-	XDEF _ui_ClearAngleSideData
-	XDEF _ui_ClearMeasurements
-	XDEF _trig_CheckSolvability
-	XDEF _trig_TruncateLabels
-	XDEF _trig_SolveMissingAngle
-	XDEF _trig_SolveSSS
-	XDEF _trig_HeronsFormula
 	XDEF _trig_AreaBySin
-	XDEF _trig_Sync
-	XDEF _dbg_printTriangle
-	XDEF _trig_Redraw
 	END

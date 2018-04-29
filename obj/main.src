@@ -509,11 +509,12 @@
 ;    3	//
 ;    4	
 ;    5	#include "Main.h"
-;    6	#include "Triangle.h"
-;    7	
-;    8	
-;    9	int main(void)
-;   10	{
+;    6	
+;    7	// To make CLion happy
+;    8	extern void trig_SolveTriangle();
+;    9	
+;   10	int main(void)
+;   11	{
 _main:
 .DEFINE "_main"
 
@@ -525,9 +526,9 @@ _main:
 
 .ENDEF
 
-.BEGFUNC "main",10,"_main"
+.BEGFUNC "main",11,"_main"
 
-.LINE 10
+.LINE 11
 
 .DEFINE "r"
 
@@ -558,9 +559,9 @@ _main:
 	ADD	IX,SP
 	LEA	HL,IX+-36
 	LD	SP,HL
-;   11		real_t r;
-;   12		const real_t real1 = os_Int24ToReal(1);
-.LINE 12
+;   12		real_t                    r;
+;   13		const real_t              real1 = os_Int24ToReal(1);
+.LINE 13
 
 	LD	BC,1
 	PUSH	BC
@@ -571,8 +572,8 @@ _main:
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;   13		const static superpoint_t point = {{12,56}, "..."};
-.LINE 13
+;   14		const static superpoint_t point = {{12, 56}, "..."};
+.LINE 14
 
 .DEFINE "point"
 
@@ -588,9 +589,9 @@ _main:
 
 .ENDEF
 
-;   14	
-;   15		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
-.LINE 15
+;   15	
+;   16		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
+.LINE 16
 
 	LD	BC,L__0
 	PUSH	BC
@@ -599,8 +600,8 @@ _main:
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;   16		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", MAJOR, MINOR);
-.LINE 16
+;   17		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", MAJOR, MINOR);
+.LINE 17
 
 	LD	BC,0
 	PUSH	BC
@@ -615,9 +616,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   17	
-;   18		os_ClrHome();
-.LINE 18
+;   18	
+;   19		os_ClrHome();
+.LINE 19
 
 	LD	BC,_asm_ClrLCD
 	PUSH	BC
@@ -631,12 +632,12 @@ _main:
 	PUSH	BC
 	CALL	__OS
 	POP	BC
-;   19		gfx_Begin();
-.LINE 19
+;   20		gfx_Begin();
+.LINE 20
 
 	CALL	_gfx_Begin
-;   20		gfx_PrintStringXY("1. Right",12,16);
-.LINE 20
+;   21		gfx_PrintStringXY("1. Right", 12, 16);
+.LINE 21
 
 	LD	BC,16
 	PUSH	BC
@@ -648,8 +649,8 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   21		gfx_PrintStringXY("2. Non-right",12,36);
-.LINE 21
+;   22		gfx_PrintStringXY("2. Non-right", 12, 36);
+.LINE 22
 
 	LD	BC,36
 	PUSH	BC
@@ -661,15 +662,15 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   22		gfx_Print(&point);
-.LINE 22
+;   23		gfx_Print(&point);
+.LINE 23
 
 	LD	BC,_0point
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;   23		r = io_gfx_ReadReal(&point);
-.LINE 23
+;   24		r = io_gfx_ReadReal(&point);
+.LINE 24
 
 	LD	BC,_0point
 	PUSH	BC
@@ -680,9 +681,9 @@ _main:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   24	
-;   25		if (os_RealCompare(&real1, &r) == 0) {
-.LINE 25
+;   25	
+;   26		if (os_RealCompare(&real1, &r) == 0)
+.LINE 26
 
 	PEA	IX+-9
 	PEA	IX+-18
@@ -691,37 +692,39 @@ _main:
 	POP	BC
 	CALL	__icmpzero
 	JR	NZ,L_4
-;   26			right_SolveTriangle();
-.LINE 26
+;   27		{
+;   28			right_SolveTriangle();
+.LINE 28
 
 	CALL	_right_SolveTriangle
-;   27		}
-;   28		else {
-.LINE 28
+;   29		}
+;   30		else
+.LINE 30
 
 	JR	L_5
 L_4:
-;   29			trig_SolveTriangle();
-.LINE 29
-
-	CALL	_trig_SolveTriangle
-;   30		}
-L_5:
-.LINE 30
-
-;   31	
-;   32		gfx_End();
+;   31		{
+;   32			trig_SolveTriangle();
 .LINE 32
 
-	CALL	_gfx_End
-;   33	
+	CALL	_trig_SolveTriangle
+;   33		}
+L_5:
+.LINE 33
+
 ;   34	
-;   35		return 0;
+;   35		gfx_End();
 .LINE 35
+
+	CALL	_gfx_End
+;   36	
+;   37	
+;   38		return 0;
+.LINE 38
 
 	OR	A,A
 	SBC	HL,HL
-.LINE 36
+.LINE 39
 
 	LD	SP,IX
 	POP	IX
@@ -753,7 +756,7 @@ L_5:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "main",36,"_main"
+.ENDFUNC "main",39,"_main"
 	SEGMENT STRSECT
 L__0:
 	DB	10
