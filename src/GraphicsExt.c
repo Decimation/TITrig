@@ -4,14 +4,8 @@
 
 #include "GraphicsExt.h"
 #include "Library.h"
-#include "Triangle.h"
-#include <tice.h>
-#include <graphx.h>
-#include <stdlib.h>
 #include <string.h>
 #include <debug.h>
-#include <stdbool.h>
-
 
 
 void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner)
@@ -147,8 +141,6 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 	static char lchars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
 	gfx_Clear(point);
 	lib_MemZero(point->label, 20);
-
-
 	lchars[33] = '0';
 	lchars[18] = '3';
 
@@ -189,7 +181,6 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 
 	return rbuffer;
 }
-
 
 bool PointEq(superpoint_t a, superpoint_t b)
 {

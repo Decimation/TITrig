@@ -6,7 +6,6 @@
 #include <tice.h>
 #include <debug.h>
 #include "Geometry.h"
-#include "GraphicsExt.h"
 
 
 void geo_RoundTriangle(triangle_t* triangle, uint8_t places)

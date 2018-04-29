@@ -46,7 +46,9 @@ void gfx_ClearHighlight(superpoint_t* p);
 void gfx_HighlightPoint(superpoint_t* p);
 
 void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner);
+
 void gfx_Fraction(gfx_point_t point, real_t num, real_t denom);
+
 void gfx_FractionStr(gfx_point_t point, const char* num, const char* denom);
 
 void gfx_Sqrt(gfx_point_t point, int24_t outer, int24_t inner);

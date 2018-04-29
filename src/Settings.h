@@ -10,4 +10,5 @@ extern uint8_t gDigitThreshold;
 #define kLabelOffset 4
 
 void set_Menu();
+
 #endif //TITRIG_SETTINGS_H

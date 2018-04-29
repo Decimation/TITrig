@@ -31,7 +31,8 @@ int lib_StrIndexOf(char* values, char find)
 	return index;
 }
 
-void lib_StrReplace(char* in, char c, char r) {
+void lib_StrReplace(char* in, char c, char r)
+{
 	const int index = lib_StrIndexOf(in, c);
 
 	if (index != -1) in[index] = r;

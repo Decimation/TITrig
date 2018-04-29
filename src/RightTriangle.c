@@ -13,7 +13,6 @@
 #include "Library.h"
 #include "Geometry.h"
 #include "Simplifiers.h"
-#include <string.h>
 
 static superpoint_t xangles[3] = {
 		/* verts[2] + X, verts[3] + Y */
@@ -164,19 +163,6 @@ void pythag_CheckSolvability()
 		triangle.b   = os_RealSqrt(&bpow);
 		trigstatus.b = true;
 		return;
-	}
-}
-
-void CheckForInt(char* in, char* possibleSrc)
-{
-	if (in[strlen(in) - 2] == '1')
-	{
-		dbg_sprintf(dbgout, "[RightTrig] Int detected: %s\n", in);
-		strcpy(in, possibleSrc);
-	}
-	else if (in[strlen(in) - 2] == '0')
-	{
-		strcpy(in, "0");
 	}
 }
 

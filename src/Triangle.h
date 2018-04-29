@@ -6,7 +6,6 @@
 #define TITRIG_RIGHTTRIANGLE_H
 
 
-
 #include "Library.h"
 #include "GraphicsExt.h"
 #include "Geometry.h"

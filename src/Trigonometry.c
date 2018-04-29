@@ -4,7 +4,6 @@
 
 
 #include "Trigonometry.h"
-#include <tice.h>
 #include <debug.h>
 #include <math.h>
 
@@ -95,7 +94,6 @@ real_t loc_Side_x(real_t a, real_t b, real_t angle)
 	anglef = os_RealToFloat(&angle);
 	return os_FloatToReal(sqrt((af * af) + (bf * bf) - 2 * af * bf * CosineDeg(anglef)));
 }
-
 
 
 real_t os_RealSinDeg(real_t r)
