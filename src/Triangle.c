@@ -5,14 +5,12 @@
 #include "Triangle.h"
 #include "debug.h"
 #include "Trigonometry.h"
-#include "GraphicsExt.h"
 #include <string.h>
-#include "Settings.h"
 
 static superpoint_t xangles[3] = {
 		{{30,       119 - 10}, "A"},   // AAA
 		{{10 + 155, 119 - 10}, "B"},   // BBB
-		{{135, 27},       "C"}   // CCC
+		{{135,      27},       "C"}   // CCC
 };
 
 static superpoint_t xsides[3] = {
@@ -261,7 +259,8 @@ void trig_CheckSolvability()
 	trig_Sync();
 
 
-	if (trigstatus.complete) {
+	if (trigstatus.complete)
+	{
 
 		return;
 	}
@@ -928,9 +927,9 @@ void trig_SelectAngle()
 
 void ui_DispMeasurements()
 {
-	char             buffer[20];
-	const real_t     real0  = os_Int24ToReal(0);
-	int              i      = 0;
+	char         buffer[20];
+	const real_t real0 = os_Int24ToReal(0);
+	int          i     = 0;
 
 	for (; i < 2; i++)
 	{
