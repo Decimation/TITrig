@@ -123,148 +123,6 @@
 .TYPE 108
 .ENDEF
 .ENDREC "NONAME7"
-.BEGREC "fmt_type",19
-.DEFINE "status"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "flags"
-.VALUE 1
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "size"
-.VALUE 2
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "chr"
-.VALUE 3
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "type"
-.VALUE 4
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "field_width"
-.VALUE 5
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "precision"
-.VALUE 6
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "set_begin"
-.VALUE 7
-.CLASS 8
-.TYPE 34
-.ENDEF
-.DEFINE "set_end"
-.VALUE 10
-.CLASS 8
-.TYPE 34
-.ENDEF
-.DEFINE "pad_whole"
-.VALUE 13
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "pad_pre_fract"
-.VALUE 14
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "pad_post_fract"
-.VALUE 15
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "pad_at"
-.VALUE 16
-.CLASS 8
-.TYPE 34
-.ENDEF
-.ENDREC "fmt_type"
-.BEGREC "flt_info",12
-.DEFINE "flags"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "exp"
-.VALUE 1
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "digits"
-.VALUE 2
-.CLASS 8
-.DIM 10
-.TYPE 108
-.ENDEF
-.ENDREC "flt_info"
-.BEGREC "NONAME8",6
-.DEFINE "quot"
-.VALUE 0
-.CLASS 8
-.TYPE 4
-.ENDEF
-.DEFINE "rem"
-.VALUE 3
-.CLASS 8
-.TYPE 4
-.ENDEF
-.ENDREC "NONAME8"
-.BEGREC "NONAME9",8
-.DEFINE "quot"
-.VALUE 0
-.CLASS 8
-.TYPE 5
-.ENDEF
-.DEFINE "rem"
-.VALUE 4
-.CLASS 8
-.TYPE 5
-.ENDEF
-.ENDREC "NONAME9"
-.BEGREC "header",6
-.DEFINE "s"
-.VALUE 0
-.CLASS 11
-.TAG "NONAME10"
-.TYPE 8
-.ENDEF
-.DEFINE "x"
-.VALUE 0
-.CLASS 11
-.TYPE 2
-.ENDEF
-.ENDREC "header"
-.BEGREC "NONAME10",6
-.DEFINE "ptr"
-.VALUE 0
-.CLASS 8
-.TAG "header"
-.TYPE 40
-.ENDEF
-.DEFINE "size"
-.VALUE 3
-.CLASS 8
-.TYPE 14
-.ENDEF
-.ENDREC "NONAME10"
-.BEGREC "__stdio_file",1
-.DEFINE "slot"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.ENDREC "__stdio_file"
 	SEGMENT TEXT
 _PI:
 	DF	3.141592654
@@ -274,16 +132,24 @@ _PI:
 .VALUE _PI
 .TYPE 6
 .ENDEF
+_HalfCircle:
+	DF	180.0
+.DEFINE "HalfCircle"
+.ALIAS "_HalfCircle"
+.CLASS 84
+.VALUE _HalfCircle
+.TYPE 6
+.ENDEF
 ;    1	//
 ;    2	// Created by Decimation on 4/27/2018.
 ;    3	//
 ;    4	
 ;    5	
 ;    6	#include "Trigonometry.h"
-;    7	#include <debug.h>
-;    8	#include <math.h>
-;    9	
-;   10	static const float PI = 3.141592654f;
+;    7	#include <math.h>
+;    8	
+;    9	static const float PI         = 3.141592654f;
+;   10	static const float HalfCircle = 180.0f;
 	SEGMENT CODE
 ;   11	
 ;   12	float CosineDeg(float f)
@@ -316,7 +182,7 @@ _CosineDeg:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;   14		return (float) (cos(f / 180 * PI));
+;   14		return (float) (cos(f / HalfCircle * PI));
 .LINE 14
 
 	LD	HL,3407872
@@ -385,7 +251,7 @@ _ASinDeg:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;   19		return (float) (asin(f) * 180 / PI);
+;   19		return (float) (asin(f) * HalfCircle / PI);
 .LINE 19
 
 	LD	C,(IX+9)
@@ -456,7 +322,7 @@ _SinDeg:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;   24		return (float) (sin(f / 180 * PI));
+;   24		return (float) (sin(f / HalfCircle * PI));
 .LINE 24
 
 	LD	HL,3407872
@@ -570,7 +436,7 @@ _os_RealAcosDeg:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   32		rbuf = os_FloatToReal(os_RealToFloat(&rbuf) * 180.0f / PI);
+;   32		rbuf = os_FloatToReal(os_RealToFloat(&rbuf) * HalfCircle / PI);
 .LINE 32
 
 	PEA	IX+-9
@@ -838,18 +704,7 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   44		dbg_sprintf(dbgout, "c = %s\n", buf);
-.LINE 44
-
-	PEA	IX+-92
-	LD	BC,L__4
-	PUSH	BC
-	LD	BC,16449536
-	PUSH	BC
-	CALL	_sprintf
-	POP	BC
-	POP	BC
-	POP	BC
+;   44		//dbg_sprintf(dbgout, "c = %s\n", buf);
 ;   45		os_RealToStr(buf, &a, 0, 0, 6);
 .LINE 45
 
@@ -866,18 +721,7 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   46		dbg_sprintf(dbgout, "a = %s\n", buf);
-.LINE 46
-
-	PEA	IX+-92
-	LD	BC,L__5
-	PUSH	BC
-	LD	BC,16449536
-	PUSH	BC
-	CALL	_sprintf
-	POP	BC
-	POP	BC
-	POP	BC
+;   46		//dbg_sprintf(dbgout, "a = %s\n", buf);
 ;   47		os_RealToStr(buf, &b, 0, 0, 6);
 .LINE 47
 
@@ -894,18 +738,7 @@ _loc_Angle_x:
 	POP	BC
 	POP	BC
 	POP	BC
-;   48		dbg_sprintf(dbgout, "b = %s\n", buf);
-.LINE 48
-
-	PEA	IX+-92
-	LD	BC,L__6
-	PUSH	BC
-	LD	BC,16449536
-	PUSH	BC
-	CALL	_sprintf
-	POP	BC
-	POP	BC
-	POP	BC
+;   48		//dbg_sprintf(dbgout, "b = %s\n", buf);
 ;   49	
 ;   50		bsq  = os_RealMul(&b, &b);
 .LINE 50
@@ -1125,7 +958,6 @@ _loc_Angle_x:
 ;_os_RealSub                         IMPORT  -----   function
 ;_os_RealAdd                         IMPORT  -----   function
 ;_os_RealMul                         IMPORT  -----   function
-;_sprintf                            IMPORT  -----   function
 ;_os_RealToStr                       IMPORT  -----   function
 ;_os_Int24ToReal                     IMPORT  -----   function
 ;buf                                  IX-92     20   variable
@@ -1147,17 +979,6 @@ _loc_Angle_x:
 
 
 .ENDFUNC "loc_Angle_x",66,"_loc_Angle_x"
-	SEGMENT STRSECT
-L__4:
-	DB	"c = %s"
-	DB	10,0
-L__5:
-	DB	"a = %s"
-	DB	10,0
-L__6:
-	DB	"b = %s"
-	DB	10,0
-	SEGMENT CODE
 ;   67	
 ;   68	real_t los_Side_x(real_t X, real_t y, real_t Y)
 ;   69	{
@@ -1915,7 +1736,6 @@ _os_RealSinDeg:
 	XREF _cos:ROM
 	XREF _asin:ROM
 	XREF _acos:ROM
-	XREF _sprintf:ROM
 	XREF _os_RealToStr:ROM
 	XREF _os_FloatToReal:ROM
 	XREF _os_RealToFloat:ROM

@@ -510,11 +510,8 @@
 ;    4	
 ;    5	#include "Main.h"
 ;    6	
-;    7	// To make CLion happy
-;    8	extern void trig_SolveTriangle();
-;    9	
-;   10	int main(void)
-;   11	{
+;    7	int main(void)
+;    8	{
 _main:
 .DEFINE "_main"
 
@@ -526,9 +523,9 @@ _main:
 
 .ENDEF
 
-.BEGFUNC "main",11,"_main"
+.BEGFUNC "main",8,"_main"
 
-.LINE 11
+.LINE 8
 
 .DEFINE "r"
 
@@ -554,34 +551,71 @@ _main:
 
 .ENDEF
 
+.DEFINE "real2"
+
+.CLASS 65
+
+.VALUE -27
+
+.TAG "NONAME8"
+
+.TYPE 8
+
+.ENDEF
+
+.DEFINE "buf"
+
+.CLASS 65
+
+.VALUE -47
+
+.DIM 20
+
+.TYPE 98
+
+.ENDEF
+
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-	LEA	HL,IX+-36
+	LEA	HL,IX+-74
 	LD	SP,HL
-;   12		real_t                    r;
-;   13		const real_t              real1 = os_Int24ToReal(1);
-.LINE 13
+;    9		char buf[20];
+;   10		real_t                    r;
+;   11		const real_t              real1 = os_Int24ToReal(1);
+.LINE 11
 
 	LD	BC,1
 	PUSH	BC
-	PEA	IX+-27
+	PEA	IX+-56
 	CALL	_os_Int24ToReal
 	POP	BC
 	POP	BC
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;   14		const static superpoint_t point = {{12, 56}, "..."};
-.LINE 14
+;   12		const real_t              real2 = os_Int24ToReal(2);
+.LINE 12
 
-.DEFINE "point"
+	LD	BC,2
+	PUSH	BC
+	PEA	IX+-65
+	CALL	_os_Int24ToReal
+	POP	BC
+	POP	BC
+	LEA	DE,IX+-27
+	LD	BC,9
+	LDIR	
+;   13		const static superpoint_t iopoint = {{12, 116}, "..."};
+.LINE 13
 
-.ALIAS "_0point"
+.DEFINE "iopoint"
+
+.ALIAS "_0iopoint"
 
 .CLASS 84
 
-.VALUE _0point
+.VALUE _0iopoint
 
 .TAG "NONAME16"
 
@@ -589,9 +623,43 @@ _main:
 
 .ENDEF
 
-;   15	
-;   16		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
-.LINE 16
+;   14		const static superpoint_t title = {{12,16}, "TITrig"};
+.LINE 14
+
+.DEFINE "title"
+
+.ALIAS "_1title"
+
+.CLASS 84
+
+.VALUE _1title
+
+.TAG "NONAME16"
+
+.TYPE 8
+
+.ENDEF
+
+;   15		const static superpoint_t author = {{12,36}, "By Decimation"};
+.LINE 15
+
+.DEFINE "author"
+
+.ALIAS "_2author"
+
+.CLASS 84
+
+.VALUE _2author
+
+.TAG "NONAME16"
+
+.TYPE 8
+
+.ENDEF
+
+;   16	
+;   17		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
+.LINE 17
 
 	LD	BC,L__0
 	PUSH	BC
@@ -600,8 +668,8 @@ _main:
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;   17		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", MAJOR, MINOR);
-.LINE 17
+;   18		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", MAJOR, MINOR);
+.LINE 18
 
 	LD	BC,0
 	PUSH	BC
@@ -616,9 +684,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   18	
-;   19		os_ClrHome();
-.LINE 19
+;   19	
+;   20		os_ClrHome();
+.LINE 20
 
 	LD	BC,_asm_ClrLCD
 	PUSH	BC
@@ -632,27 +700,65 @@ _main:
 	PUSH	BC
 	CALL	__OS
 	POP	BC
-;   20		gfx_Begin();
-.LINE 20
+;   21		gfx_Begin();
+.LINE 21
 
 	CALL	_gfx_Begin
-;   21		gfx_PrintStringXY("1. Right", 12, 16);
-.LINE 21
+;   22	
+;   23	
+;   24		gfx_PrintColor(&title, gfx_blue);
+.LINE 24
 
 	LD	BC,16
 	PUSH	BC
-	LD	BC,12
+	LD	BC,_1title
+	PUSH	BC
+	CALL	_gfx_PrintColor
+	POP	BC
+	POP	BC
+;   25		gfx_PrintColor(&author, gfx_green);
+.LINE 25
+
+	LD	BC,3
+	PUSH	BC
+	LD	BC,_2author
+	PUSH	BC
+	CALL	_gfx_PrintColor
+	POP	BC
+	POP	BC
+;   26	
+;   27		sprintf(buf, "Build %d.%d", MAJOR, MINOR);
+.LINE 27
+
+	LD	BC,0
+	PUSH	BC
+	LD	BC,2
 	PUSH	BC
 	LD	BC,L__2
 	PUSH	BC
+	PEA	IX+-47
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   28		gfx_PrintStringXY(buf, 12, 56);
+.LINE 28
+
+	LD	BC,56
+	PUSH	BC
+	LD	BC,12
+	PUSH	BC
+	PEA	IX+-47
 	CALL	_gfx_PrintStringXY
 	POP	BC
 	POP	BC
 	POP	BC
-;   22		gfx_PrintStringXY("2. Non-right", 12, 36);
-.LINE 22
+;   29	
+;   30		gfx_PrintStringXY("1. Right", 12, 76);
+.LINE 30
 
-	LD	BC,36
+	LD	BC,76
 	PUSH	BC
 	LD	BC,12
 	PUSH	BC
@@ -662,28 +768,58 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   23		gfx_Print(&point);
-.LINE 23
+;   31		gfx_PrintStringXY("2. Non-right", 12, 96);
+.LINE 31
 
-	LD	BC,_0point
+	LD	BC,96
+	PUSH	BC
+	LD	BC,12
+	PUSH	BC
+	LD	BC,L__4
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;   32	
+;   33		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
+.LINE 33
+
+	LD	BC,136
+	PUSH	BC
+	LD	BC,12
+	PUSH	BC
+	LD	BC,L__5
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;   34	
+;   35		gfx_Print(&iopoint);
+.LINE 35
+
+	LD	BC,_0iopoint
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;   24		r = io_gfx_ReadReal(&point);
-.LINE 24
+;   36		r = io_gfx_ReadReal(&iopoint);
+.LINE 36
 
-	LD	BC,_0point
+	LD	BC,_0iopoint
 	PUSH	BC
-	PEA	IX+-36
+	PEA	IX+-74
 	CALL	_io_gfx_ReadReal
 	POP	BC
 	POP	BC
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   25	
-;   26		if (os_RealCompare(&real1, &r) == 0)
-.LINE 26
+;   37	
+;   38	
+;   39	
+;   40		if (os_RealCompare(&real1, &r) == 0)
+.LINE 40
 
 	PEA	IX+-9
 	PEA	IX+-18
@@ -691,40 +827,64 @@ _main:
 	POP	BC
 	POP	BC
 	CALL	__icmpzero
-	JR	NZ,L_4
-;   27		{
-;   28			right_SolveTriangle();
-.LINE 28
+	JR	NZ,L_6
+;   41		{
+;   42			right_SolveTriangle();
+.LINE 42
 
 	CALL	_right_SolveTriangle
-;   29		}
-;   30		else
-.LINE 30
+;   43		}
+;   44		else if (os_RealCompare(&real2, &r) == 0) {
+.LINE 44
 
-	JR	L_5
-L_4:
-;   31		{
-;   32			trig_SolveTriangle();
-.LINE 32
+	JR	L_7
+L_6:
+	PEA	IX+-9
+	PEA	IX+-27
+	CALL	_os_RealCompare
+	POP	BC
+	POP	BC
+	CALL	__icmpzero
+	JR	NZ,L_4
+;   45			trig_SolveTriangle();
+.LINE 45
 
 	CALL	_trig_SolveTriangle
-;   33		}
-L_5:
-.LINE 33
+;   46		}
+;   47		else
+.LINE 47
 
-;   34	
-;   35		gfx_End();
-.LINE 35
+	JR	L_7
+L_4:
+;   48		{
+;   49			gfx_End();
+.LINE 49
 
 	CALL	_gfx_End
-;   36	
-;   37	
-;   38		return 0;
-.LINE 38
+;   50			return 0;
+.LINE 50
 
 	OR	A,A
 	SBC	HL,HL
-.LINE 39
+	JR	L_8
+;   51		}
+L_7:
+.LINE 51
+
+;   52	
+;   53		gfx_End();
+.LINE 53
+
+	CALL	_gfx_End
+;   54	
+;   55	
+;   56		return 0;
+.LINE 56
+
+	OR	A,A
+	SBC	HL,HL
+L_8:
+.LINE 57
 
 	LD	SP,IX
 	POP	IX
@@ -738,9 +898,12 @@ L_5:
 ;_right_SolveTriangle                IMPORT  -----   function
 ;_os_RealCompare                     IMPORT  -----   function
 ;_io_gfx_ReadReal                    IMPORT  -----   function
-;_0point                             STATIC     26   variable
+;_0iopoint                           STATIC     26   variable
 ;_gfx_Print                          IMPORT  -----   function
 ;_gfx_PrintStringXY                  IMPORT  -----   function
+;_2author                            STATIC     26   variable
+;_1title                             STATIC     26   variable
+;_gfx_PrintColor                     IMPORT  -----   function
 ;_gfx_Begin                          IMPORT  -----   function
 ;_asm_DrawStatusBar                  IMPORT  -----   function
 ;_asm_HomeUp                         IMPORT  -----   function
@@ -748,15 +911,17 @@ L_5:
 ;__OS                                IMPORT  -----   function
 ;_sprintf                            IMPORT  -----   function
 ;_os_Int24ToReal                     IMPORT  -----   function
+;buf                                  IX-47     20   variable
+;real2                                IX-27      9   variable
 ;real1                                IX-18      9   variable
 ;r                                     IX-9      9   variable
 
 
-; Stack Frame Size: 42 (bytes)
+; Stack Frame Size: 80 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "main",39,"_main"
+.ENDFUNC "main",57,"_main"
 	SEGMENT STRSECT
 L__0:
 	DB	10
@@ -766,16 +931,22 @@ L__1:
 	DB	"[TITrig] %d.%d"
 	DB	10,0
 L__2:
-	DB	"1. Right"
+	DB	"Build %d.%d"
 	DB	0
 L__3:
+	DB	"1. Right"
+	DB	0
+L__4:
 	DB	"2. Non-right"
 	DB	0
+L__5:
+	DB	"- Press Clear to quit"
+	DB	0
 	SEGMENT TEXT
-_0point:
+_0iopoint:
 	DW	12
 	DB	0
-	DW	56
+	DW	116
 	DB	0
 	DB	46
 	DB	46
@@ -790,6 +961,56 @@ _0point:
 	DB	0
 	DB	0
 	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+_1title:
+	DW	12
+	DB	0
+	DW	16
+	DB	0
+	DB	84
+	DB	73
+	DB	84
+	DB	114
+	DB	105
+	DB	103
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+	DB	0
+_2author:
+	DW	12
+	DB	0
+	DW	36
+	DB	0
+	DB	66
+	DB	121
+	DB	32
+	DB	68
+	DB	101
+	DB	99
+	DB	105
+	DB	109
+	DB	97
+	DB	116
+	DB	105
+	DB	111
+	DB	110
 	DB	0
 	DB	0
 	DB	0
@@ -800,6 +1021,7 @@ _0point:
 	XREF _trig_SolveTriangle:ROM
 	XREF _sprintf:ROM
 	XREF _right_SolveTriangle:ROM
+	XREF _gfx_PrintColor:ROM
 	XREF _io_gfx_ReadReal:ROM
 	XREF _gfx_Print:ROM
 	XREF _asm_DrawStatusBar:ROM

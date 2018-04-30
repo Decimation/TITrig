@@ -4,24 +4,24 @@
 
 
 #include "Trigonometry.h"
-#include <debug.h>
 #include <math.h>
 
-static const float PI = 3.141592654f;
+static const float PI         = 3.141592654f;
+static const float HalfCircle = 180.0f;
 
 float CosineDeg(float f)
 {
-	return (float) (cos(f / 180 * PI));
+	return (float) (cos(f / HalfCircle * PI));
 }
 
 float ASinDeg(float f)
 {
-	return (float) (asin(f) * 180 / PI);
+	return (float) (asin(f) * HalfCircle / PI);
 }
 
 float SinDeg(float f)
 {
-	return (float) (sin(f / 180 * PI));
+	return (float) (sin(f / HalfCircle * PI));
 }
 
 real_t os_RealAcosDeg(real_t r)
@@ -29,7 +29,7 @@ real_t os_RealAcosDeg(real_t r)
 	real_t rbuf;
 
 	rbuf = os_FloatToReal((float) acos(os_RealToFloat(&r)));
-	rbuf = os_FloatToReal(os_RealToFloat(&rbuf) * 180.0f / PI);
+	rbuf = os_FloatToReal(os_RealToFloat(&rbuf) * HalfCircle / PI);
 	return os_RealRound(&rbuf, 1);
 }
 
@@ -41,11 +41,11 @@ real_t loc_Angle_x(real_t c, real_t a, real_t b)
 	real_t csq, asq, bsq, res, term, term2, rbuf;
 
 	os_RealToStr(buf, &c, 0, 0, 6);
-	dbg_sprintf(dbgout, "c = %s\n", buf);
+	//dbg_sprintf(dbgout, "c = %s\n", buf);
 	os_RealToStr(buf, &a, 0, 0, 6);
-	dbg_sprintf(dbgout, "a = %s\n", buf);
+	//dbg_sprintf(dbgout, "a = %s\n", buf);
 	os_RealToStr(buf, &b, 0, 0, 6);
-	dbg_sprintf(dbgout, "b = %s\n", buf);
+	//dbg_sprintf(dbgout, "b = %s\n", buf);
 
 	bsq  = os_RealMul(&b, &b);
 	csq  = os_RealMul(&c, &c);

@@ -8,10 +8,10 @@ libs     D1A8D2 D1A907            35h
 startup  D1A907 D1A942            3Bh
 cleanup  D1A942 D1A956            14h
 exit     D1A956 D1A95C             6h
-code     D1A95C D21131          67D5h
-data     D21131 D2149A           369h
-strsect  D2149A D21C00           766h
-text     D21C00 D21E1B           21Bh
+code     D1A95C D2118D          6831h
+data     D2118D D214F6           369h
+strsect  D214F6 D21C66           770h
+text     D21C66 D21EB9           253h
 
 Label                            Value
 ------------------------------   ------
@@ -40,38 +40,38 @@ _lib_MemZero                   = D1B3B0
 _lib_StrReplace                = D1B377
 _lib_StrIndexOf                = D1B332
 _lib_StrCut                    = D1B2AD
-_char_Neg                      = D21C00
+_char_Neg                      = D21C66
 _main                          = D1B40D
-_right_SolveTriangle           = D1D2CC
-_set_Menu                      = D1D421
-_gDigitThreshold               = D212AB
-_gRound                        = D212AA
-_SimplifyRadical               = D1D6FB
-_SimplifyRadicalStr            = D1D6C3
-_SimplifyRadicalStrFromDecimal = D1D674
-_SimplifyRadicalFromDecimal    = D1D641
-_DecimalToRoot                 = D1D5BC
-_RealDecimalToRoot             = D1D59D
-_RoundIEEE754                  = D1D4EF
-_IsEven                        = D1D496
-_trig_SolveTriangle            = D20AA1
-_trig_AreaBySin                = D1DBF4
-_os_RealSinDeg                 = D2108F
-_loc_Side_x                    = D20FA9
-_los_Angle_x                   = D20F10
-_los_Side_x                    = D20E83
-_loc_Angle_x                   = D20C57
-_os_RealAcosDeg                = D20BC0
-_SinDeg                        = D20B8B
-_ASinDeg                       = D20B53
-_CosineDeg                     = D20B1E
+_right_SolveTriangle           = D1D364
+_set_Menu                      = D1D4B9
+_gDigitThreshold               = D21307
+_gRound                        = D21306
+_SimplifyRadical               = D1D793
+_SimplifyRadicalStr            = D1D75B
+_SimplifyRadicalStrFromDecimal = D1D70C
+_SimplifyRadicalFromDecimal    = D1D6D9
+_DecimalToRoot                 = D1D654
+_RealDecimalToRoot             = D1D635
+_RoundIEEE754                  = D1D587
+_IsEven                        = D1D52E
+_trig_SolveTriangle            = D20B39
+_trig_AreaBySin                = D1DC8C
+_os_RealSinDeg                 = D210EB
+_loc_Side_x                    = D21005
+_los_Angle_x                   = D20F6C
+_los_Side_x                    = D20EDF
+_loc_Angle_x                   = D20CEF
+_os_RealAcosDeg                = D20C58
+_SinDeg                        = D20C23
+_ASinDeg                       = D20BEB
+_CosineDeg                     = D20BB6
 __fadd                         = 000270
 __fcmp                         = 000274
 __fdiv                         = 000278
 __ftol                         = 00027C
 __fmul                         = 000288
 __fsub                         = 000290
-__icmpzero                     = D21122
+__icmpzero                     = D2117E
 __idivs                        = 00013C
 __ildix                        = 000148
 __imuls                        = 000154
@@ -82,7 +82,7 @@ __ishru_b                      = 000184
 __ishru_b                      = 000188
 __istix                        = 00018C
 _memmove                       = 0000A8
-__OS                           = D21127
+__OS                           = D21183
 __setflag                      = 000218
 _sprintf                       = 0000BC
 _strchr                        = 0000C4

@@ -13,6 +13,9 @@
 #include "Triangle.h"
 #include "debug.h"
 
+// To make CLion happy
+extern void trig_SolveTriangle();
+
 int main(void);
 
 #endif //TITRIG_MAIN_H
