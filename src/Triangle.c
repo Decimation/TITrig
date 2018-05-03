@@ -19,6 +19,15 @@ static superpoint_t xsides[3] = {
 		{{140 - 45, 130}, "c"}   // ccc
 };
 
+
+#define angle_A xangles[0]
+#define angle_B xangles[1]
+#define angle_C xangles[2]
+
+#define side_a xsides[0]
+#define side_b xsides[1]
+#define side_c xsides[2]
+
 static const char lbl_AngleMode[] = "ANGLE MODE";
 static const char lbl_SideMode[]  = "SIDE MODE";
 static const char lbl_SSS[]       = "SSS";
@@ -36,7 +45,6 @@ static trigstatus_t trigstatus;
  * When false: display a, b, c, A, B, C
  */
 static bool ui_bDispMeasurements;
-
 
 static superpoint_t       ui_Mode      = {{230, 10}, "ANGLE MODE"};
 static superpoint_t       ui_Type      = {{230, 20}, "..."};

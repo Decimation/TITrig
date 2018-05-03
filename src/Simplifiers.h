@@ -8,11 +8,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-void SimplifyRadicalStrFromDecimal(real_t decimal, char* out);
-
 void SimplifyRadicalFromDecimal(real_t decimal, int24_t* out);
-
-void SimplifyRadicalStr(int24_t insideRoot, char* out);
 
 void SimplifyRadical(int24_t insideRoot, int24_t out[2]);
 
@@ -27,9 +23,8 @@ double RoundIEEE754(double d);
  * @param d
  * @return
  */
-float DecimalToRoot(float d);
-
-real_t RealDecimalToRoot(real_t r);
+//float DecimalToRoot(float d);
+real_t DecimalToRoot(real_t r);
 
 float DecimalToPi(float f);
 

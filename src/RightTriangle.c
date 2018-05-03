@@ -15,21 +15,18 @@
 #include "Simplifiers.h"
 
 static superpoint_t xangles[3] = {
-		/* verts[2] + X, verts[3] + Y */
-		{{30 + 5,   129 - 10}, "90"},   // 90
+		{{30 + 5,   129 - 10}, "90"},  // 90
 		{{30 + 120, 129 - 10}, "B"},  // BBB
 		{{37,       27},       "A"}   // AAA
 };
 
 static superpoint_t xsides[3] = {
-		/* verts[2] + X, verts[3] + Y */
 		{{30 - 25, 129 - 50}, "b"},  // bbb
 		{{30 + 50, 129 + 10}, "a"},  // aaa
 		{{30 + 90, 129 - 70}, "c"}   // ccc
 };
 
 static superpoint_t xsides_oah[3] = {
-		/* verts[2] + X, verts[3] + Y */
 		{{30 - 25, 129 - 40}, "..."},  // bbb
 		{{30 + 50, 129 + 20}, "..."},  // aaa
 		{{30 + 90, 129 - 60}, "..."}   // ccc
@@ -61,6 +58,8 @@ static const char lbl_OPP[]       = "OPP";
 static triangle_t   triangle;
 static trigstatus_t trigstatus;
 
+static const char ui_Theta = (char) 91;
+
 static const superpoint_t funcData[3] = {
 		{10,  175, "sin = "},
 		{110, 175, "cos = "},
@@ -73,10 +72,13 @@ static const gfx_point_t funcFracPoints[3] = {
 		{210 + 35, 175}
 };
 
+// [0] = cot
+// [1] = sec
+// [2] = csc
 static const superpoint_t funcData2[3] = {
-		{10,  210, "cot = "},
+		{210,  210, "cot = "},
 		{110, 210, "sec = "},
-		{210, 210, "csc = "}
+		{10, 210, "csc = "}
 };
 
 static const gfx_point_t func2FracPoints[3] = {
@@ -85,6 +87,9 @@ static const gfx_point_t func2FracPoints[3] = {
 		{210 + 35, 210}
 };
 
+#define fnCot funcData2[0]
+#define fnSec funcData2[1]
+#define fnCsc funcData2[2]
 
 static void right_Sync()
 {

@@ -3,6 +3,7 @@
 //
 
 #include <math.h>
+#include <debug.h>
 #include "Simplifiers.h"
 
 static const float Step = 0.1;
@@ -27,13 +28,18 @@ double RoundIEEE754(double d)
 	return i + 1.0;
 }
 
-real_t RealDecimalToRoot(real_t r)
-{
-	//todo
-	return r;
+real_t DecimalToRoot(real_t r) {
+	char buf[10];
+	const real_t pow = os_Int24ToReal(2);
+	real_t root;
+	os_RealToStr(buf, &r,0,0,6);
+	root = os_RealPow(&r, &pow);
+	os_RealToStr(buf, &root,0,0,6);
+	dbg_sprintf(dbgout, "%s = sqrt(%d)\n", buf,root);
+	return root;
 }
 
-float DecimalToRoot(float d)
+/*float DecimalToRoot(float d)
 {
 	float x = 0;
 	while (sqrt(x) != d)
@@ -43,25 +49,12 @@ float DecimalToRoot(float d)
 			return (float) RoundIEEE754(x);
 	}
 	return x;
-}
+}*/
 
 void SimplifyRadicalFromDecimal(real_t decimal, int24_t* out)
 {
-	SimplifyRadical((int) DecimalToRoot(os_RealToFloat(&decimal)), out);
-}
-
-void SimplifyRadicalStrFromDecimal(real_t decimal, char* out)
-{
-	int24_t simp[2];
-	SimplifyRadical((int) DecimalToRoot(os_RealToFloat(&decimal)), simp);
-	sprintf(out, "%dsqrt(%d)", simp[0], simp[1]);
-}
-
-void SimplifyRadicalStr(int24_t insideRoot, char* out)
-{
-	int24_t simp[2];
-	SimplifyRadical(insideRoot, simp);
-	sprintf(out, "%dsqrt(%d)", simp[0], simp[1]);
+	real_t buf = DecimalToRoot(decimal);
+	SimplifyRadical(os_RealToInt24(&buf), out);
 }
 
 void SimplifyRadical(int24_t insideRoot, int24_t out[2])

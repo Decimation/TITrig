@@ -70,6 +70,7 @@ void gfx_Fraction(gfx_point_t point, real_t num, real_t denom)
 void gfx_FractionStr(gfx_point_t point, const char* num, const char* denom)
 {
 
+
 	if (strlen(num) > strlen(denom))
 	{
 		gfx_HorizLine(point.x - 1, point.y + 3, gfx_GetStringWidth(num) + 1);
@@ -96,21 +97,23 @@ void gfx_FractionStr(gfx_point_t point, const char* num, const char* denom)
 void gfx_Sqrt(gfx_point_t point, int24_t outer, int24_t inner)
 {
 	char buf[10];
+	int strW;
 	sprintf(buf, "%d", outer);
+	strW = gfx_GetStringWidth(buf);
 
 	//190, 155
 	gfx_PrintStringXY(buf, point.x, point.y);
 
 	//198, 158 -> 200, 160
-	gfx_Line(point.x + 8, point.y + 3, point.x + 10, point.y + 7);
+	gfx_Line(point.x + strW, point.y + 3, point.x + strW + 2, point.y + 7);
 
 	//205, 155
-	gfx_VertLine(point.x + 11, point.y - 3, 11);
+	gfx_VertLine(point.x + strW + 3, point.y - 3, 11);
 
 	sprintf(buf, "%d", inner);
-	gfx_PrintStringXY(buf, point.x + 14, point.y);
+	gfx_PrintStringXY(buf, point.x + strW + 6, point.y);
 
-	gfx_HorizLine(point.x + 11, point.y - 3, gfx_GetStringWidth(buf) + 3);
+	gfx_HorizLine(point.x + strW + 3, point.y - 3, gfx_GetStringWidth(buf) + 3);
 }
 
 void gfx_Clear(const superpoint_t* p)

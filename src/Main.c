@@ -6,19 +6,21 @@
 
 int main(void)
 {
-	char buf[20];
+	char                      buf[20];
 	real_t                    r;
-	const real_t              real1 = os_Int24ToReal(1);
-	const real_t              real2 = os_Int24ToReal(2);
+	const real_t              real1   = os_Int24ToReal(1);
+	const real_t              real2   = os_Int24ToReal(2);
 	const static superpoint_t iopoint = {{12, 116}, "..."};
-	const static superpoint_t title = {{12,16}, "TITrig"};
-	const static superpoint_t author = {{12,36}, "By Decimation"};
+	const static superpoint_t title   = {{12, 16}, "TITrig"};
+	const static superpoint_t author  = {{12, 36}, "By Decimation"};
+
 
 	dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
 	dbg_sprintf(dbgout, "[TITrig] %d.%d\n", MAJOR, MINOR);
 
 	os_ClrHome();
 	gfx_Begin();
+
 
 
 	gfx_PrintColor(&title, gfx_blue);
@@ -36,12 +38,12 @@ int main(void)
 	r = io_gfx_ReadReal(&iopoint);
 
 
-
 	if (os_RealCompare(&real1, &r) == 0)
 	{
 		right_SolveTriangle();
 	}
-	else if (os_RealCompare(&real2, &r) == 0) {
+	else if (os_RealCompare(&real2, &r) == 0)
+	{
 		trig_SolveTriangle();
 	}
 	else
@@ -51,7 +53,5 @@ int main(void)
 	}
 
 	gfx_End();
-
-
 	return 0;
 }
