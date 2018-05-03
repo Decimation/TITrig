@@ -8,10 +8,10 @@ libs     D1A8D2 D1A907            35h
 startup  D1A907 D1A942            3Bh
 cleanup  D1A942 D1A956            14h
 exit     D1A956 D1A95C             6h
-code     D1A95C D21199          683Dh
-data     D21199 D21502           369h
-strsect  D21502 D21C6B           769h
-text     D21C6B D21EC5           25Ah
+code     D1A95C D21261          6905h
+data     D21261 D215CA           369h
+strsect  D215CA D21E04           83Ah
+text     D21E04 D22058           254h
 
 Label                         Value
 ---------------------------   ------
@@ -24,50 +24,51 @@ __exit                      = D1A934
 __exitsp                    = D1A934
 __errsp                     = D1A934
 _geo_RoundTriangle          = D1A95C
-_gfx_HighlightPoint         = D1B2B1
-_gfx_PrintColor             = D1B26C
-_gfx_ClearHighlight         = D1B246
-_PointEq                    = D1B20E
-_io_gfx_ReadReal            = D1B042
-_sp_SetLabel                = D1AFFF
-_gfx_Print                  = D1AFCF
-_gfx_Clear                  = D1AF78
+_gfx_HighlightPoint         = D1B307
+_gfx_PrintColor             = D1B2C2
+_gfx_ClearHighlight         = D1B29C
+_gfx_SetFocus               = D1B256
+_PointEq                    = D1B21E
+_io_gfx_ReadReal            = D1B052
+_sp_SetLabel                = D1B00F
+_gfx_Print                  = D1AFDF
+_gfx_Clear                  = D1AF88
 _gfx_Sqrt                   = D1AE96
 _gfx_FractionStr            = D1AD38
 _gfx_Fraction               = D1ACC7
 _gfx_RadicalFraction        = D1A9E0
-_lib_MemZero                = D1B3D1
-_lib_StrReplace             = D1B398
-_lib_StrIndexOf             = D1B353
-_lib_StrCut                 = D1B2CE
-_char_Neg                   = D21C6B
-_main                       = D1B42E
-_right_SolveTriangle        = D1D3CD
-_set_Menu                   = D1D522
-_gDigitThreshold            = D21313
-_gRound                     = D21312
-_SimplifyRadical            = D1D79F
-_SimplifyRadicalFromDecimal = D1D754
-_DecimalToRoot              = D1D69E
-_RoundIEEE754               = D1D5F0
-_IsEven                     = D1D597
-_trig_SolveTriangle         = D20B45
-_trig_AreaBySin             = D1DC98
-_os_RealSinDeg              = D210F7
-_loc_Side_x                 = D21011
-_los_Angle_x                = D20F78
-_los_Side_x                 = D20EEB
-_loc_Angle_x                = D20CFB
-_os_RealAcosDeg             = D20C64
-_SinDeg                     = D20C2F
-_ASinDeg                    = D20BF7
-_CosineDeg                  = D20BC2
+_lib_MemZero                = D1B427
+_lib_StrReplace             = D1B3EE
+_lib_StrIndexOf             = D1B3A9
+_lib_StrCut                 = D1B324
+_char_Neg                   = D21E04
+_main                       = D1B484
+_right_SolveTriangle        = D1D4B8
+_set_Menu                   = D1D60D
+_gDigitThreshold            = D213DB
+_gRound                     = D213DA
+_SimplifyRadical            = D1D8C9
+_SimplifyRadicalFromDecimal = D1D838
+_DecimalToRoot              = D1D789
+_RoundIEEE754               = D1D6DB
+_IsEven                     = D1D682
+_trig_SolveTriangle         = D20C0D
+_trig_AreaBySin             = D1DDC2
+_os_RealSinDeg              = D211BF
+_loc_Side_x                 = D210D9
+_los_Angle_x                = D21040
+_los_Side_x                 = D20FB3
+_loc_Angle_x                = D20DC3
+_os_RealAcosDeg             = D20D2C
+_SinDeg                     = D20CF7
+_ASinDeg                    = D20CBF
+_CosineDeg                  = D20C8A
 __fadd                      = 000270
 __fcmp                      = 000274
 __fdiv                      = 000278
 __fmul                      = 000288
 __fsub                      = 000290
-__icmpzero                  = D2118A
+__icmpzero                  = D21252
 __idivs                     = 00013C
 __ildix                     = 000148
 __imuls                     = 000154
@@ -78,7 +79,7 @@ __ishru_b                   = 000184
 __ishru_b                   = 000188
 __istix                     = 00018C
 _memmove                    = 0000A8
-__OS                        = D2118F
+__OS                        = D21257
 __setflag                   = 000218
 _sprintf                    = 0000BC
 _strchr                     = 0000C4

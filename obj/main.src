@@ -578,7 +578,7 @@ _main:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-	LEA	HL,IX+-77
+	LEA	HL,IX+-74
 	LD	SP,HL
 ;    9		char                      buf[20];
 ;   10		real_t                    r;
@@ -657,108 +657,58 @@ _main:
 
 .ENDEF
 
-;   16		const static gfx_point_t tmp = {12, 166};
-.LINE 16
-
-.DEFINE "tmp"
-
-.ALIAS "_3tmp"
-
-.CLASS 84
-
-.VALUE _3tmp
-
-.TAG "NONAME5"
-
-.TYPE 8
-
-.ENDEF
-
+;   16	
 ;   17	
-;   18	
-;   19		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
+;   18		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
+.LINE 18
+
+	LD	BC,L__0
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+;   19		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
 .LINE 19
 
-	LD	DE,L__0
-	PUSH	DE
-	LD	DE,16449536
-	PUSH	DE
-	LD	(IX+-77),BC
+	LD	BC,1
+	PUSH	BC
+	LD	BC,2
+	PUSH	BC
+	LD	BC,L__1
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
 	CALL	_sprintf
-	LD	BC,(IX+-77)
-	POP	DE
-	POP	DE
-;   20		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", MAJOR, MINOR);
-.LINE 20
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   20	
+;   21		os_ClrHome();
+.LINE 21
 
-	LD	DE,0
-	PUSH	DE
-	LD	DE,2
-	PUSH	DE
-	LD	DE,L__1
-	PUSH	DE
-	LD	DE,16449536
-	PUSH	DE
-	LD	(IX+-77),BC
-	CALL	_sprintf
-	LD	BC,(IX+-77)
-	POP	DE
-	POP	DE
-	POP	DE
-	POP	DE
-;   21	
-;   22		os_ClrHome();
+	LD	BC,_asm_ClrLCD
+	PUSH	BC
+	CALL	__OS
+	POP	BC
+	LD	BC,_asm_HomeUp
+	PUSH	BC
+	CALL	__OS
+	POP	BC
+	LD	BC,_asm_DrawStatusBar
+	PUSH	BC
+	CALL	__OS
+	POP	BC
+;   22		gfx_Begin();
 .LINE 22
 
-	LD	DE,_asm_ClrLCD
-	PUSH	DE
-	LD	(IX+-77),BC
-	CALL	__OS
-	LD	BC,(IX+-77)
-	POP	DE
-	LD	DE,_asm_HomeUp
-	PUSH	DE
-	LD	(IX+-77),BC
-	CALL	__OS
-	LD	BC,(IX+-77)
-	POP	DE
-	LD	DE,_asm_DrawStatusBar
-	PUSH	DE
-	LD	(IX+-77),BC
-	CALL	__OS
-	LD	BC,(IX+-77)
-	POP	DE
-;   23		gfx_Begin();
-.LINE 23
-
-	LD	(IX+-77),BC
 	CALL	_gfx_Begin
-	LD	BC,(IX+-77)
+;   23	
 ;   24	
-;   25		gfx_Sqrt(tmp, 25, 5);
+;   25		gfx_PrintColor(&title, gfx_blue);
 .LINE 25
-
-	LD	DE,5
-	PUSH	DE
-	LD	DE,25
-	PUSH	DE
-	PUSH	BC
-	PUSH	BC
-	OR	A,A
-	SBC	HL,HL
-	ADD	HL,SP
-	LD	DE,HL
-	LD	HL,_3tmp
-	LD	BC,6
-	LDIR	
-	CALL	_gfx_Sqrt
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-;   26	
-;   27		gfx_PrintColor(&title, gfx_blue);
-.LINE 27
 
 	LD	BC,16
 	PUSH	BC
@@ -767,8 +717,8 @@ _main:
 	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-;   28		gfx_PrintColor(&author, gfx_green);
-.LINE 28
+;   26		gfx_PrintColor(&author, gfx_green);
+.LINE 26
 
 	LD	BC,3
 	PUSH	BC
@@ -777,11 +727,11 @@ _main:
 	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-;   29	
-;   30		sprintf(buf, "Build %d.%d", MAJOR, MINOR);
-.LINE 30
+;   27	
+;   28		sprintf(buf, "Build %d.%d", kMajor, kMinor);
+.LINE 28
 
-	LD	BC,0
+	LD	BC,1
 	PUSH	BC
 	LD	BC,2
 	PUSH	BC
@@ -793,8 +743,8 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   31		gfx_PrintStringXY(buf, 12, 56);
-.LINE 31
+;   29		gfx_PrintStringXY(buf, 12, 56);
+.LINE 29
 
 	LD	BC,56
 	PUSH	BC
@@ -805,9 +755,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   32	
-;   33		gfx_PrintStringXY("1. Right", 12, 76);
-.LINE 33
+;   30	
+;   31		gfx_PrintStringXY("1. Right", 12, 76);
+.LINE 31
 
 	LD	BC,76
 	PUSH	BC
@@ -819,8 +769,8 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   34		gfx_PrintStringXY("2. Non-right", 12, 96);
-.LINE 34
+;   32		gfx_PrintStringXY("2. Non-right", 12, 96);
+.LINE 32
 
 	LD	BC,96
 	PUSH	BC
@@ -832,9 +782,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   35	
-;   36		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
-.LINE 36
+;   33	
+;   34		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
+.LINE 34
 
 	LD	BC,136
 	PUSH	BC
@@ -846,16 +796,16 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   37	
-;   38		gfx_Print(&iopoint);
-.LINE 38
+;   35	
+;   36		gfx_Print(&iopoint);
+.LINE 36
 
 	LD	BC,_0iopoint
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;   39		r = io_gfx_ReadReal(&iopoint);
-.LINE 39
+;   37		r = io_gfx_ReadReal(&iopoint);
+.LINE 37
 
 	LD	BC,_0iopoint
 	PUSH	BC
@@ -866,10 +816,10 @@ _main:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   40	
-;   41	
-;   42		if (os_RealCompare(&real1, &r) == 0)
-.LINE 42
+;   38	
+;   39	
+;   40		if (os_RealCompare(&real1, &r) == 0)
+.LINE 40
 
 	PEA	IX+-9
 	PEA	IX+-18
@@ -878,14 +828,14 @@ _main:
 	POP	BC
 	CALL	__icmpzero
 	JR	NZ,L_6
-;   43		{
-;   44			right_SolveTriangle();
-.LINE 44
+;   41		{
+;   42			right_SolveTriangle();
+.LINE 42
 
 	CALL	_right_SolveTriangle
-;   45		}
-;   46		else if (os_RealCompare(&real2, &r) == 0)
-.LINE 46
+;   43		}
+;   44		else if (os_RealCompare(&real2, &r) == 0)
+.LINE 44
 
 	JR	L_7
 L_6:
@@ -896,44 +846,44 @@ L_6:
 	POP	BC
 	CALL	__icmpzero
 	JR	NZ,L_4
-;   47		{
-;   48			trig_SolveTriangle();
-.LINE 48
+;   45		{
+;   46			trig_SolveTriangle();
+.LINE 46
 
 	CALL	_trig_SolveTriangle
-;   49		}
-;   50		else
-.LINE 50
+;   47		}
+;   48		else
+.LINE 48
 
 	JR	L_7
 L_4:
-;   51		{
-;   52			gfx_End();
-.LINE 52
+;   49		{
+;   50			gfx_End();
+.LINE 50
 
 	CALL	_gfx_End
-;   53			return 0;
-.LINE 53
+;   51			return 0;
+.LINE 51
 
 	OR	A,A
 	SBC	HL,HL
 	JR	L_8
-;   54		}
+;   52		}
 L_7:
+.LINE 52
+
+;   53	
+;   54		gfx_End();
 .LINE 54
 
-;   55	
-;   56		gfx_End();
-.LINE 56
-
 	CALL	_gfx_End
-;   57		return 0;
-.LINE 57
+;   55		return 0;
+.LINE 55
 
 	OR	A,A
 	SBC	HL,HL
 L_8:
-.LINE 58
+.LINE 56
 
 	LD	SP,IX
 	POP	IX
@@ -953,8 +903,6 @@ L_8:
 ;_2author                            STATIC     26   variable
 ;_1title                             STATIC     26   variable
 ;_gfx_PrintColor                     IMPORT  -----   function
-;_3tmp                               STATIC      6   variable
-;_gfx_Sqrt                           IMPORT  -----   function
 ;_gfx_Begin                          IMPORT  -----   function
 ;_asm_DrawStatusBar                  IMPORT  -----   function
 ;_asm_HomeUp                         IMPORT  -----   function
@@ -968,11 +916,11 @@ L_8:
 ;r                                     IX-9      9   variable
 
 
-; Stack Frame Size: 83 (bytes)
+; Stack Frame Size: 80 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "main",58,"_main"
+.ENDFUNC "main",56,"_main"
 	SEGMENT STRSECT
 L__0:
 	DB	10
@@ -1069,16 +1017,10 @@ _2author:
 	DB	0
 	DB	0
 	DB	0
-_3tmp:
-	DW	12
-	DB	0
-	DW	166
-	DB	0
 	XREF _trig_SolveTriangle:ROM
 	XREF _sprintf:ROM
 	XREF _right_SolveTriangle:ROM
 	XREF _gfx_PrintColor:ROM
-	XREF _gfx_Sqrt:ROM
 	XREF _io_gfx_ReadReal:ROM
 	XREF _gfx_Print:ROM
 	XREF _asm_DrawStatusBar:ROM

@@ -5,7 +5,125 @@
 	.assume ADL=1
 .DEBUG "C"
 	SEGMENT CODE
-.BEGREC "NONAME0",6
+.BEGREC "NONAME0",9
+.DEFINE "sign"
+.VALUE 0
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "mant"
+.VALUE 2
+.CLASS 8
+.DIM 7
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME0"
+.BEGREC "NONAME1",18
+.DEFINE "real"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "imag"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME1"
+.BEGREC "NONAME2",11
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME0"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME2"
+.BEGREC "NONAME3",20
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME1"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME3"
+.BEGREC "NONAME4",11
+.DEFINE "cols"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "rows"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME0"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME4"
+.BEGREC "NONAME5",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME5"
+.BEGREC "NONAME6",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME6"
+.BEGREC "NONAME7",3
+.DEFINE "size"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME7"
+.BEGREC "NONAME8",6
 .DEFINE "quot"
 .VALUE 0
 .CLASS 8
@@ -16,8 +134,8 @@
 .CLASS 8
 .TYPE 4
 .ENDEF
-.ENDREC "NONAME0"
-.BEGREC "NONAME1",8
+.ENDREC "NONAME8"
+.BEGREC "NONAME9",8
 .DEFINE "quot"
 .VALUE 0
 .CLASS 8
@@ -28,12 +146,12 @@
 .CLASS 8
 .TYPE 5
 .ENDEF
-.ENDREC "NONAME1"
+.ENDREC "NONAME9"
 .BEGREC "header",6
 .DEFINE "s"
 .VALUE 0
 .CLASS 11
-.TAG "NONAME2"
+.TAG "NONAME10"
 .TYPE 8
 .ENDEF
 .DEFINE "x"
@@ -42,7 +160,7 @@
 .TYPE 2
 .ENDEF
 .ENDREC "header"
-.BEGREC "NONAME2",6
+.BEGREC "NONAME10",6
 .DEFINE "ptr"
 .VALUE 0
 .CLASS 8
@@ -54,8 +172,8 @@
 .CLASS 8
 .TYPE 14
 .ENDEF
-.ENDREC "NONAME2"
-.BEGREC "NONAME3",3
+.ENDREC "NONAME10"
+.BEGREC "NONAME11",3
 .DEFINE "width"
 .VALUE 0
 .CLASS 8
@@ -72,8 +190,8 @@
 .DIM 1
 .TYPE 108
 .ENDEF
-.ENDREC "NONAME3"
-.BEGREC "NONAME4",3
+.ENDREC "NONAME11"
+.BEGREC "NONAME12",3
 .DEFINE "width"
 .VALUE 0
 .CLASS 8
@@ -90,8 +208,8 @@
 .DIM 1
 .TYPE 108
 .ENDEF
-.ENDREC "NONAME4"
-.BEGREC "NONAME5",6
+.ENDREC "NONAME12"
+.BEGREC "NONAME13",6
 .DEFINE "x"
 .VALUE 0
 .CLASS 8
@@ -102,8 +220,8 @@
 .CLASS 8
 .TYPE 4
 .ENDEF
-.ENDREC "NONAME5"
-.BEGREC "NONAME6",12
+.ENDREC "NONAME13"
+.BEGREC "NONAME14",12
 .DEFINE "xmin"
 .VALUE 0
 .CLASS 8
@@ -124,8 +242,8 @@
 .CLASS 8
 .TYPE 4
 .ENDEF
-.ENDREC "NONAME6"
-.BEGREC "NONAME7",18
+.ENDREC "NONAME14"
+.BEGREC "NONAME15",18
 .DEFINE "map"
 .VALUE 0
 .CLASS 8
@@ -134,7 +252,7 @@
 .DEFINE "tiles"
 .VALUE 3
 .CLASS 8
-.TAG "NONAME3"
+.TAG "NONAME11"
 .TYPE 296
 .ENDEF
 .DEFINE "tile_height"
@@ -187,130 +305,12 @@
 .CLASS 8
 .TYPE 14
 .ENDEF
-.ENDREC "NONAME7"
-.BEGREC "NONAME8",9
-.DEFINE "sign"
-.VALUE 0
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "exp"
-.VALUE 1
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "mant"
-.VALUE 2
-.CLASS 8
-.DIM 7
-.TYPE 108
-.ENDEF
-.ENDREC "NONAME8"
-.BEGREC "NONAME9",18
-.DEFINE "real"
-.VALUE 0
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "imag"
-.VALUE 9
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.ENDREC "NONAME9"
-.BEGREC "NONAME10",11
-.DEFINE "dim"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME8"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME10"
-.BEGREC "NONAME11",20
-.DEFINE "dim"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME9"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME11"
-.BEGREC "NONAME12",11
-.DEFINE "cols"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "rows"
-.VALUE 1
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME8"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME12"
-.BEGREC "NONAME13",3
-.DEFINE "len"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 98
-.ENDEF
-.ENDREC "NONAME13"
-.BEGREC "NONAME14",3
-.DEFINE "len"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 98
-.ENDEF
-.ENDREC "NONAME14"
-.BEGREC "NONAME15",3
-.DEFINE "size"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 108
-.ENDEF
 .ENDREC "NONAME15"
 .BEGREC "NONAME16",26
 .DEFINE "point"
 .VALUE 0
 .CLASS 8
-.TAG "NONAME5"
+.TAG "NONAME13"
 .TYPE 8
 .ENDEF
 .DEFINE "label"
@@ -324,49 +324,49 @@
 .DEFINE "A"
 .VALUE 0
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .DEFINE "B"
 .VALUE 9
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .DEFINE "C"
 .VALUE 18
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .DEFINE "a"
 .VALUE 27
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .DEFINE "b"
 .VALUE 36
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .DEFINE "c"
 .VALUE 45
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .DEFINE "area"
 .VALUE 54
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .DEFINE "perimeter"
 .VALUE 63
 .CLASS 8
-.TAG "NONAME8"
+.TAG "NONAME0"
 .TYPE 8
 .ENDEF
 .ENDREC "NONAME17"
@@ -2011,7 +2011,7 @@ _trig_Sync:
 	OR	A,A
 	JR	Z,L_32
 ;  126		{
-;  127			os_RealToStr(xangles[0].label, &triangle.A, 0, 0, 6);
+;  127			os_RealToStr(angle_A.label, &triangle.A, 0, 0, 6);
 .LINE 127
 
 	LD	BC,6
@@ -2040,7 +2040,7 @@ L_32:
 	OR	A,A
 	JR	Z,L_34
 ;  130		{
-;  131			os_RealToStr(xangles[1].label, &triangle.B, 0, 0, 6);
+;  131			os_RealToStr(angle_B.label, &triangle.B, 0, 0, 6);
 .LINE 131
 
 	LD	BC,6
@@ -2070,7 +2070,7 @@ L_34:
 	OR	A,A
 	JR	Z,L_36
 ;  134		{
-;  135			os_RealToStr(xangles[2].label, &triangle.C, 0, 0, 6);
+;  135			os_RealToStr(angle_C.label, &triangle.C, 0, 0, 6);
 .LINE 135
 
 	LD	BC,6
@@ -2100,7 +2100,7 @@ L_36:
 	OR	A,A
 	JR	Z,L_38
 ;  138		{
-;  139			os_RealToStr(xsides[0].label, &triangle.a, 0, 0, 6);
+;  139			os_RealToStr(side_a.label, &triangle.a, 0, 0, 6);
 .LINE 139
 
 	LD	BC,6
@@ -2129,7 +2129,7 @@ L_38:
 	OR	A,A
 	JR	Z,L_40
 ;  142		{
-;  143			os_RealToStr(xsides[1].label, &triangle.b, 0, 0, 6);
+;  143			os_RealToStr(side_b.label, &triangle.b, 0, 0, 6);
 .LINE 143
 
 	LD	BC,6
@@ -2159,7 +2159,7 @@ L_40:
 	OR	A,A
 	JR	Z,L_41
 ;  146		{
-;  147			os_RealToStr(xsides[2].label, &triangle.c, 0, 0, 6);
+;  147			os_RealToStr(side_c.label, &triangle.c, 0, 0, 6);
 .LINE 147
 
 	LD	BC,6
@@ -2265,7 +2265,7 @@ _trig_AreaBySin:
 
 .CLASS 2
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 72
 
@@ -2281,7 +2281,7 @@ _trig_AreaBySin:
 
 .VALUE 9
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2293,7 +2293,7 @@ _trig_AreaBySin:
 
 .VALUE 18
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2305,7 +2305,7 @@ _trig_AreaBySin:
 
 .VALUE 27
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2317,7 +2317,7 @@ _trig_AreaBySin:
 
 .VALUE -9
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2329,7 +2329,7 @@ _trig_AreaBySin:
 
 .VALUE -18
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2471,7 +2471,7 @@ _trig_HeronsFormula:
 
 .VALUE -9
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2483,7 +2483,7 @@ _trig_HeronsFormula:
 
 .VALUE -18
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2495,7 +2495,7 @@ _trig_HeronsFormula:
 
 .VALUE -27
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2507,7 +2507,7 @@ _trig_HeronsFormula:
 
 .VALUE -36
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2519,7 +2519,7 @@ _trig_HeronsFormula:
 
 .VALUE -45
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2531,7 +2531,7 @@ _trig_HeronsFormula:
 
 .VALUE -54
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2543,7 +2543,7 @@ _trig_HeronsFormula:
 
 .VALUE -63
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2828,7 +2828,7 @@ _trig_SolveSSS:
 
 .VALUE -12
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -2840,7 +2840,7 @@ _trig_SolveSSS:
 
 .VALUE -21
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -3113,7 +3113,7 @@ _trig_SolveMissingAngle:
 
 .VALUE -9
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -3125,7 +3125,7 @@ _trig_SolveMissingAngle:
 
 .VALUE -18
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -3409,18 +3409,17 @@ L_56:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  251			//lib_StrCut(xmeasureData[i].label, len * 2, 20 - len);
-;  252		}
+;  251		}
 L_58:
-.LINE 252
+.LINE 251
 
 	LD	BC,3
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	JP	M,L_56
-;  253	}
-.LINE 253
+;  252	}
+.LINE 252
 
 	LD	SP,IX
 	POP	IX
@@ -3440,10 +3439,10 @@ L_58:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_TruncateLabels",253,"_trig_TruncateLabels"
-;  254	
-;  255	static void trig_CheckSolvability()
-;  256	{
+.ENDFUNC "trig_TruncateLabels",252,"_trig_TruncateLabels"
+;  253	
+;  254	static void trig_CheckSolvability()
+;  255	{
 _trig_CheckSolvability:
 .DEFINE "_trig_CheckSolvability"
 
@@ -3455,9 +3454,9 @@ _trig_CheckSolvability:
 
 .ENDEF
 
-.BEGFUNC "trig_CheckSolvability",256,"_trig_CheckSolvability"
+.BEGFUNC "trig_CheckSolvability",255,"_trig_CheckSolvability"
 
-.LINE 256
+.LINE 255
 
 .DEFINE "rbuf"
 
@@ -3465,7 +3464,7 @@ _trig_CheckSolvability:
 
 .VALUE -9
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -3477,7 +3476,7 @@ _trig_CheckSolvability:
 
 .VALUE -18
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -3513,11 +3512,11 @@ _trig_CheckSolvability:
 	LD	HL,-313
 	ADD	HL,SP
 	LD	SP,HL
-;  257		real_t       rbuf;
-;  258		char         cbuf[20];
-;  259		char         cbuf2[20];
-;  260		const real_t real180 = os_Int24ToReal(180);
-.LINE 260
+;  256		real_t       rbuf;
+;  257		char         cbuf[20];
+;  258		char         cbuf2[20];
+;  259		const real_t real180 = os_Int24ToReal(180);
+.LINE 259
 
 	LD	BC,180
 	PUSH	BC
@@ -3528,9 +3527,9 @@ _trig_CheckSolvability:
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;  261	
-;  262		dbg_sprintf(dbgout, "[Trig] Checking solvability...\n");
-.LINE 262
+;  260	
+;  261		dbg_sprintf(dbgout, "[Trig] Checking solvability...\n");
+.LINE 261
 
 	LD	DE,L__60
 	PUSH	DE
@@ -3551,8 +3550,8 @@ _trig_CheckSolvability:
 	POP	HL
 	POP	DE
 	POP	DE
-;  263		ui_DispData();
-.LINE 263
+;  262		ui_DispData();
+.LINE 262
 
 	PUSH	BC
 	PUSH	HL
@@ -3567,10 +3566,10 @@ _trig_CheckSolvability:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  264	
-;  265		// Automatically solve for the third angle when possible
-;  266		trig_SolveMissingAngle();
-.LINE 266
+;  263	
+;  264		// Automatically solve for the third angle when possible
+;  265		trig_SolveMissingAngle();
+.LINE 265
 
 	PUSH	BC
 	PUSH	HL
@@ -3585,8 +3584,8 @@ _trig_CheckSolvability:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  267		trig_Sync();
-.LINE 267
+;  266		trig_Sync();
+.LINE 266
 
 	PUSH	BC
 	PUSH	HL
@@ -3601,27 +3600,26 @@ _trig_CheckSolvability:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
+;  267	
 ;  268	
-;  269	
-;  270		if (trigstatus.complete)
-.LINE 270
+;  269		if (trigstatus.complete)
+.LINE 269
 
 	LD	A,(_trigstatus+6)
 	OR	A,A
 	JR	NZ,L_113
-;  271		{
-;  272	
-;  273			return;
-.LINE 273
+;  270		{
+;  271			return;
+.LINE 271
 
-;  274		}
-.LINE 274
+;  272		}
+.LINE 272
 
-;  275	
-;  276	
-;  277		// SSS
-;  278		if (trigstatus.a && trigstatus.b && trigstatus.c)
-.LINE 278
+;  273	
+;  274	
+;  275		// SSS
+;  276		if (trigstatus.a && trigstatus.b && trigstatus.c)
+.LINE 276
 
 	LD	A,(_trigstatus)
 	OR	A,A
@@ -3632,9 +3630,9 @@ _trig_CheckSolvability:
 	LD	A,(_trigstatus+2)
 	OR	A,A
 	JR	Z,L_76
-;  279		{
-;  280			dbg_sprintf(dbgout, "SSS detected [%s, %s, %s]\n", xsides[0].label, xsides[1].label, xsides[2].label);
-.LINE 280
+;  277		{
+;  278			dbg_sprintf(dbgout, "SSS detected [%s, %s, %s]\n", side_a.label, side_b.label, side_c.label);
+.LINE 278
 
 	LD	IY,_xsides
 	LEA	IY,IY+52
@@ -3654,15 +3652,15 @@ _trig_CheckSolvability:
 	POP	BC
 	POP	BC
 	POP	BC
-;  281			gfx_Clear(&ui_Type);
-.LINE 281
+;  279			gfx_Clear(&ui_Type);
+.LINE 279
 
 	LD	BC,_ui_Type
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  282			sp_SetLabel(&ui_Type, lbl_SSS);
-.LINE 282
+;  280			sp_SetLabel(&ui_Type, lbl_SSS);
+.LINE 280
 
 	LD	BC,_lbl_SSS
 	PUSH	BC
@@ -3671,8 +3669,8 @@ _trig_CheckSolvability:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  283			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 283
+;  281			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 281
 
 	LD	BC,3
 	PUSH	BC
@@ -3681,29 +3679,29 @@ _trig_CheckSolvability:
 	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-;  284	
-;  285			trig_SolveSSS();
-.LINE 285
+;  282	
+;  283			trig_SolveSSS();
+.LINE 283
 
 	CALL	_trig_SolveSSS
-;  286			trigstatus.complete = true;
-.LINE 286
+;  284			trigstatus.complete = true;
+.LINE 284
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  287			return;
-.LINE 287
+;  285			return;
+.LINE 285
 
 	JR	L_113
-;  288		}
+;  286		}
 L_76:
-.LINE 288
+.LINE 286
 
-;  289	
-;  290		// AAS
-;  291		// "AAS" is when we know two angles and one side (which is not between the angles).
-;  292		if (trigstatus.A && trigstatus.C && trigstatus.c)
-.LINE 292
+;  287	
+;  288		// AAS
+;  289		// "AAS" is when we know two angles and one side (which is not between the angles).
+;  290		if (trigstatus.A && trigstatus.C && trigstatus.c)
+.LINE 290
 
 	LD	A,(_trigstatus+3)
 	OR	A,A
@@ -3714,9 +3712,9 @@ L_76:
 	LD	A,(_trigstatus+2)
 	OR	A,A
 	JR	Z,L_75
-;  293		{
-;  294			dbg_sprintf(dbgout, "AAS_1 detected [%s, %s, %s]\n", xangles[0].label, xangles[2].label, xsides[2].label);
-.LINE 294
+;  291		{
+;  292			dbg_sprintf(dbgout, "AAS_1 detected [%s, %s, %s]\n", angle_A.label, angle_C.label, side_c.label);
+.LINE 292
 
 	LD	IY,_xsides
 	LEA	IY,IY+52
@@ -3748,8 +3746,8 @@ L_76:
 	POP	DE
 	POP	DE
 	POP	DE
-;  295			gfx_Clear(&ui_Type);
-.LINE 295
+;  293			gfx_Clear(&ui_Type);
+.LINE 293
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -3767,8 +3765,8 @@ L_76:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  296			sp_SetLabel(&ui_Type, lbl_AAS);
-.LINE 296
+;  294			sp_SetLabel(&ui_Type, lbl_AAS);
+.LINE 294
 
 	LD	DE,_lbl_AAS
 	PUSH	DE
@@ -3789,8 +3787,8 @@ L_76:
 	POP	HL
 	POP	DE
 	POP	DE
-;  297			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 297
+;  295			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 295
 
 	LD	DE,3
 	PUSH	DE
@@ -3811,9 +3809,9 @@ L_76:
 	POP	HL
 	POP	DE
 	POP	DE
-;  298	
-;  299			trig_SolveMissingAngle();
-.LINE 299
+;  296	
+;  297			trig_SolveMissingAngle();
+.LINE 297
 
 	PUSH	BC
 	PUSH	HL
@@ -3828,8 +3826,8 @@ L_76:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  300			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
-.LINE 300
+;  298			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
+.LINE 298
 
 	PUSH	BC
 	PUSH	BC
@@ -3869,13 +3867,13 @@ L_76:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  301			trigstatus.a = true;
-.LINE 301
+;  299			trigstatus.a = true;
+.LINE 299
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  302			triangle.b   = los_Side_x(triangle.B, triangle.a, triangle.A);
-.LINE 302
+;  300			triangle.b   = los_Side_x(triangle.B, triangle.a, triangle.A);
+.LINE 300
 
 	PUSH	BC
 	PUSH	BC
@@ -3915,37 +3913,37 @@ L_76:
 	LD	DE,_triangle+36
 	LD	BC,9
 	LDIR	
-;  303			trigstatus.b = true;
-.LINE 303
+;  301			trigstatus.b = true;
+.LINE 301
 
 	LD	A,1
 	LD	(_trigstatus+1),A
-;  304	
-;  305			trig_Sync();
-.LINE 305
+;  302	
+;  303			trig_Sync();
+.LINE 303
 
 	CALL	_trig_Sync
-;  306			trigstatus.complete = true;
-.LINE 306
+;  304			trigstatus.complete = true;
+.LINE 304
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  307			trig_HeronsFormula();
-.LINE 307
+;  305			trig_HeronsFormula();
+.LINE 305
 
 	CALL	_trig_HeronsFormula
-;  308			ui_DispData();
-.LINE 308
+;  306			ui_DispData();
+.LINE 306
 
 	CALL	_ui_DispData
-;  309			return;
-.LINE 309
+;  307			return;
+.LINE 307
 
 	JR	L_113
-;  310		}
-;  311		else if (trigstatus.B && trigstatus.C && trigstatus.b)
+;  308		}
+;  309		else if (trigstatus.B && trigstatus.C && trigstatus.b)
 L_75:
-.LINE 311
+.LINE 309
 
 	LD	A,(_trigstatus+4)
 	OR	A,A
@@ -3956,9 +3954,9 @@ L_75:
 	LD	A,(_trigstatus+1)
 	OR	A,A
 	JR	Z,L_73
-;  312		{
-;  313			dbg_sprintf(dbgout, "AAS_2 detected [%s, %s, %s]\n", xangles[1].label, xangles[2].label, xsides[1].label);
-.LINE 313
+;  310		{
+;  311			dbg_sprintf(dbgout, "AAS_2 detected [%s, %s, %s]\n", angle_B.label, angle_C.label, side_b.label);
+.LINE 311
 
 	LD	IY,_xsides
 	LEA	IY,IY+26
@@ -3991,8 +3989,8 @@ L_75:
 	POP	DE
 	POP	DE
 	POP	DE
-;  314			gfx_Clear(&ui_Type);
-.LINE 314
+;  312			gfx_Clear(&ui_Type);
+.LINE 312
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -4010,8 +4008,8 @@ L_75:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  315			sp_SetLabel(&ui_Type, lbl_AAS);
-.LINE 315
+;  313			sp_SetLabel(&ui_Type, lbl_AAS);
+.LINE 313
 
 	LD	DE,_lbl_AAS
 	PUSH	DE
@@ -4032,8 +4030,8 @@ L_75:
 	POP	HL
 	POP	DE
 	POP	DE
-;  316			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 316
+;  314			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 314
 
 	LD	DE,3
 	PUSH	DE
@@ -4054,9 +4052,9 @@ L_75:
 	POP	HL
 	POP	DE
 	POP	DE
-;  317	
-;  318			trig_SolveMissingAngle();
-.LINE 318
+;  315	
+;  316			trig_SolveMissingAngle();
+.LINE 316
 
 	PUSH	BC
 	PUSH	HL
@@ -4071,9 +4069,9 @@ L_75:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  319	
-;  320			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
-.LINE 320
+;  317	
+;  318			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
+.LINE 318
 
 	PUSH	BC
 	PUSH	BC
@@ -4113,13 +4111,13 @@ L_75:
 	LD	DE,_triangle+45
 	LD	BC,9
 	LDIR	
-;  321			trigstatus.c = true;
-.LINE 321
+;  319			trigstatus.c = true;
+.LINE 319
 
 	LD	A,1
 	LD	(_trigstatus+2),A
-;  322			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
-.LINE 322
+;  320			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
+.LINE 320
 
 	PUSH	BC
 	PUSH	BC
@@ -4159,38 +4157,38 @@ L_75:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  323			trigstatus.a = true;
-.LINE 323
+;  321			trigstatus.a = true;
+.LINE 321
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  324	
-;  325			//dbg_printTriangle();
-;  326			trig_Sync();
-.LINE 326
+;  322	
+;  323			//dbg_printTriangle();
+;  324			trig_Sync();
+.LINE 324
 
 	CALL	_trig_Sync
-;  327			trigstatus.complete = true;
-.LINE 327
+;  325			trigstatus.complete = true;
+.LINE 325
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  328			trig_HeronsFormula();
-.LINE 328
+;  326			trig_HeronsFormula();
+.LINE 326
 
 	CALL	_trig_HeronsFormula
-;  329			ui_DispData();
-.LINE 329
+;  327			ui_DispData();
+.LINE 327
 
 	CALL	_ui_DispData
-;  330			return;
-.LINE 330
+;  328			return;
+.LINE 328
 
 	JR	L_113
-;  331		}
-;  332		else if (trigstatus.A && trigstatus.B && trigstatus.b)
+;  329		}
+;  330		else if (trigstatus.A && trigstatus.B && trigstatus.b)
 L_73:
-.LINE 332
+.LINE 330
 
 	LD	A,(_trigstatus+3)
 	OR	A,A
@@ -4201,9 +4199,9 @@ L_73:
 	LD	A,(_trigstatus+1)
 	OR	A,A
 	JR	Z,L_88
-;  333		{
-;  334			dbg_sprintf(dbgout, "AAS_3 detected [%s, %s, %s]\n", xangles[0].label, xangles[1].label, xsides[1].label);
-.LINE 334
+;  331		{
+;  332			dbg_sprintf(dbgout, "AAS_3 detected [%s, %s, %s]\n", angle_A.label, angle_B.label, side_b.label);
+.LINE 332
 
 	LD	IY,_xsides
 	LEA	IY,IY+26
@@ -4235,8 +4233,8 @@ L_73:
 	POP	DE
 	POP	DE
 	POP	DE
-;  335			gfx_Clear(&ui_Type);
-.LINE 335
+;  333			gfx_Clear(&ui_Type);
+.LINE 333
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -4254,8 +4252,8 @@ L_73:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  336			sp_SetLabel(&ui_Type, lbl_AAS);
-.LINE 336
+;  334			sp_SetLabel(&ui_Type, lbl_AAS);
+.LINE 334
 
 	LD	DE,_lbl_AAS
 	PUSH	DE
@@ -4276,8 +4274,8 @@ L_73:
 	POP	HL
 	POP	DE
 	POP	DE
-;  337			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 337
+;  335			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 335
 
 	LD	DE,3
 	PUSH	DE
@@ -4298,9 +4296,9 @@ L_73:
 	POP	HL
 	POP	DE
 	POP	DE
-;  338	
-;  339			trig_SolveMissingAngle();
-.LINE 339
+;  336	
+;  337			trig_SolveMissingAngle();
+.LINE 337
 
 	PUSH	BC
 	PUSH	HL
@@ -4315,8 +4313,8 @@ L_73:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  340			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
-.LINE 340
+;  338			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
+.LINE 338
 
 	PUSH	BC
 	PUSH	BC
@@ -4356,13 +4354,13 @@ L_73:
 	LD	DE,_triangle+45
 	LD	BC,9
 	LDIR	
-;  341			trigstatus.c = true;
-.LINE 341
+;  339			trigstatus.c = true;
+.LINE 339
 
 	LD	A,1
 	LD	(_trigstatus+2),A
-;  342			triangle.a   = los_Side_x(triangle.A, triangle.b, triangle.B);
-.LINE 342
+;  340			triangle.a   = los_Side_x(triangle.A, triangle.b, triangle.B);
+.LINE 340
 
 	PUSH	BC
 	PUSH	BC
@@ -4402,42 +4400,42 @@ L_73:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  343			trigstatus.a = true;
-.LINE 343
+;  341			trigstatus.a = true;
+.LINE 341
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  344	
-;  345			trig_Sync();
-.LINE 345
+;  342	
+;  343			trig_Sync();
+.LINE 343
 
 	CALL	_trig_Sync
-;  346			trigstatus.complete = true;
-.LINE 346
+;  344			trigstatus.complete = true;
+.LINE 344
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  347			trig_HeronsFormula();
-.LINE 347
+;  345			trig_HeronsFormula();
+.LINE 345
 
 	CALL	_trig_HeronsFormula
-;  348			ui_DispData();
-.LINE 348
+;  346			ui_DispData();
+.LINE 346
 
 	CALL	_ui_DispData
-;  349			return;
-.LINE 349
+;  347			return;
+.LINE 347
 
 	JR	L_113
-;  350		}
+;  348		}
 L_88:
-.LINE 350
+.LINE 348
 
-;  351	
-;  352		// ASA
-;  353		// "ASA" is when we know two angles and a side between the angles.
-;  354		if (trigstatus.A && trigstatus.c && trigstatus.B)
-.LINE 354
+;  349	
+;  350		// ASA
+;  351		// "ASA" is when we know two angles and a side between the angles.
+;  352		if (trigstatus.A && trigstatus.c && trigstatus.B)
+.LINE 352
 
 	LD	A,(_trigstatus+3)
 	OR	A,A
@@ -4448,9 +4446,9 @@ L_88:
 	LD	A,(_trigstatus+4)
 	OR	A,A
 	JR	Z,L_87
-;  355		{
-;  356			dbg_sprintf(dbgout, "ASA_1 detected [%s, %s, %s]\n", xangles[0].label, xsides[2].label, xangles[1].label);
-.LINE 356
+;  353		{
+;  354			dbg_sprintf(dbgout, "ASA_1 detected [%s, %s, %s]\n", angle_A.label, side_c.label, angle_B.label);
+.LINE 354
 
 	LD	IY,_xangles
 	LEA	IY,IY+26
@@ -4482,8 +4480,8 @@ L_88:
 	POP	DE
 	POP	DE
 	POP	DE
-;  357			gfx_Clear(&ui_Type);
-.LINE 357
+;  355			gfx_Clear(&ui_Type);
+.LINE 355
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -4501,8 +4499,8 @@ L_88:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  358			sp_SetLabel(&ui_Type, lbl_ASA);
-.LINE 358
+;  356			sp_SetLabel(&ui_Type, lbl_ASA);
+.LINE 356
 
 	LD	DE,_lbl_ASA
 	PUSH	DE
@@ -4523,8 +4521,8 @@ L_88:
 	POP	HL
 	POP	DE
 	POP	DE
-;  359			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 359
+;  357			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 357
 
 	LD	DE,3
 	PUSH	DE
@@ -4545,9 +4543,9 @@ L_88:
 	POP	HL
 	POP	DE
 	POP	DE
-;  360	
-;  361			trig_SolveMissingAngle();
-.LINE 361
+;  358	
+;  359			trig_SolveMissingAngle();
+.LINE 359
 
 	PUSH	BC
 	PUSH	HL
@@ -4562,8 +4560,8 @@ L_88:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  362			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
-.LINE 362
+;  360			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
+.LINE 360
 
 	PUSH	BC
 	PUSH	BC
@@ -4607,13 +4605,13 @@ L_88:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  363			trigstatus.a = true;
-.LINE 363
+;  361			trigstatus.a = true;
+.LINE 361
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  364			triangle.b   = los_Side_x(triangle.B, triangle.c, triangle.C);
-.LINE 364
+;  362			triangle.b   = los_Side_x(triangle.B, triangle.c, triangle.C);
+.LINE 362
 
 	PUSH	BC
 	PUSH	BC
@@ -4657,37 +4655,37 @@ L_88:
 	LD	DE,_triangle+36
 	LD	BC,9
 	LDIR	
-;  365			trigstatus.b = true;
-.LINE 365
+;  363			trigstatus.b = true;
+.LINE 363
 
 	LD	A,1
 	LD	(_trigstatus+1),A
-;  366	
-;  367			trig_Sync();
-.LINE 367
+;  364	
+;  365			trig_Sync();
+.LINE 365
 
 	CALL	_trig_Sync
-;  368			trigstatus.complete = true;
-.LINE 368
+;  366			trigstatus.complete = true;
+.LINE 366
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  369			trig_HeronsFormula();
-.LINE 369
+;  367			trig_HeronsFormula();
+.LINE 367
 
 	CALL	_trig_HeronsFormula
-;  370			ui_DispData();
-.LINE 370
+;  368			ui_DispData();
+.LINE 368
 
 	CALL	_ui_DispData
-;  371			return;
-.LINE 371
+;  369			return;
+.LINE 369
 
 	JR	L_113
-;  372		}
-;  373		else if (trigstatus.A && trigstatus.b && trigstatus.C) //todo: verify
+;  370		}
+;  371		else if (trigstatus.A && trigstatus.b && trigstatus.C) //todo: verify
 L_87:
-.LINE 373
+.LINE 371
 
 	LD	A,(_trigstatus+3)
 	OR	A,A
@@ -4698,9 +4696,9 @@ L_87:
 	LD	A,(_trigstatus+5)
 	OR	A,A
 	JR	Z,L_85
-;  374		{
-;  375			dbg_sprintf(dbgout, "ASA_2 detected [%s, %s, %s]\n", xangles[0].label, xsides[1].label, xangles[2].label);
-.LINE 375
+;  372		{
+;  373			dbg_sprintf(dbgout, "ASA_2 detected [%s, %s, %s]\n", angle_A.label, side_b.label, angle_C.label);
+.LINE 373
 
 	LD	IY,_xangles
 	LEA	IY,IY+52
@@ -4732,8 +4730,8 @@ L_87:
 	POP	DE
 	POP	DE
 	POP	DE
-;  376			gfx_Clear(&ui_Type);
-.LINE 376
+;  374			gfx_Clear(&ui_Type);
+.LINE 374
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -4751,8 +4749,8 @@ L_87:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  377			sp_SetLabel(&ui_Type, lbl_ASA);
-.LINE 377
+;  375			sp_SetLabel(&ui_Type, lbl_ASA);
+.LINE 375
 
 	LD	DE,_lbl_ASA
 	PUSH	DE
@@ -4773,8 +4771,8 @@ L_87:
 	POP	HL
 	POP	DE
 	POP	DE
-;  378			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 378
+;  376			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 376
 
 	LD	DE,3
 	PUSH	DE
@@ -4795,9 +4793,9 @@ L_87:
 	POP	HL
 	POP	DE
 	POP	DE
-;  379	
-;  380			trig_SolveMissingAngle();
-.LINE 380
+;  377	
+;  378			trig_SolveMissingAngle();
+.LINE 378
 
 	PUSH	BC
 	PUSH	HL
@@ -4812,8 +4810,8 @@ L_87:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  381			triangle.a   = los_Side_x(triangle.A, triangle.b, triangle.B);
-.LINE 381
+;  379			triangle.a   = los_Side_x(triangle.A, triangle.b, triangle.B);
+.LINE 379
 
 	PUSH	BC
 	PUSH	BC
@@ -4857,13 +4855,13 @@ L_87:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  382			trigstatus.a = true;
-.LINE 382
+;  380			trigstatus.a = true;
+.LINE 380
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  383			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
-.LINE 383
+;  381			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
+.LINE 381
 
 	PUSH	BC
 	PUSH	BC
@@ -4907,37 +4905,37 @@ L_87:
 	LD	DE,_triangle+45
 	LD	BC,9
 	LDIR	
-;  384			trigstatus.c = true;
-.LINE 384
+;  382			trigstatus.c = true;
+.LINE 382
 
 	LD	A,1
 	LD	(_trigstatus+2),A
-;  385	
-;  386			trig_Sync();
-.LINE 386
+;  383	
+;  384			trig_Sync();
+.LINE 384
 
 	CALL	_trig_Sync
-;  387			trigstatus.complete = true;
-.LINE 387
+;  385			trigstatus.complete = true;
+.LINE 385
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  388			trig_HeronsFormula();
-.LINE 388
+;  386			trig_HeronsFormula();
+.LINE 386
 
 	CALL	_trig_HeronsFormula
-;  389			ui_DispData();
-.LINE 389
+;  387			ui_DispData();
+.LINE 387
 
 	CALL	_ui_DispData
-;  390			return;
-.LINE 390
+;  388			return;
+.LINE 388
 
 	JR	L_113
-;  391		}
-;  392		else if (trigstatus.B && trigstatus.a && trigstatus.C) //todo: verify
+;  389		}
+;  390		else if (trigstatus.B && trigstatus.a && trigstatus.C) //todo: verify
 L_85:
-.LINE 392
+.LINE 390
 
 	LD	A,(_trigstatus+4)
 	OR	A,A
@@ -4948,9 +4946,9 @@ L_85:
 	LD	A,(_trigstatus+5)
 	OR	A,A
 	JR	Z,L_100
-;  393		{
-;  394			dbg_sprintf(dbgout, "ASA_3 detected [%s, %s, %s]\n", xangles[1].label, xsides[0].label, xangles[2].label);
-.LINE 394
+;  391		{
+;  392			dbg_sprintf(dbgout, "ASA_3 detected [%s, %s, %s]\n", angle_B.label, side_a.label, angle_C.label);
+.LINE 392
 
 	LD	IY,_xangles
 	LEA	IY,IY+52
@@ -4982,8 +4980,8 @@ L_85:
 	POP	DE
 	POP	DE
 	POP	DE
-;  395			gfx_Clear(&ui_Type);
-.LINE 395
+;  393			gfx_Clear(&ui_Type);
+.LINE 393
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -5001,8 +4999,8 @@ L_85:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  396			sp_SetLabel(&ui_Type, lbl_ASA);
-.LINE 396
+;  394			sp_SetLabel(&ui_Type, lbl_ASA);
+.LINE 394
 
 	LD	DE,_lbl_ASA
 	PUSH	DE
@@ -5023,8 +5021,8 @@ L_85:
 	POP	HL
 	POP	DE
 	POP	DE
-;  397			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 397
+;  395			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 395
 
 	LD	DE,3
 	PUSH	DE
@@ -5045,9 +5043,9 @@ L_85:
 	POP	HL
 	POP	DE
 	POP	DE
-;  398	
-;  399			trig_SolveMissingAngle();
-.LINE 399
+;  396	
+;  397			trig_SolveMissingAngle();
+.LINE 397
 
 	PUSH	BC
 	PUSH	HL
@@ -5062,8 +5060,8 @@ L_85:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  400			triangle.b   = los_Side_x(triangle.B, triangle.a, triangle.A);
-.LINE 400
+;  398			triangle.b   = los_Side_x(triangle.B, triangle.a, triangle.A);
+.LINE 398
 
 	PUSH	BC
 	PUSH	BC
@@ -5107,13 +5105,13 @@ L_85:
 	LD	DE,_triangle+36
 	LD	BC,9
 	LDIR	
-;  401			trigstatus.b = true;
-.LINE 401
+;  399			trigstatus.b = true;
+.LINE 399
 
 	LD	A,1
 	LD	(_trigstatus+1),A
-;  402			triangle.c   = los_Side_x(triangle.C, triangle.a, triangle.A);
-.LINE 402
+;  400			triangle.c   = los_Side_x(triangle.C, triangle.a, triangle.A);
+.LINE 400
 
 	PUSH	BC
 	PUSH	BC
@@ -5157,42 +5155,42 @@ L_85:
 	LD	DE,_triangle+45
 	LD	BC,9
 	LDIR	
-;  403			trigstatus.c = true;
-.LINE 403
+;  401			trigstatus.c = true;
+.LINE 401
 
 	LD	A,1
 	LD	(_trigstatus+2),A
-;  404	
-;  405			trig_Sync();
-.LINE 405
+;  402	
+;  403			trig_Sync();
+.LINE 403
 
 	CALL	_trig_Sync
-;  406			trigstatus.complete = true;
-.LINE 406
+;  404			trigstatus.complete = true;
+.LINE 404
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  407			trig_HeronsFormula();
-.LINE 407
+;  405			trig_HeronsFormula();
+.LINE 405
 
 	CALL	_trig_HeronsFormula
-;  408			ui_DispData();
-.LINE 408
+;  406			ui_DispData();
+.LINE 406
 
 	CALL	_ui_DispData
-;  409			return;
-.LINE 409
+;  407			return;
+.LINE 407
 
 	JR	L_113
-;  410		}
+;  408		}
 L_100:
-.LINE 410
+.LINE 408
 
-;  411	
-;  412		// SAS
-;  413		// "SAS" is when we know two sides and the angle between them.
-;  414		if (trigstatus.b && trigstatus.A && trigstatus.c)
-.LINE 414
+;  409	
+;  410		// SAS
+;  411		// "SAS" is when we know two sides and the angle between them.
+;  412		if (trigstatus.b && trigstatus.A && trigstatus.c)
+.LINE 412
 
 	LD	A,(_trigstatus+1)
 	OR	A,A
@@ -5203,9 +5201,9 @@ L_100:
 	LD	A,(_trigstatus+2)
 	OR	A,A
 	JR	Z,L_99
-;  415		{
-;  416			dbg_sprintf(dbgout, "SAS_1 detected [%s, %s, %s]\n", xsides[1].label, xangles[0].label, xsides[2].label);
-.LINE 416
+;  413		{
+;  414			dbg_sprintf(dbgout, "SAS_1 detected [%s, %s, %s]\n", side_b.label, angle_A.label, side_c.label);
+.LINE 414
 
 	LD	IY,_xsides
 	LEA	IY,IY+52
@@ -5237,8 +5235,8 @@ L_100:
 	POP	DE
 	POP	DE
 	POP	DE
-;  417			gfx_Clear(&ui_Type);
-.LINE 417
+;  415			gfx_Clear(&ui_Type);
+.LINE 415
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -5256,8 +5254,8 @@ L_100:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  418			sp_SetLabel(&ui_Type, lbl_SAS);
-.LINE 418
+;  416			sp_SetLabel(&ui_Type, lbl_SAS);
+.LINE 416
 
 	LD	DE,_lbl_SAS
 	PUSH	DE
@@ -5278,8 +5276,8 @@ L_100:
 	POP	HL
 	POP	DE
 	POP	DE
-;  419			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 419
+;  417			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 417
 
 	LD	DE,3
 	PUSH	DE
@@ -5300,9 +5298,9 @@ L_100:
 	POP	HL
 	POP	DE
 	POP	DE
-;  420	
-;  421			triangle.a   = loc_Side_x(triangle.b, triangle.c, triangle.A);
-.LINE 421
+;  418	
+;  419			triangle.a   = loc_Side_x(triangle.b, triangle.c, triangle.A);
+.LINE 419
 
 	PUSH	BC
 	PUSH	BC
@@ -5346,15 +5344,15 @@ L_100:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  422			trigstatus.a = true;
-.LINE 422
+;  420			trigstatus.a = true;
+.LINE 420
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  423	
-;  424			// todo: need to find the smaller of the two angles
-;  425			triangle.B   = los_Angle_x(triangle.b, triangle.A, triangle.a);
-.LINE 425
+;  421	
+;  422			// todo: need to find the smaller of the two angles
+;  423			triangle.B   = los_Angle_x(triangle.b, triangle.A, triangle.a);
+.LINE 423
 
 	PUSH	BC
 	PUSH	BC
@@ -5398,42 +5396,42 @@ L_100:
 	LD	DE,_triangle+9
 	LD	BC,9
 	LDIR	
-;  426			trigstatus.B = true;
-.LINE 426
+;  424			trigstatus.B = true;
+.LINE 424
 
 	LD	A,1
 	LD	(_trigstatus+4),A
-;  427	
-;  428			trig_SolveMissingAngle();
-.LINE 428
+;  425	
+;  426			trig_SolveMissingAngle();
+.LINE 426
 
 	CALL	_trig_SolveMissingAngle
-;  429	
-;  430			trigstatus.complete = true;
-.LINE 430
+;  427	
+;  428			trigstatus.complete = true;
+.LINE 428
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  431			trig_Sync();
-.LINE 431
+;  429			trig_Sync();
+.LINE 429
 
 	CALL	_trig_Sync
-;  432			trig_HeronsFormula();
-.LINE 432
+;  430			trig_HeronsFormula();
+.LINE 430
 
 	CALL	_trig_HeronsFormula
-;  433			ui_DispData();
-.LINE 433
+;  431			ui_DispData();
+.LINE 431
 
 	CALL	_ui_DispData
-;  434			return;
-.LINE 434
+;  432			return;
+.LINE 432
 
 	JR	L_113
-;  435		}
-;  436		else if (trigstatus.c && trigstatus.B && trigstatus.a) //todo: verify
+;  433		}
+;  434		else if (trigstatus.c && trigstatus.B && trigstatus.a) //todo: verify
 L_99:
-.LINE 436
+.LINE 434
 
 	LD	A,(_trigstatus+2)
 	OR	A,A
@@ -5444,9 +5442,9 @@ L_99:
 	LD	A,(_trigstatus)
 	OR	A,A
 	JR	Z,L_97
-;  437		{
-;  438			dbg_sprintf(dbgout, "SAS_2 detected [%s, %s, %s]\n", xsides[2].label, xangles[1].label, xsides[0].label);
-.LINE 438
+;  435		{
+;  436			dbg_sprintf(dbgout, "SAS_2 detected [%s, %s, %s]\n", side_c.label, angle_B.label, side_a.label);
+.LINE 436
 
 	LD	DE,_xsides+6
 	PUSH	DE
@@ -5478,8 +5476,8 @@ L_99:
 	POP	DE
 	POP	DE
 	POP	DE
-;  439			gfx_Clear(&ui_Type);
-.LINE 439
+;  437			gfx_Clear(&ui_Type);
+.LINE 437
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -5497,8 +5495,8 @@ L_99:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  440			sp_SetLabel(&ui_Type, lbl_SAS);
-.LINE 440
+;  438			sp_SetLabel(&ui_Type, lbl_SAS);
+.LINE 438
 
 	LD	DE,_lbl_SAS
 	PUSH	DE
@@ -5519,8 +5517,8 @@ L_99:
 	POP	HL
 	POP	DE
 	POP	DE
-;  441			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 441
+;  439			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 439
 
 	LD	DE,3
 	PUSH	DE
@@ -5541,9 +5539,9 @@ L_99:
 	POP	HL
 	POP	DE
 	POP	DE
-;  442	
-;  443			triangle.b   = loc_Side_x(triangle.a, triangle.c, triangle.B);
-.LINE 443
+;  440	
+;  441			triangle.b   = loc_Side_x(triangle.a, triangle.c, triangle.B);
+.LINE 441
 
 	PUSH	BC
 	PUSH	BC
@@ -5587,15 +5585,15 @@ L_99:
 	LD	DE,_triangle+36
 	LD	BC,9
 	LDIR	
-;  444			trigstatus.b = true;
-.LINE 444
+;  442			trigstatus.b = true;
+.LINE 442
 
 	LD	A,1
 	LD	(_trigstatus+1),A
-;  445	
-;  446			// todo: need to find the smaller of the two angles
-;  447			triangle.A   = los_Angle_x(triangle.a, triangle.B, triangle.b);
-.LINE 447
+;  443	
+;  444			// todo: need to find the smaller of the two angles
+;  445			triangle.A   = los_Angle_x(triangle.a, triangle.B, triangle.b);
+.LINE 445
 
 	PUSH	BC
 	PUSH	BC
@@ -5639,41 +5637,41 @@ L_99:
 	LD	DE,_triangle
 	LD	BC,9
 	LDIR	
-;  448			trigstatus.A = true;
-.LINE 448
+;  446			trigstatus.A = true;
+.LINE 446
 
 	LD	A,1
 	LD	(_trigstatus+3),A
-;  449	
-;  450			trig_SolveMissingAngle();
-.LINE 450
+;  447	
+;  448			trig_SolveMissingAngle();
+.LINE 448
 
 	CALL	_trig_SolveMissingAngle
-;  451			trig_Sync();
-.LINE 451
+;  449			trig_Sync();
+.LINE 449
 
 	CALL	_trig_Sync
-;  452			trigstatus.complete = true;
-.LINE 452
+;  450			trigstatus.complete = true;
+.LINE 450
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  453			trig_HeronsFormula();
-.LINE 453
+;  451			trig_HeronsFormula();
+.LINE 451
 
 	CALL	_trig_HeronsFormula
-;  454			ui_DispData();
-.LINE 454
+;  452			ui_DispData();
+.LINE 452
 
 	CALL	_ui_DispData
-;  455			return;
-.LINE 455
+;  453			return;
+.LINE 453
 
 	JR	L_113
-;  456		}
-;  457		else if (trigstatus.b && trigstatus.C && trigstatus.a)
+;  454		}
+;  455		else if (trigstatus.b && trigstatus.C && trigstatus.a)
 L_97:
-.LINE 457
+.LINE 455
 
 	LD	A,(_trigstatus+1)
 	OR	A,A
@@ -5684,9 +5682,9 @@ L_97:
 	LD	A,(_trigstatus)
 	OR	A,A
 	JR	Z,L_112
-;  458		{
-;  459			dbg_sprintf(dbgout, "SAS_3 detected [%s, %s, %s]\n", xsides[1].label, xangles[2].label, xsides[0].label);
-.LINE 459
+;  456		{
+;  457			dbg_sprintf(dbgout, "SAS_3 detected [%s, %s, %s]\n", side_b.label, angle_C.label, side_a.label);
+.LINE 457
 
 	LD	DE,_xsides+6
 	PUSH	DE
@@ -5718,8 +5716,8 @@ L_97:
 	POP	DE
 	POP	DE
 	POP	DE
-;  460			gfx_Clear(&ui_Type);
-.LINE 460
+;  458			gfx_Clear(&ui_Type);
+.LINE 458
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -5737,8 +5735,8 @@ L_97:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  461			sp_SetLabel(&ui_Type, lbl_SAS);
-.LINE 461
+;  459			sp_SetLabel(&ui_Type, lbl_SAS);
+.LINE 459
 
 	LD	DE,_lbl_SAS
 	PUSH	DE
@@ -5759,8 +5757,8 @@ L_97:
 	POP	HL
 	POP	DE
 	POP	DE
-;  462			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 462
+;  460			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 460
 
 	LD	DE,3
 	PUSH	DE
@@ -5781,9 +5779,9 @@ L_97:
 	POP	HL
 	POP	DE
 	POP	DE
-;  463	
-;  464			triangle.c   = loc_Side_x(triangle.a, triangle.b, triangle.C);
-.LINE 464
+;  461	
+;  462			triangle.c   = loc_Side_x(triangle.a, triangle.b, triangle.C);
+.LINE 462
 
 	PUSH	BC
 	PUSH	BC
@@ -5827,15 +5825,15 @@ L_97:
 	LD	DE,_triangle+45
 	LD	BC,9
 	LDIR	
-;  465			trigstatus.c = true;
-.LINE 465
+;  463			trigstatus.c = true;
+.LINE 463
 
 	LD	A,1
 	LD	(_trigstatus+2),A
-;  466	
-;  467			// todo: need to find the smaller of the two angles
-;  468			triangle.A   = los_Angle_x(triangle.a, triangle.C, triangle.c);
-.LINE 468
+;  464	
+;  465			// todo: need to find the smaller of the two angles
+;  466			triangle.A   = los_Angle_x(triangle.a, triangle.C, triangle.c);
+.LINE 466
 
 	PUSH	BC
 	PUSH	BC
@@ -5879,47 +5877,47 @@ L_97:
 	LD	DE,_triangle
 	LD	BC,9
 	LDIR	
-;  469			trigstatus.A = true;
-.LINE 469
+;  467			trigstatus.A = true;
+.LINE 467
 
 	LD	A,1
 	LD	(_trigstatus+3),A
-;  470	
-;  471			trig_SolveMissingAngle();
-.LINE 471
+;  468	
+;  469			trig_SolveMissingAngle();
+.LINE 469
 
 	CALL	_trig_SolveMissingAngle
-;  472			trig_Sync();
-.LINE 472
+;  470			trig_Sync();
+.LINE 470
 
 	CALL	_trig_Sync
-;  473			trigstatus.complete = true;
-.LINE 473
+;  471			trigstatus.complete = true;
+.LINE 471
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  474			trig_HeronsFormula();
-.LINE 474
+;  472			trig_HeronsFormula();
+.LINE 472
 
 	CALL	_trig_HeronsFormula
-;  475			ui_DispData();
-.LINE 475
+;  473			ui_DispData();
+.LINE 473
 
 	CALL	_ui_DispData
-;  476			return;
-.LINE 476
+;  474			return;
+.LINE 474
 
 	JR	L_113
-;  477		}
+;  475		}
 L_112:
-.LINE 477
+.LINE 475
 
-;  478	
-;  479		// SSA
-;  480		// "SSA" is when we know two sides and an angle that is not the angle between the sides.
-;  481		// todo: check if it has multiple answers
-;  482		if (trigstatus.b && trigstatus.c && trigstatus.B)
-.LINE 482
+;  476	
+;  477		// SSA
+;  478		// "SSA" is when we know two sides and an angle that is not the angle between the sides.
+;  479		// todo: check if it has multiple answers
+;  480		if (trigstatus.b && trigstatus.c && trigstatus.B)
+.LINE 480
 
 	LD	A,(_trigstatus+1)
 	OR	A,A
@@ -5930,9 +5928,9 @@ L_112:
 	LD	A,(_trigstatus+4)
 	OR	A,A
 	JR	Z,L_111
-;  483		{
-;  484			dbg_sprintf(dbgout, "SSA_1 detected [%s, %s, %s]\n", xsides[1].label, xsides[2].label, xangles[1].label);
-.LINE 484
+;  481		{
+;  482			dbg_sprintf(dbgout, "SSA_1 detected [%s, %s, %s]\n", side_b.label, side_c.label, angle_B.label);
+.LINE 482
 
 	LD	IY,_xangles
 	LEA	IY,IY+26
@@ -5965,8 +5963,8 @@ L_112:
 	POP	DE
 	POP	DE
 	POP	DE
-;  485			gfx_Clear(&ui_Type);
-.LINE 485
+;  483			gfx_Clear(&ui_Type);
+.LINE 483
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -5984,8 +5982,8 @@ L_112:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  486			sp_SetLabel(&ui_Type, lbl_SSA);
-.LINE 486
+;  484			sp_SetLabel(&ui_Type, lbl_SSA);
+.LINE 484
 
 	LD	DE,_lbl_SSA
 	PUSH	DE
@@ -6006,8 +6004,8 @@ L_112:
 	POP	HL
 	POP	DE
 	POP	DE
-;  487			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 487
+;  485			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 485
 
 	LD	DE,3
 	PUSH	DE
@@ -6028,14 +6026,14 @@ L_112:
 	POP	HL
 	POP	DE
 	POP	DE
-;  488			trigstatus.isSSA = true;
-.LINE 488
+;  486			trigstatus.isSSA = true;
+.LINE 486
 
 	LD	A,1
 	LD	(_trigstatus+7),A
-;  489	
-;  490			triangle.C   = los_Angle_x(triangle.c, triangle.B, triangle.b);
-.LINE 490
+;  487	
+;  488			triangle.C   = los_Angle_x(triangle.c, triangle.B, triangle.b);
+.LINE 488
 
 	PUSH	BC
 	PUSH	BC
@@ -6079,14 +6077,14 @@ L_112:
 	LD	DE,_triangle+18
 	LD	BC,9
 	LDIR	
-;  491			trigstatus.C = true;
-.LINE 491
+;  489			trigstatus.C = true;
+.LINE 489
 
 	LD	A,1
 	LD	(_trigstatus+5),A
-;  492	
-;  493			trig_SolveMissingAngle();
-.LINE 493
+;  490	
+;  491			trig_SolveMissingAngle();
+.LINE 491
 
 	PUSH	BC
 	PUSH	HL
@@ -6101,9 +6099,9 @@ L_112:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  494	
-;  495			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
-.LINE 495
+;  492	
+;  493			triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
+.LINE 493
 
 	PUSH	BC
 	PUSH	BC
@@ -6147,15 +6145,15 @@ L_112:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  496			trigstatus.a = true;
-.LINE 496
+;  494			trigstatus.a = true;
+.LINE 494
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  497	
-;  498			// other possible answer for C
-;  499			rbuf = os_RealSub(&real180, &triangle.C);
-.LINE 499
+;  495	
+;  496			// other possible answer for C
+;  497			rbuf = os_RealSub(&real180, &triangle.C);
+.LINE 497
 
 	LD	BC,_triangle+18
 	PUSH	BC
@@ -6172,8 +6170,8 @@ L_112:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;  500			os_RealToStr(cbuf, &rbuf, 0, 0, 6);
-.LINE 500
+;  498			os_RealToStr(cbuf, &rbuf, 0, 0, 6);
+.LINE 498
 
 	LD	BC,6
 	PUSH	BC
@@ -6188,9 +6186,9 @@ L_112:
 	POP	BC
 	POP	BC
 	POP	BC
-;  501	
-;  502			sprintf(cbuf2, "*C = %s", cbuf);
-.LINE 502
+;  499	
+;  500			sprintf(cbuf2, "*C = %s", cbuf);
+.LINE 500
 
 	PEA	IX+-38
 	LD	BC,L__106
@@ -6200,8 +6198,8 @@ L_112:
 	POP	BC
 	POP	BC
 	POP	BC
-;  503			sp_SetLabel(&data_X_ex, cbuf2);
-.LINE 503
+;  501			sp_SetLabel(&data_X_ex, cbuf2);
+.LINE 501
 
 	PEA	IX+-58
 	LD	BC,_data_X_ex
@@ -6209,22 +6207,22 @@ L_112:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  504			gfx_Clear(&data_X_ex);
-.LINE 504
+;  502			gfx_Clear(&data_X_ex);
+.LINE 502
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  505			gfx_Print(&data_X_ex);
-.LINE 505
+;  503			gfx_Print(&data_X_ex);
+.LINE 503
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  506			dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
-.LINE 506
+;  504			dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
+.LINE 504
 
 	LD	BC,_data_X_ex+6
 	PUSH	BC
@@ -6236,8 +6234,8 @@ L_112:
 	POP	BC
 	POP	BC
 	POP	BC
-;  507			dbg_sprintf(dbgout, "Other possible solution for C = %s\n", cbuf);
-.LINE 507
+;  505			dbg_sprintf(dbgout, "Other possible solution for C = %s\n", cbuf);
+.LINE 505
 
 	PEA	IX+-38
 	LD	BC,L__108
@@ -6248,32 +6246,32 @@ L_112:
 	POP	BC
 	POP	BC
 	POP	BC
-;  508	
-;  509			trig_Sync();
-.LINE 509
+;  506	
+;  507			trig_Sync();
+.LINE 507
 
 	CALL	_trig_Sync
-;  510			trigstatus.complete = true;
-.LINE 510
+;  508			trigstatus.complete = true;
+.LINE 508
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  511			trig_HeronsFormula();
-.LINE 511
+;  509			trig_HeronsFormula();
+.LINE 509
 
 	CALL	_trig_HeronsFormula
-;  512			ui_DispData();
-.LINE 512
+;  510			ui_DispData();
+.LINE 510
 
 	CALL	_ui_DispData
-;  513			return;
-.LINE 513
+;  511			return;
+.LINE 511
 
 	JR	L_113
-;  514		}
-;  515		else if (trigstatus.b && trigstatus.a && trigstatus.B) //todo: verify
+;  512		}
+;  513		else if (trigstatus.b && trigstatus.a && trigstatus.B) //todo: verify
 L_111:
-.LINE 515
+.LINE 513
 
 	LD	A,(_trigstatus+1)
 	OR	A,A
@@ -6284,9 +6282,9 @@ L_111:
 	LD	A,(_trigstatus+4)
 	OR	A,A
 	JR	Z,L_109
-;  516		{
-;  517			dbg_sprintf(dbgout, "SSA_2 detected [%s, %s, %s]\n", xsides[1].label, xsides[0].label, xangles[1].label);
-.LINE 517
+;  514		{
+;  515			dbg_sprintf(dbgout, "SSA_2 detected [%s, %s, %s]\n", side_b.label, side_a.label, angle_B.label);
+.LINE 515
 
 	LD	IY,_xangles
 	LEA	IY,IY+26
@@ -6318,8 +6316,8 @@ L_111:
 	POP	DE
 	POP	DE
 	POP	DE
-;  518			gfx_Clear(&ui_Type);
-.LINE 518
+;  516			gfx_Clear(&ui_Type);
+.LINE 516
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -6337,8 +6335,8 @@ L_111:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  519			sp_SetLabel(&ui_Type, lbl_SSA);
-.LINE 519
+;  517			sp_SetLabel(&ui_Type, lbl_SSA);
+.LINE 517
 
 	LD	DE,_lbl_SSA
 	PUSH	DE
@@ -6359,8 +6357,8 @@ L_111:
 	POP	HL
 	POP	DE
 	POP	DE
-;  520			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 520
+;  518			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 518
 
 	LD	DE,3
 	PUSH	DE
@@ -6381,14 +6379,14 @@ L_111:
 	POP	HL
 	POP	DE
 	POP	DE
-;  521			trigstatus.isSSA = true;
-.LINE 521
+;  519			trigstatus.isSSA = true;
+.LINE 519
 
 	LD	A,1
 	LD	(_trigstatus+7),A
-;  522	
-;  523			triangle.C   = los_Angle_x(triangle.c, triangle.B, triangle.b);
-.LINE 523
+;  520	
+;  521			triangle.C   = los_Angle_x(triangle.c, triangle.B, triangle.b);
+.LINE 521
 
 	PUSH	BC
 	PUSH	BC
@@ -6432,14 +6430,14 @@ L_111:
 	LD	DE,_triangle+18
 	LD	BC,9
 	LDIR	
-;  524			trigstatus.C = true;
-.LINE 524
+;  522			trigstatus.C = true;
+.LINE 522
 
 	LD	A,1
 	LD	(_trigstatus+5),A
-;  525	
-;  526			trig_SolveMissingAngle();
-.LINE 526
+;  523	
+;  524			trig_SolveMissingAngle();
+.LINE 524
 
 	PUSH	BC
 	PUSH	HL
@@ -6454,9 +6452,9 @@ L_111:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  527	
-;  528			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
-.LINE 528
+;  525	
+;  526			triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
+.LINE 526
 
 	PUSH	BC
 	PUSH	BC
@@ -6500,15 +6498,15 @@ L_111:
 	LD	DE,_triangle+45
 	LD	BC,9
 	LDIR	
-;  529			trigstatus.c = true;
-.LINE 529
+;  527			trigstatus.c = true;
+.LINE 527
 
 	LD	A,1
 	LD	(_trigstatus+2),A
-;  530	
-;  531			// other possible answer for C
-;  532			rbuf = os_RealSub(&real180, &triangle.C);
-.LINE 532
+;  528	
+;  529			// other possible answer for C
+;  530			rbuf = os_RealSub(&real180, &triangle.C);
+.LINE 530
 
 	LD	BC,_triangle+18
 	PUSH	BC
@@ -6525,8 +6523,8 @@ L_111:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;  533			os_RealToStr(cbuf, &rbuf, 0, 0, 6);
-.LINE 533
+;  531			os_RealToStr(cbuf, &rbuf, 0, 0, 6);
+.LINE 531
 
 	LD	BC,6
 	PUSH	BC
@@ -6541,9 +6539,9 @@ L_111:
 	POP	BC
 	POP	BC
 	POP	BC
-;  534	
-;  535			sprintf(cbuf2, "*C = %s", cbuf);
-.LINE 535
+;  532	
+;  533			sprintf(cbuf2, "*C = %s", cbuf);
+.LINE 533
 
 	PEA	IX+-38
 	LD	BC,L__113
@@ -6553,8 +6551,8 @@ L_111:
 	POP	BC
 	POP	BC
 	POP	BC
-;  536			sp_SetLabel(&data_X_ex, cbuf2);
-.LINE 536
+;  534			sp_SetLabel(&data_X_ex, cbuf2);
+.LINE 534
 
 	PEA	IX+-58
 	LD	BC,_data_X_ex
@@ -6562,22 +6560,22 @@ L_111:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  537			gfx_Clear(&data_X_ex);
-.LINE 537
+;  535			gfx_Clear(&data_X_ex);
+.LINE 535
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  538			gfx_Print(&data_X_ex);
-.LINE 538
+;  536			gfx_Print(&data_X_ex);
+.LINE 536
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  539			dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
-.LINE 539
+;  537			dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
+.LINE 537
 
 	LD	BC,_data_X_ex+6
 	PUSH	BC
@@ -6589,8 +6587,8 @@ L_111:
 	POP	BC
 	POP	BC
 	POP	BC
-;  540			dbg_sprintf(dbgout, "Other possible solution for C = %s\n", cbuf);
-.LINE 540
+;  538			dbg_sprintf(dbgout, "Other possible solution for C = %s\n", cbuf);
+.LINE 538
 
 	PEA	IX+-38
 	LD	BC,L__115
@@ -6601,32 +6599,32 @@ L_111:
 	POP	BC
 	POP	BC
 	POP	BC
-;  541	
-;  542			trig_Sync();
-.LINE 542
+;  539	
+;  540			trig_Sync();
+.LINE 540
 
 	CALL	_trig_Sync
-;  543			trigstatus.complete = true;
-.LINE 543
+;  541			trigstatus.complete = true;
+.LINE 541
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  544			trig_HeronsFormula();
-.LINE 544
+;  542			trig_HeronsFormula();
+.LINE 542
 
 	CALL	_trig_HeronsFormula
-;  545			ui_DispData();
-.LINE 545
+;  543			ui_DispData();
+.LINE 543
 
 	CALL	_ui_DispData
-;  546			return;
-.LINE 546
+;  544			return;
+.LINE 544
 
 	JR	L_113
-;  547		}
-;  548		else if (trigstatus.a && trigstatus.c && trigstatus.C) //todo: verify
+;  545		}
+;  546		else if (trigstatus.a && trigstatus.c && trigstatus.C) //todo: verify
 L_109:
-.LINE 548
+.LINE 546
 
 	LD	A,(_trigstatus)
 	OR	A,A
@@ -6637,9 +6635,9 @@ L_109:
 	LD	A,(_trigstatus+5)
 	OR	A,A
 	JR	Z,L_113
-;  549		{
-;  550			dbg_sprintf(dbgout, "SSA_3 detected [%s, %s, %s]\n", xsides[0].label, xsides[2].label, xangles[2].label);
-.LINE 550
+;  547		{
+;  548			dbg_sprintf(dbgout, "SSA_3 detected [%s, %s, %s]\n", side_a.label, side_c.label, angle_C.label);
+.LINE 548
 
 	LD	IY,_xangles
 	LEA	IY,IY+52
@@ -6671,8 +6669,8 @@ L_109:
 	POP	DE
 	POP	DE
 	POP	DE
-;  551			gfx_Clear(&ui_Type);
-.LINE 551
+;  549			gfx_Clear(&ui_Type);
+.LINE 549
 
 	LD	DE,_ui_Type
 	PUSH	DE
@@ -6690,8 +6688,8 @@ L_109:
 	LD	BC,HL
 	POP	HL
 	POP	DE
-;  552			sp_SetLabel(&ui_Type, lbl_SSA);
-.LINE 552
+;  550			sp_SetLabel(&ui_Type, lbl_SSA);
+.LINE 550
 
 	LD	DE,_lbl_SSA
 	PUSH	DE
@@ -6712,8 +6710,8 @@ L_109:
 	POP	HL
 	POP	DE
 	POP	DE
-;  553			gfx_PrintColor(&ui_Type, gfx_green);
-.LINE 553
+;  551			gfx_PrintColor(&ui_Type, gfx_green);
+.LINE 551
 
 	LD	DE,3
 	PUSH	DE
@@ -6734,14 +6732,14 @@ L_109:
 	POP	HL
 	POP	DE
 	POP	DE
-;  554			trigstatus.isSSA = true;
-.LINE 554
+;  552			trigstatus.isSSA = true;
+.LINE 552
 
 	LD	A,1
 	LD	(_trigstatus+7),A
-;  555	
-;  556			triangle.B   = los_Angle_x(triangle.a, triangle.C, triangle.c);
-.LINE 556
+;  553	
+;  554			triangle.B   = los_Angle_x(triangle.a, triangle.C, triangle.c);
+.LINE 554
 
 	PUSH	BC
 	PUSH	BC
@@ -6785,14 +6783,14 @@ L_109:
 	LD	DE,_triangle+9
 	LD	BC,9
 	LDIR	
-;  557			trigstatus.B = true;
-.LINE 557
+;  555			trigstatus.B = true;
+.LINE 555
 
 	LD	A,1
 	LD	(_trigstatus+4),A
-;  558	
-;  559			trig_SolveMissingAngle();
-.LINE 559
+;  556	
+;  557			trig_SolveMissingAngle();
+.LINE 557
 
 	PUSH	BC
 	PUSH	HL
@@ -6807,9 +6805,9 @@ L_109:
 	CALL	__ildix
 	LD	BC,HL
 	POP	HL
-;  560	
-;  561			triangle.b   = los_Side_x(triangle.B, triangle.c, triangle.C);
-.LINE 561
+;  558	
+;  559			triangle.b   = los_Side_x(triangle.B, triangle.c, triangle.C);
+.LINE 559
 
 	PUSH	BC
 	PUSH	BC
@@ -6853,15 +6851,15 @@ L_109:
 	LD	DE,_triangle+36
 	LD	BC,9
 	LDIR	
-;  562			trigstatus.b = true;
-.LINE 562
+;  560			trigstatus.b = true;
+.LINE 560
 
 	LD	A,1
 	LD	(_trigstatus+1),A
-;  563	
-;  564			// other possible answer for B
-;  565			rbuf = os_RealSub(&real180, &triangle.B);
-.LINE 565
+;  561	
+;  562			// other possible answer for B
+;  563			rbuf = os_RealSub(&real180, &triangle.B);
+.LINE 563
 
 	LD	BC,_triangle+9
 	PUSH	BC
@@ -6878,8 +6876,8 @@ L_109:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;  566			os_RealToStr(cbuf, &rbuf, 0, 0, 6);
-.LINE 566
+;  564			os_RealToStr(cbuf, &rbuf, 0, 0, 6);
+.LINE 564
 
 	LD	BC,6
 	PUSH	BC
@@ -6894,9 +6892,9 @@ L_109:
 	POP	BC
 	POP	BC
 	POP	BC
-;  567	
-;  568			sprintf(cbuf2, "*B = %s", cbuf);
-.LINE 568
+;  565	
+;  566			sprintf(cbuf2, "*B = %s", cbuf);
+.LINE 566
 
 	PEA	IX+-38
 	LD	BC,L__120
@@ -6906,8 +6904,8 @@ L_109:
 	POP	BC
 	POP	BC
 	POP	BC
-;  569			sp_SetLabel(&data_X_ex, cbuf2);
-.LINE 569
+;  567			sp_SetLabel(&data_X_ex, cbuf2);
+.LINE 567
 
 	PEA	IX+-58
 	LD	BC,_data_X_ex
@@ -6915,22 +6913,22 @@ L_109:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  570			gfx_Clear(&data_X_ex);
-.LINE 570
+;  568			gfx_Clear(&data_X_ex);
+.LINE 568
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  571			gfx_Print(&data_X_ex);
-.LINE 571
+;  569			gfx_Print(&data_X_ex);
+.LINE 569
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  572			dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
-.LINE 572
+;  570			dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
+.LINE 570
 
 	LD	BC,_data_X_ex+6
 	PUSH	BC
@@ -6942,8 +6940,8 @@ L_109:
 	POP	BC
 	POP	BC
 	POP	BC
-;  573			dbg_sprintf(dbgout, "Other possible solution for B = %s\n", cbuf);
-.LINE 573
+;  571			dbg_sprintf(dbgout, "Other possible solution for B = %s\n", cbuf);
+.LINE 571
 
 	PEA	IX+-38
 	LD	BC,L__122
@@ -6954,29 +6952,29 @@ L_109:
 	POP	BC
 	POP	BC
 	POP	BC
-;  574	
-;  575			trig_Sync();
-.LINE 575
+;  572	
+;  573			trig_Sync();
+.LINE 573
 
 	CALL	_trig_Sync
-;  576			trigstatus.complete = true;
-.LINE 576
+;  574			trigstatus.complete = true;
+.LINE 574
 
 	LD	A,1
 	LD	(_trigstatus+6),A
-;  577			trig_HeronsFormula();
-.LINE 577
+;  575			trig_HeronsFormula();
+.LINE 575
 
 	CALL	_trig_HeronsFormula
-;  578			ui_DispData();
-.LINE 578
+;  576			ui_DispData();
+.LINE 576
 
 	CALL	_ui_DispData
-;  579			return;
-;  580		}
-;  581	}
+;  577			return;
+;  578		}
+;  579	}
 L_113:
-.LINE 581
+.LINE 579
 
 	LD	SP,IX
 	POP	IX
@@ -7022,7 +7020,7 @@ L_113:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_CheckSolvability",581,"_trig_CheckSolvability"
+.ENDFUNC "trig_CheckSolvability",579,"_trig_CheckSolvability"
 	SEGMENT STRSECT
 L__60:
 	DB	"[Trig] Checking solvability..."
@@ -7094,9 +7092,9 @@ L__122:
 	DB	"Other possible solution for B = %s"
 	DB	10,0
 	SEGMENT CODE
-;  582	
-;  583	static void ui_ClearMeasurements()
-;  584	{
+;  580	
+;  581	static void ui_ClearMeasurements()
+;  582	{
 _ui_ClearMeasurements:
 .DEFINE "_ui_ClearMeasurements"
 
@@ -7108,9 +7106,9 @@ _ui_ClearMeasurements:
 
 .ENDEF
 
-.BEGFUNC "ui_ClearMeasurements",584,"_ui_ClearMeasurements"
+.BEGFUNC "ui_ClearMeasurements",582,"_ui_ClearMeasurements"
 
-.LINE 584
+.LINE 582
 
 .DEFINE "i"
 
@@ -7126,19 +7124,19 @@ _ui_ClearMeasurements:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;  585		int i = 0;
-.LINE 585
+;  583		int i = 0;
+.LINE 583
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;  586		for (; i < 2; i++)
-.LINE 586
+;  584		for (; i < 2; i++)
+.LINE 584
 
 	JR	L_117
 L_115:
-;  587		{
-;  588			gfx_Clear(&xmeasureData[i]);
-.LINE 588
+;  585		{
+;  586			gfx_Clear(&xmeasureData[i]);
+.LINE 586
 
 	LD	HL,(IX+-3)
 	LD	A,26
@@ -7151,17 +7149,17 @@ L_115:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  589		}
+;  587		}
 L_117:
-.LINE 589
+.LINE 587
 
 	LD	BC,2
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	JP	M,L_115
-;  590		dbg_sprintf(dbgout, "[UI] Cleared measurements\n");
-.LINE 590
+;  588		dbg_sprintf(dbgout, "[UI] Cleared measurements\n");
+.LINE 588
 
 	LD	BC,L__125
 	PUSH	BC
@@ -7170,8 +7168,8 @@ L_117:
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;  591	}
-.LINE 591
+;  589	}
+.LINE 589
 
 	LD	SP,IX
 	POP	IX
@@ -7190,15 +7188,15 @@ L_117:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "ui_ClearMeasurements",591,"_ui_ClearMeasurements"
+.ENDFUNC "ui_ClearMeasurements",589,"_ui_ClearMeasurements"
 	SEGMENT STRSECT
 L__125:
 	DB	"[UI] Cleared measurements"
 	DB	10,0
 	SEGMENT CODE
-;  592	
-;  593	static void ui_ClearAngleSideData()
-;  594	{
+;  590	
+;  591	static void ui_ClearAngleSideData()
+;  592	{
 _ui_ClearAngleSideData:
 .DEFINE "_ui_ClearAngleSideData"
 
@@ -7210,9 +7208,9 @@ _ui_ClearAngleSideData:
 
 .ENDEF
 
-.BEGFUNC "ui_ClearAngleSideData",594,"_ui_ClearAngleSideData"
+.BEGFUNC "ui_ClearAngleSideData",592,"_ui_ClearAngleSideData"
 
-.LINE 594
+.LINE 592
 
 .DEFINE "i"
 
@@ -7228,19 +7226,19 @@ _ui_ClearAngleSideData:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;  595		int i = 0;
-.LINE 595
+;  593		int i = 0;
+.LINE 593
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;  596		for (; i < 3; i++)
-.LINE 596
+;  594		for (; i < 3; i++)
+.LINE 594
 
 	JR	L_123
 L_121:
-;  597		{
-;  598			gfx_Clear(&xsidesData[i]);
-.LINE 598
+;  595		{
+;  596			gfx_Clear(&xsidesData[i]);
+.LINE 596
 
 	LD	HL,(IX+-3)
 	LD	A,26
@@ -7250,8 +7248,8 @@ L_121:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-;  599			gfx_Clear(&xanglesData[i]);
-.LINE 599
+;  597			gfx_Clear(&xanglesData[i]);
+.LINE 597
 
 	LD	HL,(IX+-3)
 	LD	A,26
@@ -7264,9 +7262,9 @@ L_121:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  600		}
+;  598		}
 L_123:
-.LINE 600
+.LINE 598
 
 	LD	BC,3
 	LD	HL,(IX+-3)
@@ -7274,8 +7272,8 @@ L_123:
 	SBC	HL,BC
 	CALL	__setflag
 	JP	M,L_121
-;  601		dbg_sprintf(dbgout, "[UI] Cleared angle and side data\n");
-.LINE 601
+;  599		dbg_sprintf(dbgout, "[UI] Cleared angle and side data\n");
+.LINE 599
 
 	LD	BC,L__128
 	PUSH	BC
@@ -7284,8 +7282,8 @@ L_123:
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;  602	}
-.LINE 602
+;  600	}
+.LINE 600
 
 	LD	SP,IX
 	POP	IX
@@ -7305,15 +7303,15 @@ L_123:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "ui_ClearAngleSideData",602,"_ui_ClearAngleSideData"
+.ENDFUNC "ui_ClearAngleSideData",600,"_ui_ClearAngleSideData"
 	SEGMENT STRSECT
 L__128:
 	DB	"[UI] Cleared angle and side data"
 	DB	10,0
 	SEGMENT CODE
-;  603	
-;  604	static void trig_SelectSide()
-;  605	{
+;  601	
+;  602	static void trig_SelectSide()
+;  603	{
 _trig_SelectSide:
 .DEFINE "_trig_SelectSide"
 
@@ -7325,9 +7323,9 @@ _trig_SelectSide:
 
 .ENDEF
 
-.BEGFUNC "trig_SelectSide",605,"_trig_SelectSide"
+.BEGFUNC "trig_SelectSide",603,"_trig_SelectSide"
 
-.LINE 605
+.LINE 603
 
 .DEFINE "currentSelection"
 
@@ -7356,140 +7354,136 @@ _trig_SelectSide:
 	ADD	IX,SP
 	LEA	HL,IX+-52
 	LD	SP,HL
-;  606		uint8_t key;
-;  607		superpoint_t* currentSelection = &xsides[1]; // start at b
-.LINE 607
+;  604		uint8_t key;
+;  605		superpoint_t* currentSelection = &side_b; // start at b
+.LINE 605
 
-	LD	IY,_xsides
-	LEA	BC,IY+26
+	LD	BC,_xsides+26
 	LD	(IX+-3),BC
-;  608		gfx_HighlightPoint(&xsides[1]);
-.LINE 608
+;  606		gfx_HighlightPoint(&side_b);
+.LINE 606
 
-	LEA	BC,IY+26
 	PUSH	BC
 	CALL	_gfx_HighlightPoint
 	POP	BC
-;  609		RECURSE:
-.LINE 609
+;  607		RECURSE:
+.LINE 607
 
-;  610		while ((key = os_GetCSC()) != sk_Enter)
-.LINE 610
+;  608		while ((key = os_GetCSC()) != sk_Enter)
+.LINE 608
 
 	JR	L_156
 L_157:
-;  611		{
-;  612			if (key == sk_Clear)
-.LINE 612
+;  609		{
+;  610			if (key == sk_Clear)
+.LINE 610
 
 	LD	A,(IX+-4)
 	CP	A,15
 	JR	Z,L_165
-;  613			{
-;  614				return;
-.LINE 614
+;  611			{
+;  612				return;
+.LINE 612
 
-;  615			}
+;  613			}
+.LINE 613
+
+;  614	
+;  615			if (key == sk_Zoom)
 .LINE 615
-
-;  616	
-;  617			if (key == sk_Zoom)
-.LINE 617
 
 	LD	A,(IX+-4)
 	CP	A,51
 	JR	NZ,L_134
-;  618			{
-;  619				if (ui_bDispMeasurements)
-.LINE 619
+;  616			{
+;  617				if (ui_bDispMeasurements)
+.LINE 617
 
 	LD	A,(_ui_bDispMeasurements)
 	OR	A,A
 	JR	Z,L_129
-;  620				{
-;  621					ui_bDispMeasurements = false;
-.LINE 621
+;  618				{
+;  619					ui_bDispMeasurements = false;
+.LINE 619
 
 	XOR	A,A
 	LD	(_ui_bDispMeasurements),A
-;  622					ui_ClearMeasurements();
-.LINE 622
+;  620					ui_ClearMeasurements();
+.LINE 620
 
 	CALL	_ui_ClearMeasurements
-;  623				}
-;  624				else
-.LINE 624
+;  621				}
+;  622				else
+.LINE 622
 
 	JR	L_130
 L_129:
-;  625				{
-;  626					ui_bDispMeasurements = true;
-.LINE 626
+;  623				{
+;  624					ui_bDispMeasurements = true;
+.LINE 624
 
 	LD	A,1
 	LD	(_ui_bDispMeasurements),A
-;  627					ui_ClearAngleSideData();
-.LINE 627
+;  625					ui_ClearAngleSideData();
+.LINE 625
 
 	CALL	_ui_ClearAngleSideData
-;  628				}
+;  626				}
 L_130:
-.LINE 628
+.LINE 626
 
-;  629				ui_DispData();
-.LINE 629
+;  627				ui_DispData();
+.LINE 627
 
 	CALL	_ui_DispData
-;  630			}
+;  628			}
 L_134:
-.LINE 630
+.LINE 628
 
-;  631	
-;  632			if (key == sk_Trace)
-.LINE 632
+;  629	
+;  630			if (key == sk_Trace)
+.LINE 630
 
 	LD	A,(IX+-4)
 	CP	A,50
 	JR	NZ,L_136
-;  633			{
-;  634				trig_Reset();
-.LINE 634
+;  631			{
+;  632				trig_Reset();
+.LINE 632
 
 	CALL	_trig_Reset
-;  635				currentSelection = &xsides[1];
-.LINE 635
+;  633				currentSelection = &side_b;
+.LINE 633
 
-	LD	IY,_xsides
-	LEA	BC,IY+26
+	LD	BC,_xsides+26
 	LD	(IX+-3),BC
-;  636				gfx_HighlightPoint(&xsides[1]);
-.LINE 636
+;  634				gfx_HighlightPoint(&side_b);
+.LINE 634
 
-	LEA	BC,IY+26
 	PUSH	BC
 	CALL	_gfx_HighlightPoint
 	POP	BC
-;  637			}
+;  635			}
 L_136:
-.LINE 637
+.LINE 635
 
-;  638	
-;  639			if (key == sk_Graph)
-.LINE 639
+;  636	
+;  637			if (key == sk_Graph)
+.LINE 637
 
 	LD	A,(IX+-4)
 	CP	A,49
 	JR	NZ,L_139
-;  640			{
-;  641				gfx_Clear(&ui_Mode);
-.LINE 641
+;  638			{
+;  639				gfx_Clear(&ui_Mode);
+.LINE 639
 
 	LD	BC,_ui_Mode
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  642				sp_SetLabel(&ui_Mode, lbl_AngleMode);
-.LINE 642
+;  640				sp_SetLabel(&ui_Mode, lbl_AngleMode);
+.LINE 640
 
 	LD	BC,_lbl_AngleMode
 	PUSH	BC
@@ -7498,36 +7492,36 @@ L_136:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  643				gfx_Print(&ui_Mode);
-.LINE 643
+;  641				gfx_Print(&ui_Mode);
+.LINE 641
 
 	LD	BC,_ui_Mode
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  644				gfx_ClearHighlight(currentSelection);
-.LINE 644
+;  642				gfx_ClearHighlight(currentSelection);
+.LINE 642
 
 	LD	BC,(IX+-3)
 	PUSH	BC
 	CALL	_gfx_ClearHighlight
 	POP	BC
-;  645				trig_SelectAngle();
-.LINE 645
+;  643				trig_SelectAngle();
+.LINE 643
 
 	CALL	_trig_SelectAngle
-;  646				return;
-.LINE 646
+;  644				return;
+.LINE 644
 
 	JR	L_165
-;  647			}
+;  645			}
 L_139:
-.LINE 647
+.LINE 645
 
-;  648	
-;  649			/* bbb -> aaa */
-;  650			if (key == sk_Right && PointEq(*currentSelection, xsides[1]))
-.LINE 650
+;  646	
+;  647			/* bbb -> aaa */
+;  648			if (key == sk_Right && PointEq(*currentSelection, side_b))
+.LINE 648
 
 	LD	A,(IX+-4)
 	CP	A,3
@@ -7560,34 +7554,27 @@ L_139:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_142
-;  651			{
-;  652				gfx_ClearHighlight(&xsides[1]);
-.LINE 652
+;  649			{
+;  650				gfx_SetFocus(&currentSelection, &side_b, &side_a);
+.LINE 650
 
+	LD	BC,_xsides
+	PUSH	BC
 	LD	BC,(IX+-16)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  653				gfx_HighlightPoint(&xsides[0]);
-.LINE 653
-
-	LD	BC,_xsides
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  654				currentSelection = &xsides[0];
-.LINE 654
-
-	LD	BC,_xsides
-	LD	(IX+-3),BC
-;  655			}
+	POP	BC
+;  651			}
 L_142:
-.LINE 655
+.LINE 651
 
-;  656	
-;  657			/* bbb -> ccc */
-;  658			if (key == sk_Down && PointEq(*currentSelection, xsides[1]))
-.LINE 658
+;  652	
+;  653			/* bbb -> ccc */
+;  654			if (key == sk_Down && PointEq(*currentSelection, side_b))
+.LINE 654
 
 	LD	A,(IX+-4)
 	CP	A,1
@@ -7620,34 +7607,27 @@ L_142:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_146
-;  659			{
-;  660				gfx_ClearHighlight(&xsides[1]);
-.LINE 660
+;  655			{
+;  656				gfx_SetFocus(&currentSelection, &side_b, &side_c);
+.LINE 656
 
+	LD	BC,_xsides+52
+	PUSH	BC
 	LD	BC,(IX+-19)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  661				gfx_HighlightPoint(&xsides[2]);
-.LINE 661
-
-	LD	BC,_xsides+52
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  662				currentSelection = &xsides[2];
-.LINE 662
-
-	LD	BC,_xsides+52
-	LD	(IX+-3),BC
-;  663			}
+	POP	BC
+;  657			}
 L_146:
-.LINE 663
+.LINE 657
 
-;  664	
-;  665			/* ccc -> bbb */
-;  666			if ((key == sk_Up || key == sk_Left) && PointEq(*currentSelection, xsides[2]))
-.LINE 666
+;  658	
+;  659			/* ccc -> bbb */
+;  660			if ((key == sk_Up || key == sk_Left) && PointEq(*currentSelection, side_c))
+.LINE 660
 
 	LD	A,(IX+-4)
 	CP	A,4
@@ -7684,34 +7664,27 @@ L_144:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_149
-;  667			{
-;  668				gfx_ClearHighlight(&xsides[2]);
-.LINE 668
+;  661			{
+;  662				gfx_SetFocus(&currentSelection, &side_c, &side_b);
+.LINE 662
 
+	LD	BC,_xsides+26
+	PUSH	BC
 	LD	BC,(IX+-22)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  669				gfx_HighlightPoint(&xsides[1]);
-.LINE 669
-
-	LD	BC,_xsides+26
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  670				currentSelection = &xsides[1];
-.LINE 670
-
-	LD	BC,_xsides+26
-	LD	(IX+-3),BC
-;  671			}
+	POP	BC
+;  663			}
 L_149:
-.LINE 671
+.LINE 663
 
-;  672	
-;  673			/* ccc -> aaa */
-;  674			if (key == sk_Right && PointEq(*currentSelection, xsides[2]))
-.LINE 674
+;  664	
+;  665			/* ccc -> aaa */
+;  666			if (key == sk_Right && PointEq(*currentSelection, side_c))
+.LINE 666
 
 	LD	A,(IX+-4)
 	CP	A,3
@@ -7744,34 +7717,27 @@ L_149:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_152
-;  675			{
-;  676				gfx_ClearHighlight(&xsides[2]);
-.LINE 676
+;  667			{
+;  668				gfx_SetFocus(&currentSelection, &side_c, &side_a);
+.LINE 668
 
+	LD	BC,_xsides
+	PUSH	BC
 	LD	BC,(IX+-13)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  677				gfx_HighlightPoint(&xsides[0]);
-.LINE 677
-
-	LD	BC,_xsides
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  678				currentSelection = &xsides[0];
-.LINE 678
-
-	LD	BC,_xsides
-	LD	(IX+-3),BC
-;  679			}
+	POP	BC
+;  669			}
 L_152:
-.LINE 679
+.LINE 669
 
-;  680	
-;  681			/* aaa -> bbb */
-;  682			if (key == sk_Left && PointEq(*currentSelection, xsides[0]))
-.LINE 682
+;  670	
+;  671			/* aaa -> bbb */
+;  672			if (key == sk_Left && PointEq(*currentSelection, side_a))
+.LINE 672
 
 	LD	A,(IX+-4)
 	CP	A,2
@@ -7803,34 +7769,27 @@ L_152:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_155
-;  683			{
-;  684				gfx_ClearHighlight(&xsides[0]);
-.LINE 684
+;  673			{
+;  674				gfx_SetFocus(&currentSelection, &side_a, &side_b);
+.LINE 674
 
+	LD	BC,_xsides+26
+	PUSH	BC
 	LD	BC,_xsides
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  685				gfx_HighlightPoint(&xsides[1]);
-.LINE 685
-
-	LD	BC,_xsides+26
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  686				currentSelection = &xsides[1];
-.LINE 686
-
-	LD	BC,_xsides+26
-	LD	(IX+-3),BC
-;  687			}
+	POP	BC
+;  675			}
 L_155:
-.LINE 687
+.LINE 675
 
-;  688	
-;  689			/* aaa -> ccc */
-;  690			if (key == sk_Down && PointEq(*currentSelection, xsides[0]))
-.LINE 690
+;  676	
+;  677			/* aaa -> ccc */
+;  678			if (key == sk_Down && PointEq(*currentSelection, side_a))
+.LINE 678
 
 	LD	A,(IX+-4)
 	CP	A,1
@@ -7862,38 +7821,31 @@ L_155:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_156
-;  691			{
-;  692				gfx_ClearHighlight(&xsides[0]);
-.LINE 692
+;  679			{
+;  680				gfx_SetFocus(&currentSelection, &side_a, &side_c);
+.LINE 680
 
+	LD	BC,_xsides+52
+	PUSH	BC
 	LD	BC,_xsides
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  693				gfx_HighlightPoint(&xsides[2]);
-.LINE 693
-
-	LD	BC,_xsides+52
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  694				currentSelection = &xsides[2];
-.LINE 694
-
-	LD	BC,_xsides+52
-	LD	(IX+-3),BC
-;  695			}
-;  696		}
+	POP	BC
+;  681			}
+;  682		}
 L_156:
-.LINE 696
+.LINE 682
 
 	CALL	_os_GetCSC
 	LD	(IX+-4),A
 	CP	A,9
 	JR	NZ,L_157
-;  697	
-;  698		if (PointEq(*currentSelection, xsides[0]))
-.LINE 698
+;  683	
+;  684		if (PointEq(*currentSelection, side_a))
+.LINE 684
 
 	LD	IY,0
 	ADD	IY,SP
@@ -7922,9 +7874,9 @@ L_156:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_161
-;  699		{
-;  700			dbg_sprintf(dbgout, "[Trig] User selected side %s\n", xsides[0].label);
-.LINE 700
+;  685		{
+;  686			dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_a.label);
+.LINE 686
 
 	LD	BC,_xsides
 	LD	(IX+-25),BC
@@ -7938,8 +7890,8 @@ L_156:
 	POP	BC
 	POP	BC
 	POP	BC
-;  701			triangle.a   = io_gfx_ReadReal(&xsides[0]);
-.LINE 701
+;  687			triangle.a   = io_gfx_ReadReal(&side_a);
+.LINE 687
 
 	LD	BC,(IX+-25)
 	PUSH	BC
@@ -7950,18 +7902,18 @@ L_156:
 	LD	DE,_triangle+27
 	LD	BC,9
 	LDIR	
-;  702			trigstatus.a = true;
-.LINE 702
+;  688			trigstatus.a = true;
+.LINE 688
 
 	LD	A,1
 	LD	(_trigstatus),A
-;  703		}
+;  689		}
 L_161:
-.LINE 703
+.LINE 689
 
-;  704	
-;  705		if (PointEq(*currentSelection, xsides[1]))
-.LINE 705
+;  690	
+;  691		if (PointEq(*currentSelection, side_b))
+.LINE 691
 
 	LD	BC,_xsides+26
 	LD	(IX+-10),BC
@@ -7991,9 +7943,9 @@ L_161:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_163
-;  706		{
-;  707			dbg_sprintf(dbgout, "[Trig] User selected side %s\n", xsides[1].label);
-.LINE 707
+;  692		{
+;  693			dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_b.label);
+.LINE 693
 
 	LD	IY,(IX+-10)
 	PEA	IY+6
@@ -8005,8 +7957,8 @@ L_161:
 	POP	BC
 	POP	BC
 	POP	BC
-;  708			triangle.b   = io_gfx_ReadReal(&xsides[1]);
-.LINE 708
+;  694			triangle.b   = io_gfx_ReadReal(&side_b);
+.LINE 694
 
 	LD	BC,(IX+-10)
 	PUSH	BC
@@ -8017,18 +7969,18 @@ L_161:
 	LD	DE,_triangle+36
 	LD	BC,9
 	LDIR	
-;  709			trigstatus.b = true;
-.LINE 709
+;  695			trigstatus.b = true;
+.LINE 695
 
 	LD	A,1
 	LD	(_trigstatus+1),A
-;  710		}
+;  696		}
 L_163:
-.LINE 710
+.LINE 696
 
-;  711	
-;  712		if (PointEq(*currentSelection, xsides[2]))
-.LINE 712
+;  697	
+;  698		if (PointEq(*currentSelection, side_c))
+.LINE 698
 
 	LD	BC,_xsides+52
 	LD	(IX+-7),BC
@@ -8058,9 +8010,9 @@ L_163:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_164
-;  713		{
-;  714			dbg_sprintf(dbgout, "[Trig] User selected side %s\n", xsides[2].label);
-.LINE 714
+;  699		{
+;  700			dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_c.label);
+.LINE 700
 
 	LD	IY,(IX+-7)
 	PEA	IY+6
@@ -8072,8 +8024,8 @@ L_163:
 	POP	BC
 	POP	BC
 	POP	BC
-;  715			triangle.c   = io_gfx_ReadReal(&xsides[2]);
-.LINE 715
+;  701			triangle.c   = io_gfx_ReadReal(&side_c);
+.LINE 701
 
 	LD	BC,(IX+-7)
 	PUSH	BC
@@ -8084,35 +8036,35 @@ L_163:
 	LD	DE,_triangle+45
 	LD	BC,9
 	LDIR	
-;  716			trigstatus.c = true;
-.LINE 716
+;  702			trigstatus.c = true;
+.LINE 702
 
 	LD	A,1
 	LD	(_trigstatus+2),A
-;  717		}
+;  703		}
 L_164:
-.LINE 717
+.LINE 703
 
-;  718	
-;  719		trig_CheckSolvability();
-.LINE 719
+;  704	
+;  705		trig_CheckSolvability();
+.LINE 705
 
 	CALL	_trig_CheckSolvability
-;  720		gfx_HighlightPoint(currentSelection);
-.LINE 720
+;  706		gfx_HighlightPoint(currentSelection);
+.LINE 706
 
 	LD	BC,(IX+-3)
 	PUSH	BC
 	CALL	_gfx_HighlightPoint
 	POP	BC
-;  721		goto RECURSE;
-.LINE 721
+;  707		goto RECURSE;
+.LINE 707
 
 	JR	L_156
-;  722	
-;  723	}
+;  708	
+;  709	}
 L_165:
-.LINE 723
+.LINE 709
 
 	LD	SP,IX
 	POP	IX
@@ -8127,6 +8079,7 @@ L_165:
 ;_io_gfx_ReadReal                    IMPORT  -----   function
 ;_sprintf                            IMPORT  -----   function
 ;_os_GetCSC                          IMPORT  -----   function
+;_gfx_SetFocus                       IMPORT  -----   function
 ;_PointEq                            IMPORT  -----   function
 ;_trig_SelectAngle                   STATIC  -----   function
 ;_gfx_ClearHighlight                 IMPORT  -----   function
@@ -8142,13 +8095,13 @@ L_165:
 ;_ui_bDispMeasurements               STATIC      1   variable
 ;_gfx_HighlightPoint                 IMPORT  -----   function
 ;_xsides                             STATIC     78   variable
-;G_9                                  IX-25      3   variable
-;G_4                                  IX-22      3   variable
+;G_5                                  IX-25      3   variable
+;G_3                                  IX-22      3   variable
 ;G_2                                  IX-19      3   variable
 ;G_1                                  IX-16      3   variable
-;G_6                                  IX-13      3   variable
-;G_10                                 IX-10      3   variable
-;G_12                                  IX-7      3   variable
+;G_4                                  IX-13      3   variable
+;G_6                                  IX-10      3   variable
+;G_8                                   IX-7      3   variable
 ;key                                   IX-4      1   variable
 ;currentSelection                      IX-3      3   variable
 
@@ -8157,7 +8110,7 @@ L_165:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_SelectSide",723,"_trig_SelectSide"
+.ENDFUNC "trig_SelectSide",709,"_trig_SelectSide"
 	SEGMENT STRSECT
 L__150:
 	DB	"[Trig] User selected side %s"
@@ -8169,9 +8122,9 @@ L__154:
 	DB	"[Trig] User selected side %s"
 	DB	10,0
 	SEGMENT CODE
-;  724	
-;  725	static void trig_Quit()
-;  726	{
+;  710	
+;  711	static void trig_Quit()
+;  712	{
 _trig_Quit:
 .DEFINE "_trig_Quit"
 
@@ -8183,21 +8136,21 @@ _trig_Quit:
 
 .ENDEF
 
-.BEGFUNC "trig_Quit",726,"_trig_Quit"
+.BEGFUNC "trig_Quit",712,"_trig_Quit"
 
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;  727		gfx_ZeroScreen();
-.LINE 727
+;  713		gfx_ZeroScreen();
+.LINE 713
 
 	CALL	_gfx_ZeroScreen
-;  728		gfx_End();
-.LINE 728
+;  714		gfx_End();
+.LINE 714
 
 	CALL	_gfx_End
-;  729		dbg_sprintf(dbgout, "[Trig] Zeroed screen and ended GFX\n");
-.LINE 729
+;  715		dbg_sprintf(dbgout, "[Trig] Zeroed screen and ended GFX\n");
+.LINE 715
 
 	LD	BC,L__156
 	PUSH	BC
@@ -8206,8 +8159,8 @@ _trig_Quit:
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;  730	}
-.LINE 730
+;  716	}
+.LINE 716
 
 	LD	SP,IX
 	POP	IX
@@ -8225,15 +8178,15 @@ _trig_Quit:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_Quit",730,"_trig_Quit"
+.ENDFUNC "trig_Quit",716,"_trig_Quit"
 	SEGMENT STRSECT
 L__156:
 	DB	"[Trig] Zeroed screen and ended GFX"
 	DB	10,0
 	SEGMENT CODE
-;  731	
-;  732	static void trig_Reset()
-;  733	{
+;  717	
+;  718	static void trig_Reset()
+;  719	{
 _trig_Reset:
 .DEFINE "_trig_Reset"
 
@@ -8245,9 +8198,9 @@ _trig_Reset:
 
 .ENDEF
 
-.BEGFUNC "trig_Reset",733,"_trig_Reset"
+.BEGFUNC "trig_Reset",719,"_trig_Reset"
 
-.LINE 733
+.LINE 719
 
 .DEFINE "i"
 
@@ -8264,21 +8217,21 @@ _trig_Reset:
 	ADD	IX,SP
 	LEA	HL,IX+-12
 	LD	SP,HL
-;  734		int i = 0;
-.LINE 734
+;  720		int i = 0;
+.LINE 720
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;  735		bool  * bptr = (bool*) &trigstatus;
-;  736		real_t* rptr = (real_t*) &triangle;
-;  737		for (; i < sizeof(trigstatus) / sizeof(bool); i++)
-.LINE 737
+;  721		bool  * bptr = (bool*) &trigstatus;
+;  722		real_t* rptr = (real_t*) &triangle;
+;  723		for (; i < sizeof(trigstatus) / sizeof(bool); i++)
+.LINE 723
 
 	JR	L_170
 L_168:
-;  738		{
-;  739			bptr[i] = false;
-.LINE 739
+;  724		{
+;  725			bptr[i] = false;
+.LINE 725
 
 	LD	BC,_trigstatus
 	LD	HL,(IX+-3)
@@ -8287,25 +8240,25 @@ L_168:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  740		}
+;  726		}
 L_170:
-.LINE 740
+.LINE 726
 
 	LD	BC,8
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	JR	C,L_168
-;  741		for (i = 0; i < sizeof(triangle) / sizeof(real_t); i++)
-.LINE 741
+;  727		for (i = 0; i < sizeof(triangle) / sizeof(real_t); i++)
+.LINE 727
 
 	LD	BC,0
 	LD	(IX+-3),BC
 	JR	L_174
 L_172:
-;  742		{
-;  743			rptr[i] = os_Int24ToReal(0);
-.LINE 743
+;  728		{
+;  729			rptr[i] = os_Int24ToReal(0);
+.LINE 729
 
 	LD	BC,0
 	PUSH	BC
@@ -8326,25 +8279,25 @@ L_172:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  744		}
+;  730		}
 L_174:
-.LINE 744
+.LINE 730
 
 	LD	BC,8
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	JR	C,L_172
-;  745		for (i = 0; i < 3; i++)
-.LINE 745
+;  731		for (i = 0; i < 3; i++)
+.LINE 731
 
 	LD	BC,0
 	LD	(IX+-3),BC
 	JR	L_179
 L_177:
-;  746		{
-;  747			gfx_Clear(&xanglesData[i]);
-.LINE 747
+;  732		{
+;  733			gfx_Clear(&xanglesData[i]);
+.LINE 733
 
 	LD	HL,(IX+-3)
 	LD	A,26
@@ -8354,8 +8307,8 @@ L_177:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-;  748			lib_MemZero(xanglesData[i].label + kLabelOffset, 16);
-.LINE 748
+;  734			lib_MemZero(xanglesData[i].label + kLabelOffset, 16);
+.LINE 734
 
 	LD	BC,16
 	PUSH	BC
@@ -8370,9 +8323,9 @@ L_177:
 	CALL	_lib_MemZero
 	POP	BC
 	POP	BC
-;  749	
-;  750			gfx_Clear(&xsidesData[i]);
-.LINE 750
+;  735	
+;  736			gfx_Clear(&xsidesData[i]);
+.LINE 736
 
 	LD	HL,(IX+-3)
 	LD	A,26
@@ -8382,8 +8335,8 @@ L_177:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-;  751			lib_MemZero(xsidesData[i].label + kLabelOffset, 16);
-.LINE 751
+;  737			lib_MemZero(xsidesData[i].label + kLabelOffset, 16);
+.LINE 737
 
 	LD	BC,16
 	PUSH	BC
@@ -8401,31 +8354,31 @@ L_177:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  752		}
+;  738		}
 L_179:
-.LINE 752
+.LINE 738
 
 	LD	BC,3
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	JP	M,L_177
-;  753		gfx_Clear(&ui_Type);
-.LINE 753
+;  739		gfx_Clear(&ui_Type);
+.LINE 739
 
 	LD	BC,_ui_Type
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  754		gfx_Clear(&data_X_ex);
-.LINE 754
+;  740		gfx_Clear(&data_X_ex);
+.LINE 740
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  755		lib_MemZero(data_X_ex.label + kLabelOffset, 16);
-.LINE 755
+;  741		lib_MemZero(data_X_ex.label + kLabelOffset, 16);
+.LINE 741
 
 	LD	BC,16
 	PUSH	BC
@@ -8434,23 +8387,23 @@ L_179:
 	CALL	_lib_MemZero
 	POP	BC
 	POP	BC
-;  756	
-;  757		gfx_Clear(&xmeasureData[0]);
-.LINE 757
+;  742	
+;  743		gfx_Clear(&xmeasureData[0]);
+.LINE 743
 
 	LD	BC,_xmeasureData
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  758		gfx_Clear(&xmeasureData[1]);
-.LINE 758
+;  744		gfx_Clear(&xmeasureData[1]);
+.LINE 744
 
 	LD	BC,_xmeasureData+26
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  759		lib_MemZero(xmeasureData[0].label + kLabelOffset, 20 - kLabelOffset);
-.LINE 759
+;  745		lib_MemZero(xmeasureData[0].label + kLabelOffset, 20 - kLabelOffset);
+.LINE 745
 
 	LD	BC,16
 	PUSH	BC
@@ -8459,8 +8412,8 @@ L_179:
 	CALL	_lib_MemZero
 	POP	BC
 	POP	BC
-;  760		lib_MemZero(xmeasureData[1].label + kLabelOffset, 20 - kLabelOffset);
-.LINE 760
+;  746		lib_MemZero(xmeasureData[1].label + kLabelOffset, 20 - kLabelOffset);
+.LINE 746
 
 	LD	BC,16
 	PUSH	BC
@@ -8469,9 +8422,9 @@ L_179:
 	CALL	_lib_MemZero
 	POP	BC
 	POP	BC
-;  761	
-;  762		sp_SetLabel(&xangles[0], "A");
-.LINE 762
+;  747	
+;  748		sp_SetLabel(&angle_A, "A");
+.LINE 748
 
 	LD	BC,L__161
 	PUSH	BC
@@ -8480,8 +8433,8 @@ L_179:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  763		sp_SetLabel(&xangles[1], "B");
-.LINE 763
+;  749		sp_SetLabel(&angle_B, "B");
+.LINE 749
 
 	LD	BC,L__162
 	PUSH	BC
@@ -8490,8 +8443,8 @@ L_179:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  764		sp_SetLabel(&xangles[2], "C");
-.LINE 764
+;  750		sp_SetLabel(&angle_C, "C");
+.LINE 750
 
 	LD	BC,L__163
 	PUSH	BC
@@ -8500,8 +8453,8 @@ L_179:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  765		sp_SetLabel(&xsides[0], "a");
-.LINE 765
+;  751		sp_SetLabel(&side_a, "a");
+.LINE 751
 
 	LD	BC,L__164
 	PUSH	BC
@@ -8510,8 +8463,8 @@ L_179:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  766		sp_SetLabel(&xsides[1], "b");
-.LINE 766
+;  752		sp_SetLabel(&side_b, "b");
+.LINE 752
 
 	LD	BC,L__165
 	PUSH	BC
@@ -8520,8 +8473,8 @@ L_179:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  767		sp_SetLabel(&xsides[2], "c");
-.LINE 767
+;  753		sp_SetLabel(&side_c, "c");
+.LINE 753
 
 	LD	BC,L__166
 	PUSH	BC
@@ -8530,20 +8483,20 @@ L_179:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  768		trig_Redraw();
-.LINE 768
+;  754		trig_Redraw();
+.LINE 754
 
 	CALL	_trig_Redraw
-;  769		trig_DrawTriangleSides();
-.LINE 769
+;  755		trig_DrawTriangleSides();
+.LINE 755
 
 	CALL	_trig_DrawTriangleSides
-;  770		trig_Sync();
-.LINE 770
+;  756		trig_Sync();
+.LINE 756
 
 	CALL	_trig_Sync
-;  771	}
-.LINE 771
+;  757	}
+.LINE 757
 
 	LD	SP,IX
 	POP	IX
@@ -8575,7 +8528,7 @@ L_179:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_Reset",771,"_trig_Reset"
+.ENDFUNC "trig_Reset",757,"_trig_Reset"
 	SEGMENT STRSECT
 L__161:
 	DB	"A"
@@ -8596,9 +8549,9 @@ L__166:
 	DB	"c"
 	DB	0
 	SEGMENT CODE
-;  772	
-;  773	static void trig_DrawTriangleSides()
-;  774	{
+;  758	
+;  759	static void trig_DrawTriangleSides()
+;  760	{
 _trig_DrawTriangleSides:
 .DEFINE "_trig_DrawTriangleSides"
 
@@ -8610,9 +8563,9 @@ _trig_DrawTriangleSides:
 
 .ENDEF
 
-.BEGFUNC "trig_DrawTriangleSides",774,"_trig_DrawTriangleSides"
+.BEGFUNC "trig_DrawTriangleSides",760,"_trig_DrawTriangleSides"
 
-.LINE 774
+.LINE 760
 
 .DEFINE "index"
 
@@ -8641,24 +8594,24 @@ _trig_DrawTriangleSides:
 	ADD	IX,SP
 	LEA	HL,IX+-36
 	LD	SP,HL
-;  775		int index = 0;
-;  776	
-;  777		/* Triangle coordinates */
-;  778		const int verts[6] = {
-;  779				140, 10,   /* (x0, y0) */
-;  780				10, 119,  /* (x1, y1) */
-;  781				209, 119, /* (x2, y2) */
-;  782		};
-.LINE 782
+;  761		int index = 0;
+;  762	
+;  763		/* Triangle coordinates */
+;  764		const int verts[6] = {
+;  765				140, 10,   /* (x0, y0) */
+;  766				10, 119,  /* (x1, y1) */
+;  767				209, 119, /* (x2, y2) */
+;  768		};
+.LINE 768
 
 	LEA	DE,IX+-36
 	LD	HL,_0temp183
 	LD	BC,18
 	LDIR	
-;  783	
-;  784		/* Leg a */
-;  785		gfx_Line(verts[0], verts[1], verts[2], verts[3]);
-.LINE 785
+;  769	
+;  770		/* Leg a */
+;  771		gfx_Line(verts[0], verts[1], verts[2], verts[3]);
+.LINE 771
 
 	LEA	IY,IX+-36
 	LEA	BC,IY+9
@@ -8683,10 +8636,10 @@ _trig_DrawTriangleSides:
 	POP	BC
 	POP	BC
 	POP	BC
-;  786	
-;  787		/* Leg b */
-;  788		gfx_Line(verts[2], verts[3], verts[4], verts[5]);
-.LINE 788
+;  772	
+;  773		/* Leg b */
+;  774		gfx_Line(verts[2], verts[3], verts[4], verts[5]);
+.LINE 774
 
 	LEA	BC,IX+-21
 	LD	(IX+-15),BC
@@ -8709,10 +8662,10 @@ _trig_DrawTriangleSides:
 	POP	BC
 	POP	BC
 	POP	BC
-;  789	
-;  790		/* Hypotenuse */
-;  791		gfx_Line(verts[4], verts[5], verts[0], verts[1]);
-.LINE 791
+;  775	
+;  776		/* Hypotenuse */
+;  777		gfx_Line(verts[4], verts[5], verts[0], verts[1]);
+.LINE 777
 
 	LD	HL,(IX+-18)
 	LD	BC,(HL)
@@ -8730,25 +8683,25 @@ _trig_DrawTriangleSides:
 	POP	BC
 	POP	BC
 	POP	BC
-;  792	
-;  793	
-;  794		// Angles A, B, C
-;  795		trig_Redraw();
-.LINE 795
+;  778	
+;  779	
+;  780		// Angles A, B, C
+;  781		trig_Redraw();
+.LINE 781
 
 	CALL	_trig_Redraw
-;  796	
-;  797		// Leg a, b, c
-;  798		for (index = 0; index < 3; index++)
-.LINE 798
+;  782	
+;  783		// Leg a, b, c
+;  784		for (index = 0; index < 3; index++)
+.LINE 784
 
 	LD	BC,0
 	LD	(IX+-3),BC
 	JR	L_187
 L_185:
-;  799		{
-;  800			gfx_Print(&xsides[index]);
-.LINE 800
+;  785		{
+;  786			gfx_Print(&xsides[index]);
+.LINE 786
 
 	LD	HL,(IX+-3)
 	LD	A,26
@@ -8761,9 +8714,9 @@ L_185:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  801		}
+;  787		}
 L_187:
-.LINE 801
+.LINE 787
 
 	LD	BC,3
 	LD	HL,(IX+-3)
@@ -8771,8 +8724,8 @@ L_187:
 	SBC	HL,BC
 	CALL	__setflag
 	JP	M,L_185
-;  802	}
-.LINE 802
+;  788	}
+.LINE 788
 
 	LD	SP,IX
 	POP	IX
@@ -8787,11 +8740,11 @@ L_187:
 ;_gfx_Line                           IMPORT  -----   function
 ;_0temp183                           STATIC     18   variable
 ;verts                                IX-36     18   variable
-;G_18                                 IX-18      3   variable
-;G_16                                 IX-15      3   variable
-;G_17                                 IX-12      3   variable
-;G_14                                  IX-9      3   variable
-;G_15                                  IX-6      3   variable
+;G_14                                 IX-18      3   variable
+;G_12                                 IX-15      3   variable
+;G_13                                 IX-12      3   variable
+;G_10                                  IX-9      3   variable
+;G_11                                  IX-6      3   variable
 ;index                                 IX-3      3   variable
 
 
@@ -8799,7 +8752,7 @@ L_187:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_DrawTriangleSides",802,"_trig_DrawTriangleSides"
+.ENDFUNC "trig_DrawTriangleSides",788,"_trig_DrawTriangleSides"
 	SEGMENT TEXT
 _0temp183:
 	DW	140
@@ -8815,9 +8768,9 @@ _0temp183:
 	DW	119
 	DB	0
 	SEGMENT CODE
-;  803	
-;  804	static void ui_DispData()
-;  805	{
+;  789	
+;  790	static void ui_DispData()
+;  791	{
 _ui_DispData:
 .DEFINE "_ui_DispData"
 
@@ -8829,40 +8782,40 @@ _ui_DispData:
 
 .ENDEF
 
-.BEGFUNC "ui_DispData",805,"_ui_DispData"
+.BEGFUNC "ui_DispData",791,"_ui_DispData"
 
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;  806		if (ui_bDispMeasurements)
-.LINE 806
+;  792		if (ui_bDispMeasurements)
+.LINE 792
 
 	LD	A,(_ui_bDispMeasurements)
 	OR	A,A
 	JR	Z,L_191
-;  807		{
-;  808			ui_DispMeasurements();
-.LINE 808
+;  793		{
+;  794			ui_DispMeasurements();
+.LINE 794
 
 	CALL	_ui_DispMeasurements
-;  809		}
-;  810		else if (!ui_bDispMeasurements)
-.LINE 810
+;  795		}
+;  796		else if (!ui_bDispMeasurements)
+.LINE 796
 
 	JR	L_192
 L_191:
 	LD	A,(_ui_bDispMeasurements)
 	OR	A,A
 	JR	NZ,L_192
-;  811		{
-;  812			ui_DispAngleSideData();
-.LINE 812
+;  797		{
+;  798			ui_DispAngleSideData();
+.LINE 798
 
 	CALL	_ui_DispAngleSideData
-;  813		}
-;  814	}
+;  799		}
+;  800	}
 L_192:
-.LINE 814
+.LINE 800
 
 	LD	SP,IX
 	POP	IX
@@ -8880,10 +8833,10 @@ L_192:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "ui_DispData",814,"_ui_DispData"
-;  815	
-;  816	static void trig_SelectAngle()
-;  817	{
+.ENDFUNC "ui_DispData",800,"_ui_DispData"
+;  801	
+;  802	static void trig_SelectAngle()
+;  803	{
 _trig_SelectAngle:
 .DEFINE "_trig_SelectAngle"
 
@@ -8895,9 +8848,9 @@ _trig_SelectAngle:
 
 .ENDEF
 
-.BEGFUNC "trig_SelectAngle",817,"_trig_SelectAngle"
+.BEGFUNC "trig_SelectAngle",803,"_trig_SelectAngle"
 
-.LINE 817
+.LINE 803
 
 .DEFINE "currentSelection"
 
@@ -8926,136 +8879,136 @@ _trig_SelectAngle:
 	ADD	IX,SP
 	LEA	HL,IX+-52
 	LD	SP,HL
-;  818		uint8_t key;
-;  819		superpoint_t* currentSelection = &xangles[0];
-.LINE 819
+;  804		uint8_t key;
+;  805		superpoint_t* currentSelection = &angle_A;
+.LINE 805
 
 	LD	BC,_xangles
 	LD	(IX+-3),BC
-;  820		gfx_HighlightPoint(&xangles[0]);
-.LINE 820
+;  806		gfx_HighlightPoint(&angle_A);
+.LINE 806
 
 	PUSH	BC
 	CALL	_gfx_HighlightPoint
 	POP	BC
-;  821		RECURSE:
-.LINE 821
+;  807		RECURSE:
+.LINE 807
 
-;  822		while ((key = os_GetCSC()) != sk_Enter)
-.LINE 822
+;  808		while ((key = os_GetCSC()) != sk_Enter)
+.LINE 808
 
 	JR	L_222
 L_223:
-;  823		{
-;  824			if (key == sk_Clear)
-.LINE 824
+;  809		{
+;  810			if (key == sk_Clear)
+.LINE 810
 
 	LD	A,(IX+-4)
 	CP	A,15
 	JR	Z,L_231
-;  825			{
-;  826				return;
-.LINE 826
+;  811			{
+;  812				return;
+.LINE 812
 
-;  827			}
-.LINE 827
+;  813			}
+.LINE 813
 
-;  828	
-;  829			if (key == sk_Zoom)
-.LINE 829
+;  814	
+;  815			if (key == sk_Zoom)
+.LINE 815
 
 	LD	A,(IX+-4)
 	CP	A,51
 	JR	NZ,L_201
-;  830			{
-;  831				if (ui_bDispMeasurements)
-.LINE 831
+;  816			{
+;  817				if (ui_bDispMeasurements)
+.LINE 817
 
 	LD	A,(_ui_bDispMeasurements)
 	OR	A,A
 	JR	Z,L_196
-;  832				{
-;  833					ui_bDispMeasurements = false;
-.LINE 833
+;  818				{
+;  819					ui_bDispMeasurements = false;
+.LINE 819
 
 	XOR	A,A
 	LD	(_ui_bDispMeasurements),A
-;  834					ui_ClearMeasurements();
-.LINE 834
+;  820					ui_ClearMeasurements();
+.LINE 820
 
 	CALL	_ui_ClearMeasurements
-;  835				}
-;  836				else
-.LINE 836
+;  821				}
+;  822				else
+.LINE 822
 
 	JR	L_197
 L_196:
-;  837				{
-;  838					ui_bDispMeasurements = true;
-.LINE 838
+;  823				{
+;  824					ui_bDispMeasurements = true;
+.LINE 824
 
 	LD	A,1
 	LD	(_ui_bDispMeasurements),A
-;  839					ui_ClearAngleSideData();
-.LINE 839
+;  825					ui_ClearAngleSideData();
+.LINE 825
 
 	CALL	_ui_ClearAngleSideData
-;  840				}
+;  826				}
 L_197:
-.LINE 840
+.LINE 826
 
-;  841				ui_DispData();
-.LINE 841
+;  827				ui_DispData();
+.LINE 827
 
 	CALL	_ui_DispData
-;  842			}
+;  828			}
 L_201:
-.LINE 842
+.LINE 828
 
-;  843	
-;  844			if (key == sk_Trace)
-.LINE 844
+;  829	
+;  830			if (key == sk_Trace)
+.LINE 830
 
 	LD	A,(IX+-4)
 	CP	A,50
 	JR	NZ,L_203
-;  845			{
-;  846				trig_Reset();
-.LINE 846
+;  831			{
+;  832				trig_Reset();
+.LINE 832
 
 	CALL	_trig_Reset
-;  847				currentSelection = &xangles[0];
-.LINE 847
+;  833				currentSelection = &angle_A;
+.LINE 833
 
 	LD	BC,_xangles
 	LD	(IX+-3),BC
-;  848				gfx_HighlightPoint(&xangles[0]);
-.LINE 848
+;  834				gfx_HighlightPoint(&angle_A);
+.LINE 834
 
 	PUSH	BC
 	CALL	_gfx_HighlightPoint
 	POP	BC
-;  849			}
+;  835			}
 L_203:
-.LINE 849
+.LINE 835
 
-;  850	
-;  851			if (key == sk_Graph)
-.LINE 851
+;  836	
+;  837			if (key == sk_Graph)
+.LINE 837
 
 	LD	A,(IX+-4)
 	CP	A,49
 	JR	NZ,L_206
-;  852			{
-;  853				gfx_Clear(&ui_Mode);
-.LINE 853
+;  838			{
+;  839				gfx_Clear(&ui_Mode);
+.LINE 839
 
 	LD	BC,_ui_Mode
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  854				sp_SetLabel(&ui_Mode, lbl_SideMode);
-.LINE 854
+;  840				sp_SetLabel(&ui_Mode, lbl_SideMode);
+.LINE 840
 
 	LD	BC,_lbl_SideMode
 	PUSH	BC
@@ -9064,36 +9017,36 @@ L_203:
 	CALL	_sp_SetLabel
 	POP	BC
 	POP	BC
-;  855				gfx_Print(&ui_Mode);
-.LINE 855
+;  841				gfx_Print(&ui_Mode);
+.LINE 841
 
 	LD	BC,_ui_Mode
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  856				gfx_ClearHighlight(currentSelection);
-.LINE 856
+;  842				gfx_ClearHighlight(currentSelection);
+.LINE 842
 
 	LD	BC,(IX+-3)
 	PUSH	BC
 	CALL	_gfx_ClearHighlight
 	POP	BC
-;  857				trig_SelectSide();
-.LINE 857
+;  843				trig_SelectSide();
+.LINE 843
 
 	CALL	_trig_SelectSide
-;  858				return;
-.LINE 858
+;  844				return;
+.LINE 844
 
 	JR	L_231
-;  859			}
+;  845			}
 L_206:
-.LINE 859
+.LINE 845
 
-;  860	
-;  861			/* AAA -> BBB */
-;  862			if (key == sk_Right && PointEq(*currentSelection, xangles[0]))
-.LINE 862
+;  846	
+;  847			/* AAA -> BBB */
+;  848			if (key == sk_Right && PointEq(*currentSelection, angle_A))
+.LINE 848
 
 	LD	A,(IX+-4)
 	CP	A,3
@@ -9125,34 +9078,27 @@ L_206:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_209
-;  863			{
-;  864				gfx_ClearHighlight(&xangles[0]);
-.LINE 864
+;  849			{
+;  850				gfx_SetFocus(&currentSelection, &angle_A, &angle_B);
+.LINE 850
 
+	LD	BC,_xangles+26
+	PUSH	BC
 	LD	BC,_xangles
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  865				gfx_HighlightPoint(&xangles[1]);
-.LINE 865
-
-	LD	BC,_xangles+26
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  866				currentSelection = &xangles[1];
-.LINE 866
-
-	LD	BC,_xangles+26
-	LD	(IX+-3),BC
-;  867			}
+	POP	BC
+;  851			}
 L_209:
-.LINE 867
+.LINE 851
 
-;  868	
-;  869			/* AAA -> CCC */
-;  870			if (key == sk_Up && PointEq(*currentSelection, xangles[0]))
-.LINE 870
+;  852	
+;  853			/* AAA -> CCC */
+;  854			if (key == sk_Up && PointEq(*currentSelection, angle_A))
+.LINE 854
 
 	LD	A,(IX+-4)
 	CP	A,4
@@ -9184,34 +9130,27 @@ L_209:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_212
-;  871			{
-;  872				gfx_ClearHighlight(&xangles[0]);
-.LINE 872
+;  855			{
+;  856				gfx_SetFocus(&currentSelection, &angle_A, &angle_C);
+.LINE 856
 
+	LD	BC,_xangles+52
+	PUSH	BC
 	LD	BC,_xangles
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  873				gfx_HighlightPoint(&xangles[2]);
-.LINE 873
-
-	LD	BC,_xangles+52
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  874				currentSelection = &xangles[2];
-.LINE 874
-
-	LD	BC,_xangles+52
-	LD	(IX+-3),BC
-;  875			}
+	POP	BC
+;  857			}
 L_212:
-.LINE 875
+.LINE 857
 
-;  876	
-;  877			/* BBB -> AAA */
-;  878			if (key == sk_Left && PointEq(*currentSelection, xangles[1]))
-.LINE 878
+;  858	
+;  859			/* BBB -> AAA */
+;  860			if (key == sk_Left && PointEq(*currentSelection, angle_B))
+.LINE 860
 
 	LD	A,(IX+-4)
 	CP	A,2
@@ -9244,34 +9183,27 @@ L_212:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_215
-;  879			{
-;  880				gfx_ClearHighlight(&xangles[1]);
-.LINE 880
+;  861			{
+;  862				gfx_SetFocus(&currentSelection, &angle_B, &angle_A);
+.LINE 862
 
+	LD	BC,_xangles
+	PUSH	BC
 	LD	BC,(IX+-16)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  881				gfx_HighlightPoint(&xangles[0]);
-.LINE 881
-
-	LD	BC,_xangles
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  882				currentSelection = &xangles[0];
-.LINE 882
-
-	LD	BC,_xangles
-	LD	(IX+-3),BC
-;  883			}
+	POP	BC
+;  863			}
 L_215:
-.LINE 883
+.LINE 863
 
-;  884	
-;  885			/* BBB -> CCC */
-;  886			if (key == sk_Up && PointEq(*currentSelection, xangles[1]))
-.LINE 886
+;  864	
+;  865			/* BBB -> CCC */
+;  866			if (key == sk_Up && PointEq(*currentSelection, angle_B))
+.LINE 866
 
 	LD	A,(IX+-4)
 	CP	A,4
@@ -9304,34 +9236,27 @@ L_215:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_218
-;  887			{
-;  888				gfx_ClearHighlight(&xangles[1]);
-.LINE 888
+;  867			{
+;  868				gfx_SetFocus(&currentSelection, &angle_B, &angle_C);
+.LINE 868
 
+	LD	BC,_xangles+52
+	PUSH	BC
 	LD	BC,(IX+-19)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  889				gfx_HighlightPoint(&xangles[2]);
-.LINE 889
-
-	LD	BC,_xangles+52
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  890				currentSelection = &xangles[2];
-.LINE 890
-
-	LD	BC,_xangles+52
-	LD	(IX+-3),BC
-;  891			}
+	POP	BC
+;  869			}
 L_218:
-.LINE 891
+.LINE 869
 
-;  892	
-;  893			/* CCC -> AAA */
-;  894			if (key == sk_Left && PointEq(*currentSelection, xangles[2]))
-.LINE 894
+;  870	
+;  871			/* CCC -> AAA */
+;  872			if (key == sk_Left && PointEq(*currentSelection, angle_C))
+.LINE 872
 
 	LD	A,(IX+-4)
 	CP	A,2
@@ -9364,34 +9289,27 @@ L_218:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_221
-;  895			{
-;  896				gfx_ClearHighlight(&xangles[2]);
-.LINE 896
+;  873			{
+;  874				gfx_SetFocus(&currentSelection, &angle_C, &angle_A);
+.LINE 874
 
+	LD	BC,_xangles
+	PUSH	BC
 	LD	BC,(IX+-22)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  897				gfx_HighlightPoint(&xangles[0]);
-.LINE 897
-
-	LD	BC,_xangles
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  898				currentSelection = &xangles[0];
-.LINE 898
-
-	LD	BC,_xangles
-	LD	(IX+-3),BC
-;  899			}
+	POP	BC
+;  875			}
 L_221:
-.LINE 899
+.LINE 875
 
-;  900	
-;  901			/* CCC -> BBB */
-;  902			if (key == sk_Down && PointEq(*currentSelection, xangles[2]))
-.LINE 902
+;  876	
+;  877			/* CCC -> BBB */
+;  878			if (key == sk_Down && PointEq(*currentSelection, angle_C))
+.LINE 878
 
 	LD	A,(IX+-4)
 	CP	A,1
@@ -9424,38 +9342,31 @@ L_221:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_222
-;  903			{
-;  904				gfx_ClearHighlight(&xangles[2]);
-.LINE 904
+;  879			{
+;  880				gfx_SetFocus(&currentSelection, &angle_C, &angle_B);
+.LINE 880
 
+	LD	BC,_xangles+26
+	PUSH	BC
 	LD	BC,(IX+-13)
 	PUSH	BC
-	CALL	_gfx_ClearHighlight
+	PEA	IX+-3
+	CALL	_gfx_SetFocus
 	POP	BC
-;  905				gfx_HighlightPoint(&xangles[1]);
-.LINE 905
-
-	LD	BC,_xangles+26
-	PUSH	BC
-	CALL	_gfx_HighlightPoint
 	POP	BC
-;  906				currentSelection = &xangles[1];
-.LINE 906
-
-	LD	BC,_xangles+26
-	LD	(IX+-3),BC
-;  907			}
-;  908		}
+	POP	BC
+;  881			}
+;  882		}
 L_222:
-.LINE 908
+.LINE 882
 
 	CALL	_os_GetCSC
 	LD	(IX+-4),A
 	CP	A,9
 	JR	NZ,L_223
-;  909	
-;  910		if (PointEq(*currentSelection, xangles[0]))
-.LINE 910
+;  883	
+;  884		if (PointEq(*currentSelection, angle_A))
+.LINE 884
 
 	LD	IY,0
 	ADD	IY,SP
@@ -9484,9 +9395,9 @@ L_222:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_227
-;  911		{
-;  912			dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", xangles[0].label);
-.LINE 912
+;  885		{
+;  886			dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_A.label);
+.LINE 886
 
 	LD	BC,_xangles
 	LD	(IX+-25),BC
@@ -9500,8 +9411,8 @@ L_222:
 	POP	BC
 	POP	BC
 	POP	BC
-;  913			triangle.A   = io_gfx_ReadReal(&xangles[0]);
-.LINE 913
+;  887			triangle.A   = io_gfx_ReadReal(&angle_A);
+.LINE 887
 
 	LD	BC,(IX+-25)
 	PUSH	BC
@@ -9512,18 +9423,18 @@ L_222:
 	LD	DE,_triangle
 	LD	BC,9
 	LDIR	
-;  914			trigstatus.A = true;
-.LINE 914
+;  888			trigstatus.A = true;
+.LINE 888
 
 	LD	A,1
 	LD	(_trigstatus+3),A
-;  915		}
+;  889		}
 L_227:
-.LINE 915
+.LINE 889
 
-;  916	
-;  917		if (PointEq(*currentSelection, xangles[1]))
-.LINE 917
+;  890	
+;  891		if (PointEq(*currentSelection, angle_B))
+.LINE 891
 
 	LD	BC,_xangles+26
 	LD	(IX+-10),BC
@@ -9553,9 +9464,9 @@ L_227:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_229
-;  918		{
-;  919			dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", xangles[1].label);
-.LINE 919
+;  892		{
+;  893			dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_B.label);
+.LINE 893
 
 	LD	IY,(IX+-10)
 	PEA	IY+6
@@ -9567,8 +9478,8 @@ L_227:
 	POP	BC
 	POP	BC
 	POP	BC
-;  920			triangle.B   = io_gfx_ReadReal(&xangles[1]);
-.LINE 920
+;  894			triangle.B   = io_gfx_ReadReal(&angle_B);
+.LINE 894
 
 	LD	BC,(IX+-10)
 	PUSH	BC
@@ -9579,18 +9490,18 @@ L_227:
 	LD	DE,_triangle+9
 	LD	BC,9
 	LDIR	
-;  921			trigstatus.B = true;
-.LINE 921
+;  895			trigstatus.B = true;
+.LINE 895
 
 	LD	A,1
 	LD	(_trigstatus+4),A
-;  922		}
+;  896		}
 L_229:
-.LINE 922
+.LINE 896
 
-;  923	
-;  924		if (PointEq(*currentSelection, xangles[2]))
-.LINE 924
+;  897	
+;  898		if (PointEq(*currentSelection, angle_C))
+.LINE 898
 
 	LD	BC,_xangles+52
 	LD	(IX+-7),BC
@@ -9620,9 +9531,9 @@ L_229:
 	LD	SP,IY
 	OR	A,A
 	JR	Z,L_230
-;  925		{
-;  926			dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", xangles[2].label);
-.LINE 926
+;  899		{
+;  900			dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_C.label);
+.LINE 900
 
 	LD	IY,(IX+-7)
 	PEA	IY+6
@@ -9634,8 +9545,8 @@ L_229:
 	POP	BC
 	POP	BC
 	POP	BC
-;  927			triangle.C   = io_gfx_ReadReal(&xangles[2]);
-.LINE 927
+;  901			triangle.C   = io_gfx_ReadReal(&angle_C);
+.LINE 901
 
 	LD	BC,(IX+-7)
 	PUSH	BC
@@ -9646,34 +9557,34 @@ L_229:
 	LD	DE,_triangle+18
 	LD	BC,9
 	LDIR	
-;  928			trigstatus.C = true;
-.LINE 928
+;  902			trigstatus.C = true;
+.LINE 902
 
 	LD	A,1
 	LD	(_trigstatus+5),A
-;  929		}
+;  903		}
 L_230:
-.LINE 929
+.LINE 903
 
-;  930	
-;  931		trig_CheckSolvability();
-.LINE 931
+;  904	
+;  905		trig_CheckSolvability();
+.LINE 905
 
 	CALL	_trig_CheckSolvability
-;  932		gfx_HighlightPoint(currentSelection);
-.LINE 932
+;  906		gfx_HighlightPoint(currentSelection);
+.LINE 906
 
 	LD	BC,(IX+-3)
 	PUSH	BC
 	CALL	_gfx_HighlightPoint
 	POP	BC
-;  933		goto RECURSE;
-.LINE 933
+;  907		goto RECURSE;
+.LINE 907
 
 	JR	L_222
-;  934	}
+;  908	}
 L_231:
-.LINE 934
+.LINE 908
 
 	LD	SP,IX
 	POP	IX
@@ -9688,6 +9599,7 @@ L_231:
 ;_io_gfx_ReadReal                    IMPORT  -----   function
 ;_sprintf                            IMPORT  -----   function
 ;_os_GetCSC                          IMPORT  -----   function
+;_gfx_SetFocus                       IMPORT  -----   function
 ;_PointEq                            IMPORT  -----   function
 ;_trig_SelectSide                    STATIC  -----   function
 ;_gfx_ClearHighlight                 IMPORT  -----   function
@@ -9703,13 +9615,13 @@ L_231:
 ;_ui_bDispMeasurements               STATIC      1   variable
 ;_gfx_HighlightPoint                 IMPORT  -----   function
 ;_xangles                            STATIC     78   variable
-;G_27                                 IX-25      3   variable
-;G_24                                 IX-22      3   variable
-;G_22                                 IX-19      3   variable
-;G_21                                 IX-16      3   variable
-;G_25                                 IX-13      3   variable
-;G_28                                 IX-10      3   variable
-;G_30                                  IX-7      3   variable
+;G_19                                 IX-25      3   variable
+;G_17                                 IX-22      3   variable
+;G_16                                 IX-19      3   variable
+;G_15                                 IX-16      3   variable
+;G_18                                 IX-13      3   variable
+;G_20                                 IX-10      3   variable
+;G_22                                  IX-7      3   variable
 ;key                                   IX-4      1   variable
 ;currentSelection                      IX-3      3   variable
 
@@ -9718,7 +9630,7 @@ L_231:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_SelectAngle",934,"_trig_SelectAngle"
+.ENDFUNC "trig_SelectAngle",908,"_trig_SelectAngle"
 	SEGMENT STRSECT
 L__192:
 	DB	"[Trig] User selected angle %s"
@@ -9730,9 +9642,9 @@ L__196:
 	DB	"[Trig] User selected angle %s"
 	DB	10,0
 	SEGMENT CODE
-;  935	
-;  936	static void ui_DispMeasurements()
-;  937	{
+;  909	
+;  910	static void ui_DispMeasurements()
+;  911	{
 _ui_DispMeasurements:
 .DEFINE "_ui_DispMeasurements"
 
@@ -9744,9 +9656,9 @@ _ui_DispMeasurements:
 
 .ENDEF
 
-.BEGFUNC "ui_DispMeasurements",937,"_ui_DispMeasurements"
+.BEGFUNC "ui_DispMeasurements",911,"_ui_DispMeasurements"
 
-.LINE 937
+.LINE 911
 
 .DEFINE "i"
 
@@ -9764,7 +9676,7 @@ _ui_DispMeasurements:
 
 .VALUE -12
 
-.TAG "NONAME8"
+.TAG "NONAME0"
 
 .TYPE 8
 
@@ -9787,9 +9699,9 @@ _ui_DispMeasurements:
 	ADD	IX,SP
 	LEA	HL,IX+-41
 	LD	SP,HL
-;  938		char         buffer[20];
-;  939		const real_t real0 = os_Int24ToReal(0);
-.LINE 939
+;  912		char         buffer[20];
+;  913		const real_t real0 = os_Int24ToReal(0);
+.LINE 913
 
 	LD	BC,0
 	PUSH	BC
@@ -9800,17 +9712,176 @@ _ui_DispMeasurements:
 	LEA	DE,IX+-12
 	LD	BC,9
 	LDIR	
-;  940		int          i     = 0;
-.LINE 940
+;  914		int          i     = 0;
+.LINE 914
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;  941	
-;  942		for (; i < 2; i++)
-.LINE 942
+;  915	
+;  916		for (; i < 2; i++)
+.LINE 916
 
 	JR	L_235
 L_233:
+;  917		{
+;  918			gfx_Clear(&xmeasureData[i]);
+.LINE 918
+
+	LD	HL,(IX+-3)
+	LD	A,26
+	CALL	__imul_b
+	LD	BC,_xmeasureData
+	ADD	HL,BC
+	PUSH	HL
+	CALL	_gfx_Clear
+	POP	BC
+	LD	BC,(IX+-3)
+	INC	BC
+	LD	(IX+-3),BC
+;  919		}
+L_235:
+.LINE 919
+
+	LD	BC,2
+	LD	HL,(IX+-3)
+	OR	A,A
+	SBC	HL,BC
+	JP	M,L_233
+;  920	
+;  921		if (os_RealCompare(&triangle.area, &real0) == 0)
+.LINE 921
+
+	PEA	IX+-12
+	LD	BC,_triangle+54
+	PUSH	BC
+	CALL	_os_RealCompare
+	POP	BC
+	POP	BC
+	CALL	__icmpzero
+	JR	NZ,L_237
+;  922		{
+;  923			strcpy(xmeasureData[0].label + kLabelOffset, lbl_Unknown);
+.LINE 923
+
+	LD	BC,_lbl_Unknown
+	PUSH	BC
+	LD	BC,_xmeasureData+10
+	PUSH	BC
+	CALL	_strcpy
+	POP	BC
+	POP	BC
+;  924		}
+;  925		else
+.LINE 925
+
+	JR	L_241
+L_237:
+;  926		{
+;  927			os_RealToStr(buffer, &triangle.area, 0, 0, 6);
+.LINE 927
+
+	LD	BC,6
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	PUSH	BC
+	LD	BC,_triangle+54
+	PUSH	BC
+	PEA	IX+-32
+	CALL	_os_RealToStr
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;  928			strncpy(xmeasureData[0].label + kLabelOffset, buffer, 20 - kLabelOffset);
+.LINE 928
+
+	LD	BC,16
+	PUSH	BC
+	PEA	IX+-32
+	LD	BC,_xmeasureData+10
+	PUSH	BC
+	CALL	_strncpy
+	POP	BC
+	POP	BC
+	POP	BC
+;  929		}
+L_241:
+.LINE 929
+
+;  930	
+;  931		if (os_RealCompare(&triangle.perimeter, &real0) == 0)
+.LINE 931
+
+	PEA	IX+-12
+	LD	BC,_triangle+63
+	PUSH	BC
+	CALL	_os_RealCompare
+	POP	BC
+	POP	BC
+	CALL	__icmpzero
+	JR	NZ,L_240
+;  932		{
+;  933			strcpy(xmeasureData[1].label + kLabelOffset, lbl_Unknown);
+.LINE 933
+
+	LD	BC,_lbl_Unknown
+	PUSH	BC
+	LD	BC,_xmeasureData+36
+	PUSH	BC
+	CALL	_strcpy
+	POP	BC
+	POP	BC
+;  934		}
+;  935		else
+.LINE 935
+
+	JR	L_246
+L_240:
+;  936		{
+;  937			os_RealToStr(buffer, &triangle.perimeter, 0, 0, 6);
+.LINE 937
+
+	LD	BC,6
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	PUSH	BC
+	LD	BC,_triangle+63
+	PUSH	BC
+	PEA	IX+-32
+	CALL	_os_RealToStr
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;  938			strncpy(xmeasureData[1].label + kLabelOffset, buffer, 20 - kLabelOffset);
+.LINE 938
+
+	LD	BC,16
+	PUSH	BC
+	PEA	IX+-32
+	LD	BC,_xmeasureData+36
+	PUSH	BC
+	CALL	_strncpy
+	POP	BC
+	POP	BC
+	POP	BC
+;  939		}
+L_246:
+.LINE 939
+
+;  940	
+;  941	
+;  942		for (i = 0; i < 2; i++)
+.LINE 942
+
+	LD	BC,0
+	LD	(IX+-3),BC
+	JR	L_245
+L_243:
 ;  943		{
 ;  944			gfx_Clear(&xmeasureData[i]);
 .LINE 944
@@ -9823,167 +9894,8 @@ L_233:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-	LD	BC,(IX+-3)
-	INC	BC
-	LD	(IX+-3),BC
-;  945		}
-L_235:
+;  945			gfx_Print(&xmeasureData[i]);
 .LINE 945
-
-	LD	BC,2
-	LD	HL,(IX+-3)
-	OR	A,A
-	SBC	HL,BC
-	JP	M,L_233
-;  946	
-;  947		if (os_RealCompare(&triangle.area, &real0) == 0)
-.LINE 947
-
-	PEA	IX+-12
-	LD	BC,_triangle+54
-	PUSH	BC
-	CALL	_os_RealCompare
-	POP	BC
-	POP	BC
-	CALL	__icmpzero
-	JR	NZ,L_237
-;  948		{
-;  949			strcpy(xmeasureData[0].label + kLabelOffset, lbl_Unknown);
-.LINE 949
-
-	LD	BC,_lbl_Unknown
-	PUSH	BC
-	LD	BC,_xmeasureData+10
-	PUSH	BC
-	CALL	_strcpy
-	POP	BC
-	POP	BC
-;  950		}
-;  951		else
-.LINE 951
-
-	JR	L_241
-L_237:
-;  952		{
-;  953			os_RealToStr(buffer, &triangle.area, 0, 0, 6);
-.LINE 953
-
-	LD	BC,6
-	PUSH	BC
-	LD	BC,0
-	PUSH	BC
-	PUSH	BC
-	LD	BC,_triangle+54
-	PUSH	BC
-	PEA	IX+-32
-	CALL	_os_RealToStr
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-;  954			strncpy(xmeasureData[0].label + kLabelOffset, buffer, 20 - kLabelOffset);
-.LINE 954
-
-	LD	BC,16
-	PUSH	BC
-	PEA	IX+-32
-	LD	BC,_xmeasureData+10
-	PUSH	BC
-	CALL	_strncpy
-	POP	BC
-	POP	BC
-	POP	BC
-;  955		}
-L_241:
-.LINE 955
-
-;  956	
-;  957		if (os_RealCompare(&triangle.perimeter, &real0) == 0)
-.LINE 957
-
-	PEA	IX+-12
-	LD	BC,_triangle+63
-	PUSH	BC
-	CALL	_os_RealCompare
-	POP	BC
-	POP	BC
-	CALL	__icmpzero
-	JR	NZ,L_240
-;  958		{
-;  959			strcpy(xmeasureData[1].label + kLabelOffset, lbl_Unknown);
-.LINE 959
-
-	LD	BC,_lbl_Unknown
-	PUSH	BC
-	LD	BC,_xmeasureData+36
-	PUSH	BC
-	CALL	_strcpy
-	POP	BC
-	POP	BC
-;  960		}
-;  961		else
-.LINE 961
-
-	JR	L_246
-L_240:
-;  962		{
-;  963			os_RealToStr(buffer, &triangle.perimeter, 0, 0, 6);
-.LINE 963
-
-	LD	BC,6
-	PUSH	BC
-	LD	BC,0
-	PUSH	BC
-	PUSH	BC
-	LD	BC,_triangle+63
-	PUSH	BC
-	PEA	IX+-32
-	CALL	_os_RealToStr
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-;  964			strncpy(xmeasureData[1].label + kLabelOffset, buffer, 20 - kLabelOffset);
-.LINE 964
-
-	LD	BC,16
-	PUSH	BC
-	PEA	IX+-32
-	LD	BC,_xmeasureData+36
-	PUSH	BC
-	CALL	_strncpy
-	POP	BC
-	POP	BC
-	POP	BC
-;  965		}
-L_246:
-.LINE 965
-
-;  966	
-;  967	
-;  968		for (i = 0; i < 2; i++)
-.LINE 968
-
-	LD	BC,0
-	LD	(IX+-3),BC
-	JR	L_245
-L_243:
-;  969		{
-;  970			gfx_Clear(&xmeasureData[i]);
-.LINE 970
-
-	LD	HL,(IX+-3)
-	LD	A,26
-	CALL	__imul_b
-	LD	BC,_xmeasureData
-	ADD	HL,BC
-	PUSH	HL
-	CALL	_gfx_Clear
-	POP	BC
-;  971			gfx_Print(&xmeasureData[i]);
-.LINE 971
 
 	LD	HL,(IX+-3)
 	LD	A,26
@@ -9996,9 +9908,9 @@ L_243:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;  972		}
+;  946		}
 L_245:
-.LINE 972
+.LINE 946
 
 	LD	BC,2
 	LD	HL,(IX+-3)
@@ -10006,8 +9918,8 @@ L_245:
 	SBC	HL,BC
 	CALL	__setflag
 	JP	M,L_243
-;  973	}
-.LINE 973
+;  947	}
+.LINE 947
 
 	LD	SP,IX
 	POP	IX
@@ -10035,10 +9947,10 @@ L_245:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "ui_DispMeasurements",973,"_ui_DispMeasurements"
-;  974	
-;  975	static void ui_DispAngleSideData()
-;  976	{
+.ENDFUNC "ui_DispMeasurements",947,"_ui_DispMeasurements"
+;  948	
+;  949	static void ui_DispAngleSideData()
+;  950	{
 _ui_DispAngleSideData:
 .DEFINE "_ui_DispAngleSideData"
 
@@ -10050,9 +9962,9 @@ _ui_DispAngleSideData:
 
 .ENDEF
 
-.BEGFUNC "ui_DispAngleSideData",976,"_ui_DispAngleSideData"
+.BEGFUNC "ui_DispAngleSideData",950,"_ui_DispAngleSideData"
 
-.LINE 976
+.LINE 950
 
 .DEFINE "i"
 
@@ -10069,19 +9981,19 @@ _ui_DispAngleSideData:
 	ADD	IX,SP
 	LEA	HL,IX+-24
 	LD	SP,HL
-;  977		int i = 0;
-.LINE 977
+;  951		int i = 0;
+.LINE 951
 
 	LD	BC,0
 	LD	(IX+-12),BC
-;  978		for (; i < 3; i++)
-.LINE 978
+;  952		for (; i < 3; i++)
+.LINE 952
 
 	JR	L_261
 L_259:
-;  979		{
-;  980			gfx_Clear(&xsidesData[i]);
-.LINE 980
+;  953		{
+;  954			gfx_Clear(&xsidesData[i]);
+.LINE 954
 
 	LD	HL,(IX+-12)
 	LD	A,26
@@ -10093,8 +10005,8 @@ L_259:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-;  981			gfx_Clear(&xanglesData[i]);
-.LINE 981
+;  955			gfx_Clear(&xanglesData[i]);
+.LINE 955
 
 	LD	BC,_xanglesData
 	LD	HL,(IX+-3)
@@ -10102,9 +10014,9 @@ L_259:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-;  982	
-;  983			if (*xsides[i].label == 'a' || *xsides[i].label == 'b' || *xsides[i].label == 'c')
-.LINE 983
+;  956	
+;  957			if (*xsides[i].label == 'a' || *xsides[i].label == 'b' || *xsides[i].label == 'c')
+.LINE 957
 
 	LD	BC,_xsides
 	LD	HL,(IX+-3)
@@ -10140,8 +10052,8 @@ L_259:
 	SBC	HL,BC
 	JR	NZ,L_252
 L_251:
-;  984				strcpy(xsidesData[i].label + kLabelOffset, lbl_Unknown);
-.LINE 984
+;  958				strcpy(xsidesData[i].label + kLabelOffset, lbl_Unknown);
+.LINE 958
 
 	LD	BC,(IX+-3)
 	LD	(IX+-21),BC
@@ -10156,8 +10068,8 @@ L_251:
 	CALL	_strcpy
 	POP	BC
 	POP	BC
-;  985			else strcpy(xsidesData[i].label + kLabelOffset, xsides[i].label);
-.LINE 985
+;  959			else strcpy(xsidesData[i].label + kLabelOffset, xsides[i].label);
+.LINE 959
 
 	JR	L_257
 L_252:
@@ -10178,9 +10090,9 @@ L_252:
 	POP	BC
 	POP	BC
 L_257:
-;  986	
-;  987			if (*xangles[i].label == 'A' || *xangles[i].label == 'B' || *xangles[i].label == 'C')
-.LINE 987
+;  960	
+;  961			if (*xangles[i].label == 'A' || *xangles[i].label == 'B' || *xangles[i].label == 'C')
+.LINE 961
 
 	LD	BC,(IX+-21)
 	LD	(IX+-6),BC
@@ -10218,8 +10130,8 @@ L_257:
 	SBC	HL,BC
 	JR	NZ,L_256
 L_255:
-;  988				strcpy(xanglesData[i].label + kLabelOffset, lbl_Unknown);
-.LINE 988
+;  962				strcpy(xanglesData[i].label + kLabelOffset, lbl_Unknown);
+.LINE 962
 
 	LD	BC,(IX+-6)
 	LD	(IX+-24),BC
@@ -10234,8 +10146,8 @@ L_255:
 	CALL	_strcpy
 	POP	BC
 	POP	BC
-;  989			else strcpy(xanglesData[i].label + kLabelOffset, xangles[i].label);
-.LINE 989
+;  963			else strcpy(xanglesData[i].label + kLabelOffset, xangles[i].label);
+.LINE 963
 
 	JR	L_258
 L_256:
@@ -10256,9 +10168,9 @@ L_256:
 	POP	BC
 	POP	BC
 L_258:
-;  990	
-;  991			gfx_Clear(&xanglesData[i]);
-.LINE 991
+;  964	
+;  965			gfx_Clear(&xanglesData[i]);
+.LINE 965
 
 	LD	BC,(IX+-24)
 	LD	(IX+-9),BC
@@ -10268,8 +10180,8 @@ L_258:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-;  992			gfx_Print(&xanglesData[i]);
-.LINE 992
+;  966			gfx_Print(&xanglesData[i]);
+.LINE 966
 
 	LD	BC,_xanglesData
 	LD	HL,(IX+-9)
@@ -10277,9 +10189,9 @@ L_258:
 	PUSH	HL
 	CALL	_gfx_Print
 	POP	BC
-;  993	
-;  994			gfx_Clear(&xsidesData[i]);
-.LINE 994
+;  967	
+;  968			gfx_Clear(&xsidesData[i]);
+.LINE 968
 
 	LD	BC,_xsidesData
 	LD	HL,(IX+-9)
@@ -10287,8 +10199,8 @@ L_258:
 	PUSH	HL
 	CALL	_gfx_Clear
 	POP	BC
-;  995			gfx_Print(&xsidesData[i]);
-.LINE 995
+;  969			gfx_Print(&xsidesData[i]);
+.LINE 969
 
 	LD	BC,_xsidesData
 	LD	HL,(IX+-9)
@@ -10299,9 +10211,9 @@ L_258:
 	LD	BC,(IX+-12)
 	INC	BC
 	LD	(IX+-12),BC
-;  996		}
+;  970		}
 L_261:
-.LINE 996
+.LINE 970
 
 	LD	BC,3
 	LD	HL,(IX+-12)
@@ -10309,48 +10221,48 @@ L_261:
 	SBC	HL,BC
 	CALL	__setflag
 	JP	M,L_259
-;  997		if (trigstatus.isSSA)
-.LINE 997
+;  971		if (trigstatus.isSSA)
+.LINE 971
 
 	LD	A,(_trigstatus+7)
 	OR	A,A
 	JR	Z,L_264
-;  998		{
-;  999			gfx_Clear(&data_X_ex);
-.LINE 999
+;  972		{
+;  973			gfx_Clear(&data_X_ex);
+.LINE 973
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-; 1000			gfx_Print(&data_X_ex);
-.LINE 1000
+;  974			gfx_Print(&data_X_ex);
+.LINE 974
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-; 1001		}
-; 1002		else if (!trigstatus.isSSA)
-.LINE 1002
+;  975		}
+;  976		else if (!trigstatus.isSSA)
+.LINE 976
 
 	JR	L_266
 L_264:
 	LD	A,(_trigstatus+7)
 	OR	A,A
 	JR	NZ,L_266
-; 1003		{
-; 1004			gfx_Clear(&data_X_ex);
-.LINE 1004
+;  977		{
+;  978			gfx_Clear(&data_X_ex);
+.LINE 978
 
 	LD	BC,_data_X_ex
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-; 1005		}
-; 1006	}
+;  979		}
+;  980	}
 L_266:
-.LINE 1006
+.LINE 980
 
 	LD	SP,IX
 	POP	IX
@@ -10369,24 +10281,24 @@ L_266:
 ;_xanglesData                        STATIC     78   variable
 ;_xsidesData                         STATIC     78   variable
 ;_gfx_Clear                          IMPORT  -----   function
-;G_43                                 IX-24      3   variable
-;G_38                                 IX-21      3   variable
-;G_39                                 IX-18      3   variable
-;G_34                                 IX-15      3   variable
+;G_35                                 IX-24      3   variable
+;G_30                                 IX-21      3   variable
+;G_31                                 IX-18      3   variable
+;G_26                                 IX-15      3   variable
 ;i                                    IX-12      3   variable
-;G_44                                  IX-9      3   variable
-;G_41                                  IX-6      3   variable
-;G_32                                  IX-3      3   variable
+;G_36                                  IX-9      3   variable
+;G_33                                  IX-6      3   variable
+;G_24                                  IX-3      3   variable
 
 
 ; Stack Frame Size: 30 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "ui_DispAngleSideData",1006,"_ui_DispAngleSideData"
-; 1007	
-; 1008	void trig_SolveTriangle()
-; 1009	{
+.ENDFUNC "ui_DispAngleSideData",980,"_ui_DispAngleSideData"
+;  981	
+;  982	void trig_SolveTriangle()
+;  983	{
 _trig_SolveTriangle:
 .DEFINE "_trig_SolveTriangle"
 
@@ -10398,13 +10310,13 @@ _trig_SolveTriangle:
 
 .ENDEF
 
-.BEGFUNC "trig_SolveTriangle",1009,"_trig_SolveTriangle"
+.BEGFUNC "trig_SolveTriangle",983,"_trig_SolveTriangle"
 
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-; 1010		os_ClrHome();
-.LINE 1010
+;  984		os_ClrHome();
+.LINE 984
 
 	LD	BC,_asm_ClrLCD
 	PUSH	BC
@@ -10418,77 +10330,77 @@ _trig_SolveTriangle:
 	PUSH	BC
 	CALL	__OS
 	POP	BC
-; 1011	
-; 1012		ui_bDispMeasurements = false;
-.LINE 1012
+;  985	
+;  986		ui_bDispMeasurements = false;
+.LINE 986
 
 	XOR	A,A
 	LD	(_ui_bDispMeasurements),A
-; 1013	
-; 1014		gfx_Begin();
-.LINE 1014
+;  987	
+;  988		gfx_Begin();
+.LINE 988
 
 	CALL	_gfx_Begin
-; 1015		gfx_SetColor(gfx_blue);
-.LINE 1015
+;  989		gfx_SetColor(gfx_blue);
+.LINE 989
 
 	LD	BC,16
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-; 1016		gfx_SetTextFGColor(gfx_black);
-.LINE 1016
+;  990		gfx_SetTextFGColor(gfx_black);
+.LINE 990
 
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetTextFGColor
 	POP	BC
-; 1017	
-; 1018		gfx_Print(&ui_Mode);
-.LINE 1018
+;  991	
+;  992		gfx_Print(&ui_Mode);
+.LINE 992
 
 	LD	BC,_ui_Mode
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-; 1019		gfx_Print(&ui_btn_Mode);
-.LINE 1019
+;  993		gfx_Print(&ui_btn_Mode);
+.LINE 993
 
 	LD	BC,_ui_btn_Mode
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-; 1020		gfx_Print(&ui_btn_Clear);
-.LINE 1020
+;  994		gfx_Print(&ui_btn_Clear);
+.LINE 994
 
 	LD	BC,_ui_btn_Clear
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-; 1021		gfx_Print(&ui_btn_Data);
-.LINE 1021
+;  995		gfx_Print(&ui_btn_Data);
+.LINE 995
 
 	LD	BC,_ui_btn_Data
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-; 1022	
-; 1023		trig_Reset();
-.LINE 1023
+;  996	
+;  997		trig_Reset();
+.LINE 997
 
 	CALL	_trig_Reset
-; 1024	
-; 1025		trig_SelectAngle();
-.LINE 1025
+;  998	
+;  999		trig_SelectAngle();
+.LINE 999
 
 	CALL	_trig_SelectAngle
-; 1026	
-; 1027		trig_Quit();
-.LINE 1027
+; 1000	
+; 1001		trig_Quit();
+.LINE 1001
 
 	CALL	_trig_Quit
-; 1028	}
-.LINE 1028
+; 1002	}
+.LINE 1002
 
 	LD	SP,IX
 	POP	IX
@@ -10519,7 +10431,7 @@ _trig_SolveTriangle:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "trig_SolveTriangle",1028,"_trig_SolveTriangle"
+.ENDFUNC "trig_SolveTriangle",1002,"_trig_SolveTriangle"
 	XREF _strncpy:ROM
 	XREF _strcpy:ROM
 	XREF _loc_Angle_x:ROM
@@ -10529,6 +10441,7 @@ _trig_SolveTriangle:
 	XREF _os_RealSinDeg:ROM
 	XREF _sprintf:ROM
 	XREF _geo_RoundTriangle:ROM
+	XREF _gfx_SetFocus:ROM
 	XREF _gfx_PrintColor:ROM
 	XREF _gfx_HighlightPoint:ROM
 	XREF _gfx_ClearHighlight:ROM
@@ -10539,6 +10452,14 @@ _trig_SolveTriangle:
 	XREF _gfx_Print:ROM
 	XREF _gDigitThreshold:ROM
 	XREF _gRound:ROM
+	XREF _gfx_SetTextFGColor:ROM
+	XREF _gfx_Line:ROM
+	XREF _gfx_ZeroScreen:ROM
+	XREF _gfx_SetColor:ROM
+	XREF _gfx_End:ROM
+	XREF _gfx_Begin:ROM
+	XREF _lib_StrCut:ROM
+	XREF _lib_MemZero:ROM
 	XREF _asm_DrawStatusBar:ROM
 	XREF _asm_ClrLCD:ROM
 	XREF _asm_HomeUp:ROM
@@ -10553,14 +10474,6 @@ _trig_SolveTriangle:
 	XREF _os_RealDiv:ROM
 	XREF _os_RealAdd:ROM
 	XREF _os_RealSqrt:ROM
-	XREF _gfx_SetTextFGColor:ROM
-	XREF _gfx_Line:ROM
-	XREF _gfx_ZeroScreen:ROM
-	XREF _gfx_SetColor:ROM
-	XREF _gfx_End:ROM
-	XREF _gfx_Begin:ROM
-	XREF _lib_StrCut:ROM
-	XREF _lib_MemZero:ROM
 	XREF __ildix:ROM
 	XREF __istix:ROM
 	XREF __setflag:ROM

@@ -5,8 +5,8 @@
 #ifndef TITRIG_MAIN_H
 #define TITRIG_MAIN_H
 
-#define MAJOR 2
-#define MINOR 0
+#define kMajor 3
+#define kMinor 0
 
 #include "GraphicsExt.h"
 #include "RightTriangle.h"

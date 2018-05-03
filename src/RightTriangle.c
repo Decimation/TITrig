@@ -72,13 +72,10 @@ static const gfx_point_t funcFracPoints[3] = {
 		{210 + 35, 175}
 };
 
-// [0] = cot
-// [1] = sec
-// [2] = csc
 static const superpoint_t funcData2[3] = {
-		{210,  210, "cot = "},
+		{10,  210, "csc = "},
 		{110, 210, "sec = "},
-		{10, 210, "csc = "}
+		{210, 210, "cot = "}
 };
 
 static const gfx_point_t func2FracPoints[3] = {
@@ -87,9 +84,13 @@ static const gfx_point_t func2FracPoints[3] = {
 		{210 + 35, 210}
 };
 
-#define fnCot funcData2[0]
-#define fnSec funcData2[1]
-#define fnCsc funcData2[2]
+#define fnCotPt func2FracPoints[2]
+#define fnSecPt func2FracPoints[1]
+#define fnCscPt func2FracPoints[0]
+
+#define fnSinPt funcFracPoints[0]
+#define fnCosPt funcFracPoints[1]
+#define fnTanPt funcFracPoints[2]
 
 static void right_Sync()
 {
@@ -204,65 +205,66 @@ static void sohcahtoa_DrawA()
 	{
 		// SOH
 		//sp_SetFuncDataLabel(triangle.a, triangle.c, 0);
-		gfx_Fraction(funcFracPoints[0], triangle.a, triangle.c);
+		gfx_Fraction(fnSinPt, triangle.a, triangle.c);
 
 		// CAH
 		//sp_SetFuncDataLabel(triangle.b, triangle.c, 1);
-		gfx_Fraction(funcFracPoints[1], triangle.b, triangle.c);
+		gfx_Fraction(fnCosPt, triangle.b, triangle.c);
 
 		// TOA
 		//sp_SetFuncDataLabel(triangle.a, triangle.b, 2);
-		gfx_Fraction(funcFracPoints[2], triangle.a, triangle.b);
+		gfx_Fraction(fnTanPt, triangle.a, triangle.b);
 
 		// cot = adj/opp
 		//sp_SetFuncData2Label(triangle.b, triangle.a, 0);
-		gfx_Fraction(func2FracPoints[0], triangle.b, triangle.a);
+		gfx_Fraction(fnCotPt, triangle.b, triangle.a);
 
 		// sec = hyp/adj
 		//sp_SetFuncData2Label(triangle.c, triangle.b, 1);
-		gfx_Fraction(func2FracPoints[1], triangle.c, triangle.b);
+		gfx_Fraction(fnSecPt, triangle.c, triangle.b);
 
 		// csc = hyp/opp
 		//sp_SetFuncData2Label(triangle.c, triangle.a, 2);
-		gfx_Fraction(func2FracPoints[2], triangle.c, triangle.a);
+		gfx_Fraction(fnCscPt, triangle.c, triangle.a);
 	}
 	else
 	{
 		// SOH
 		SimplifyRadicalFromDecimal(triangle.a, rad);
 		SimplifyRadicalFromDecimal(triangle.c, rad2);
-		gfx_RadicalFraction(funcFracPoints[0], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnSinPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 
 		// CAH
 		SimplifyRadicalFromDecimal(triangle.b, rad);
 		SimplifyRadicalFromDecimal(triangle.c, rad2);
-		gfx_RadicalFraction(funcFracPoints[1], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnCosPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 		// TOA
 		SimplifyRadicalFromDecimal(triangle.a, rad);
 		SimplifyRadicalFromDecimal(triangle.b, rad2);
-		gfx_RadicalFraction(funcFracPoints[2], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnTanPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 
 		// cot = adj/opp
 		SimplifyRadicalFromDecimal(triangle.b, rad);
 		SimplifyRadicalFromDecimal(triangle.a, rad2);
-		gfx_RadicalFraction(func2FracPoints[0], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnCotPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 
 		// sec = hyp/adj
 		SimplifyRadicalFromDecimal(triangle.c, rad);
 		SimplifyRadicalFromDecimal(triangle.b, rad2);
-		gfx_RadicalFraction(func2FracPoints[1], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnSecPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 
 		// csc = hyp/opp
 		SimplifyRadicalFromDecimal(triangle.c, rad);
 		SimplifyRadicalFromDecimal(triangle.a, rad2);
-		gfx_RadicalFraction(func2FracPoints[2], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnCscPt, rad[0], rad[1], rad2[0], rad2[1]);
 	}
 	gfx_Clear(&ui_Wait);
+	dbg_sprintf(dbgout, "Completed drawing of A ratios\n");
 
 	for (index = 0; index < 3; index++)
 	{
@@ -270,6 +272,7 @@ static void sohcahtoa_DrawA()
 		gfx_PrintColor(&funcData[index], gfx_blue);
 		gfx_PrintColor(&funcData2[index], gfx_blue);
 	}
+	dbg_sprintf(dbgout, "Completed printing of labels for A\n");
 }
 
 static void sohcahtoa_DrawB()
@@ -293,27 +296,27 @@ static void sohcahtoa_DrawB()
 	{
 		// SOH
 		//sp_SetFuncDataLabel(triangle.b, triangle.c, 0);
-		gfx_Fraction(funcFracPoints[0], triangle.b, triangle.c);
+		gfx_Fraction(fnSinPt, triangle.b, triangle.c);
 
 		// CAH
 		//sp_SetFuncDataLabel(triangle.a, triangle.c, 1);
-		gfx_Fraction(funcFracPoints[1], triangle.a, triangle.c);
+		gfx_Fraction(fnCosPt, triangle.a, triangle.c);
 
 		// TOA
 		//sp_SetFuncDataLabel(triangle.b, triangle.a, 2);
-		gfx_Fraction(funcFracPoints[2], triangle.b, triangle.a);
+		gfx_Fraction(fnTanPt, triangle.b, triangle.a);
 
 		// cot = adj/opp
 		//sp_SetFuncData2Label(triangle.a, triangle.b, 0);
-		gfx_Fraction(func2FracPoints[0], triangle.a, triangle.b);
+		gfx_Fraction(fnCotPt, triangle.a, triangle.b);
 
 		// sec = hyp/adj
 		//sp_SetFuncData2Label(triangle.c, triangle.a, 1);
-		gfx_Fraction(func2FracPoints[1], triangle.c, triangle.a);
+		gfx_Fraction(fnSecPt, triangle.c, triangle.a);
 
 		// csc = hyp/opp
 		//sp_SetFuncData2Label(triangle.c, triangle.b, 2);
-		gfx_Fraction(func2FracPoints[2], triangle.c, triangle.b);
+		gfx_Fraction(fnCscPt, triangle.c, triangle.b);
 	}
 	else
 	{
@@ -322,35 +325,35 @@ static void sohcahtoa_DrawB()
 		// SOH
 		SimplifyRadicalFromDecimal(triangle.b, rad);
 		SimplifyRadicalFromDecimal(triangle.c, rad2);
-		gfx_RadicalFraction(funcFracPoints[0], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnSinPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 		// CAH
 		SimplifyRadicalFromDecimal(triangle.a, rad);
 		SimplifyRadicalFromDecimal(triangle.c, rad2);
-		gfx_RadicalFraction(funcFracPoints[1], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnCosPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 		// TOA
 		SimplifyRadicalFromDecimal(triangle.b, rad);
 		SimplifyRadicalFromDecimal(triangle.a, rad2);
-		gfx_RadicalFraction(funcFracPoints[2], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnTanPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 		// cot = adj/opp
 		SimplifyRadicalFromDecimal(triangle.a, rad);
 		SimplifyRadicalFromDecimal(triangle.b, rad2);
-		gfx_RadicalFraction(func2FracPoints[0], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnCotPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 		// sec = hyp/adj
 		SimplifyRadicalFromDecimal(triangle.c, rad);
 		SimplifyRadicalFromDecimal(triangle.a, rad2);
-		gfx_RadicalFraction(func2FracPoints[1], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnSecPt, rad[0], rad[1], rad2[0], rad2[1]);
 
 		// csc = hyp/opp
 		SimplifyRadicalFromDecimal(triangle.c, rad);
 		SimplifyRadicalFromDecimal(triangle.b, rad2);
-		gfx_RadicalFraction(func2FracPoints[2], rad[0], rad[1], rad2[0], rad2[1]);
+		gfx_RadicalFraction(fnCscPt, rad[0], rad[1], rad2[0], rad2[1]);
 	}
-
 	gfx_Clear(&ui_Wait);
+	dbg_sprintf(dbgout, "Completed drawing of B ratios\n");
 
 	for (index = 0; index < 3; index++)
 	{
@@ -358,6 +361,7 @@ static void sohcahtoa_DrawB()
 		gfx_PrintColor(&funcData[index], gfx_blue);
 		gfx_PrintColor(&funcData2[index], gfx_blue);
 	}
+	dbg_sprintf(dbgout, "Completed printing of labels for B\n");
 }
 
 static void right_Redraw()
@@ -439,6 +443,35 @@ static void ui_SwitchDispSimpRoot()
 	}
 }
 
+static void right_Reset()
+{
+	int i = 0;
+	bool  * bptr = (bool*) &trigstatus;
+	real_t* rptr = (real_t*) &triangle;
+
+	for (; i < sizeof(trigstatus) / sizeof(bool); i++)
+	{
+		bptr[i] = false;
+	}
+	for (i = 0; i < sizeof(triangle) / sizeof(real_t); i++)
+	{
+		rptr[i] = os_Int24ToReal(0);
+	}
+
+
+	sp_SetLabel(&side_a, "a");
+	sp_SetLabel(&side_b, "b");
+	sp_SetLabel(&side_c, "c");
+
+	sp_SetLabel(&angle_A, "A");
+	sp_SetLabel(&angle_B, "B");
+
+	right_Redraw();
+	right_Sync();
+	ui_ClearDispSimpRoot();
+	dbg_sprintf(dbgout, "[RightTrig] Reset triangle\n");
+}
+
 static void right_SelectSide()
 {
 	uint8_t key;
@@ -463,9 +496,8 @@ static void right_SelectSide()
 
 		if (key == sk_Trace)
 		{
-			// todo
-			currentSelection = &side_a;
-			gfx_HighlightPoint(&side_a);
+			right_Reset();
+			gfx_SetFocus(&currentSelection, currentSelection, &side_a);
 		}
 
 		if (key == sk_Graph)
@@ -484,9 +516,7 @@ static void right_SelectSide()
 		if (key == sk_Right && PointEq(*currentSelection, side_b))
 		{
 
-			gfx_ClearHighlight(&side_b);
-			gfx_HighlightPoint(&side_c);
-			currentSelection = &side_c;
+			gfx_SetFocus(&currentSelection, &side_b, &side_c);
 			if (trigstatus.c)
 			{
 				disp_Simplified(&triangle.c);
@@ -496,9 +526,7 @@ static void right_SelectSide()
 		/* bbb -> aaa */
 		if (key == sk_Down && PointEq(*currentSelection, side_b))
 		{
-			gfx_ClearHighlight(&side_b);
-			gfx_HighlightPoint(&side_a);
-			currentSelection = &side_a;
+			gfx_SetFocus(&currentSelection, &side_b, &side_a);
 			if (trigstatus.a)
 			{
 				disp_Simplified(&triangle.a);
@@ -508,25 +536,17 @@ static void right_SelectSide()
 		/* ccc -> aaa */
 		if (key == sk_Down && PointEq(*currentSelection, side_c))
 		{
-			gfx_ClearHighlight(&side_c);
-			gfx_HighlightPoint(&side_a);
-			currentSelection = &side_a;
+			gfx_SetFocus(&currentSelection, &side_c, &side_a);
 			if (trigstatus.a)
 			{
 				disp_Simplified(&triangle.a);
 			}
 		}
 
-		// [0] bbb
-		// [1] aaa
-		// [2] ccc
-
 		/* ccc -> bbb */
 		if (key == sk_Left && PointEq(*currentSelection, side_c))
 		{
-			gfx_ClearHighlight(&side_c);
-			gfx_HighlightPoint(&side_b);
-			currentSelection = &side_b;
+			gfx_SetFocus(&currentSelection, &side_c, &side_b);
 			if (trigstatus.b)
 			{
 				disp_Simplified(&triangle.b);
@@ -536,9 +556,7 @@ static void right_SelectSide()
 		/* aaa -> ccc */
 		if (key == sk_Up || key == sk_Right && PointEq(*currentSelection, side_a))
 		{
-			gfx_ClearHighlight(&side_a);
-			gfx_HighlightPoint(&side_c);
-			currentSelection = &side_c;
+			gfx_SetFocus(&currentSelection, &side_a, &side_c);
 			if (trigstatus.c)
 			{
 				disp_Simplified(&triangle.c);
@@ -548,19 +566,13 @@ static void right_SelectSide()
 		/* aaa -> bbb */
 		if (key == sk_Left && PointEq(*currentSelection, side_a))
 		{
-			gfx_ClearHighlight(&side_a);
-			gfx_HighlightPoint(&side_b);
-			currentSelection = &side_b;
+			gfx_SetFocus(&currentSelection, &side_a, &side_b);
 			if (trigstatus.b)
 			{
 				disp_Simplified(&triangle.b);
 			}
 		}
 	}
-
-	// [0] bbb
-	// [1] aaa
-	// [2] ccc
 
 	if (PointEq(*currentSelection, side_b))
 	{
@@ -602,20 +614,6 @@ static void right_SelectAngle()
 	RECURSE:
 	while ((key = os_GetCSC()) != sk_Enter)
 	{
-		/**
-		 * const gfx_point_t angles[3] =
-		 * [0] = 90
-		 * [1] = BBB
-		 * [2] = AAA
-		 */
-
-		/**
-		 * superpoint_t xsides_oah[3] =
-		 * [0] = bbb
-		 * [1] = aaa
-		 * [2] = ccc
-		 */
-
 		if (key == sk_Clear)
 		{
 			return;
@@ -628,15 +626,14 @@ static void right_SelectAngle()
 
 		if (key == sk_Trace)
 		{
-			// todo
-			currentSelection = &side_a;
-			gfx_HighlightPoint(&side_a);
+			right_Reset();
+			gfx_SetFocus(&currentSelection, currentSelection, &angle_C);
+			sohcahtoa_Draw90();
 		}
 
 		if (key == sk_Graph)
 		{
 			gfx_Clear(&ui_Mode);
-			//mode.label = "ANGLE MODE";
 			sp_SetLabel(&ui_Mode, lbl_SideMode);
 			gfx_Print(&ui_Mode);
 			gfx_ClearHighlight(currentSelection);
@@ -648,9 +645,8 @@ static void right_SelectAngle()
 		/* 90 -> BBB */
 		if (key == sk_Right && PointEq(*currentSelection, angle_C))
 		{
-			gfx_ClearHighlight(&angle_C);
-			gfx_HighlightPoint(&angle_B);
-			currentSelection = &angle_B;
+
+			gfx_SetFocus(&currentSelection, &angle_C, &angle_B);
 
 			sohcahtoa_DrawB();
 		}
@@ -658,9 +654,7 @@ static void right_SelectAngle()
 		/* 90 -> AAA */
 		if (key == sk_Up && PointEq(*currentSelection, angle_C))
 		{
-			gfx_ClearHighlight(&angle_C);
-			gfx_HighlightPoint(&angle_A);
-			currentSelection = &angle_A;
+			gfx_SetFocus(&currentSelection, &angle_C, &angle_A);
 
 			sohcahtoa_DrawA();
 		}
@@ -668,9 +662,7 @@ static void right_SelectAngle()
 		/* AAA -> 90 */
 		if (key == sk_Down && PointEq(*currentSelection, angle_A))
 		{
-			gfx_ClearHighlight(&angle_A);
-			gfx_HighlightPoint(&angle_C);
-			currentSelection = &angle_C;
+			gfx_SetFocus(&currentSelection, &angle_A, &angle_C);
 
 			sohcahtoa_Draw90();
 		}
@@ -678,9 +670,8 @@ static void right_SelectAngle()
 		/* AAA -> BBB */
 		if (key == sk_Right && PointEq(*currentSelection, angle_A))
 		{
-			gfx_ClearHighlight(&angle_A);
-			gfx_HighlightPoint(&angle_B);
-			currentSelection = &angle_B;
+
+			gfx_SetFocus(&currentSelection, &angle_A, &angle_B);
 
 			sohcahtoa_DrawB();
 		}
@@ -688,9 +679,8 @@ static void right_SelectAngle()
 		/* BBB -> 90 */
 		if (key == sk_Left && PointEq(*currentSelection, angle_B))
 		{
-			gfx_ClearHighlight(&angle_B);
-			gfx_HighlightPoint(&angle_C);
-			currentSelection = &angle_C;
+
+			gfx_SetFocus(&currentSelection, &angle_B, &angle_C);
 
 			sohcahtoa_Draw90();
 		}
@@ -698,9 +688,7 @@ static void right_SelectAngle()
 		/* BBB -> AAA */
 		if (key == sk_Up && PointEq(*currentSelection, angle_B))
 		{
-			gfx_ClearHighlight(&angle_B);
-			gfx_HighlightPoint(&angle_A);
-			currentSelection = &angle_A;
+			gfx_SetFocus(&currentSelection, &angle_B, &angle_A);
 
 			sohcahtoa_DrawA();
 		}

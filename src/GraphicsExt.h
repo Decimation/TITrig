@@ -55,4 +55,6 @@ void gfx_Sqrt(gfx_point_t point, int24_t outer, int24_t inner);
 
 void gfx_PrintColor(const superpoint_t* p, uint8_t color);
 
+void gfx_SetFocus(superpoint_t** currSel, superpoint_t* from, superpoint_t* to);
+
 #endif //TITRIG_GRAPHICSEXT_H

@@ -124,27 +124,27 @@ static void trig_Sync()
 
 	if (trigstatus.A)
 	{
-		os_RealToStr(xangles[0].label, &triangle.A, 0, 0, 6);
+		os_RealToStr(angle_A.label, &triangle.A, 0, 0, 6);
 	}
 	if (trigstatus.B)
 	{
-		os_RealToStr(xangles[1].label, &triangle.B, 0, 0, 6);
+		os_RealToStr(angle_B.label, &triangle.B, 0, 0, 6);
 	}
 	if (trigstatus.C)
 	{
-		os_RealToStr(xangles[2].label, &triangle.C, 0, 0, 6);
+		os_RealToStr(angle_C.label, &triangle.C, 0, 0, 6);
 	}
 	if (trigstatus.a)
 	{
-		os_RealToStr(xsides[0].label, &triangle.a, 0, 0, 6);
+		os_RealToStr(side_a.label, &triangle.a, 0, 0, 6);
 	}
 	if (trigstatus.b)
 	{
-		os_RealToStr(xsides[1].label, &triangle.b, 0, 0, 6);
+		os_RealToStr(side_b.label, &triangle.b, 0, 0, 6);
 	}
 	if (trigstatus.c)
 	{
-		os_RealToStr(xsides[2].label, &triangle.c, 0, 0, 6);
+		os_RealToStr(side_c.label, &triangle.c, 0, 0, 6);
 	}
 
 	ui_DispData();
@@ -248,7 +248,6 @@ static void trig_TruncateLabels(int len)
 	{
 		lib_StrCut(xangles[i].label, len, 20 - len);
 		lib_StrCut(xsides[i].label, len, 20 - len);
-		//lib_StrCut(xmeasureData[i].label, len * 2, 20 - len);
 	}
 }
 
@@ -269,7 +268,6 @@ static void trig_CheckSolvability()
 
 	if (trigstatus.complete)
 	{
-
 		return;
 	}
 
@@ -277,7 +275,7 @@ static void trig_CheckSolvability()
 	// SSS
 	if (trigstatus.a && trigstatus.b && trigstatus.c)
 	{
-		dbg_sprintf(dbgout, "SSS detected [%s, %s, %s]\n", xsides[0].label, xsides[1].label, xsides[2].label);
+		dbg_sprintf(dbgout, "SSS detected [%s, %s, %s]\n", side_a.label, side_b.label, side_c.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_SSS);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -291,7 +289,7 @@ static void trig_CheckSolvability()
 	// "AAS" is when we know two angles and one side (which is not between the angles).
 	if (trigstatus.A && trigstatus.C && trigstatus.c)
 	{
-		dbg_sprintf(dbgout, "AAS_1 detected [%s, %s, %s]\n", xangles[0].label, xangles[2].label, xsides[2].label);
+		dbg_sprintf(dbgout, "AAS_1 detected [%s, %s, %s]\n", angle_A.label, angle_C.label, side_c.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_AAS);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -310,7 +308,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.B && trigstatus.C && trigstatus.b)
 	{
-		dbg_sprintf(dbgout, "AAS_2 detected [%s, %s, %s]\n", xangles[1].label, xangles[2].label, xsides[1].label);
+		dbg_sprintf(dbgout, "AAS_2 detected [%s, %s, %s]\n", angle_B.label, angle_C.label, side_b.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_AAS);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -331,7 +329,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.A && trigstatus.B && trigstatus.b)
 	{
-		dbg_sprintf(dbgout, "AAS_3 detected [%s, %s, %s]\n", xangles[0].label, xangles[1].label, xsides[1].label);
+		dbg_sprintf(dbgout, "AAS_3 detected [%s, %s, %s]\n", angle_A.label, angle_B.label, side_b.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_AAS);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -353,7 +351,7 @@ static void trig_CheckSolvability()
 	// "ASA" is when we know two angles and a side between the angles.
 	if (trigstatus.A && trigstatus.c && trigstatus.B)
 	{
-		dbg_sprintf(dbgout, "ASA_1 detected [%s, %s, %s]\n", xangles[0].label, xsides[2].label, xangles[1].label);
+		dbg_sprintf(dbgout, "ASA_1 detected [%s, %s, %s]\n", angle_A.label, side_c.label, angle_B.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_ASA);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -372,7 +370,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.A && trigstatus.b && trigstatus.C) //todo: verify
 	{
-		dbg_sprintf(dbgout, "ASA_2 detected [%s, %s, %s]\n", xangles[0].label, xsides[1].label, xangles[2].label);
+		dbg_sprintf(dbgout, "ASA_2 detected [%s, %s, %s]\n", angle_A.label, side_b.label, angle_C.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_ASA);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -391,7 +389,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.B && trigstatus.a && trigstatus.C) //todo: verify
 	{
-		dbg_sprintf(dbgout, "ASA_3 detected [%s, %s, %s]\n", xangles[1].label, xsides[0].label, xangles[2].label);
+		dbg_sprintf(dbgout, "ASA_3 detected [%s, %s, %s]\n", angle_B.label, side_a.label, angle_C.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_ASA);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -413,7 +411,7 @@ static void trig_CheckSolvability()
 	// "SAS" is when we know two sides and the angle between them.
 	if (trigstatus.b && trigstatus.A && trigstatus.c)
 	{
-		dbg_sprintf(dbgout, "SAS_1 detected [%s, %s, %s]\n", xsides[1].label, xangles[0].label, xsides[2].label);
+		dbg_sprintf(dbgout, "SAS_1 detected [%s, %s, %s]\n", side_b.label, angle_A.label, side_c.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_SAS);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -435,7 +433,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.c && trigstatus.B && trigstatus.a) //todo: verify
 	{
-		dbg_sprintf(dbgout, "SAS_2 detected [%s, %s, %s]\n", xsides[2].label, xangles[1].label, xsides[0].label);
+		dbg_sprintf(dbgout, "SAS_2 detected [%s, %s, %s]\n", side_c.label, angle_B.label, side_a.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_SAS);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -456,7 +454,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.b && trigstatus.C && trigstatus.a)
 	{
-		dbg_sprintf(dbgout, "SAS_3 detected [%s, %s, %s]\n", xsides[1].label, xangles[2].label, xsides[0].label);
+		dbg_sprintf(dbgout, "SAS_3 detected [%s, %s, %s]\n", side_b.label, angle_C.label, side_a.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_SAS);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -481,7 +479,7 @@ static void trig_CheckSolvability()
 	// todo: check if it has multiple answers
 	if (trigstatus.b && trigstatus.c && trigstatus.B)
 	{
-		dbg_sprintf(dbgout, "SSA_1 detected [%s, %s, %s]\n", xsides[1].label, xsides[2].label, xangles[1].label);
+		dbg_sprintf(dbgout, "SSA_1 detected [%s, %s, %s]\n", side_b.label, side_c.label, angle_B.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_SSA);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -514,7 +512,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.b && trigstatus.a && trigstatus.B) //todo: verify
 	{
-		dbg_sprintf(dbgout, "SSA_2 detected [%s, %s, %s]\n", xsides[1].label, xsides[0].label, xangles[1].label);
+		dbg_sprintf(dbgout, "SSA_2 detected [%s, %s, %s]\n", side_b.label, side_a.label, angle_B.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_SSA);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -547,7 +545,7 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.a && trigstatus.c && trigstatus.C) //todo: verify
 	{
-		dbg_sprintf(dbgout, "SSA_3 detected [%s, %s, %s]\n", xsides[0].label, xsides[2].label, xangles[2].label);
+		dbg_sprintf(dbgout, "SSA_3 detected [%s, %s, %s]\n", side_a.label, side_c.label, angle_C.label);
 		gfx_Clear(&ui_Type);
 		sp_SetLabel(&ui_Type, lbl_SSA);
 		gfx_PrintColor(&ui_Type, gfx_green);
@@ -604,8 +602,8 @@ static void ui_ClearAngleSideData()
 static void trig_SelectSide()
 {
 	uint8_t key;
-	superpoint_t* currentSelection = &xsides[1]; // start at b
-	gfx_HighlightPoint(&xsides[1]);
+	superpoint_t* currentSelection = &side_b; // start at b
+	gfx_HighlightPoint(&side_b);
 	RECURSE:
 	while ((key = os_GetCSC()) != sk_Enter)
 	{
@@ -632,8 +630,8 @@ static void trig_SelectSide()
 		if (key == sk_Trace)
 		{
 			trig_Reset();
-			currentSelection = &xsides[1];
-			gfx_HighlightPoint(&xsides[1]);
+			currentSelection = &side_b;
+			gfx_HighlightPoint(&side_b);
 		}
 
 		if (key == sk_Graph)
@@ -647,72 +645,60 @@ static void trig_SelectSide()
 		}
 
 		/* bbb -> aaa */
-		if (key == sk_Right && PointEq(*currentSelection, xsides[1]))
+		if (key == sk_Right && PointEq(*currentSelection, side_b))
 		{
-			gfx_ClearHighlight(&xsides[1]);
-			gfx_HighlightPoint(&xsides[0]);
-			currentSelection = &xsides[0];
+			gfx_SetFocus(&currentSelection, &side_b, &side_a);
 		}
 
 		/* bbb -> ccc */
-		if (key == sk_Down && PointEq(*currentSelection, xsides[1]))
+		if (key == sk_Down && PointEq(*currentSelection, side_b))
 		{
-			gfx_ClearHighlight(&xsides[1]);
-			gfx_HighlightPoint(&xsides[2]);
-			currentSelection = &xsides[2];
+			gfx_SetFocus(&currentSelection, &side_b, &side_c);
 		}
 
 		/* ccc -> bbb */
-		if ((key == sk_Up || key == sk_Left) && PointEq(*currentSelection, xsides[2]))
+		if ((key == sk_Up || key == sk_Left) && PointEq(*currentSelection, side_c))
 		{
-			gfx_ClearHighlight(&xsides[2]);
-			gfx_HighlightPoint(&xsides[1]);
-			currentSelection = &xsides[1];
+			gfx_SetFocus(&currentSelection, &side_c, &side_b);
 		}
 
 		/* ccc -> aaa */
-		if (key == sk_Right && PointEq(*currentSelection, xsides[2]))
+		if (key == sk_Right && PointEq(*currentSelection, side_c))
 		{
-			gfx_ClearHighlight(&xsides[2]);
-			gfx_HighlightPoint(&xsides[0]);
-			currentSelection = &xsides[0];
+			gfx_SetFocus(&currentSelection, &side_c, &side_a);
 		}
 
 		/* aaa -> bbb */
-		if (key == sk_Left && PointEq(*currentSelection, xsides[0]))
+		if (key == sk_Left && PointEq(*currentSelection, side_a))
 		{
-			gfx_ClearHighlight(&xsides[0]);
-			gfx_HighlightPoint(&xsides[1]);
-			currentSelection = &xsides[1];
+			gfx_SetFocus(&currentSelection, &side_a, &side_b);
 		}
 
 		/* aaa -> ccc */
-		if (key == sk_Down && PointEq(*currentSelection, xsides[0]))
+		if (key == sk_Down && PointEq(*currentSelection, side_a))
 		{
-			gfx_ClearHighlight(&xsides[0]);
-			gfx_HighlightPoint(&xsides[2]);
-			currentSelection = &xsides[2];
+			gfx_SetFocus(&currentSelection, &side_a, &side_c);
 		}
 	}
 
-	if (PointEq(*currentSelection, xsides[0]))
+	if (PointEq(*currentSelection, side_a))
 	{
-		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", xsides[0].label);
-		triangle.a   = io_gfx_ReadReal(&xsides[0]);
+		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_a.label);
+		triangle.a   = io_gfx_ReadReal(&side_a);
 		trigstatus.a = true;
 	}
 
-	if (PointEq(*currentSelection, xsides[1]))
+	if (PointEq(*currentSelection, side_b))
 	{
-		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", xsides[1].label);
-		triangle.b   = io_gfx_ReadReal(&xsides[1]);
+		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_b.label);
+		triangle.b   = io_gfx_ReadReal(&side_b);
 		trigstatus.b = true;
 	}
 
-	if (PointEq(*currentSelection, xsides[2]))
+	if (PointEq(*currentSelection, side_c))
 	{
-		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", xsides[2].label);
-		triangle.c   = io_gfx_ReadReal(&xsides[2]);
+		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_c.label);
+		triangle.c   = io_gfx_ReadReal(&side_c);
 		trigstatus.c = true;
 	}
 
@@ -759,12 +745,12 @@ static void trig_Reset()
 	lib_MemZero(xmeasureData[0].label + kLabelOffset, 20 - kLabelOffset);
 	lib_MemZero(xmeasureData[1].label + kLabelOffset, 20 - kLabelOffset);
 
-	sp_SetLabel(&xangles[0], "A");
-	sp_SetLabel(&xangles[1], "B");
-	sp_SetLabel(&xangles[2], "C");
-	sp_SetLabel(&xsides[0], "a");
-	sp_SetLabel(&xsides[1], "b");
-	sp_SetLabel(&xsides[2], "c");
+	sp_SetLabel(&angle_A, "A");
+	sp_SetLabel(&angle_B, "B");
+	sp_SetLabel(&angle_C, "C");
+	sp_SetLabel(&side_a, "a");
+	sp_SetLabel(&side_b, "b");
+	sp_SetLabel(&side_c, "c");
 	trig_Redraw();
 	trig_DrawTriangleSides();
 	trig_Sync();
@@ -816,8 +802,8 @@ static void ui_DispData()
 static void trig_SelectAngle()
 {
 	uint8_t key;
-	superpoint_t* currentSelection = &xangles[0];
-	gfx_HighlightPoint(&xangles[0]);
+	superpoint_t* currentSelection = &angle_A;
+	gfx_HighlightPoint(&angle_A);
 	RECURSE:
 	while ((key = os_GetCSC()) != sk_Enter)
 	{
@@ -844,8 +830,8 @@ static void trig_SelectAngle()
 		if (key == sk_Trace)
 		{
 			trig_Reset();
-			currentSelection = &xangles[0];
-			gfx_HighlightPoint(&xangles[0]);
+			currentSelection = &angle_A;
+			gfx_HighlightPoint(&angle_A);
 		}
 
 		if (key == sk_Graph)
@@ -859,72 +845,60 @@ static void trig_SelectAngle()
 		}
 
 		/* AAA -> BBB */
-		if (key == sk_Right && PointEq(*currentSelection, xangles[0]))
+		if (key == sk_Right && PointEq(*currentSelection, angle_A))
 		{
-			gfx_ClearHighlight(&xangles[0]);
-			gfx_HighlightPoint(&xangles[1]);
-			currentSelection = &xangles[1];
+			gfx_SetFocus(&currentSelection, &angle_A, &angle_B);
 		}
 
 		/* AAA -> CCC */
-		if (key == sk_Up && PointEq(*currentSelection, xangles[0]))
+		if (key == sk_Up && PointEq(*currentSelection, angle_A))
 		{
-			gfx_ClearHighlight(&xangles[0]);
-			gfx_HighlightPoint(&xangles[2]);
-			currentSelection = &xangles[2];
+			gfx_SetFocus(&currentSelection, &angle_A, &angle_C);
 		}
 
 		/* BBB -> AAA */
-		if (key == sk_Left && PointEq(*currentSelection, xangles[1]))
+		if (key == sk_Left && PointEq(*currentSelection, angle_B))
 		{
-			gfx_ClearHighlight(&xangles[1]);
-			gfx_HighlightPoint(&xangles[0]);
-			currentSelection = &xangles[0];
+			gfx_SetFocus(&currentSelection, &angle_B, &angle_A);
 		}
 
 		/* BBB -> CCC */
-		if (key == sk_Up && PointEq(*currentSelection, xangles[1]))
+		if (key == sk_Up && PointEq(*currentSelection, angle_B))
 		{
-			gfx_ClearHighlight(&xangles[1]);
-			gfx_HighlightPoint(&xangles[2]);
-			currentSelection = &xangles[2];
+			gfx_SetFocus(&currentSelection, &angle_B, &angle_C);
 		}
 
 		/* CCC -> AAA */
-		if (key == sk_Left && PointEq(*currentSelection, xangles[2]))
+		if (key == sk_Left && PointEq(*currentSelection, angle_C))
 		{
-			gfx_ClearHighlight(&xangles[2]);
-			gfx_HighlightPoint(&xangles[0]);
-			currentSelection = &xangles[0];
+			gfx_SetFocus(&currentSelection, &angle_C, &angle_A);
 		}
 
 		/* CCC -> BBB */
-		if (key == sk_Down && PointEq(*currentSelection, xangles[2]))
+		if (key == sk_Down && PointEq(*currentSelection, angle_C))
 		{
-			gfx_ClearHighlight(&xangles[2]);
-			gfx_HighlightPoint(&xangles[1]);
-			currentSelection = &xangles[1];
+			gfx_SetFocus(&currentSelection, &angle_C, &angle_B);
 		}
 	}
 
-	if (PointEq(*currentSelection, xangles[0]))
+	if (PointEq(*currentSelection, angle_A))
 	{
-		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", xangles[0].label);
-		triangle.A   = io_gfx_ReadReal(&xangles[0]);
+		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_A.label);
+		triangle.A   = io_gfx_ReadReal(&angle_A);
 		trigstatus.A = true;
 	}
 
-	if (PointEq(*currentSelection, xangles[1]))
+	if (PointEq(*currentSelection, angle_B))
 	{
-		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", xangles[1].label);
-		triangle.B   = io_gfx_ReadReal(&xangles[1]);
+		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_B.label);
+		triangle.B   = io_gfx_ReadReal(&angle_B);
 		trigstatus.B = true;
 	}
 
-	if (PointEq(*currentSelection, xangles[2]))
+	if (PointEq(*currentSelection, angle_C))
 	{
-		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", xangles[2].label);
-		triangle.C   = io_gfx_ReadReal(&xangles[2]);
+		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_C.label);
+		triangle.C   = io_gfx_ReadReal(&angle_C);
 		trigstatus.C = true;
 	}
 

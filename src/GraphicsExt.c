@@ -96,8 +96,9 @@ void gfx_FractionStr(gfx_point_t point, const char* num, const char* denom)
 
 void gfx_Sqrt(gfx_point_t point, int24_t outer, int24_t inner)
 {
-	char buf[10];
-	int strW;
+	char buf[20];
+	int  strW;
+	dbg_sprintf(dbgout, "[GFX] Drawing sqrt\n");
 	sprintf(buf, "%d", outer);
 	strW = gfx_GetStringWidth(buf);
 
@@ -188,6 +189,14 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 bool PointEq(superpoint_t a, superpoint_t b)
 {
 	return a.point.x == b.point.x && a.point.y == b.point.y;
+}
+
+void gfx_SetFocus(superpoint_t** currSel, superpoint_t* from, superpoint_t* to)
+{
+	gfx_ClearHighlight(from);
+	gfx_HighlightPoint(to);
+	*currSel = to;
+	dbg_sprintf(dbgout, "[GFX] %s -> %s\n", from->label, to->label);
 }
 
 void gfx_ClearHighlight(superpoint_t* p)

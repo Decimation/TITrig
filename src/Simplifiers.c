@@ -28,14 +28,18 @@ double RoundIEEE754(double d)
 	return i + 1.0;
 }
 
-real_t DecimalToRoot(real_t r) {
-	char buf[10];
+real_t DecimalToRoot(real_t r)
+{
+	char         buf[20];
 	const real_t pow = os_Int24ToReal(2);
-	real_t root;
-	os_RealToStr(buf, &r,0,0,6);
+	real_t       root;
+
+	os_RealToStr(buf, &r, 0, 0, 6);
+	dbg_sprintf(dbgout, "%s = sqrt(", buf);
+
 	root = os_RealPow(&r, &pow);
-	os_RealToStr(buf, &root,0,0,6);
-	dbg_sprintf(dbgout, "%s = sqrt(%d)\n", buf,root);
+	os_RealToStr(buf, &root, 0, 0, 6);
+	dbg_sprintf(dbgout, "%s)\n", buf);
 	return root;
 }
 
@@ -53,7 +57,15 @@ real_t DecimalToRoot(real_t r) {
 
 void SimplifyRadicalFromDecimal(real_t decimal, int24_t* out)
 {
-	real_t buf = DecimalToRoot(decimal);
+	real_t       buf;
+	const real_t realZero = os_Int24ToReal(0);
+	if (os_RealCompare(&decimal, &realZero) == 0)
+	{
+		out[0] = 1;
+		out[1] = 0;
+		return;
+	}
+	buf = DecimalToRoot(decimal);
 	SimplifyRadical(os_RealToInt24(&buf), out);
 }
 

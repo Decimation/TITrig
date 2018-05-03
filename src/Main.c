@@ -16,17 +16,16 @@ int main(void)
 
 
 	dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
-	dbg_sprintf(dbgout, "[TITrig] %d.%d\n", MAJOR, MINOR);
+	dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
 
 	os_ClrHome();
 	gfx_Begin();
 
 
-
 	gfx_PrintColor(&title, gfx_blue);
 	gfx_PrintColor(&author, gfx_green);
 
-	sprintf(buf, "Build %d.%d", MAJOR, MINOR);
+	sprintf(buf, "Build %d.%d", kMajor, kMinor);
 	gfx_PrintStringXY(buf, 12, 56);
 
 	gfx_PrintStringXY("1. Right", 12, 76);

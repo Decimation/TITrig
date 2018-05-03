@@ -36,4 +36,6 @@ static void ui_ClearFraction(gfx_point_t point);
 
 static void ui_ClearArea(gfx_point_t point, uint8_t w, uint8_t h);
 
+static void right_Reset();
+
 #endif //TITRIG_RIGHTTRIANGLE_H

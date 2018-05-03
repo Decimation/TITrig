@@ -1635,9 +1635,9 @@ _gfx_Sqrt:
 
 .CLASS 65
 
-.VALUE -13
+.VALUE -23
 
-.DIM 10
+.DIM 20
 
 .TYPE 98
 
@@ -1646,47 +1646,57 @@ _gfx_Sqrt:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-	LEA	HL,IX+-13
+	LEA	HL,IX+-23
 	LD	SP,HL
-;   99		char buf[10];
-;  100		int strW;
-;  101		sprintf(buf, "%d", outer);
+;   99		char buf[20];
+;  100		int  strW;
+;  101		dbg_sprintf(dbgout, "[GFX] Drawing sqrt\n");
 .LINE 101
+
+	LD	BC,L__11
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+;  102		sprintf(buf, "%d", outer);
+.LINE 102
 
 	LD	BC,(IX+12)
 	PUSH	BC
-	LD	BC,L__11
+	LD	BC,L__12
 	PUSH	BC
-	PEA	IX+-13
+	PEA	IX+-23
 	CALL	_sprintf
 	POP	BC
 	POP	BC
 	POP	BC
-;  102		strW = gfx_GetStringWidth(buf);
-.LINE 102
+;  103		strW = gfx_GetStringWidth(buf);
+.LINE 103
 
-	PEA	IX+-13
+	PEA	IX+-23
 	CALL	_gfx_GetStringWidth
 	POP	BC
 	LD	(IX+-3),HL
-;  103	
-;  104		//190, 155
-;  105		gfx_PrintStringXY(buf, point.x, point.y);
-.LINE 105
+;  104	
+;  105		//190, 155
+;  106		gfx_PrintStringXY(buf, point.x, point.y);
+.LINE 106
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	LD	BC,(IX+6)
 	PUSH	BC
-	PEA	IX+-13
+	PEA	IX+-23
 	CALL	_gfx_PrintStringXY
 	POP	BC
 	POP	BC
 	POP	BC
-;  106	
-;  107		//198, 158 -> 200, 160
-;  108		gfx_Line(point.x + strW, point.y + 3, point.x + strW + 2, point.y + 7);
-.LINE 108
+;  107	
+;  108		//198, 158 -> 200, 160
+;  109		gfx_Line(point.x + strW, point.y + 3, point.x + strW + 2, point.y + 7);
+.LINE 109
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+7
@@ -1708,10 +1718,10 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  109	
-;  110		//205, 155
-;  111		gfx_VertLine(point.x + strW + 3, point.y - 3, 11);
-.LINE 111
+;  110	
+;  111		//205, 155
+;  112		gfx_VertLine(point.x + strW + 3, point.y - 3, 11);
+.LINE 112
 
 	LD	BC,11
 	PUSH	BC
@@ -1728,21 +1738,21 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  112	
-;  113		sprintf(buf, "%d", inner);
-.LINE 113
+;  113	
+;  114		sprintf(buf, "%d", inner);
+.LINE 114
 
 	LD	BC,(IX+15)
 	PUSH	BC
-	LD	BC,L__12
+	LD	BC,L__13
 	PUSH	BC
-	PEA	IX+-13
+	PEA	IX+-23
 	CALL	_sprintf
 	POP	BC
 	POP	BC
 	POP	BC
-;  114		gfx_PrintStringXY(buf, point.x + strW + 6, point.y);
-.LINE 114
+;  115		gfx_PrintStringXY(buf, point.x + strW + 6, point.y);
+.LINE 115
 
 	LD	BC,(IX+9)
 	PUSH	BC
@@ -1752,16 +1762,16 @@ _gfx_Sqrt:
 	LD	IY,HL
 	LEA	BC,IY+6
 	PUSH	BC
-	PEA	IX+-13
+	PEA	IX+-23
 	CALL	_gfx_PrintStringXY
 	POP	BC
 	POP	BC
 	POP	BC
-;  115	
-;  116		gfx_HorizLine(point.x + strW + 3, point.y - 3, gfx_GetStringWidth(buf) + 3);
-.LINE 116
+;  116	
+;  117		gfx_HorizLine(point.x + strW + 3, point.y - 3, gfx_GetStringWidth(buf) + 3);
+.LINE 117
 
-	PEA	IX+-13
+	PEA	IX+-23
 	CALL	_gfx_GetStringWidth
 	POP	BC
 	LD	IY,HL
@@ -1780,8 +1790,8 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  117	}
-.LINE 117
+;  118	}
+.LINE 118
 
 	LD	SP,IX
 	POP	IX
@@ -1796,29 +1806,32 @@ _gfx_Sqrt:
 ;_gfx_PrintStringXY                  IMPORT  -----   function
 ;_gfx_GetStringWidth                 IMPORT  -----   function
 ;_sprintf                            IMPORT  -----   function
-;buf                                  IX-13     10   variable
+;buf                                  IX-23     20   variable
 ;strW                                  IX-3      3   variable
 ;inner                                IX+15      3   parameter
 ;outer                                IX+12      3   parameter
 ;point                                 IX+6      6   parameter
 
 
-; Stack Frame Size: 31 (bytes)
+; Stack Frame Size: 41 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_Sqrt",117,"_gfx_Sqrt"
+.ENDFUNC "gfx_Sqrt",118,"_gfx_Sqrt"
 	SEGMENT STRSECT
 L__11:
-	DB	"%d"
-	DB	0
+	DB	"[GFX] Drawing sqrt"
+	DB	10,0
 L__12:
 	DB	"%d"
 	DB	0
+L__13:
+	DB	"%d"
+	DB	0
 	SEGMENT CODE
-;  118	
-;  119	void gfx_Clear(const superpoint_t* p)
-;  120	{
+;  119	
+;  120	void gfx_Clear(const superpoint_t* p)
+;  121	{
 _gfx_Clear:
 .DEFINE "_gfx_Clear"
 
@@ -1830,9 +1843,9 @@ _gfx_Clear:
 
 .ENDEF
 
-.BEGFUNC "gfx_Clear",120,"_gfx_Clear"
+.BEGFUNC "gfx_Clear",121,"_gfx_Clear"
 
-.LINE 120
+.LINE 121
 
 .DEFINE "p"
 
@@ -1861,23 +1874,23 @@ _gfx_Clear:
 	ADD	IX,SP
 	PUSH	BC
 	PUSH	BC
-;  121		const int w = gfx_GetStringWidth(p->label);
-.LINE 121
+;  122		const int w = gfx_GetStringWidth(p->label);
+.LINE 122
 
 	LD	IY,(IX+6)
 	PEA	IY+6
 	CALL	_gfx_GetStringWidth
 	POP	BC
 	LD	(IX+-3),HL
-;  122		gfx_SetColor(gfx_white);
-.LINE 122
+;  123		gfx_SetColor(gfx_white);
+.LINE 123
 
 	LD	BC,255
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  123		gfx_FillRectangle(p->point.x, p->point.y, w, 9);
-.LINE 123
+;  124		gfx_FillRectangle(p->point.x, p->point.y, w, 9);
+.LINE 124
 
 	LD	IY,(IX+6)
 	LEA	BC,IY+0
@@ -1896,15 +1909,15 @@ _gfx_Clear:
 	POP	BC
 	POP	BC
 	POP	BC
-;  124		gfx_SetColor(gfx_blue);
-.LINE 124
+;  125		gfx_SetColor(gfx_blue);
+.LINE 125
 
 	LD	BC,16
 	PUSH	BC
 	CALL	_gfx_SetColor
 	POP	BC
-;  125	}
-.LINE 125
+;  126	}
+.LINE 126
 
 	LD	SP,IX
 	POP	IX
@@ -1924,10 +1937,10 @@ _gfx_Clear:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_Clear",125,"_gfx_Clear"
-;  126	
-;  127	void gfx_Print(const superpoint_t* p)
-;  128	{
+.ENDFUNC "gfx_Clear",126,"_gfx_Clear"
+;  127	
+;  128	void gfx_Print(const superpoint_t* p)
+;  129	{
 _gfx_Print:
 .DEFINE "_gfx_Print"
 
@@ -1939,9 +1952,9 @@ _gfx_Print:
 
 .ENDEF
 
-.BEGFUNC "gfx_Print",128,"_gfx_Print"
+.BEGFUNC "gfx_Print",129,"_gfx_Print"
 
-.LINE 128
+.LINE 129
 
 .DEFINE "p"
 
@@ -1959,8 +1972,8 @@ _gfx_Print:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;  129		gfx_PrintStringXY(p->label, p->point.x, p->point.y);
-.LINE 129
+;  130		gfx_PrintStringXY(p->label, p->point.x, p->point.y);
+.LINE 130
 
 	LD	IY,(IX+6)
 	LEA	BC,IY+0
@@ -1976,8 +1989,8 @@ _gfx_Print:
 	POP	BC
 	POP	BC
 	POP	BC
-;  130	}
-.LINE 130
+;  131	}
+.LINE 131
 
 	LD	SP,IX
 	POP	IX
@@ -1994,10 +2007,10 @@ _gfx_Print:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_Print",130,"_gfx_Print"
-;  131	
-;  132	void sp_SetLabel(superpoint_t* p, const char* s)
-;  133	{
+.ENDFUNC "gfx_Print",131,"_gfx_Print"
+;  132	
+;  133	void sp_SetLabel(superpoint_t* p, const char* s)
+;  134	{
 _sp_SetLabel:
 .DEFINE "_sp_SetLabel"
 
@@ -2009,9 +2022,9 @@ _sp_SetLabel:
 
 .ENDEF
 
-.BEGFUNC "sp_SetLabel",133,"_sp_SetLabel"
+.BEGFUNC "sp_SetLabel",134,"_sp_SetLabel"
 
-.LINE 133
+.LINE 134
 
 .DEFINE "p"
 
@@ -2038,15 +2051,15 @@ _sp_SetLabel:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;  134		gfx_Clear(p);
-.LINE 134
+;  135		gfx_Clear(p);
+.LINE 135
 
 	LD	BC,(IX+6)
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  135		lib_MemZero(p->label, 20);
-.LINE 135
+;  136		lib_MemZero(p->label, 20);
+.LINE 136
 
 	LD	BC,20
 	PUSH	BC
@@ -2055,8 +2068,8 @@ _sp_SetLabel:
 	CALL	_lib_MemZero
 	POP	BC
 	POP	BC
-;  136		strncpy(p->label, s, strlen(s));
-.LINE 136
+;  137		strncpy(p->label, s, strlen(s));
+.LINE 137
 
 	LD	BC,(IX+9)
 	PUSH	BC
@@ -2071,8 +2084,8 @@ _sp_SetLabel:
 	POP	BC
 	POP	BC
 	POP	BC
-;  137	}
-.LINE 137
+;  138	}
+.LINE 138
 
 	LD	SP,IX
 	POP	IX
@@ -2093,10 +2106,10 @@ _sp_SetLabel:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "sp_SetLabel",137,"_sp_SetLabel"
-;  138	
-;  139	real_t io_gfx_ReadReal(superpoint_t* point)
-;  140	{
+.ENDFUNC "sp_SetLabel",138,"_sp_SetLabel"
+;  139	
+;  140	real_t io_gfx_ReadReal(superpoint_t* point)
+;  141	{
 _io_gfx_ReadReal:
 .DEFINE "_io_gfx_ReadReal"
 
@@ -2110,9 +2123,9 @@ _io_gfx_ReadReal:
 
 .ENDEF
 
-.BEGFUNC "io_gfx_ReadReal",140,"_io_gfx_ReadReal"
+.BEGFUNC "io_gfx_ReadReal",141,"_io_gfx_ReadReal"
 
-.LINE 140
+.LINE 141
 
 .DEFINE "point"
 
@@ -2173,17 +2186,17 @@ _io_gfx_ReadReal:
 	ADD	IX,SP
 	LEA	HL,IX+-42
 	LD	SP,HL
-;  141		bool        isNeg    = false;
-.LINE 141
-
-	LD	(IX+-3),0
-;  142		uint8_t     key, i   = 0;
+;  142		bool        isNeg    = false;
 .LINE 142
 
+	LD	(IX+-3),0
+;  143		uint8_t     key, i   = 0;
+.LINE 143
+
 	LD	(IX+-1),0
-;  143		real_t      rbuffer;
-;  144		static char lchars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
-.LINE 144
+;  144		real_t      rbuffer;
+;  145		static char lchars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+.LINE 145
 
 .DEFINE "lchars"
 
@@ -2199,15 +2212,15 @@ _io_gfx_ReadReal:
 
 .ENDEF
 
-;  145		gfx_Clear(point);
-.LINE 145
+;  146		gfx_Clear(point);
+.LINE 146
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  146		lib_MemZero(point->label, 20);
-.LINE 146
+;  147		lib_MemZero(point->label, 20);
+.LINE 147
 
 	LD	BC,20
 	PUSH	BC
@@ -2216,41 +2229,41 @@ _io_gfx_ReadReal:
 	CALL	_lib_MemZero
 	POP	BC
 	POP	BC
-;  147		lchars[33] = '0';
-.LINE 147
+;  148		lchars[33] = '0';
+.LINE 148
 
 	LD	IY,_0lchars
 	LEA	HL,IY+33
 	LD	(HL),48
-;  148		lchars[18] = '3';
-.LINE 148
+;  149		lchars[18] = '3';
+.LINE 149
 
 	LEA	HL,IY+18
 	LD	(HL),51
-;  149	
-;  150		while ((key = os_GetCSC()) != sk_Enter)
-.LINE 150
+;  150	
+;  151		while ((key = os_GetCSC()) != sk_Enter)
+.LINE 151
 
 	JR	L_24
 L_25:
-;  151		{
-;  152	
-;  153			if (key == sk_Del)
-.LINE 153
+;  152		{
+;  153	
+;  154			if (key == sk_Del)
+.LINE 154
 
 	LD	A,(IX+-2)
 	CP	A,56
 	JR	NZ,L_22
-;  154			{
-;  155				gfx_Clear(point);
-.LINE 155
+;  155			{
+;  156				gfx_Clear(point);
+.LINE 156
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  156				point->label[--i] = '\0';
-.LINE 156
+;  157				point->label[--i] = '\0';
+.LINE 157
 
 	DEC	(IX+-1)
 	LD	A,(IX+-1)
@@ -2261,44 +2274,44 @@ L_25:
 	LEA	HL,IY+6
 	ADD	HL,BC
 	LD	(HL),0
-;  157				gfx_Clear(point);
-.LINE 157
+;  158				gfx_Clear(point);
+.LINE 158
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  158				gfx_Print(point);
-.LINE 158
+;  159				gfx_Print(point);
+.LINE 159
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  159			}
+;  160			}
 L_22:
-.LINE 159
+.LINE 160
 
-;  160	
-;  161			if (key == 0x11) // todo: remove negative number support in GFX as our triangles can't have signed values
-.LINE 161
+;  161	
+;  162			if (key == 0x11) // todo: remove negative number support in GFX as our triangles can't have signed values
+.LINE 162
 
 	LD	A,(IX+-2)
 	CP	A,17
 	JR	NZ,L_21
-;  162			{
-;  163				dbg_sprintf(dbgout, "Negative sign detected\n");
-.LINE 163
+;  163			{
+;  164				dbg_sprintf(dbgout, "Negative sign detected\n");
+.LINE 164
 
-	LD	BC,L__19
+	LD	BC,L__20
 	PUSH	BC
 	LD	BC,16449536
 	PUSH	BC
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;  164				point->label[i++] = char_Neg;
-.LINE 164
+;  165				point->label[i++] = char_Neg;
+.LINE 165
 
 	LD	A,(IX+-1)
 	UEXT	HL
@@ -2310,28 +2323,28 @@ L_22:
 	LD	A,(_char_Neg)
 	LD	(HL),A
 	INC	(IX+-1)
-;  165				gfx_Clear(point);
-.LINE 165
+;  166				gfx_Clear(point);
+.LINE 166
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  166				gfx_Print(point);
-.LINE 166
+;  167				gfx_Print(point);
+.LINE 167
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  167				isNeg = true;
-.LINE 167
+;  168				isNeg = true;
+.LINE 168
 
 	LD	(IX+-3),1
-;  168			}
-;  169	
-;  170			else if (lchars[key] && i + 1 <= gDigitThreshold)
-.LINE 170
+;  169			}
+;  170	
+;  171			else if (lchars[key] && i + 1 <= gDigitThreshold)
+.LINE 171
 
 	JR	L_23
 L_21:
@@ -2355,9 +2368,9 @@ L_21:
 	OR	A,A
 	SBC	HL,BC
 	JP	M,L_23
-;  171			{
-;  172				point->label[i++] = lchars[key];
-.LINE 172
+;  172			{
+;  173				point->label[i++] = lchars[key];
+.LINE 173
 
 	LD	IY,(IX+-6)
 	LD	(IX+-42),IY	; spill
@@ -2372,19 +2385,19 @@ L_21:
 	LD	A,(IY)
 	LD	(HL),A
 	INC	(IX+-1)
-;  173			}
+;  174			}
 L_23:
-.LINE 173
-
-;  174			gfx_Print(point);
 .LINE 174
+
+;  175			gfx_Print(point);
+.LINE 175
 
 	LD	BC,(IX+9)
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;  175			gfx_HorizLine(point->point.x, point->point.y + 8, gfx_GetStringWidth(point->label));
-.LINE 175
+;  176			gfx_HorizLine(point->point.x, point->point.y + 8, gfx_GetStringWidth(point->label));
+.LINE 176
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+0
@@ -2404,17 +2417,17 @@ L_23:
 	POP	BC
 	POP	BC
 	POP	BC
-;  176		}
+;  177		}
 L_24:
-.LINE 176
+.LINE 177
 
 	CALL	_os_GetCSC
 	LD	(IX+-2),A
 	CP	A,9
 	JR	NZ,L_25
-;  177	
-;  178		rbuffer = os_StrToReal(point->label, NULL);
-.LINE 178
+;  178	
+;  179		rbuffer = os_StrToReal(point->label, NULL);
+.LINE 179
 
 	LD	BC,0
 	PUSH	BC
@@ -2428,8 +2441,8 @@ L_24:
 	LEA	DE,IX+-15
 	LD	BC,9
 	LDIR	
-;  179		if (isNeg) rbuffer = os_RealNeg(&rbuffer);
-.LINE 179
+;  180		if (isNeg) rbuffer = os_RealNeg(&rbuffer);
+.LINE 180
 
 	LD	A,(IX+-3)
 	OR	A,A
@@ -2443,10 +2456,10 @@ L_24:
 	LD	BC,9
 	LDIR	
 L_28:
-;  180	
-;  181		/**/
-;  182		lib_StrReplace(point->label, char_Neg, '-');
-.LINE 182
+;  181	
+;  182		/**/
+;  183		lib_StrReplace(point->label, char_Neg, '-');
+.LINE 183
 
 	LD	BC,45
 	PUSH	BC
@@ -2460,12 +2473,12 @@ L_28:
 	POP	BC
 	POP	BC
 	POP	BC
-;  183		dbg_sprintf(dbgout, "[IO In] %s\n", point->label);
-.LINE 183
+;  184		dbg_sprintf(dbgout, "[IO In] %s\n", point->label);
+.LINE 184
 
 	LD	IY,(IX+9)
 	PEA	IY+6
-	LD	BC,L__24
+	LD	BC,L__25
 	PUSH	BC
 	LD	BC,16449536
 	PUSH	BC
@@ -2473,9 +2486,9 @@ L_28:
 	POP	BC
 	POP	BC
 	POP	BC
-;  184	
-;  185		return rbuffer;
-.LINE 185
+;  185	
+;  186		return rbuffer;
+.LINE 186
 
 	LEA	HL,IX+6
 	LD	DE,(HL)
@@ -2483,8 +2496,8 @@ L_28:
 	LD	BC,9
 	LDIR	
 	LD	HL,(IX+6)
-;  186	}
-.LINE 186
+;  187	}
+.LINE 187
 
 	LD	SP,IX
 	POP	IX
@@ -2518,12 +2531,12 @@ L_28:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "io_gfx_ReadReal",186,"_io_gfx_ReadReal"
+.ENDFUNC "io_gfx_ReadReal",187,"_io_gfx_ReadReal"
 	SEGMENT STRSECT
-L__19:
+L__20:
 	DB	"Negative sign detected"
 	DB	10,0
-L__24:
+L__25:
 	DB	"[IO In] %s"
 	DB	10,0
 	SEGMENT DATA
@@ -2586,9 +2599,9 @@ _0lchars:
 	DB	0
 	DB	0
 	SEGMENT CODE
-;  187	
-;  188	bool PointEq(superpoint_t a, superpoint_t b)
-;  189	{
+;  188	
+;  189	bool PointEq(superpoint_t a, superpoint_t b)
+;  190	{
 _PointEq:
 .DEFINE "_PointEq"
 
@@ -2600,9 +2613,9 @@ _PointEq:
 
 .ENDEF
 
-.BEGFUNC "PointEq",189,"_PointEq"
+.BEGFUNC "PointEq",190,"_PointEq"
 
-.LINE 189
+.LINE 190
 
 .DEFINE "a"
 
@@ -2632,8 +2645,8 @@ _PointEq:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;  190		return a.point.x == b.point.x && a.point.y == b.point.y;
-.LINE 190
+;  191		return a.point.x == b.point.x && a.point.y == b.point.y;
+.LINE 191
 
 	LD	BC,(IX+33)
 	LD	HL,(IX+6)
@@ -2645,8 +2658,8 @@ _PointEq:
 	OR	A,A
 	SBC	HL,BC
 	JR	NZ,L_32
-;  191	}
-.LINE 191
+;  192	}
+.LINE 192
 
 	LD	BC,1
 	LD	(IX+-3),BC
@@ -2672,10 +2685,131 @@ L_33:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "PointEq",191,"_PointEq"
-;  192	
-;  193	void gfx_ClearHighlight(superpoint_t* p)
-;  194	{
+.ENDFUNC "PointEq",192,"_PointEq"
+;  193	
+;  194	void gfx_SetFocus(superpoint_t** currSel, superpoint_t* from, superpoint_t* to)
+;  195	{
+_gfx_SetFocus:
+.DEFINE "_gfx_SetFocus"
+
+.VALUE _gfx_SetFocus
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "gfx_SetFocus",195,"_gfx_SetFocus"
+
+.LINE 195
+
+.DEFINE "currSel"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME16"
+
+.TYPE 296
+
+.ENDEF
+
+.DEFINE "from"
+
+.CLASS 65
+
+.VALUE 9
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+.DEFINE "to"
+
+.CLASS 65
+
+.VALUE 12
+
+.TAG "NONAME16"
+
+.TYPE 40
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;  196		gfx_ClearHighlight(from);
+.LINE 196
+
+	LD	BC,(IX+9)
+	PUSH	BC
+	CALL	_gfx_ClearHighlight
+	POP	BC
+;  197		gfx_HighlightPoint(to);
+.LINE 197
+
+	LD	BC,(IX+12)
+	PUSH	BC
+	CALL	_gfx_HighlightPoint
+	POP	BC
+;  198		*currSel = to;
+.LINE 198
+
+	LD	HL,(IX+6)
+	LD	BC,(IX+12)
+	LD	(HL),BC
+;  199		dbg_sprintf(dbgout, "[GFX] %s -> %s\n", from->label, to->label);
+.LINE 199
+
+	LD	IY,(IX+12)
+	PEA	IY+6
+	LD	IY,(IX+9)
+	PEA	IY+6
+	LD	BC,L__30
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;  200	}
+.LINE 200
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _gfx_SetFocus ***************************
+;Name                         Addr/Register   Size   Type
+;_sprintf                            IMPORT  -----   function
+;_gfx_HighlightPoint                 IMPORT  -----   function
+;_gfx_ClearHighlight                 IMPORT  -----   function
+;to                                   IX+12      3   parameter
+;from                                  IX+9      3   parameter
+;currSel                               IX+6      3   parameter
+
+
+; Stack Frame Size: 15 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "gfx_SetFocus",200,"_gfx_SetFocus"
+	SEGMENT STRSECT
+L__30:
+	DB	"[GFX] %s -> %s"
+	DB	10,0
+	SEGMENT CODE
+;  201	
+;  202	void gfx_ClearHighlight(superpoint_t* p)
+;  203	{
 _gfx_ClearHighlight:
 .DEFINE "_gfx_ClearHighlight"
 
@@ -2687,9 +2821,9 @@ _gfx_ClearHighlight:
 
 .ENDEF
 
-.BEGFUNC "gfx_ClearHighlight",194,"_gfx_ClearHighlight"
+.BEGFUNC "gfx_ClearHighlight",203,"_gfx_ClearHighlight"
 
-.LINE 194
+.LINE 203
 
 .DEFINE "p"
 
@@ -2706,15 +2840,15 @@ _gfx_ClearHighlight:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;  195		gfx_Clear(p);
-.LINE 195
+;  204		gfx_Clear(p);
+.LINE 204
 
 	LD	BC,(IX+6)
 	PUSH	BC
 	CALL	_gfx_Clear
 	POP	BC
-;  196		gfx_PrintColor(p, gfx_black);
-.LINE 196
+;  205		gfx_PrintColor(p, gfx_black);
+.LINE 205
 
 	LD	BC,0
 	PUSH	BC
@@ -2723,8 +2857,8 @@ _gfx_ClearHighlight:
 	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-;  197	}
-.LINE 197
+;  206	}
+.LINE 206
 
 	LD	SP,IX
 	POP	IX
@@ -2742,10 +2876,10 @@ _gfx_ClearHighlight:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_ClearHighlight",197,"_gfx_ClearHighlight"
-;  198	
-;  199	void gfx_PrintColor(const superpoint_t* p, uint8_t color)
-;  200	{
+.ENDFUNC "gfx_ClearHighlight",206,"_gfx_ClearHighlight"
+;  207	
+;  208	void gfx_PrintColor(const superpoint_t* p, uint8_t color)
+;  209	{
 _gfx_PrintColor:
 .DEFINE "_gfx_PrintColor"
 
@@ -2757,9 +2891,9 @@ _gfx_PrintColor:
 
 .ENDEF
 
-.BEGFUNC "gfx_PrintColor",200,"_gfx_PrintColor"
+.BEGFUNC "gfx_PrintColor",209,"_gfx_PrintColor"
 
-.LINE 200
+.LINE 209
 
 .DEFINE "p"
 
@@ -2787,16 +2921,16 @@ _gfx_PrintColor:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;  201		gfx_SetTextFGColor(color);
-.LINE 201
+;  210		gfx_SetTextFGColor(color);
+.LINE 210
 
 	LD	C,(IX+9)
 	LD	B,0
 	PUSH	BC
 	CALL	_gfx_SetTextFGColor
 	POP	BC
-;  202		gfx_PrintStringXY(p->label, p->point.x, p->point.y);
-.LINE 202
+;  211		gfx_PrintStringXY(p->label, p->point.x, p->point.y);
+.LINE 211
 
 	LD	IY,(IX+6)
 	LEA	BC,IY+0
@@ -2812,15 +2946,15 @@ _gfx_PrintColor:
 	POP	BC
 	POP	BC
 	POP	BC
-;  203		gfx_SetTextFGColor(gfx_black);
-.LINE 203
+;  212		gfx_SetTextFGColor(gfx_black);
+.LINE 212
 
 	LD	BC,0
 	PUSH	BC
 	CALL	_gfx_SetTextFGColor
 	POP	BC
-;  204	}
-.LINE 204
+;  213	}
+.LINE 213
 
 	LD	SP,IX
 	POP	IX
@@ -2839,10 +2973,10 @@ _gfx_PrintColor:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_PrintColor",204,"_gfx_PrintColor"
-;  205	
-;  206	void gfx_HighlightPoint(superpoint_t* p)
-;  207	{
+.ENDFUNC "gfx_PrintColor",213,"_gfx_PrintColor"
+;  214	
+;  215	void gfx_HighlightPoint(superpoint_t* p)
+;  216	{
 _gfx_HighlightPoint:
 .DEFINE "_gfx_HighlightPoint"
 
@@ -2854,9 +2988,9 @@ _gfx_HighlightPoint:
 
 .ENDEF
 
-.BEGFUNC "gfx_HighlightPoint",207,"_gfx_HighlightPoint"
+.BEGFUNC "gfx_HighlightPoint",216,"_gfx_HighlightPoint"
 
-.LINE 207
+.LINE 216
 
 .DEFINE "p"
 
@@ -2873,8 +3007,8 @@ _gfx_HighlightPoint:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-;  208		gfx_PrintColor(p, gfx_red);
-.LINE 208
+;  217		gfx_PrintColor(p, gfx_red);
+.LINE 217
 
 	LD	BC,224
 	PUSH	BC
@@ -2883,7 +3017,7 @@ _gfx_HighlightPoint:
 	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-.LINE 209
+.LINE 218
 
 	LD	SP,IX
 	POP	IX
@@ -2900,7 +3034,7 @@ _gfx_HighlightPoint:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_HighlightPoint",209,"_gfx_HighlightPoint"
+.ENDFUNC "gfx_HighlightPoint",218,"_gfx_HighlightPoint"
 	XREF _sprintf:ROM
 	XREF _strlen:ROM
 	XREF _strncpy:ROM
@@ -2925,6 +3059,7 @@ _gfx_HighlightPoint:
 	XDEF _gfx_HighlightPoint
 	XDEF _gfx_PrintColor
 	XDEF _gfx_ClearHighlight
+	XDEF _gfx_SetFocus
 	XDEF _PointEq
 	XDEF _io_gfx_ReadReal
 	XDEF _sp_SetLabel
