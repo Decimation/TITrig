@@ -11,7 +11,7 @@
 void geo_RoundTriangle(triangle_t* triangle, uint8_t places)
 {
 	int i = 0;
-	real_t* mem = (real_t*) triangle;
+	real_t* const mem = (real_t*) triangle;
 	for (; i < sizeof(*triangle) / sizeof(real_t); i++)
 	{
 		mem[i] = os_RealRound(&mem[i], places);

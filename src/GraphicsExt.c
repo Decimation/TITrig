@@ -7,7 +7,6 @@
 #include <string.h>
 #include <debug.h>
 
-
 void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner)
 {
 	char numInnerBuf[10], numOuterBuf[10];
@@ -130,7 +129,7 @@ void gfx_Print(const superpoint_t* p)
 	gfx_PrintStringXY(p->label, p->point.x, p->point.y);
 }
 
-void sp_SetLabel(superpoint_t* p, const char* s)
+void sp_SetLabel(const superpoint_t* p, const char* s)
 {
 	gfx_Clear(p);
 	lib_MemZero(p->label, 20);
@@ -142,11 +141,11 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 	bool        isNeg    = false;
 	uint8_t     key, i   = 0;
 	real_t      rbuffer;
-	static char lchars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+	static char chars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
 	gfx_Clear(point);
 	lib_MemZero(point->label, 20);
-	lchars[33] = '0';
-	lchars[18] = '3';
+	chars[33] = '0';
+	chars[18] = '3';
 
 	while ((key = os_GetCSC()) != sk_Enter)
 	{
@@ -168,9 +167,9 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 			isNeg = true;
 		}
 
-		else if (lchars[key] && i + 1 <= gDigitThreshold)
+		else if (chars[key] && i + 1 <= gDigitThreshold)
 		{
-			point->label[i++] = lchars[key];
+			point->label[i++] = chars[key];
 		}
 		gfx_Print(point);
 		gfx_HorizLine(point->point.x, point->point.y + 8, gfx_GetStringWidth(point->label));
@@ -186,7 +185,7 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 	return rbuffer;
 }
 
-bool PointEq(superpoint_t a, superpoint_t b)
+bool PointEq(const superpoint_t a, const superpoint_t b)
 {
 	return a.point.x == b.point.x && a.point.y == b.point.y;
 }
@@ -199,7 +198,7 @@ void gfx_SetFocus(superpoint_t** currSel, superpoint_t* from, superpoint_t* to)
 	dbg_sprintf(dbgout, "[GFX] %s -> %s\n", from->label, to->label);
 }
 
-void gfx_ClearHighlight(superpoint_t* p)
+void gfx_ClearHighlight(const superpoint_t* p)
 {
 	gfx_Clear(p);
 	gfx_PrintColor(p, gfx_black);
@@ -212,7 +211,7 @@ void gfx_PrintColor(const superpoint_t* p, uint8_t color)
 	gfx_SetTextFGColor(gfx_black);
 }
 
-void gfx_HighlightPoint(superpoint_t* p)
+void gfx_HighlightPoint(const superpoint_t* p)
 {
 	gfx_PrintColor(p, gfx_red);
 }

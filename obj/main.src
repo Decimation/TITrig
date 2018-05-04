@@ -672,9 +672,9 @@ _main:
 ;   19		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
 .LINE 19
 
-	LD	BC,1
+	LD	BC,0
 	PUSH	BC
-	LD	BC,2
+	LD	BC,3
 	PUSH	BC
 	LD	BC,L__1
 	PUSH	BC
@@ -731,9 +731,9 @@ _main:
 ;   28		sprintf(buf, "Build %d.%d", kMajor, kMinor);
 .LINE 28
 
-	LD	BC,1
+	LD	BC,0
 	PUSH	BC
-	LD	BC,2
+	LD	BC,3
 	PUSH	BC
 	LD	BC,L__2
 	PUSH	BC

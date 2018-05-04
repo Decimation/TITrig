@@ -6,7 +6,7 @@
 #include <debug.h>
 #include "Simplifiers.h"
 
-static const float Step = 0.1;
+//static const float Step = 0.1;
 
 int IsEven(double d)
 {

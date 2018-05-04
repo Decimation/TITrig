@@ -37,13 +37,13 @@ void gfx_Clear(const superpoint_t* p);
 
 real_t io_gfx_ReadReal(superpoint_t* vBuffer);
 
-bool PointEq(superpoint_t a, superpoint_t b);
+bool PointEq(const superpoint_t a, const superpoint_t b);
 
-void sp_SetLabel(superpoint_t* p, const char* s);
+void sp_SetLabel(const superpoint_t* p, const char* s);
 
-void gfx_ClearHighlight(superpoint_t* p);
+void gfx_ClearHighlight(const superpoint_t* p);
 
-void gfx_HighlightPoint(superpoint_t* p);
+void gfx_HighlightPoint(const superpoint_t* p);
 
 void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner);
 
