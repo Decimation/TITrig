@@ -595,18 +595,17 @@ _spDigThreshold:
 ;    8	#include <string.h>
 ;    9	#include "Settings.h"
 ;   10	#include "GraphicsExt.h"
-;   11	#include "Types.h"
-;   12	
-;   13	uint8_t gRound          = 2;
-;   14	uint8_t gDigitThreshold = 6;
-;   15	
-;   16	static superpoint_t spRound        = {{20, 20}, "Rounding digits: "};
-;   17	static superpoint_t spDigThreshold = {{20, 40}, "Digit threshold: "};
+;   11	
+;   12	uint8_t gRound          = 2;
+;   13	uint8_t gDigitThreshold = 6;
+;   14	
+;   15	static superpoint_t spRound        = {{20, 20}, "Rounding digits: "};
+;   16	static superpoint_t spDigThreshold = {{20, 40}, "Digit threshold: "};
 	SEGMENT CODE
-;   18	
-;   19	//todo
-;   20	void set_Menu()
-;   21	{
+;   17	
+;   18	//todo
+;   19	void set_Menu()
+;   20	{
 _set_Menu:
 .DEFINE "_set_Menu"
 
@@ -618,9 +617,9 @@ _set_Menu:
 
 .ENDEF
 
-.BEGFUNC "set_Menu",21,"_set_Menu"
+.BEGFUNC "set_Menu",20,"_set_Menu"
 
-.LINE 21
+.LINE 20
 
 .DEFINE "babybuf"
 
@@ -640,14 +639,14 @@ _set_Menu:
 	PUSH	BC
 	DEC	SP
 	DEC	SP
-;   22		char babybuf[5];
-;   23		gfx_ZeroScreen();
-.LINE 23
+;   21		char babybuf[5];
+;   22		gfx_ZeroScreen();
+.LINE 22
 
 	CALL	_gfx_ZeroScreen
-;   24	
-;   25		sprintf(babybuf, "%d", gRound);
-.LINE 25
+;   23	
+;   24		sprintf(babybuf, "%d", gRound);
+.LINE 24
 
 	LD	A,(_gRound)
 	UEXT	HL
@@ -660,8 +659,8 @@ _set_Menu:
 	POP	BC
 	POP	BC
 	POP	BC
-;   26		strncpy(spRound.label + 17, babybuf, strlen(babybuf));
-.LINE 26
+;   25		strncpy(spRound.label + 17, babybuf, strlen(babybuf));
+.LINE 25
 
 	PEA	IX+-5
 	CALL	_strlen
@@ -674,9 +673,9 @@ _set_Menu:
 	POP	BC
 	POP	BC
 	POP	BC
-;   27	
-;   28		sprintf(babybuf, "%d", gDigitThreshold);
-.LINE 28
+;   26	
+;   27		sprintf(babybuf, "%d", gDigitThreshold);
+.LINE 27
 
 	LD	A,(_gDigitThreshold)
 	UEXT	HL
@@ -689,8 +688,8 @@ _set_Menu:
 	POP	BC
 	POP	BC
 	POP	BC
-;   29		strncpy(spDigThreshold.label + 17, babybuf, strlen(babybuf));
-.LINE 29
+;   28		strncpy(spDigThreshold.label + 17, babybuf, strlen(babybuf));
+.LINE 28
 
 	PEA	IX+-5
 	CALL	_strlen
@@ -703,9 +702,9 @@ _set_Menu:
 	POP	BC
 	POP	BC
 	POP	BC
-;   30	
-;   31	}
-.LINE 31
+;   29	
+;   30	}
+.LINE 30
 
 	LD	SP,IX
 	POP	IX
@@ -729,7 +728,7 @@ _set_Menu:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "set_Menu",31,"_set_Menu"
+.ENDFUNC "set_Menu",30,"_set_Menu"
 	SEGMENT STRSECT
 L__0:
 	DB	"%d"

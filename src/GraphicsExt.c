@@ -136,6 +136,66 @@ void sp_SetLabel(const superpoint_t* p, const char* s)
 	strncpy(p->label, s, strlen(s));
 }
 
+
+real_t io_gfx_ReadSqrt(superpoint_t* point)
+{
+	real_t      tmp, initialValue;
+	uint8_t     key;
+	int         i       = 0;
+	const int   strW    = gfx_GetStringWidth(point->label);
+	static char chars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+	chars[33] = '0';
+	chars[18] = '3';
+
+	if (strlen(point->label) != 0)
+	{
+		initialValue = os_StrToReal(point->label, NULL);
+	}
+	else
+	{
+		initialValue = os_Int24ToReal(1);
+	}
+
+	gfx_Clear(point);
+	gfx_Print(point);
+
+	gfx_Line(point->point.x + strW, point->point.y + 3, point->point.x + strW + 2, point->point.y + 7);
+
+	gfx_VertLine(point->point.x + strW + 3, point->point.y - 3, 11);
+
+	gfx_HorizLine(point->point.x + strW + 3, point->point.y - 3, strW + 3);
+
+	//gfx_Clear(point);
+	lib_MemZero(point->label, 20);
+
+	while ((key = os_GetCSC()) != sk_Enter)
+	{
+		if (key == sk_Del)
+		{
+			gfx_Clear(point);
+			point->label[--i] = '\0';
+			gfx_Clear(point);
+			gfx_Print(point);
+		}
+
+		else if (chars[key] && i + 1 <= gDigitThreshold)
+		{
+			point->label[i++] = chars[key];
+			gfx_PrintStringXY(point->label, point->point.x + strW + 6, point->point.y);
+		}
+		gfx_HorizLine(point->point.x + strW + 3, point->point.y - 3, gfx_GetStringWidth(point->label) + 3);
+	}
+
+	gfx_SetColor(gfx_white);
+	gfx_FillRectangle(point->point.x, point->point.y - 3, gfx_GetStringWidth(point->label) + strW + 6,
+					  point->point.y + 3);
+	gfx_SetColor(gfx_black);
+
+	tmp = os_StrToReal(point->label, NULL);
+	tmp = os_RealSqrt(&tmp);
+	return os_RealMul(&initialValue, &tmp);
+}
+
 real_t io_gfx_ReadReal(superpoint_t* point)
 {
 	bool        isNeg   = false;
@@ -167,6 +227,13 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 			isNeg = true;
 		}
 
+		if (chars[key] == 'I')
+		{
+
+			rbuffer = io_gfx_ReadSqrt(point);
+			return rbuffer;
+		}
+
 		else if (chars[key] && i + 1 <= gDigitThreshold)
 		{
 			point->label[i++] = chars[key];
@@ -179,8 +246,8 @@ real_t io_gfx_ReadReal(superpoint_t* point)
 	if (isNeg) rbuffer = os_RealNeg(&rbuffer);
 
 	/**/
-	lib_StrReplace(point->label, char_Neg, '-');
-	dbg_sprintf(dbgout, "[IO In] %s\n", point->label);
+	//lib_StrReplace(point->label, char_Neg, '-');
+	//dbg_sprintf(dbgout, "[IO In] %s\n", point->label);
 
 	return rbuffer;
 }

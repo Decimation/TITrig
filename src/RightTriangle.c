@@ -110,77 +110,6 @@ static const gfx_point_t func2FracPoints[3] = {
 #define angle_B xangles[1]
 #define angle_C xangles[0]
 
-static void heu_Solve30_60_90()
-{
-	const real_t real2  = os_Int24ToReal(2);
-	const real_t real60 = os_Int24ToReal(60);
-	const real_t real30 = os_Int24ToReal(30);
-	const real_t real3  = os_Int24ToReal(3);
-	const real_t sqrt3  = os_RealSqrt(&real3);
-
-
-	/**
-	 * 30-60-90 case:
-	 * Side a is x
-	 * Angle A is 30
-	 */
-	if (trigstatus.a && os_RealCompare(&triangle.A, &real30) == 0)
-	{
-		triangle.b   = os_RealMul(&triangle.a, &sqrt3);
-		trigstatus.b = true;
-		triangle.c   = os_RealMul(&triangle.a, &real2);
-		trigstatus.c = true;
-	}
-	else if (trigstatus.b && os_RealCompare(&triangle.A, &real30) == 0)
-	{
-		triangle.a   = os_RealDiv(&triangle.b, &sqrt3);
-		trigstatus.a = true;
-		triangle.c   = os_RealMul(&triangle.a, &real2);
-		trigstatus.c = true;
-	}
-	else if (trigstatus.c && os_RealCompare(&triangle.A, &real30) == 0)
-	{
-		triangle.a   = os_RealDiv(&triangle.c, &real2);
-		trigstatus.a = true;
-		triangle.b   = os_RealMul(&triangle.a, &sqrt3);
-		trigstatus.b = true;
-	}
-
-	/**
-	 * 30-60-90 case:
-	 * Side b is x
-	 * Angle A is 60
-	 */
-	if (trigstatus.b && os_RealCompare(&triangle.A, &real60) == 0)
-	{
-		triangle.a   = os_RealMul(&triangle.b, &sqrt3);
-		trigstatus.a = true;
-		triangle.c   = os_RealMul(&triangle.b, &real2);
-		trigstatus.c = true;
-	}
-	else if (trigstatus.a && os_RealCompare(&triangle.A, &real60) == 0)
-	{
-		triangle.b   = os_RealDiv(&triangle.b, &sqrt3);
-		trigstatus.b = true;
-		triangle.c   = os_RealMul(&triangle.b, &real2);
-		trigstatus.c = true;
-	}
-	else if (trigstatus.c && os_RealCompare(&triangle.A, &real60) == 0)
-	{
-		triangle.b   = os_RealDiv(&triangle.c, &real2);
-		trigstatus.b = true;
-		triangle.a   = os_RealMul(&triangle.b, &sqrt3);
-		trigstatus.a = true;
-	}
-
-	geo_RoundTriangle(&triangle, 1);
-	if (trigstatus.a && trigstatus.b && trigstatus.c && trigstatus.A && trigstatus.B)
-	{
-		dbg_sprintf(dbgout, "[RightTrig] 30-60-90 triangle fully solved\n");
-	}
-	else
-		dbg_sprintf(dbgout, "[RightTrig] 30-60-90 triangle cannot be solved in its current state\n");
-}
 
 static void ui_AutoDrawFunctions()
 {
@@ -343,6 +272,8 @@ static void right_Sync()
 	if ((trigstatus.a && trigstatus.b) && os_RealCompare(&triangle.a, &triangle.b) == 0)
 	{
 		is45_45_90 = true;
+
+
 	}
 
 	if (is30_60_90)
@@ -368,6 +299,7 @@ static void right_Sync()
 		triangle.c   = os_RealMul(&triangle.a, &sqrt2);
 		trigstatus.b = true;
 		trigstatus.c = true;
+
 	}
 
 
@@ -381,6 +313,7 @@ static void right_Sync()
 		triangle.c   = os_RealMul(&triangle.b, &sqrt2);
 		trigstatus.a = true;
 		trigstatus.c = true;
+		os_RealToStr(side_a.label, &triangle.a, 0, 0, 6);
 	}
 
 
@@ -391,9 +324,11 @@ static void right_Sync()
 	if (trigstatus.c && is45_45_90)
 	{
 		triangle.a   = os_RealDiv(&triangle.c, &sqrt2);
-		trigstatus.a = true;
 		triangle.b   = triangle.a;
+		trigstatus.a = true;
 		trigstatus.b = true;
+		os_RealToStr(side_a.label, &triangle.a, 0, 0, 6);
+		os_RealToStr(side_b.label, &triangle.b, 0, 0, 6);
 	}
 
 

@@ -18,6 +18,8 @@ void gfx_Clear(const superpoint_t* p);
 
 real_t io_gfx_ReadReal(superpoint_t* vBuffer);
 
+real_t io_gfx_ReadSqrt(superpoint_t* point);
+
 bool PointEq(const superpoint_t a, const superpoint_t b);
 
 void sp_SetLabel(const superpoint_t* p, const char* s);

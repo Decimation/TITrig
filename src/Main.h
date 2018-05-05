@@ -5,7 +5,7 @@
 #ifndef TITRIG_MAIN_H
 #define TITRIG_MAIN_H
 
-#define kMajor 3
+#define kMajor 4
 #define kMinor 0
 
 #include "GraphicsExt.h"
