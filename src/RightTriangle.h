@@ -11,6 +11,8 @@
 
 void right_SolveTriangle();
 
+static void right_SelectSide();
+
 static void right_SelectAngle();
 
 static void ui_DrawFunctions_90();
@@ -29,7 +31,9 @@ static void ui_DispSimplified(real_t* r);
 
 static void right_TruncateLabels(int len);
 
-static void ui_SwitchDispSimpRoot(superpoint_t* currSelection);
+static void ui_AutoDrawFunctions();
+
+static void ui_SwitchDispSimpRoot();
 
 static void ui_ClearDispSimpRoot();
 
@@ -40,5 +44,9 @@ static void ui_ClearArea(gfx_point_t point, uint8_t w, uint8_t h);
 static void right_Reset();
 
 static void ui_DispFunctionRatioRoot(gfx_point_t pt, real_t x, real_t y);
+
+static void right_DrawSides();
+
+static void right_DebugTriangle();
 
 #endif //TITRIG_RIGHTTRIANGLE_H

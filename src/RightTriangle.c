@@ -14,30 +14,23 @@
 #include "Simplifiers.h"
 
 static superpoint_t xangles[3] = {
-		{{30 + 5,   129 - 10}, "90"},  // 90
-		{{30 + 120, 129 - 10}, "B"},  // BBB
-		{{37,       27},       "A"}   // AAA
+		{{30 + 5,   129 - 10}, "90"},
+		{{30 + 120, 129 - 10}, "B"},
+		{{37,       27},       "A"}
 };
 
 static superpoint_t xsides[3] = {
-		{{30 - 25, 129 - 50}, "b"},  // bbb
-		{{30 + 50, 129 + 10}, "a"},  // aaa
-		{{30 + 90, 129 - 70}, "c"}   // ccc
+		{{30 - 25, 129 - 50}, "b"},
+		{{30 + 50, 129 + 10}, "a"},
+		{{30 + 90, 129 - 70}, "c"}
 };
 
 static superpoint_t xsides_oah[3] = {
-		{{30 - 25, 129 - 40}, "..."},  // bbb
-		{{30 + 50, 129 + 20}, "..."},  // aaa
-		{{30 + 90, 129 - 60}, "..."}   // ccc
+		{{30 - 25, 129 - 40}, "..."},
+		{{30 + 50, 129 + 20}, "..."},
+		{{30 + 90, 129 - 60}, "..."}
 };
 
-#define side_a xsides[1]
-#define side_b xsides[0]
-#define side_c xsides[2]
-
-#define angle_A xangles[2]
-#define angle_B xangles[1]
-#define angle_C xangles[0]
 
 static const superpoint_t ui_btn_Mode           = {280, 230, "Mode"};
 static const superpoint_t ui_btn_Clear          = {215, 230, "Clear"};
@@ -47,6 +40,7 @@ static bool              ui_dispSimpRoot;
 static superpoint_t      ui_Wait                = {{230, 40}, "Processing..."};
 static superpoint_t      ui_Mode                = {{230, 10}, "ANGLE MODE"};
 static const gfx_point_t ui_RootPoint           = {230, 25};
+static superpoint_t      ui_Type                = {{230, 70}, "..."};
 
 static const char lbl_AngleMode[] = "ANGLE MODE";
 static const char lbl_SideMode[]  = "SIDE MODE";
@@ -57,7 +51,24 @@ static const char lbl_OPP[]       = "OPP";
 static triangle_t   triangle;
 static trigstatus_t trigstatus;
 
+static bool is45_45_90;
+static bool is30_60_90;
+
 static const char ui_Theta = (char) 91;
+
+static superpoint_t* currentSelection;
+
+/**
+ * Triangle coordinates
+ */
+const int verts[6] = {
+		30,
+		10,   /* (x0, y0) */
+		30,
+		129,  /* (x1, y1) */
+		189,
+		129, /* (x2, y2) */
+};
 
 static const superpoint_t funcData[3] = {
 		{10,  175, "sin = "},
@@ -91,10 +102,155 @@ static const gfx_point_t func2FracPoints[3] = {
 #define fnCosPt funcFracPoints[1]
 #define fnTanPt funcFracPoints[2]
 
+#define side_a xsides[1]
+#define side_b xsides[0]
+#define side_c xsides[2]
+
+#define angle_A xangles[2]
+#define angle_B xangles[1]
+#define angle_C xangles[0]
+
+static void heu_Solve30_60_90()
+{
+	const real_t real2  = os_Int24ToReal(2);
+	const real_t real60 = os_Int24ToReal(60);
+	const real_t real30 = os_Int24ToReal(30);
+	const real_t real3  = os_Int24ToReal(3);
+	const real_t sqrt3  = os_RealSqrt(&real3);
+
+
+	/**
+	 * 30-60-90 case:
+	 * Side a is x
+	 * Angle A is 30
+	 */
+	if (trigstatus.a && os_RealCompare(&triangle.A, &real30) == 0)
+	{
+		triangle.b   = os_RealMul(&triangle.a, &sqrt3);
+		trigstatus.b = true;
+		triangle.c   = os_RealMul(&triangle.a, &real2);
+		trigstatus.c = true;
+	}
+	else if (trigstatus.b && os_RealCompare(&triangle.A, &real30) == 0)
+	{
+		triangle.a   = os_RealDiv(&triangle.b, &sqrt3);
+		trigstatus.a = true;
+		triangle.c   = os_RealMul(&triangle.a, &real2);
+		trigstatus.c = true;
+	}
+	else if (trigstatus.c && os_RealCompare(&triangle.A, &real30) == 0)
+	{
+		triangle.a   = os_RealDiv(&triangle.c, &real2);
+		trigstatus.a = true;
+		triangle.b   = os_RealMul(&triangle.a, &sqrt3);
+		trigstatus.b = true;
+	}
+
+	/**
+	 * 30-60-90 case:
+	 * Side b is x
+	 * Angle A is 60
+	 */
+	if (trigstatus.b && os_RealCompare(&triangle.A, &real60) == 0)
+	{
+		triangle.a   = os_RealMul(&triangle.b, &sqrt3);
+		trigstatus.a = true;
+		triangle.c   = os_RealMul(&triangle.b, &real2);
+		trigstatus.c = true;
+	}
+	else if (trigstatus.a && os_RealCompare(&triangle.A, &real60) == 0)
+	{
+		triangle.b   = os_RealDiv(&triangle.b, &sqrt3);
+		trigstatus.b = true;
+		triangle.c   = os_RealMul(&triangle.b, &real2);
+		trigstatus.c = true;
+	}
+	else if (trigstatus.c && os_RealCompare(&triangle.A, &real60) == 0)
+	{
+		triangle.b   = os_RealDiv(&triangle.c, &real2);
+		trigstatus.b = true;
+		triangle.a   = os_RealMul(&triangle.b, &sqrt3);
+		trigstatus.a = true;
+	}
+
+	geo_RoundTriangle(&triangle, 1);
+	if (trigstatus.a && trigstatus.b && trigstatus.c && trigstatus.A && trigstatus.B)
+	{
+		dbg_sprintf(dbgout, "[RightTrig] 30-60-90 triangle fully solved\n");
+	}
+	else
+		dbg_sprintf(dbgout, "[RightTrig] 30-60-90 triangle cannot be solved in its current state\n");
+}
+
+static void ui_AutoDrawFunctions()
+{
+	if (PointEq(*currentSelection, angle_A))
+	{
+		ui_DrawFunctions_A();
+	}
+	else if (PointEq(*currentSelection, angle_B))
+	{
+		ui_DrawFunctions_B();
+	}
+	else if (PointEq(*currentSelection, angle_C))
+	{
+		ui_DrawFunctions_90();
+	}
+}
+
+static void right_DebugTriangle()
+{
+	char buf[20];
+	os_RealToStr(buf, &triangle.A, 0, 0, -1);
+	dbg_sprintf(dbgout, "Angle A: %s | ", buf);
+	os_RealToStr(buf, &triangle.a, 0, 0, -1);
+	dbg_sprintf(dbgout, "Side a: %s\n", buf);
+
+	os_RealToStr(buf, &triangle.B, 0, 0, -1);
+	dbg_sprintf(dbgout, "Angle B: %s | ", buf);
+	os_RealToStr(buf, &triangle.b, 0, 0, -1);
+	dbg_sprintf(dbgout, "Side b: %s\n", buf);
+
+	os_RealToStr(buf, &triangle.C, 0, 0, -1);
+	dbg_sprintf(dbgout, "Angle C: %s | ", buf);
+	os_RealToStr(buf, &triangle.c, 0, 0, -1);
+	dbg_sprintf(dbgout, "Side c: %s\n", buf);
+
+	dbg_sprintf(dbgout, "Angle availability: [%s, %s, %s]\n", trigstatus.A ? "1" : "0", trigstatus.B ? "1" : "0",
+				trigstatus.C ? "1" : "0");
+	dbg_sprintf(dbgout, "Side availability: [%s, %s, %s]\n", trigstatus.a ? "1" : "0", trigstatus.b ? "1" : "0",
+				trigstatus.c ? "1" : "0");
+
+	os_RealToStr(buf, &triangle.area, 0, 0, -1);
+	dbg_sprintf(dbgout, "Area: %s\n", buf);
+	os_RealToStr(buf, &triangle.perimeter, 0, 0, -1);
+	dbg_sprintf(dbgout, "Perimeter: %s\n", buf);
+}
+
+/**
+ * Uses basic heuristics to automatically detect if a triangle is
+ * a special right triangle (45-45-90, 30-60-90)
+ *
+ * An SRT will automatically be detected if
+ *  - Its angles are detected
+ *  - Sides of a 45-45-90 are detected
+ *
+ * A 30-60-90 will not be detected by its sides.
+ */
 static void right_Sync()
 {
-	dbg_sprintf(dbgout, "Synchronizing right triangle...\n");
+	const real_t real45 = os_Int24ToReal(45);
+	const real_t real60 = os_Int24ToReal(60);
+	const real_t real30 = os_Int24ToReal(30);
+	const real_t real2  = os_Int24ToReal(2);
+	const real_t sqrt2  = os_RealSqrt(&real2);
+	const real_t real3  = os_Int24ToReal(3);
+	const real_t sqrt3  = os_RealSqrt(&real3);
+
+
+	dbg_sprintf(dbgout, "[RightTrig] Synchronizing right triangle...\n");
 	geo_RoundTriangle(&triangle, gRound);
+
 	if (trigstatus.A)
 	{
 		os_RealToStr(angle_A.label, &triangle.A, 0, 0, 6);
@@ -103,21 +259,147 @@ static void right_Sync()
 	{
 		os_RealToStr(angle_B.label, &triangle.B, 0, 0, 6);
 	}
+
+	/**
+	 * Detect if the triangle is a special right triangle by checking its angles
+	 */
+	if (os_RealCompare(&triangle.A, &real45) == 0 || os_RealCompare(&triangle.B, &real45) == 0)
+	{
+		is45_45_90 = true;
+	}
+	if (os_RealCompare(&triangle.A, &real30) == 0 || os_RealCompare(&triangle.B, &real60) == 0)
+	{
+		is30_60_90 = true;
+
+		dbg_sprintf(dbgout, "[RightTrig] 30-60-90 case: Side a is x, angle A is 30\n");
+		/**
+		 * 30-60-90 case:
+		 * Side a is x
+		 * Angle A is 30
+		 */
+		if (trigstatus.a && os_RealCompare(&triangle.A, &real30) == 0)
+		{
+			triangle.b   = os_RealMul(&triangle.a, &sqrt3);
+			trigstatus.b = true;
+			triangle.c   = os_RealMul(&triangle.a, &real2);
+			trigstatus.c = true;
+		}
+		else if (trigstatus.b && os_RealCompare(&triangle.A, &real30) == 0)
+		{
+			triangle.a   = os_RealDiv(&triangle.b, &sqrt3);
+			trigstatus.a = true;
+			triangle.c   = os_RealMul(&triangle.a, &real2);
+			trigstatus.c = true;
+		}
+		else if (trigstatus.c && os_RealCompare(&triangle.A, &real30) == 0)
+		{
+			triangle.a   = os_RealDiv(&triangle.c, &real2);
+			trigstatus.a = true;
+			triangle.b   = os_RealMul(&triangle.a, &sqrt3);
+			trigstatus.b = true;
+		}
+		geo_RoundTriangle(&triangle, 1);
+	}
+	else if (os_RealCompare(&triangle.A, &real60) == 0 || os_RealCompare(&triangle.B, &real30) == 0)
+	{
+		is30_60_90 = true;
+
+		dbg_sprintf(dbgout, "[RightTrig] 30-60-90 case: Side b is x, angle A is 60\n");
+		/**
+		 * 30-60-90 case:
+		 * Side b is x
+		 * Angle A is 60
+		 */
+		if (trigstatus.b && os_RealCompare(&triangle.A, &real60) == 0)
+		{
+			triangle.a   = os_RealMul(&triangle.b, &sqrt3);
+			trigstatus.a = true;
+			triangle.c   = os_RealMul(&triangle.b, &real2);
+			trigstatus.c = true;
+		}
+		else if (trigstatus.a && os_RealCompare(&triangle.A, &real60) == 0)
+		{
+			triangle.b   = os_RealDiv(&triangle.a, &sqrt3);
+			trigstatus.b = true;
+			triangle.c   = os_RealMul(&triangle.b, &real2);
+			trigstatus.c = true;
+		}
+		else if (trigstatus.c && os_RealCompare(&triangle.A, &real60) == 0)
+		{
+			triangle.b   = os_RealDiv(&triangle.c, &real2);
+			trigstatus.b = true;
+			triangle.a   = os_RealMul(&triangle.b, &sqrt3);
+			trigstatus.a = true;
+		}
+
+		geo_RoundTriangle(&triangle, 1);
+	}
+
+	/**
+	 * Detect if the triangle is a special right triangle by checking its sides
+	 *
+	 * If it's a 45-45-90, both shorter legs will be congruent (a and b)
+	 */
+	if ((trigstatus.a && trigstatus.b) && os_RealCompare(&triangle.a, &triangle.b) == 0)
+	{
+		is45_45_90 = true;
+	}
+
+	if (is30_60_90)
+	{
+		sp_SetLabel(&ui_Type, "30-60-90");
+		gfx_PrintColor(&ui_Type, gfx_blue);
+		dbg_sprintf(dbgout, "30-60-90 detected\n");
+	}
+	if (is45_45_90)
+	{
+		sp_SetLabel(&ui_Type, "45-45-90");
+		gfx_PrintColor(&ui_Type, gfx_blue);
+		dbg_sprintf(dbgout, "45-45-90 detected\n");
+	}
+
 	if (trigstatus.a)
 	{
 		os_RealToStr(side_a.label, &triangle.a, 0, 0, 6);
 	}
+	if (trigstatus.a && is45_45_90)
+	{
+		triangle.b   = triangle.a;
+		triangle.c   = os_RealMul(&triangle.a, &sqrt2);
+		trigstatus.b = true;
+		trigstatus.c = true;
+	}
+
+
 	if (trigstatus.b)
 	{
 		os_RealToStr(side_b.label, &triangle.b, 0, 0, 6);
 	}
+	if (trigstatus.b && is45_45_90)
+	{
+		triangle.a   = triangle.b;
+		triangle.c   = os_RealMul(&triangle.b, &sqrt2);
+		trigstatus.a = true;
+		trigstatus.c = true;
+	}
+
+
 	if (trigstatus.c)
 	{
 		os_RealToStr(side_c.label, &triangle.c, 0, 0, 6);
 	}
+	if (trigstatus.c && is45_45_90)
+	{
+		triangle.a   = os_RealDiv(&triangle.c, &sqrt2);
+		trigstatus.a = true;
+		triangle.b   = triangle.a;
+		trigstatus.b = true;
+	}
+
 
 	right_TruncateLabels(gDigitThreshold);
 	right_Redraw();
+	ui_AutoDrawFunctions();
 }
 
 static void right_TruncateLabels(int len)
@@ -338,6 +620,8 @@ static void right_Redraw()
 		gfx_Clear(&xsides[index]);
 		gfx_Print(&xsides[index]);
 	}
+
+	right_DrawSides();
 }
 
 static void ui_DrawFunctions_90()
@@ -368,7 +652,7 @@ static void ui_DispSimplified(real_t* r)
 	}
 	gfx_PrintColor(&ui_Wait, gfx_red);
 
-	dbg_sprintf(dbgout, "Simplifying radical...\n");
+	dbg_sprintf(dbgout, "[RightTrig] Simplifying radical...\n");
 	SimplifyRadicalFromDecimal(*r, rad);
 
 	ui_ClearDispSimpRoot();
@@ -393,7 +677,7 @@ static void ui_ClearDispSimpRoot()
 /**
  * Toggles displaying of simplified root form
  */
-static void ui_SwitchDispSimpRoot(superpoint_t* currSelection)
+static void ui_SwitchDispSimpRoot()
 {
 	real_t buf;
 	if (ui_dispSimpRoot)
@@ -406,22 +690,11 @@ static void ui_SwitchDispSimpRoot(superpoint_t* currSelection)
 	{
 		ui_dispSimpRoot = true;
 		gfx_PrintColor(&ui_btn_EnableSimpRoot, gfx_green);
-		buf = os_StrToReal(currSelection->label, NULL);
+		buf = os_StrToReal(currentSelection->label, NULL);
 		ui_DispSimplified(&buf);
 	}
 
-	if (PointEq(*currSelection, angle_A))
-	{
-		ui_DrawFunctions_A();
-	}
-	else if (PointEq(*currSelection, angle_B))
-	{
-		ui_DrawFunctions_B();
-	}
-	else if (PointEq(*currSelection, angle_C))
-	{
-		ui_DrawFunctions_90();
-	}
+	ui_AutoDrawFunctions();
 }
 
 static void right_Reset()
@@ -439,7 +712,6 @@ static void right_Reset()
 		rptr[i] = os_Int24ToReal(0);
 	}
 
-
 	sp_SetLabel(&side_a, "a");
 	sp_SetLabel(&side_b, "b");
 	sp_SetLabel(&side_c, "c");
@@ -447,20 +719,29 @@ static void right_Reset()
 	sp_SetLabel(&angle_A, "A");
 	sp_SetLabel(&angle_B, "B");
 
+	sp_SetLabel(&ui_Type, "...");
+
+	is45_45_90 = false;
+	is30_60_90 = false;
+
 	right_Redraw();
 	right_Sync();
 	ui_ClearDispSimpRoot();
+	gfx_Clear(&ui_Type);
 	dbg_sprintf(dbgout, "[RightTrig] Reset triangle\n");
+
+
 }
 
 static void right_SelectSide()
 {
 	uint8_t key;
-	superpoint_t* currentSelection;
+
 
 	currentSelection = &side_b;
 	gfx_HighlightPoint(&side_b);
 	ui_DrawFunctions_90();
+	ui_DispSimplified(&triangle.b);
 	RECURSE:
 	while ((key = os_GetCSC()) != sk_Enter)
 	{
@@ -472,7 +753,7 @@ static void right_SelectSide()
 
 		if (key == sk_Zoom)
 		{
-			ui_SwitchDispSimpRoot(currentSelection);
+			ui_SwitchDispSimpRoot();
 		}
 
 		if (key == sk_Trace)
@@ -587,7 +868,7 @@ static void right_SelectSide()
 static void right_SelectAngle()
 {
 	uint8_t key;
-	superpoint_t* currentSelection;
+
 	const real_t real90 = os_Int24ToReal(90);
 	currentSelection = &angle_C;
 	gfx_HighlightPoint(&angle_C);
@@ -602,7 +883,7 @@ static void right_SelectAngle()
 
 		if (key == sk_Zoom)
 		{
-			ui_SwitchDispSimpRoot(currentSelection);
+			ui_SwitchDispSimpRoot();
 		}
 
 		if (key == sk_Trace)
@@ -712,16 +993,21 @@ static void right_SelectAngle()
 	goto RECURSE;
 }
 
+static void right_DrawSides()
+{
+	/* Leg a */
+	gfx_Line(verts[0], verts[1], verts[2], verts[3]);
+
+	/* Leg b */
+	gfx_Line(verts[2], verts[3], verts[4], verts[5]);
+
+	/* Hypotenuse */
+	gfx_Line(verts[4], verts[5], verts[0], verts[1]);
+}
+
 void right_SolveTriangle()
 {
 	int index;
-
-	/* Triangle coordinates */
-	const int verts[6] = {
-			30, 10,   /* (x0, y0) */
-			30, 129,  /* (x1, y1) */
-			189, 129, /* (x2, y2) */
-	};
 
 	triangle.C   = os_Int24ToReal(90);
 	trigstatus.C = true;
@@ -731,14 +1017,7 @@ void right_SolveTriangle()
 	gfx_SetColor(gfx_blue);
 	gfx_SetTextFGColor(gfx_black);
 
-	/* Leg a */
-	gfx_Line(verts[0], verts[1], verts[2], verts[3]);
-
-	/* Leg b */
-	gfx_Line(verts[2], verts[3], verts[4], verts[5]);
-
-	/* Hypotenuse */
-	gfx_Line(verts[4], verts[5], verts[0], verts[1]);
+	right_DrawSides();
 
 	// Leg b, a, c
 	for (index = 0; index < 3; index++)

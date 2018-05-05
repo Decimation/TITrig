@@ -1,6 +1,6 @@
 Segment  Base   Top    High   Length
 -------- ------ ------ ------ -------
-bss      D031F6 D03298 D13FD6     A2h
+bss      D031F6 D0329D D13FD6     A7h
 header   D1A87F D1A882             3h
 icon     D1A882 D1A882             0h
 launcher D1A882 D1A8D2            50h
@@ -8,10 +8,10 @@ libs     D1A8D2 D1A907            35h
 startup  D1A907 D1A942            3Bh
 cleanup  D1A942 D1A956            14h
 exit     D1A956 D1A95C             6h
-code     D1A95C D211AF          6853h
-data     D211AF D21518           369h
-strsect  D21518 D21D52           83Ah
-text     D21D52 D21FA6           254h
+code     D1A95C D21EB7          755Bh
+data     D21EB7 D2223A           383h
+strsect  D2223A D22C70           A36h
+text     D22C70 D22EC0           250h
 
 Label                         Value
 ---------------------------   ------
@@ -41,34 +41,36 @@ _lib_MemZero                = D1B427
 _lib_StrReplace             = D1B3EE
 _lib_StrIndexOf             = D1B3A9
 _lib_StrCut                 = D1B324
-_char_Neg                   = D21D52
-_main                       = D1B484
-_right_SolveTriangle        = D1D406
-_set_Menu                   = D1D55B
-_gDigitThreshold            = D21329
-_gRound                     = D21328
-_SimplifyRadical            = D1D817
-_SimplifyRadicalFromDecimal = D1D786
-_DecimalToRoot              = D1D6D7
-_RoundIEEE754               = D1D629
-_IsEven                     = D1D5D0
-_trig_SolveTriangle         = D20B5B
-_trig_AreaBySin             = D1DD10
-_os_RealSinDeg              = D2110D
-_loc_Side_x                 = D21027
-_los_Angle_x                = D20F8E
-_los_Side_x                 = D20F01
-_loc_Angle_x                = D20D11
-_os_RealAcosDeg             = D20C7A
-_SinDeg                     = D20C45
-_ASinDeg                    = D20C0D
-_CosineDeg                  = D20BD8
+_char_Neg                   = D22C70
+_main                       = D1B4F5
+___lowlevel_GetCalcSerial   = D1B484
+_right_SolveTriangle        = D1E193
+_verts                      = D22D35
+_set_Menu                   = D1E263
+_gDigitThreshold            = D2204B
+_gRound                     = D2204A
+_SimplifyRadical            = D1E51F
+_SimplifyRadicalFromDecimal = D1E48E
+_DecimalToRoot              = D1E3DF
+_RoundIEEE754               = D1E331
+_IsEven                     = D1E2D8
+_trig_SolveTriangle         = D21863
+_trig_AreaBySin             = D1EA18
+_os_RealSinDeg              = D21E15
+_loc_Side_x                 = D21D2F
+_los_Angle_x                = D21C96
+_los_Side_x                 = D21C09
+_loc_Angle_x                = D21A19
+_os_RealAcosDeg             = D21982
+_SinDeg                     = D2194D
+_ASinDeg                    = D21915
+_CosineDeg                  = D218E0
 __fadd                      = 000270
 __fcmp                      = 000274
 __fdiv                      = 000278
 __fmul                      = 000288
 __fsub                      = 000290
-__icmpzero                  = D211A0
+__icmpzero                  = D21EA8
 __idivs                     = 00013C
 __ildix                     = 000148
 __imuls                     = 000154
@@ -79,7 +81,7 @@ __ishru_b                   = 000184
 __ishru_b                   = 000188
 __istix                     = 00018C
 _memmove                    = 0000A8
-__OS                        = D211A5
+__OS                        = D21EAD
 __setflag                   = 000218
 _sprintf                    = 0000BC
 _strchr                     = 0000C4

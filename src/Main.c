@@ -4,6 +4,7 @@
 
 #include "Main.h"
 
+
 int main(void)
 {
 	char                      buf[20];
@@ -13,7 +14,6 @@ int main(void)
 	const static superpoint_t iopoint = {{12, 116}, "..."};
 	const static superpoint_t title   = {{12, 16}, "TITrig"};
 	const static superpoint_t author  = {{12, 36}, "By Decimation"};
-
 
 	dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
 	dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);

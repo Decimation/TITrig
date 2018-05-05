@@ -510,8 +510,141 @@
 ;    4	
 ;    5	#include "Main.h"
 ;    6	
-;    7	int main(void)
-;    8	{
+;    7	void __lowlevel_GetCalcSerial() {
+___lowlevel_GetCalcSerial:
+.DEFINE "___lowlevel_GetCalcSerial"
+
+.VALUE ___lowlevel_GetCalcSerial
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "__lowlevel_GetCalcSerial",7,"___lowlevel_GetCalcSerial"
+
+.LINE 7
+
+.DEFINE "i"
+
+.CLASS 65
+
+.VALUE -3
+
+.TYPE 4
+
+.ENDEF
+
+.DEFINE "bytes"
+
+.CLASS 65
+
+.VALUE -8
+
+.DIM 5
+
+.TYPE 108
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	LEA	HL,IX+-11
+	LD	SP,HL
+;    8		uint8_t* mem = (void*) 0x8478;
+;    9		uint8_t bytes[5];
+;   10		int i = 0;
+.LINE 10
+
+	LD	BC,0
+	LD	(IX+-3),BC
+;   11		_OS((void*)0x807E);
+.LINE 11
+
+	LD	BC,32894
+	PUSH	BC
+	CALL	__OS
+	POP	BC
+;   12		for (; i < 5; i++) {
+.LINE 12
+
+	JR	L_3
+L_1:
+;   13			bytes[i] = mem[i];
+.LINE 13
+
+	LD	BC,(IX+-3)
+	LEA	HL,IX+-8
+	ADD	HL,BC
+	LD	(IX+-11),HL
+	LD	BC,33912
+	LD	HL,(IX+-3)
+	ADD	HL,BC
+	LD	IY,(IX+-11)
+	LD	A,(HL)
+	LD	(IY),A
+;   14			dbg_sprintf(dbgout, "%d ", (uint8_t) bytes[i]);
+.LINE 14
+
+	LD	HL,(IX+-11)
+	LD	A,(HL)
+	UEXT	HL
+	LD	L,A
+	PUSH	HL
+	LD	BC,L__0
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+	LD	BC,(IX+-3)
+	INC	BC
+	LD	(IX+-3),BC
+;   15		}
+L_3:
+.LINE 15
+
+	LD	BC,5
+	LD	HL,(IX+-3)
+	OR	A,A
+	SBC	HL,BC
+	CALL	__setflag
+	JP	M,L_1
+;   16	
+;   17	
+;   18	}
+.LINE 18
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** ___lowlevel_GetCalcSerial ***************************
+;Name                         Addr/Register   Size   Type
+;_sprintf                            IMPORT  -----   function
+;__OS                                IMPORT  -----   function
+;bytes                                 IX-8      5   variable
+;i                                     IX-3      3   variable
+
+
+; Stack Frame Size: 17 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "__lowlevel_GetCalcSerial",18,"___lowlevel_GetCalcSerial"
+	SEGMENT STRSECT
+L__0:
+	DB	"%d "
+	DB	0
+	SEGMENT CODE
+;   19	
+;   20	int main(void)
+;   21	{
 _main:
 .DEFINE "_main"
 
@@ -523,9 +656,9 @@ _main:
 
 .ENDEF
 
-.BEGFUNC "main",8,"_main"
+.BEGFUNC "main",21,"_main"
 
-.LINE 8
+.LINE 21
 
 .DEFINE "r"
 
@@ -580,10 +713,10 @@ _main:
 	ADD	IX,SP
 	LEA	HL,IX+-74
 	LD	SP,HL
-;    9		char                      buf[20];
-;   10		real_t                    r;
-;   11		const real_t              real1   = os_Int24ToReal(1);
-.LINE 11
+;   22		char                      buf[20];
+;   23		real_t                    r;
+;   24		const real_t              real1   = os_Int24ToReal(1);
+.LINE 24
 
 	LD	BC,1
 	PUSH	BC
@@ -594,8 +727,8 @@ _main:
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;   12		const real_t              real2   = os_Int24ToReal(2);
-.LINE 12
+;   25		const real_t              real2   = os_Int24ToReal(2);
+.LINE 25
 
 	LD	BC,2
 	PUSH	BC
@@ -606,8 +739,8 @@ _main:
 	LEA	DE,IX+-27
 	LD	BC,9
 	LDIR	
-;   13		const static superpoint_t iopoint = {{12, 116}, "..."};
-.LINE 13
+;   26		const static superpoint_t iopoint = {{12, 116}, "..."};
+.LINE 26
 
 .DEFINE "iopoint"
 
@@ -623,8 +756,8 @@ _main:
 
 .ENDEF
 
-;   14		const static superpoint_t title   = {{12, 16}, "TITrig"};
-.LINE 14
+;   27		const static superpoint_t title   = {{12, 16}, "TITrig"};
+.LINE 27
 
 .DEFINE "title"
 
@@ -640,8 +773,8 @@ _main:
 
 .ENDEF
 
-;   15		const static superpoint_t author  = {{12, 36}, "By Decimation"};
-.LINE 15
+;   28		const static superpoint_t author  = {{12, 36}, "By Decimation"};
+.LINE 28
 
 .DEFINE "author"
 
@@ -657,26 +790,28 @@ _main:
 
 .ENDEF
 
-;   16	
-;   17	
-;   18		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
-.LINE 18
+;   29	
+;   30		//__lowlevel_GetCalcSerial();
+;   31	
+;   32	
+;   33		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
+.LINE 33
 
-	LD	BC,L__0
+	LD	BC,L__3
 	PUSH	BC
 	LD	BC,16449536
 	PUSH	BC
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;   19		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
-.LINE 19
+;   34		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
+.LINE 34
 
 	LD	BC,0
 	PUSH	BC
 	LD	BC,3
 	PUSH	BC
-	LD	BC,L__1
+	LD	BC,L__4
 	PUSH	BC
 	LD	BC,16449536
 	PUSH	BC
@@ -685,9 +820,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   20	
-;   21		os_ClrHome();
-.LINE 21
+;   35	
+;   36		os_ClrHome();
+.LINE 36
 
 	LD	BC,_asm_ClrLCD
 	PUSH	BC
@@ -701,14 +836,14 @@ _main:
 	PUSH	BC
 	CALL	__OS
 	POP	BC
-;   22		gfx_Begin();
-.LINE 22
+;   37		gfx_Begin();
+.LINE 37
 
 	CALL	_gfx_Begin
-;   23	
-;   24	
-;   25		gfx_PrintColor(&title, gfx_blue);
-.LINE 25
+;   38	
+;   39	
+;   40		gfx_PrintColor(&title, gfx_blue);
+.LINE 40
 
 	LD	BC,16
 	PUSH	BC
@@ -717,8 +852,8 @@ _main:
 	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-;   26		gfx_PrintColor(&author, gfx_green);
-.LINE 26
+;   41		gfx_PrintColor(&author, gfx_green);
+.LINE 41
 
 	LD	BC,3
 	PUSH	BC
@@ -727,15 +862,15 @@ _main:
 	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-;   27	
-;   28		sprintf(buf, "Build %d.%d", kMajor, kMinor);
-.LINE 28
+;   42	
+;   43		sprintf(buf, "Build %d.%d", kMajor, kMinor);
+.LINE 43
 
 	LD	BC,0
 	PUSH	BC
 	LD	BC,3
 	PUSH	BC
-	LD	BC,L__2
+	LD	BC,L__5
 	PUSH	BC
 	PEA	IX+-47
 	CALL	_sprintf
@@ -743,8 +878,8 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   29		gfx_PrintStringXY(buf, 12, 56);
-.LINE 29
+;   44		gfx_PrintStringXY(buf, 12, 56);
+.LINE 44
 
 	LD	BC,56
 	PUSH	BC
@@ -755,57 +890,57 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   30	
-;   31		gfx_PrintStringXY("1. Right", 12, 76);
-.LINE 31
+;   45	
+;   46		gfx_PrintStringXY("1. Right", 12, 76);
+.LINE 46
 
 	LD	BC,76
 	PUSH	BC
 	LD	BC,12
 	PUSH	BC
-	LD	BC,L__3
+	LD	BC,L__6
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
 	POP	BC
 	POP	BC
-;   32		gfx_PrintStringXY("2. Non-right", 12, 96);
-.LINE 32
+;   47		gfx_PrintStringXY("2. Non-right", 12, 96);
+.LINE 47
 
 	LD	BC,96
 	PUSH	BC
 	LD	BC,12
 	PUSH	BC
-	LD	BC,L__4
+	LD	BC,L__7
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
 	POP	BC
 	POP	BC
-;   33	
-;   34		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
-.LINE 34
+;   48	
+;   49		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
+.LINE 49
 
 	LD	BC,136
 	PUSH	BC
 	LD	BC,12
 	PUSH	BC
-	LD	BC,L__5
+	LD	BC,L__8
 	PUSH	BC
 	CALL	_gfx_PrintStringXY
 	POP	BC
 	POP	BC
 	POP	BC
-;   35	
-;   36		gfx_Print(&iopoint);
-.LINE 36
+;   50	
+;   51		gfx_Print(&iopoint);
+.LINE 51
 
 	LD	BC,_0iopoint
 	PUSH	BC
 	CALL	_gfx_Print
 	POP	BC
-;   37		r = io_gfx_ReadReal(&iopoint);
-.LINE 37
+;   52		r = io_gfx_ReadReal(&iopoint);
+.LINE 52
 
 	LD	BC,_0iopoint
 	PUSH	BC
@@ -816,10 +951,10 @@ _main:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   38	
-;   39	
-;   40		if (os_RealCompare(&real1, &r) == 0)
-.LINE 40
+;   53	
+;   54	
+;   55		if (os_RealCompare(&real1, &r) == 0)
+.LINE 55
 
 	PEA	IX+-9
 	PEA	IX+-18
@@ -827,63 +962,63 @@ _main:
 	POP	BC
 	POP	BC
 	CALL	__icmpzero
-	JR	NZ,L_6
-;   41		{
-;   42			right_SolveTriangle();
-.LINE 42
+	JR	NZ,L_11
+;   56		{
+;   57			right_SolveTriangle();
+.LINE 57
 
 	CALL	_right_SolveTriangle
-;   43		}
-;   44		else if (os_RealCompare(&real2, &r) == 0)
-.LINE 44
+;   58		}
+;   59		else if (os_RealCompare(&real2, &r) == 0)
+.LINE 59
 
-	JR	L_7
-L_6:
+	JR	L_12
+L_11:
 	PEA	IX+-9
 	PEA	IX+-27
 	CALL	_os_RealCompare
 	POP	BC
 	POP	BC
 	CALL	__icmpzero
-	JR	NZ,L_4
-;   45		{
-;   46			trig_SolveTriangle();
-.LINE 46
+	JR	NZ,L_9
+;   60		{
+;   61			trig_SolveTriangle();
+.LINE 61
 
 	CALL	_trig_SolveTriangle
-;   47		}
-;   48		else
-.LINE 48
+;   62		}
+;   63		else
+.LINE 63
 
-	JR	L_7
-L_4:
-;   49		{
-;   50			gfx_End();
-.LINE 50
+	JR	L_12
+L_9:
+;   64		{
+;   65			gfx_End();
+.LINE 65
 
 	CALL	_gfx_End
-;   51			return 0;
-.LINE 51
+;   66			return 0;
+.LINE 66
 
 	OR	A,A
 	SBC	HL,HL
-	JR	L_8
-;   52		}
-L_7:
-.LINE 52
+	JR	L_13
+;   67		}
+L_12:
+.LINE 67
 
-;   53	
-;   54		gfx_End();
-.LINE 54
+;   68	
+;   69		gfx_End();
+.LINE 69
 
 	CALL	_gfx_End
-;   55		return 0;
-.LINE 55
+;   70		return 0;
+.LINE 70
 
 	OR	A,A
 	SBC	HL,HL
-L_8:
-.LINE 56
+L_13:
+.LINE 71
 
 	LD	SP,IX
 	POP	IX
@@ -920,25 +1055,25 @@ L_8:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "main",56,"_main"
+.ENDFUNC "main",71,"_main"
 	SEGMENT STRSECT
-L__0:
+L__3:
 	DB	10
 	DB	"[----------------------------------------]"
 	DB	10,0
-L__1:
+L__4:
 	DB	"[TITrig] %d.%d"
 	DB	10,0
-L__2:
+L__5:
 	DB	"Build %d.%d"
 	DB	0
-L__3:
+L__6:
 	DB	"1. Right"
 	DB	0
-L__4:
+L__7:
 	DB	"2. Non-right"
 	DB	0
-L__5:
+L__8:
 	DB	"- Press Clear to quit"
 	DB	0
 	SEGMENT TEXT
@@ -1032,6 +1167,8 @@ _2author:
 	XREF _gfx_PrintStringXY:ROM
 	XREF _gfx_End:ROM
 	XREF _gfx_Begin:ROM
+	XREF __setflag:ROM
 	XREF __icmpzero:ROM
 	XDEF _main
+	XDEF ___lowlevel_GetCalcSerial
 	END

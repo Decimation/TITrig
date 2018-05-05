@@ -138,8 +138,8 @@ void sp_SetLabel(const superpoint_t* p, const char* s)
 
 real_t io_gfx_ReadReal(superpoint_t* point)
 {
-	bool        isNeg    = false;
-	uint8_t     key, i   = 0;
+	bool        isNeg   = false;
+	uint8_t     key, i  = 0;
 	real_t      rbuffer;
 	static char chars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
 	gfx_Clear(point);

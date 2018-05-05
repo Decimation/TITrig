@@ -573,7 +573,7 @@ _geo_RoundTriangle:
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;   14		real_t* mem = (real_t*) triangle;
+;   14		real_t* const mem = (real_t*) triangle;
 ;   15		for (; i < sizeof(*triangle) / sizeof(real_t); i++)
 .LINE 15
 

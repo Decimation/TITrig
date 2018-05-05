@@ -55,6 +55,12 @@ real_t DecimalToRoot(real_t r)
 	return x;
 }*/
 
+void SimplifyFraction(real_t num, real_t denom, real_t out[2]) {
+	real_t gcd = os_RealGcd(&num, &denom);
+	out[0] = os_RealDiv(&num, &gcd);
+	out[1] = os_RealDiv(&denom, &gcd);
+}
+
 void SimplifyRadicalFromDecimal(real_t decimal, int24_t* out)
 {
 	real_t       buf;

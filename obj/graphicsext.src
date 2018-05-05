@@ -510,9 +510,9 @@
 ;    4	
 ;    5	#include "GraphicsExt.h"
 ;    6	#include "Library.h"
-;    7	#include <string.h>
-;    8	#include <debug.h>
-;    9	
+;    7	#include "Types.h"
+;    8	#include <string.h>
+;    9	#include <debug.h>
 ;   10	
 ;   11	void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner)
 ;   12	{
@@ -2009,7 +2009,7 @@ _gfx_Print:
 
 .ENDFUNC "gfx_Print",131,"_gfx_Print"
 ;  132	
-;  133	void sp_SetLabel(superpoint_t* p, const char* s)
+;  133	void sp_SetLabel(const superpoint_t* p, const char* s)
 ;  134	{
 _sp_SetLabel:
 .DEFINE "_sp_SetLabel"
@@ -2034,7 +2034,7 @@ _sp_SetLabel:
 
 .TAG "NONAME16"
 
-.TYPE 40
+.TYPE 200
 
 .ENDEF
 
@@ -2195,16 +2195,16 @@ _io_gfx_ReadReal:
 
 	LD	(IX+-1),0
 ;  144		real_t      rbuffer;
-;  145		static char lchars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+;  145		static char chars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
 .LINE 145
 
-.DEFINE "lchars"
+.DEFINE "chars"
 
-.ALIAS "_0lchars"
+.ALIAS "_0chars"
 
 .CLASS 69
 
-.VALUE _0lchars
+.VALUE _0chars
 
 .DIM 57
 
@@ -2229,13 +2229,13 @@ _io_gfx_ReadReal:
 	CALL	_lib_MemZero
 	POP	BC
 	POP	BC
-;  148		lchars[33] = '0';
+;  148		chars[33] = '0';
 .LINE 148
 
-	LD	IY,_0lchars
+	LD	IY,_0chars
 	LEA	HL,IY+33
 	LD	(HL),48
-;  149		lchars[18] = '3';
+;  149		chars[18] = '3';
 .LINE 149
 
 	LEA	HL,IY+18
@@ -2343,7 +2343,7 @@ L_22:
 	LD	(IX+-3),1
 ;  169			}
 ;  170	
-;  171			else if (lchars[key] && i + 1 <= gDigitThreshold)
+;  171			else if (chars[key] && i + 1 <= gDigitThreshold)
 .LINE 171
 
 	JR	L_23
@@ -2351,7 +2351,7 @@ L_21:
 	LD	A,(IX+-2)
 	UEXT	HL
 	LD	L,A
-	LD	BC,_0lchars
+	LD	BC,_0chars
 	ADD	HL,BC
 	LD	(IX+-6),HL
 	LD	A,(HL)
@@ -2369,7 +2369,7 @@ L_21:
 	SBC	HL,BC
 	JP	M,L_23
 ;  172			{
-;  173				point->label[i++] = lchars[key];
+;  173				point->label[i++] = chars[key];
 .LINE 173
 
 	LD	IY,(IX+-6)
@@ -2516,7 +2516,7 @@ L_28:
 ;_char_Neg                           IMPORT      1   variable
 ;_sprintf                            IMPORT  -----   function
 ;_gfx_Print                          IMPORT  -----   function
-;_0lchars                            STATIC     57   variable
+;_0chars                             STATIC     57   variable
 ;_lib_MemZero                        IMPORT  -----   function
 ;_gfx_Clear                          IMPORT  -----   function
 ;rbuffer                              IX-15      9   variable
@@ -2540,7 +2540,7 @@ L__25:
 	DB	"[IO In] %s"
 	DB	10,0
 	SEGMENT DATA
-_0lchars:
+_0chars:
 	DB	0
 	DB	0
 	DB	0
@@ -2600,7 +2600,7 @@ _0lchars:
 	DB	0
 	SEGMENT CODE
 ;  188	
-;  189	bool PointEq(superpoint_t a, superpoint_t b)
+;  189	bool PointEq(const superpoint_t a, const superpoint_t b)
 ;  190	{
 _PointEq:
 .DEFINE "_PointEq"
@@ -2808,7 +2808,7 @@ L__30:
 	DB	10,0
 	SEGMENT CODE
 ;  201	
-;  202	void gfx_ClearHighlight(superpoint_t* p)
+;  202	void gfx_ClearHighlight(const superpoint_t* p)
 ;  203	{
 _gfx_ClearHighlight:
 .DEFINE "_gfx_ClearHighlight"
@@ -2833,7 +2833,7 @@ _gfx_ClearHighlight:
 
 .TAG "NONAME16"
 
-.TYPE 40
+.TYPE 200
 
 .ENDEF
 
@@ -2975,7 +2975,7 @@ _gfx_PrintColor:
 
 .ENDFUNC "gfx_PrintColor",213,"_gfx_PrintColor"
 ;  214	
-;  215	void gfx_HighlightPoint(superpoint_t* p)
+;  215	void gfx_HighlightPoint(const superpoint_t* p)
 ;  216	{
 _gfx_HighlightPoint:
 .DEFINE "_gfx_HighlightPoint"
@@ -3000,7 +3000,7 @@ _gfx_HighlightPoint:
 
 .TAG "NONAME16"
 
-.TYPE 40
+.TYPE 200
 
 .ENDEF
 
