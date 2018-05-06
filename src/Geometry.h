@@ -7,6 +7,7 @@
 
 #include "GraphicsExt.h"
 
+extern bool gEnableRounding;
 void geo_RoundTriangle(triangle_t* triangle, uint8_t places);
 
 #endif //TITRIG_GEOMETRY_H

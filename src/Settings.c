@@ -9,7 +9,7 @@
 #include "Settings.h"
 #include "GraphicsExt.h"
 
-uint8_t gRound          = 2;
+uint8_t gRound          = 0;
 uint8_t gDigitThreshold = 6;
 
 static superpoint_t spRound        = {{20, 20}, "Rounding digits: "};

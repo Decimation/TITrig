@@ -1,6 +1,6 @@
 Segment  Base   Top    High   Length
 -------- ------ ------ ------ -------
-bss      D031F6 D0329D D13FD6     A7h
+bss      D031F6 D0329E D13FD6     A8h
 header   D1A87F D1A882             3h
 icon     D1A882 D1A882             0h
 launcher D1A882 D1A8D2            50h
@@ -8,10 +8,10 @@ libs     D1A8D2 D1A907            35h
 startup  D1A907 D1A942            3Bh
 cleanup  D1A942 D1A956            14h
 exit     D1A956 D1A95C             6h
-code     D1A95C D21E7F          7523h
-data     D21E7F D2223B           3BCh
-strsect  D2223B D22BF0           9B5h
-text     D22BF0 D22E40           250h
+code     D1A95C D21F77          761Bh
+data     D21F77 D22333           3BCh
+strsect  D22333 D22CEB           9B8h
+text     D22CEB D22F6F           284h
 
 Label                         Value
 ---------------------------   ------
@@ -24,54 +24,55 @@ __exit                      = D1A934
 __exitsp                    = D1A934
 __errsp                     = D1A934
 _geo_RoundTriangle          = D1A95C
-_gfx_HighlightPoint         = D1B5DC
-_gfx_PrintColor             = D1B597
-_gfx_ClearHighlight         = D1B571
-_gfx_SetFocus               = D1B52B
-_PointEq                    = D1B4F3
-_io_gfx_ReadReal            = D1B31D
-_io_gfx_ReadSqrt            = D1B052
-_sp_SetLabel                = D1B00F
-_gfx_Print                  = D1AFDF
-_gfx_Clear                  = D1AF88
-_gfx_Sqrt                   = D1AE96
-_gfx_FractionStr            = D1AD38
-_gfx_Fraction               = D1ACC7
-_gfx_RadicalFraction        = D1A9E0
-_lib_MemZero                = D1B6FC
-_lib_StrReplace             = D1B6C3
-_lib_StrIndexOf             = D1B67E
-_lib_StrCut                 = D1B5F9
-_char_Neg                   = D22BF0
-_main                       = D1B759
-_right_SolveTriangle        = D1E0FB
-_verts                      = D22CB5
-_set_Menu                   = D1E1CB
-_gDigitThreshold            = D2204C
-_gRound                     = D2204B
-_SimplifyRadical            = D1E4E7
-_SimplifyRadicalFromDecimal = D1E456
-_SimplifyFraction           = D1E3F6
-_DecimalToRoot              = D1E347
-_RoundIEEE754               = D1E299
-_IsEven                     = D1E240
-_trig_SolveTriangle         = D2182B
-_trig_AreaBySin             = D1E9E0
-_os_RealSinDeg              = D21DDD
-_loc_Side_x                 = D21CF7
-_los_Angle_x                = D21C5E
-_los_Side_x                 = D21BD1
-_loc_Angle_x                = D219E1
-_os_RealAcosDeg             = D2194A
-_SinDeg                     = D21915
-_ASinDeg                    = D218DD
-_CosineDeg                  = D218A8
+_gEnableRounding            = D031F6
+_gfx_HighlightPoint         = D1B5E3
+_gfx_PrintColor             = D1B59E
+_gfx_ClearHighlight         = D1B578
+_gfx_SetFocus               = D1B532
+_PointEq                    = D1B4FA
+_io_gfx_ReadReal            = D1B324
+_io_gfx_ReadSqrt            = D1B059
+_sp_SetLabel                = D1B016
+_gfx_Print                  = D1AFE6
+_gfx_Clear                  = D1AF8F
+_gfx_Sqrt                   = D1AE9D
+_gfx_FractionStr            = D1AD3F
+_gfx_Fraction               = D1ACCE
+_gfx_RadicalFraction        = D1A9E7
+_lib_MemZero                = D1B703
+_lib_StrReplace             = D1B6CA
+_lib_StrIndexOf             = D1B685
+_lib_StrCut                 = D1B600
+_char_Neg                   = D22CEB
+_main                       = D1B760
+_right_SolveTriangle        = D1E1D5
+_verts                      = D22DE4
+_set_Menu                   = D1E2C3
+_gDigitThreshold            = D22144
+_gRound                     = D22143
+_SimplifyRadical            = D1E5DF
+_SimplifyRadicalFromDecimal = D1E54E
+_SimplifyFraction           = D1E4EE
+_DecimalToRoot              = D1E43F
+_RoundIEEE754               = D1E391
+_IsEven                     = D1E338
+_trig_SolveTriangle         = D21923
+_trig_AreaBySin             = D1EAD8
+_os_RealSinDeg              = D21ED5
+_loc_Side_x                 = D21DEF
+_los_Angle_x                = D21D56
+_los_Side_x                 = D21CC9
+_loc_Angle_x                = D21AD9
+_os_RealAcosDeg             = D21A42
+_SinDeg                     = D21A0D
+_ASinDeg                    = D219D5
+_CosineDeg                  = D219A0
 __fadd                      = 000270
 __fcmp                      = 000274
 __fdiv                      = 000278
 __fmul                      = 000288
 __fsub                      = 000290
-__icmpzero                  = D21E70
+__icmpzero                  = D21F68
 __idivs                     = 00013C
 __ildix                     = 000148
 __imuls                     = 000154
@@ -82,7 +83,7 @@ __ishru_b                   = 000184
 __ishru_b                   = 000188
 __istix                     = 00018C
 _memmove                    = 0000A8
-__OS                        = D21E75
+__OS                        = D21F6D
 __setflag                   = 000218
 _sprintf                    = 0000BC
 _strchr                     = 0000C4

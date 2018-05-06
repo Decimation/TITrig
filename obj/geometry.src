@@ -504,6 +504,15 @@
 .TYPE 12
 .ENDEF
 .ENDREC "NONAME18"
+	SEGMENT BSS
+_gEnableRounding:
+	DS	1
+.DEFINE "gEnableRounding"
+.ALIAS "_gEnableRounding"
+.CLASS 83
+.VALUE _gEnableRounding
+.TYPE 12
+.ENDEF
 ;    1	//
 ;    2	// Created by Decimation on 4/27/2018.
 ;    3	//
@@ -513,9 +522,11 @@
 ;    7	#include <debug.h>
 ;    8	#include "Geometry.h"
 ;    9	
-;   10	
-;   11	void geo_RoundTriangle(triangle_t* triangle, uint8_t places)
-;   12	{
+;   10	bool gEnableRounding;
+	SEGMENT CODE
+;   11	
+;   12	void geo_RoundTriangle(triangle_t* triangle, uint8_t places)
+;   13	{
 _geo_RoundTriangle:
 .DEFINE "_geo_RoundTriangle"
 
@@ -527,9 +538,9 @@ _geo_RoundTriangle:
 
 .ENDEF
 
-.BEGFUNC "geo_RoundTriangle",12,"_geo_RoundTriangle"
+.BEGFUNC "geo_RoundTriangle",13,"_geo_RoundTriangle"
 
-.LINE 12
+.LINE 13
 
 .DEFINE "triangle"
 
@@ -568,20 +579,30 @@ _geo_RoundTriangle:
 	ADD	IX,SP
 	LEA	HL,IX+-12
 	LD	SP,HL
-;   13		int i = 0;
-.LINE 13
+;   14		int i = 0;
+.LINE 14
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;   14		real_t* const mem = (real_t*) triangle;
-;   15		for (; i < sizeof(*triangle) / sizeof(real_t); i++)
-.LINE 15
+;   15		real_t* const mem = (real_t*) triangle;
+;   16		if (!gEnableRounding) {
+.LINE 16
 
-	JR	L_3
-L_1:
-;   16		{
-;   17			mem[i] = os_RealRound(&mem[i], places);
+	LD	A,(_gEnableRounding)
+	OR	A,A
+	JR	NZ,L_4
+;   17			return;
 .LINE 17
+
+	JR	L_6
+;   18		}
+;   19		for (; i < sizeof(*triangle) / sizeof(real_t); i++)
+L_2:
+.LINE 19
+
+;   20		{
+;   21			mem[i] = os_RealRound(&mem[i], places);
+.LINE 21
 
 	LD	C,(IX+9)
 	LD	B,0
@@ -607,8 +628,8 @@ L_1:
 	LD	HL,BC
 	LD	BC,9
 	LDIR	
-;   18			dbg_sprintf(dbgout, "[Geo] Rounded real_t memory @ 0x%p\n", &mem[i]);
-.LINE 18
+;   22			dbg_sprintf(dbgout, "[Geo] Rounded real_t memory @ 0x%p\n", &mem[i]);
+.LINE 22
 
 	LD	HL,(IX+-3)
 	LD	A,9
@@ -616,7 +637,7 @@ L_1:
 	LD	BC,(IX+6)
 	ADD	HL,BC
 	PUSH	HL
-	LD	BC,L__0
+	LD	BC,L__1
 	PUSH	BC
 	LD	BC,16449536
 	PUSH	BC
@@ -627,16 +648,17 @@ L_1:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;   19		}
-L_3:
-.LINE 19
+;   23		}
+L_4:
+.LINE 23
 
 	LD	BC,8
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
-	JR	C,L_1
-.LINE 20
+	JR	C,L_2
+L_6:
+.LINE 24
 
 	LD	SP,IX
 	POP	IX
@@ -647,6 +669,7 @@ L_3:
 ;Name                         Addr/Register   Size   Type
 ;_sprintf                            IMPORT  -----   function
 ;_os_RealRound                       IMPORT  -----   function
+;_gEnableRounding                    STATIC      1   variable
 ;i                                     IX-3      3   variable
 ;places                                IX+9      1   parameter
 ;triangle                              IX+6      3   parameter
@@ -656,13 +679,14 @@ L_3:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "geo_RoundTriangle",20,"_geo_RoundTriangle"
+.ENDFUNC "geo_RoundTriangle",24,"_geo_RoundTriangle"
 	SEGMENT STRSECT
-L__0:
+L__1:
 	DB	"[Geo] Rounded real_t memory @ 0x%p"
 	DB	10,0
 	XREF _sprintf:ROM
 	XREF _os_RealRound:ROM
 	XREF __imul_b:ROM
 	XDEF _geo_RoundTriangle
+	XDEF _gEnableRounding
 	END

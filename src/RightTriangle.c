@@ -12,6 +12,7 @@
 #include "Library.h"
 #include "Geometry.h"
 #include "Simplifiers.h"
+#include "Types.h"
 
 static superpoint_t xangles[3] = {
 		{{30 + 5,   129 - 10}, "90"},
@@ -35,6 +36,8 @@ static superpoint_t xsides_oah[3] = {
 static const superpoint_t ui_btn_Mode           = {280, 230, "Mode"};
 static const superpoint_t ui_btn_Clear          = {215, 230, "Clear"};
 static const superpoint_t ui_btn_EnableSimpRoot = {150, 230, "Root"};
+static const superpoint_t ui_btn_EnableRounding = {85, 230, "Round"};
+static const superpoint_t ui_btn_RoundPlaces = {20, 230, "0"};
 
 static bool              ui_dispSimpRoot;
 static superpoint_t      ui_Wait                = {{230, 40}, "Processing..."};
@@ -156,6 +159,19 @@ static void right_DebugTriangle()
 	dbg_sprintf(dbgout, "Perimeter: %s\n", buf);
 }
 
+static void ui_SetRounding() {
+	if (gRound == 9) {
+		gRound = 0;
+	}
+	else if (gRound <= 9) {
+		gRound++;
+	}
+	gfx_Clear(&ui_btn_RoundPlaces);
+	sprintf(ui_btn_RoundPlaces.label, "%d", gRound);
+	gfx_Print(&ui_btn_RoundPlaces);
+
+}
+
 /**
  * Uses basic heuristics to automatically detect if a triangle is
  * a special right triangle (45-45-90, 30-60-90)
@@ -227,7 +243,7 @@ static void right_Sync()
 			triangle.b   = os_RealMul(&triangle.a, &sqrt3);
 			trigstatus.b = true;
 		}
-		geo_RoundTriangle(&triangle, 1);
+		//geo_RoundTriangle(&triangle, 1);
 	}
 	else if (os_RealCompare(&triangle.A, &real60) == 0 || os_RealCompare(&triangle.B, &real30) == 0)
 	{
@@ -261,7 +277,7 @@ static void right_Sync()
 			trigstatus.a = true;
 		}
 
-		geo_RoundTriangle(&triangle, 1);
+		//geo_RoundTriangle(&triangle, 1);
 	}
 
 	/**
@@ -586,8 +602,10 @@ static void ui_DispSimplified(real_t* r)
 		return;
 	}
 	gfx_PrintColor(&ui_Wait, gfx_red);
+	ui_ClearDispSimpRoot();
 
 	dbg_sprintf(dbgout, "[RightTrig] Simplifying radical...\n");
+	*r = os_RealRound(r, gRound);
 	SimplifyRadicalFromDecimal(*r, rad);
 
 	ui_ClearDispSimpRoot();
@@ -680,7 +698,6 @@ static void right_SelectSide()
 	RECURSE:
 	while ((key = os_GetCSC()) != sk_Enter)
 	{
-
 		if (key == sk_Clear)
 		{
 			return;
@@ -689,6 +706,14 @@ static void right_SelectSide()
 		if (key == sk_Zoom)
 		{
 			ui_SwitchDispSimpRoot();
+		}
+
+		if (key == sk_Window) {
+			ui_SwitchRounding();
+		}
+
+		if (key == sk_Yequ) {
+			ui_SetRounding();
 		}
 
 		if (key == sk_Trace)
@@ -714,60 +739,42 @@ static void right_SelectSide()
 		{
 
 			gfx_SetFocus(&currentSelection, &side_b, &side_c);
-			if (trigstatus.c)
-			{
-				ui_DispSimplified(&triangle.c);
-			}
+			ui_DispSimplified(&triangle.c);
 		}
 
 		/* bbb -> aaa */
 		if (key == sk_Down && PointEq(*currentSelection, side_b))
 		{
 			gfx_SetFocus(&currentSelection, &side_b, &side_a);
-			if (trigstatus.a)
-			{
-				ui_DispSimplified(&triangle.a);
-			}
+			ui_DispSimplified(&triangle.a);
 		}
 
 		/* ccc -> aaa */
 		if (key == sk_Down && PointEq(*currentSelection, side_c))
 		{
 			gfx_SetFocus(&currentSelection, &side_c, &side_a);
-			if (trigstatus.a)
-			{
-				ui_DispSimplified(&triangle.a);
-			}
+			ui_DispSimplified(&triangle.a);
 		}
 
 		/* ccc -> bbb */
 		if (key == sk_Left && PointEq(*currentSelection, side_c))
 		{
 			gfx_SetFocus(&currentSelection, &side_c, &side_b);
-			if (trigstatus.b)
-			{
-				ui_DispSimplified(&triangle.b);
-			}
+			ui_DispSimplified(&triangle.b);
 		}
 
 		/* aaa -> ccc */
 		if (key == sk_Up || key == sk_Right && PointEq(*currentSelection, side_a))
 		{
 			gfx_SetFocus(&currentSelection, &side_a, &side_c);
-			if (trigstatus.c)
-			{
-				ui_DispSimplified(&triangle.c);
-			}
+			ui_DispSimplified(&triangle.c);
 		}
 
 		/* aaa -> bbb */
 		if (key == sk_Left && PointEq(*currentSelection, side_a))
 		{
 			gfx_SetFocus(&currentSelection, &side_a, &side_b);
-			if (trigstatus.b)
-			{
-				ui_DispSimplified(&triangle.b);
-			}
+			ui_DispSimplified(&triangle.b);
 		}
 	}
 
@@ -777,6 +784,7 @@ static void right_SelectSide()
 
 		triangle.b   = io_gfx_ReadReal(&side_b);
 		trigstatus.b = true;
+		ui_DispSimplified(&triangle.b);
 	}
 
 	if (PointEq(*currentSelection, side_a))
@@ -784,6 +792,7 @@ static void right_SelectSide()
 		dbg_sprintf(dbgout, "[RightTrig] User selected side %s\n", side_a.label);
 		triangle.a   = io_gfx_ReadReal(&side_a);
 		trigstatus.a = true;
+		ui_DispSimplified(&triangle.a);
 	}
 
 	if (PointEq(*currentSelection, side_c))
@@ -791,6 +800,7 @@ static void right_SelectSide()
 		dbg_sprintf(dbgout, "[RightTrig] User selected side %s\n", side_c.label);
 		triangle.c   = io_gfx_ReadReal(&side_c);
 		trigstatus.c = true;
+		ui_DispSimplified(&triangle.c);
 	}
 
 	pythag_CheckSolvability();
@@ -798,6 +808,17 @@ static void right_SelectSide()
 	gfx_HighlightPoint(currentSelection);
 
 	goto RECURSE;
+}
+
+static void ui_SwitchRounding() {
+	if (gEnableRounding) {
+		gfx_PrintColor(&ui_btn_EnableRounding, gfx_red);
+		gEnableRounding = false;
+	}
+	else if (!gEnableRounding) {
+		gfx_PrintColor(&ui_btn_EnableRounding, gfx_green);
+		gEnableRounding = true;
+	}
 }
 
 static void right_SelectAngle()
@@ -819,6 +840,13 @@ static void right_SelectAngle()
 		if (key == sk_Zoom)
 		{
 			ui_SwitchDispSimpRoot();
+		}
+
+		if (key == sk_Window) {
+			ui_SwitchRounding();
+		}
+		if (key == sk_Yequ) {
+			ui_SetRounding();
 		}
 
 		if (key == sk_Trace)
@@ -947,6 +975,7 @@ void right_SolveTriangle()
 	triangle.C   = os_Int24ToReal(90);
 	trigstatus.C = true;
 	ui_dispSimpRoot = true;
+	gEnableRounding = true;
 
 	gfx_Begin();
 	gfx_SetColor(gfx_blue);
@@ -963,8 +992,10 @@ void right_SolveTriangle()
 
 	gfx_Print(&ui_btn_Clear);
 	gfx_Print(&ui_btn_Mode);
+	gfx_Print(&ui_btn_RoundPlaces);
 	gfx_PrintColor(&ui_btn_EnableSimpRoot, gfx_green);
 	gfx_Print(&ui_Mode);
+	gfx_PrintColor(&ui_btn_EnableRounding, gfx_green);
 
 	right_SelectAngle();
 

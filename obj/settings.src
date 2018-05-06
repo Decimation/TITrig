@@ -506,7 +506,7 @@
 .ENDREC "NONAME18"
 	SEGMENT DATA
 _gRound:
-	DB	2
+	DB	0
 .DEFINE "gRound"
 .ALIAS "_gRound"
 .CLASS 69
@@ -596,7 +596,7 @@ _spDigThreshold:
 ;    9	#include "Settings.h"
 ;   10	#include "GraphicsExt.h"
 ;   11	
-;   12	uint8_t gRound          = 2;
+;   12	uint8_t gRound          = 0;
 ;   13	uint8_t gDigitThreshold = 6;
 ;   14	
 ;   15	static superpoint_t spRound        = {{20, 20}, "Rounding digits: "};

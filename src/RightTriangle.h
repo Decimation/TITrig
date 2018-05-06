@@ -31,8 +31,9 @@ static void ui_DispSimplified(real_t* r);
 
 static void right_TruncateLabels(int len);
 
+static void ui_SetRounding();
 static void ui_AutoDrawFunctions();
-
+static void ui_SwitchRounding();
 static void ui_SwitchDispSimpRoot();
 
 static void ui_ClearDispSimpRoot();
