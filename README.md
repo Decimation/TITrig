@@ -15,6 +15,8 @@ TITrig can solve for any type of triangle, right or non-right.
 # Right triangles
 - Automatically solves for the missing side (pythagorean theorem)
 - Automatically solves for the third angle when possible
+- Automatically solves for 45-45-90 and 30-60-90 triangles
 - Displays all trigonometric ratios (sin, cos, tan, cot, csc, sec)
 - Can display the trigonometric ratios in either plain fractions (decimals) or as simplified radicals
 - Displays the simplified radical form of a decimal when a decimal is selected
+- Features adjustable rounding (0-9 digits) which can be turned off
