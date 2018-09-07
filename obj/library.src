@@ -1,279 +1,11 @@
 ; Zilog eZ80 ANSI C Compiler Release 3.4
-; -debug -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -optsize -noreduceopt -nomodsect -peephole -globalopt
 ; -localcse -const=ROM 
 	FILE	"..\SRC\LIBRARY.C"
 	.assume ADL=1
-.DEBUG "C"
-	SEGMENT CODE
-.BEGREC "fmt_type",19
-.DEFINE "status"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "flags"
-.VALUE 1
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "size"
-.VALUE 2
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "chr"
-.VALUE 3
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "type"
-.VALUE 4
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "field_width"
-.VALUE 5
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "precision"
-.VALUE 6
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "set_begin"
-.VALUE 7
-.CLASS 8
-.TYPE 34
-.ENDEF
-.DEFINE "set_end"
-.VALUE 10
-.CLASS 8
-.TYPE 34
-.ENDEF
-.DEFINE "pad_whole"
-.VALUE 13
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "pad_pre_fract"
-.VALUE 14
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "pad_post_fract"
-.VALUE 15
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "pad_at"
-.VALUE 16
-.CLASS 8
-.TYPE 34
-.ENDEF
-.ENDREC "fmt_type"
-.BEGREC "flt_info",12
-.DEFINE "flags"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "exp"
-.VALUE 1
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "digits"
-.VALUE 2
-.CLASS 8
-.DIM 10
-.TYPE 108
-.ENDEF
-.ENDREC "flt_info"
-.BEGREC "NONAME0",6
-.DEFINE "quot"
-.VALUE 0
-.CLASS 8
-.TYPE 4
-.ENDEF
-.DEFINE "rem"
-.VALUE 3
-.CLASS 8
-.TYPE 4
-.ENDEF
-.ENDREC "NONAME0"
-.BEGREC "NONAME1",8
-.DEFINE "quot"
-.VALUE 0
-.CLASS 8
-.TYPE 5
-.ENDEF
-.DEFINE "rem"
-.VALUE 4
-.CLASS 8
-.TYPE 5
-.ENDEF
-.ENDREC "NONAME1"
-.BEGREC "header",6
-.DEFINE "s"
-.VALUE 0
-.CLASS 11
-.TAG "NONAME2"
-.TYPE 8
-.ENDEF
-.DEFINE "x"
-.VALUE 0
-.CLASS 11
-.TYPE 2
-.ENDEF
-.ENDREC "header"
-.BEGREC "NONAME2",6
-.DEFINE "ptr"
-.VALUE 0
-.CLASS 8
-.TAG "header"
-.TYPE 40
-.ENDEF
-.DEFINE "size"
-.VALUE 3
-.CLASS 8
-.TYPE 14
-.ENDEF
-.ENDREC "NONAME2"
-.BEGREC "NONAME3",9
-.DEFINE "sign"
-.VALUE 0
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "exp"
-.VALUE 1
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "mant"
-.VALUE 2
-.CLASS 8
-.DIM 7
-.TYPE 108
-.ENDEF
-.ENDREC "NONAME3"
-.BEGREC "NONAME4",18
-.DEFINE "real"
-.VALUE 0
-.CLASS 8
-.TAG "NONAME3"
-.TYPE 8
-.ENDEF
-.DEFINE "imag"
-.VALUE 9
-.CLASS 8
-.TAG "NONAME3"
-.TYPE 8
-.ENDEF
-.ENDREC "NONAME4"
-.BEGREC "NONAME5",11
-.DEFINE "dim"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME3"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME5"
-.BEGREC "NONAME6",20
-.DEFINE "dim"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME4"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME6"
-.BEGREC "NONAME7",11
-.DEFINE "cols"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "rows"
-.VALUE 1
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME3"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME7"
-.BEGREC "NONAME8",3
-.DEFINE "len"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 98
-.ENDEF
-.ENDREC "NONAME8"
-.BEGREC "NONAME9",3
-.DEFINE "len"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 98
-.ENDEF
-.ENDREC "NONAME9"
-.BEGREC "NONAME10",3
-.DEFINE "size"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 108
-.ENDEF
-.ENDREC "NONAME10"
-.BEGREC "__stdio_file",1
-.DEFINE "slot"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.ENDREC "__stdio_file"
 	SEGMENT TEXT
 _char_Neg:
 	DB	26
-.DEFINE "char_Neg"
-.ALIAS "_char_Neg"
-.CLASS 84
-.VALUE _char_Neg
-.TYPE 2
-.ENDEF
 ;    1	//
 ;    2	// Created by Decimation on 4/27/2018.
 ;    3	//
@@ -288,68 +20,9 @@ _char_Neg:
 ;   11	int lib_StrCut(char* str, int begin, int len)
 ;   12	{
 _lib_StrCut:
-.DEFINE "_lib_StrCut"
-
-.VALUE _lib_StrCut
-
-.CLASS 2
-
-.TYPE 68
-
-.ENDEF
-
-.BEGFUNC "lib_StrCut",12,"_lib_StrCut"
-
-.LINE 12
-
-.DEFINE "str"
-
-.CLASS 65
-
-.VALUE 6
-
-.TYPE 34
-
-.ENDEF
-
-.DEFINE "begin"
-
-.CLASS 65
-
-.VALUE 9
-
-.TYPE 4
-
-.ENDEF
-
-.DEFINE "len"
-
-.CLASS 65
-
-.VALUE 12
-
-.TYPE 4
-
-.ENDEF
-
-.DEFINE "l"
-
-.CLASS 65
-
-.VALUE -3
-
-.TYPE 4
-
-.ENDEF
-
-	PUSH	IX
-	LD	IX,0
-	ADD	IX,SP
-	PUSH	BC
-	PUSH	BC
+	LD	HL,-6
+	CALL	__frameset
 ;   13		int l = strlen(str);
-.LINE 13
-
 	LD	BC,(IX+6)
 	PUSH	BC
 	CALL	_strlen
@@ -357,8 +30,6 @@ _lib_StrCut:
 	LD	(IX+-3),HL
 ;   14	
 ;   15		if (len < 0) len         = l - begin;
-.LINE 15
-
 	LD	HL,(IX+12)
 	CALL	__icmpzero
 	CALL	__setflag
@@ -370,8 +41,6 @@ _lib_StrCut:
 	LD	(IX+12),HL
 L_2:
 ;   16		if (begin + len > l) len = l - begin;
-.LINE 16
-
 	LD	BC,(IX+12)
 	LD	HL,(IX+9)
 	ADD	HL,BC
@@ -388,8 +57,6 @@ L_2:
 	LD	(IX+12),HL
 L_3:
 ;   17		memmove(str + begin, str + begin + len, l - len + 1);
-.LINE 17
-
 	LD	BC,(IX+9)
 	LD	HL,(IX+6)
 	ADD	HL,BC
@@ -412,12 +79,8 @@ L_3:
 	POP	BC
 ;   18	
 ;   19		return len;
-.LINE 19
-
 	LD	HL,(IX+12)
 ;   20	}
-.LINE 20
-
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -437,74 +100,72 @@ L_3:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_StrCut",20,"_lib_StrCut"
 ;   21	
-;   22	int lib_StrIndexOf(char* values, char find)
-;   23	{
+;   22	void os_RealToStrAuto(char* buf, real_t* p) {
+_os_RealToStrAuto:
+	CALL	__frameset0
+;   23		os_RealToStr(buf,p,0,0,6);
+	LD	BC,6
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	PUSH	BC
+	LD	BC,(IX+9)
+	PUSH	BC
+	LD	BC,(IX+6)
+	PUSH	BC
+	CALL	_os_RealToStr
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   24	}
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _os_RealToStrAuto ***************************
+;Name                         Addr/Register   Size   Type
+;_os_RealToStr                       IMPORT  -----   function
+;p                                     IX+9      3   parameter
+;buf                                   IX+6      3   parameter
+
+
+; Stack Frame Size: 12 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;   25	void dbg_WeakAssert(bool cond) {
+_dbg_WeakAssert:
+	CALL	__frameset0
+;   26		if (!cond) {
+;   27			dbg_sprintf(dbgout, "[WARNING] Debug assertion failed\n");
+;   28		}
+;   29	}
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _dbg_WeakAssert ***************************
+;Name                         Addr/Register   Size   Type
+;cond                                  IX+6      1   parameter
+
+
+; Stack Frame Size: 9 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+;   30	
+;   31	int lib_StrIndexOf(char* values, char find)
+;   32	{
 _lib_StrIndexOf:
-.DEFINE "_lib_StrIndexOf"
-
-.VALUE _lib_StrIndexOf
-
-.CLASS 2
-
-.TYPE 68
-
-.ENDEF
-
-.BEGFUNC "lib_StrIndexOf",23,"_lib_StrIndexOf"
-
-.LINE 23
-
-.DEFINE "values"
-
-.CLASS 65
-
-.VALUE 6
-
-.TYPE 34
-
-.ENDEF
-
-.DEFINE "find"
-
-.CLASS 65
-
-.VALUE 9
-
-.TYPE 2
-
-.ENDEF
-
-.DEFINE "index"
-
-.CLASS 65
-
-.VALUE -3
-
-.TYPE 4
-
-.ENDEF
-
-.DEFINE "ptr"
-
-.CLASS 65
-
-.VALUE -6
-
-.TYPE 194
-
-.ENDEF
-
-	PUSH	IX
-	LD	IX,0
-	ADD	IX,SP
-	PUSH	BC
-	PUSH	BC
-;   24		int index;
-;   25		const char* ptr = strchr(values, find);
-.LINE 25
-
+	LD	HL,-6
+	CALL	__frameset
+;   33		int index;
+;   34		const char* ptr = strchr(values, find);
 	LD	A,(IX+9)
 	SEXT	HL
 	LD	L,(IX+9)
@@ -515,36 +176,26 @@ _lib_StrIndexOf:
 	POP	BC
 	POP	BC
 	LD	(IX+-6),HL
-;   26		if (ptr)
-.LINE 26
-
+;   35		if (ptr)
 	CALL	__icmpzero
-	JR	Z,L_6
-;   27		{
-;   28			index = (int) (ptr - values);
-.LINE 28
-
+	JR	Z,L_10
+;   36		{
+;   37			index = (int) (ptr - values);
 	LD	BC,(IX+6)
 	LD	HL,(IX+-6)
 	OR	A,A
 	SBC	HL,BC
 	LD	(IX+-3),HL
-;   29		}
-;   30		else index = -1;
-.LINE 30
-
-	JR	L_7
-L_6:
+;   38		}
+;   39		else index = -1;
+	JR	L_11
+L_10:
 	LD	BC,16777215
 	LD	(IX+-3),BC
-L_7:
-;   31		return index;
-.LINE 31
-
+L_11:
+;   40		return index;
 	LD	HL,(IX+-3)
-;   32	}
-.LINE 32
-
+;   41	}
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -563,72 +214,13 @@ L_7:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_StrIndexOf",32,"_lib_StrIndexOf"
-;   33	
-;   34	void lib_StrReplace(char* in, char c, char r)
-;   35	{
+;   42	
+;   43	void lib_StrReplace(char* in, char c, char r)
+;   44	{
 _lib_StrReplace:
-.DEFINE "_lib_StrReplace"
-
-.VALUE _lib_StrReplace
-
-.CLASS 2
-
-.TYPE 65
-
-.ENDEF
-
-.BEGFUNC "lib_StrReplace",35,"_lib_StrReplace"
-
-.LINE 35
-
-.DEFINE "in"
-
-.CLASS 65
-
-.VALUE 6
-
-.TYPE 34
-
-.ENDEF
-
-.DEFINE "c"
-
-.CLASS 65
-
-.VALUE 9
-
-.TYPE 2
-
-.ENDEF
-
-.DEFINE "r"
-
-.CLASS 65
-
-.VALUE 12
-
-.TYPE 2
-
-.ENDEF
-
-.DEFINE "index"
-
-.CLASS 65
-
-.VALUE -3
-
-.TYPE 4
-
-.ENDEF
-
-	PUSH	IX
-	LD	IX,0
-	ADD	IX,SP
-	PUSH	BC
-;   36		const int index = lib_StrIndexOf(in, c);
-.LINE 36
-
+	LD	HL,-3
+	CALL	__frameset
+;   45		const int index = lib_StrIndexOf(in, c);
 	LD	C,(IX+9)
 	LD	B,0
 	PUSH	BC
@@ -638,24 +230,19 @@ _lib_StrReplace:
 	POP	BC
 	POP	BC
 	LD	(IX+-3),HL
-;   37	
-;   38		if (index != -1) in[index] = r;
-.LINE 38
-
+;   46	
+;   47		if (index != -1) in[index] = r;
 	LD	BC,16777215
-	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
-	JR	Z,L_10
+	JR	Z,L_14
 	LD	BC,(IX+-3)
 	LD	HL,(IX+6)
 	ADD	HL,BC
 	LD	A,(IX+12)
 	LD	(HL),A
-;   39	}
-L_10:
-.LINE 39
-
+;   48	}
+L_14:
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -674,95 +261,21 @@ L_10:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_StrReplace",39,"_lib_StrReplace"
-;   40	
-;   41	void lib_MemZero(char* ptr, int c)
-;   42	{
+;   49	
+;   50	void lib_MemZero(char* ptr, int c)
+;   51	{
 _lib_MemZero:
-.DEFINE "_lib_MemZero"
-
-.VALUE _lib_MemZero
-
-.CLASS 2
-
-.TYPE 65
-
-.ENDEF
-
-.BEGFUNC "lib_MemZero",42,"_lib_MemZero"
-
-.LINE 42
-
-.DEFINE "ptr"
-
-.CLASS 65
-
-.VALUE 6
-
-.TYPE 34
-
-.ENDEF
-
-.DEFINE "c"
-
-.CLASS 65
-
-.VALUE 9
-
-.TYPE 4
-
-.ENDEF
-
-.DEFINE "i"
-
-.CLASS 65
-
-.VALUE -3
-
-.TYPE 4
-
-.ENDEF
-
-	PUSH	IX
-	LD	IX,0
-	ADD	IX,SP
-	PUSH	BC
-;   43		int i = 0;
-.LINE 43
-
+	LD	HL,-3
+	CALL	__frameset
+;   52		int i = 0;
 	LD	BC,0
 	LD	(IX+-3),BC
-;   44		dbg_sprintf(dbgout, "[lib_MemZero] Zeroing memory from 0x%p to 0x%p\n", (void*) ptr, &ptr + c);
-.LINE 44
-
-	LD	HL,(IX+9)
-	LD	BC,HL
-	ADD	HL,HL
-	ADD	HL,BC
-	LD	BC,HL
-	LEA	HL,IX+6
-	ADD	HL,BC
-	PUSH	HL
-	LD	BC,(IX+6)
-	PUSH	BC
-	LD	BC,L__7
-	PUSH	BC
-	LD	BC,16449536
-	PUSH	BC
-	CALL	_sprintf
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-;   45		for (; i < c; i++)
-.LINE 45
-
-	JR	L_14
-L_12:
-;   46		{
-;   47			ptr[i] = (char) NULL;
-.LINE 47
-
+;   53		dbg_sprintf(dbgout, "[lib_MemZero] Zeroing memory from 0x%p to 0x%p\n", (void*) ptr, &ptr + c);
+	JR	L_19
+;   54		for (; i < c; i++)
+L_17:
+;   55		{
+;   56			ptr[i] = (char) NULL;
 	LD	BC,(IX+-3)
 	LD	HL,(IX+6)
 	ADD	HL,BC
@@ -770,18 +283,14 @@ L_12:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;   48		}
-L_14:
-.LINE 48
-
+;   57		}
+L_19:
 	LD	BC,(IX+9)
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	CALL	__setflag
-	JP	M,L_12
-.LINE 49
-
+	JP	M,L_17
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -789,7 +298,6 @@ L_14:
 
 ;**************************** _lib_MemZero ***************************
 ;Name                         Addr/Register   Size   Type
-;_sprintf                            IMPORT  -----   function
 ;i                                     IX-3      3   variable
 ;c                                     IX+9      3   parameter
 ;ptr                                   IX+6      3   parameter
@@ -799,20 +307,19 @@ L_14:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_MemZero",49,"_lib_MemZero"
-	SEGMENT STRSECT
-L__7:
-	DB	"[lib_MemZero] Zeroing memory from 0x%p to 0x%p"
-	DB	10,0
 	XREF _strlen:ROM
 	XREF _strchr:ROM
 	XREF _memmove:ROM
-	XREF _sprintf:ROM
+	XREF _os_RealToStr:ROM
+	XREF __frameset0:ROM
+	XREF __frameset:ROM
 	XREF __setflag:ROM
 	XREF __icmpzero:ROM
 	XDEF _lib_MemZero
 	XDEF _lib_StrReplace
 	XDEF _lib_StrIndexOf
+	XDEF _dbg_WeakAssert
+	XDEF _os_RealToStrAuto
 	XDEF _lib_StrCut
 	XDEF _char_Neg
 	END

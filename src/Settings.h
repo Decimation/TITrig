@@ -5,8 +5,11 @@
 #ifndef TITRIG_SETTINGS_H
 #define TITRIG_SETTINGS_H
 
-extern uint8_t gRound;
-extern uint8_t gDigitThreshold;
+#include <stdint.h>
+
+extern uint8_t g_uRound;
+extern uint8_t g_uDigitThreshold;
+
 #define kLabelOffset 4
 
 void set_Menu();
