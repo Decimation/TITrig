@@ -7,11 +7,15 @@
 #include <debug.h>
 #include "Geometry.h"
 
+bool g_bEnableRounding;
 
 void geo_RoundTriangle(triangle_t* triangle, uint8_t places)
 {
 	int i = 0;
 	real_t* const mem = (real_t*) triangle;
+	if (!g_bEnableRounding) {
+		return;
+	}
 	for (; i < sizeof(*triangle) / sizeof(real_t); i++)
 	{
 		mem[i] = os_RealRound(&mem[i], places);
