@@ -9,11 +9,11 @@
 #include "Settings.h"
 #include "GraphicsExt.h"
 
-uint8_t g_uRound          = 0;
-uint8_t g_uDigitThreshold = 6;
+uint8_t gRound          = 2;
+uint8_t gDigitThreshold = 6;
 
-static labelpoint_t s_Round          = {{20, 20}, "Rounding digits: "};
-static labelpoint_t s_DigitThreshold = {{20, 40}, "Digit threshold: "};
+static superpoint_t spRound        = {{20, 20}, "Rounding digits: "};
+static superpoint_t spDigThreshold = {{20, 40}, "Digit threshold: "};
 
 //todo
 void set_Menu()
@@ -21,10 +21,10 @@ void set_Menu()
 	char babybuf[5];
 	gfx_ZeroScreen();
 
-	sprintf(babybuf, "%d", g_uRound);
-	strncpy(s_Round.label + 17, babybuf, strlen(babybuf));
+	sprintf(babybuf, "%d", gRound);
+	strncpy(spRound.label + 17, babybuf, strlen(babybuf));
 
-	sprintf(babybuf, "%d", g_uDigitThreshold);
-	strncpy(s_DigitThreshold.label + 17, babybuf, strlen(babybuf));
+	sprintf(babybuf, "%d", gDigitThreshold);
+	strncpy(spDigThreshold.label + 17, babybuf, strlen(babybuf));
 
 }
