@@ -62,7 +62,7 @@ void SimplifyFraction(real_t num, real_t denom, real_t out[2])
 	out[1] = os_RealDiv(&denom, &gcd);
 }
 
-void simp_SimplifyRadFromReal(real_t decimal, int24_t* out)
+void SimplifyRadicalFromDecimal(real_t decimal, int24_t* out)
 {
 	real_t       buf;
 	const real_t realZero = os_Int24ToReal(0);
@@ -73,10 +73,10 @@ void simp_SimplifyRadFromReal(real_t decimal, int24_t* out)
 		return;
 	}
 	buf = DecimalToRoot(decimal);
-	simp_SimplifyRad(os_RealToInt24(&buf), out);
+	SimplifyRadical(os_RealToInt24(&buf), out);
 }
 
-void simp_SimplifyRad(int24_t insideRoot, int24_t* out)
+void SimplifyRadical(int24_t insideRoot, int24_t out[2])
 {
 	int outside_root = 1;
 	int d            = 2;

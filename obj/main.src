@@ -1,9 +1,509 @@
 ; Zilog eZ80 ANSI C Compiler Release 3.4
-; -optsize -noreduceopt -nomodsect -peephole -globalopt
+; -debug -optsize -noreduceopt -nomodsect -peephole -globalopt
 ; -localcse -const=ROM 
 	FILE	"..\SRC\MAIN.C"
 	.assume ADL=1
+.DEBUG "C"
 	SEGMENT CODE
+.BEGREC "NONAME0",6
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "rem"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME0"
+.BEGREC "NONAME1",8
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 5
+.ENDEF
+.DEFINE "rem"
+.VALUE 4
+.CLASS 8
+.TYPE 5
+.ENDEF
+.ENDREC "NONAME1"
+.BEGREC "header",6
+.DEFINE "s"
+.VALUE 0
+.CLASS 11
+.TAG "NONAME2"
+.TYPE 8
+.ENDEF
+.DEFINE "x"
+.VALUE 0
+.CLASS 11
+.TYPE 2
+.ENDEF
+.ENDREC "header"
+.BEGREC "NONAME2",6
+.DEFINE "ptr"
+.VALUE 0
+.CLASS 8
+.TAG "header"
+.TYPE 40
+.ENDEF
+.DEFINE "size"
+.VALUE 3
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME2"
+.BEGREC "NONAME3",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME3"
+.BEGREC "NONAME4",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME4"
+.BEGREC "NONAME5",6
+.DEFINE "x"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "y"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME5"
+.BEGREC "NONAME6",12
+.DEFINE "xmin"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymin"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "xmax"
+.VALUE 6
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymax"
+.VALUE 9
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME6"
+.BEGREC "NONAME7",18
+.DEFINE "map"
+.VALUE 0
+.CLASS 8
+.TYPE 44
+.ENDEF
+.DEFINE "tiles"
+.VALUE 3
+.CLASS 8
+.TAG "NONAME3"
+.TYPE 296
+.ENDEF
+.DEFINE "tile_height"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "tile_width"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_height"
+.VALUE 8
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_width"
+.VALUE 9
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_width"
+.VALUE 10
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_height"
+.VALUE 11
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 12
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "width"
+.VALUE 13
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "y_loc"
+.VALUE 14
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "x_loc"
+.VALUE 15
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME7"
+.BEGREC "NONAME8",9
+.DEFINE "sign"
+.VALUE 0
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "mant"
+.VALUE 2
+.CLASS 8
+.DIM 7
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME8"
+.BEGREC "NONAME9",18
+.DEFINE "real"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "imag"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME9"
+.BEGREC "NONAME10",11
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME8"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME10"
+.BEGREC "NONAME11",20
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME9"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME11"
+.BEGREC "NONAME12",11
+.DEFINE "cols"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "rows"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME8"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME12"
+.BEGREC "NONAME13",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME13"
+.BEGREC "NONAME14",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME14"
+.BEGREC "NONAME15",3
+.DEFINE "size"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME15"
+.BEGREC "NONAME16",26
+.DEFINE "point"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME5"
+.TYPE 8
+.ENDEF
+.DEFINE "label"
+.VALUE 6
+.CLASS 8
+.DIM 20
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME16"
+.BEGREC "NONAME17",72
+.DEFINE "A"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "B"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "C"
+.VALUE 18
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "a"
+.VALUE 27
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "b"
+.VALUE 36
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "c"
+.VALUE 45
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "area"
+.VALUE 54
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "perimeter"
+.VALUE 63
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME17"
+.BEGREC "NONAME18",8
+.DEFINE "a"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "b"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "c"
+.VALUE 2
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "A"
+.VALUE 3
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "B"
+.VALUE 4
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "C"
+.VALUE 5
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "complete"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "isSSA"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.ENDREC "NONAME18"
+.BEGREC "fmt_type",19
+.DEFINE "status"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "flags"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "size"
+.VALUE 2
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "chr"
+.VALUE 3
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "type"
+.VALUE 4
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "field_width"
+.VALUE 5
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "precision"
+.VALUE 6
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "set_begin"
+.VALUE 7
+.CLASS 8
+.TYPE 34
+.ENDEF
+.DEFINE "set_end"
+.VALUE 10
+.CLASS 8
+.TYPE 34
+.ENDEF
+.DEFINE "pad_whole"
+.VALUE 13
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_pre_fract"
+.VALUE 14
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_post_fract"
+.VALUE 15
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "pad_at"
+.VALUE 16
+.CLASS 8
+.TYPE 34
+.ENDEF
+.ENDREC "fmt_type"
+.BEGREC "flt_info",12
+.DEFINE "flags"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "digits"
+.VALUE 2
+.CLASS 8
+.DIM 10
+.TYPE 108
+.ENDEF
+.ENDREC "flt_info"
+.BEGREC "__stdio_file",1
+.DEFINE "slot"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.ENDREC "__stdio_file"
 ;    1	//
 ;    2	// Created by Decimation on 4/27/2018.
 ;    3	//
@@ -14,11 +514,78 @@
 ;    8	int main(void)
 ;    9	{
 _main:
-	LD	HL,-74
-	CALL	__frameset
+.DEFINE "_main"
+
+.VALUE _main
+
+.CLASS 2
+
+.TYPE 68
+
+.ENDEF
+
+.BEGFUNC "main",9,"_main"
+
+.LINE 9
+
+.DEFINE "r"
+
+.CLASS 65
+
+.VALUE -9
+
+.TAG "NONAME8"
+
+.TYPE 8
+
+.ENDEF
+
+.DEFINE "real1"
+
+.CLASS 65
+
+.VALUE -18
+
+.TAG "NONAME8"
+
+.TYPE 8
+
+.ENDEF
+
+.DEFINE "real2"
+
+.CLASS 65
+
+.VALUE -27
+
+.TAG "NONAME8"
+
+.TYPE 8
+
+.ENDEF
+
+.DEFINE "buf"
+
+.CLASS 65
+
+.VALUE -47
+
+.DIM 20
+
+.TYPE 98
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+	LEA	HL,IX+-74
+	LD	SP,HL
 ;   10		char                      buf[20];
 ;   11		real_t                    r;
 ;   12		const real_t              real1   = os_Int24ToReal(1);
+.LINE 12
+
 	LD	BC,1
 	PUSH	BC
 	PEA	IX+-56
@@ -26,28 +593,104 @@ _main:
 	POP	BC
 	POP	BC
 	LEA	DE,IX+-18
+	LD	BC,9
+	LDIR	
 ;   13		const real_t              real2   = os_Int24ToReal(2);
+.LINE 13
+
 	LD	BC,2
 	PUSH	BC
 	PEA	IX+-65
-	LD	BC,9
-	LDIR	
 	CALL	_os_Int24ToReal
 	POP	BC
 	POP	BC
 	LEA	DE,IX+-27
-;   14		const static labelpoint_t iopoint = {{12, 116}, "..."};
-;   15		const static labelpoint_t title   = {{12, 16}, "TITrig"};
-;   16		const static labelpoint_t author  = {{12, 36}, "By Decimation"};
-;   17	
-;   18		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
-;   19		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
-;   20	
-;   21		os_ClrHome();
-	LD	BC,_asm_ClrLCD
-	PUSH	BC
 	LD	BC,9
 	LDIR	
+;   14		const static superpoint_t iopoint = {{12, 116}, "..."};
+.LINE 14
+
+.DEFINE "iopoint"
+
+.ALIAS "_0iopoint"
+
+.CLASS 84
+
+.VALUE _0iopoint
+
+.TAG "NONAME16"
+
+.TYPE 8
+
+.ENDEF
+
+;   15		const static superpoint_t title   = {{12, 16}, "TITrig"};
+.LINE 15
+
+.DEFINE "title"
+
+.ALIAS "_1title"
+
+.CLASS 84
+
+.VALUE _1title
+
+.TAG "NONAME16"
+
+.TYPE 8
+
+.ENDEF
+
+;   16		const static superpoint_t author  = {{12, 36}, "By Decimation"};
+.LINE 16
+
+.DEFINE "author"
+
+.ALIAS "_2author"
+
+.CLASS 84
+
+.VALUE _2author
+
+.TAG "NONAME16"
+
+.TYPE 8
+
+.ENDEF
+
+;   17	
+;   18		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
+.LINE 18
+
+	LD	BC,L__0
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+;   19		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
+.LINE 19
+
+	LD	BC,0
+	PUSH	BC
+	LD	BC,4
+	PUSH	BC
+	LD	BC,L__1
+	PUSH	BC
+	LD	BC,16449536
+	PUSH	BC
+	CALL	_sprintf
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   20	
+;   21		os_ClrHome();
+.LINE 21
+
+	LD	BC,_asm_ClrLCD
+	PUSH	BC
 	CALL	__OS
 	POP	BC
 	LD	BC,_asm_HomeUp
@@ -59,32 +702,40 @@ _main:
 	CALL	__OS
 	POP	BC
 ;   22		gfx_Begin();
+.LINE 22
+
 	CALL	_gfx_Begin
 ;   23	
 ;   24	
-;   25		lp_PrintColor(&title, gfx_blue);
+;   25		gfx_PrintColor(&title, gfx_blue);
+.LINE 25
+
 	LD	BC,16
 	PUSH	BC
 	LD	BC,_1title
 	PUSH	BC
-	CALL	_lp_PrintColor
+	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
-;   26		lp_PrintColor(&author, gfx_green);
+;   26		gfx_PrintColor(&author, gfx_green);
+.LINE 26
+
 	LD	BC,3
 	PUSH	BC
 	LD	BC,_2author
 	PUSH	BC
-	CALL	_lp_PrintColor
+	CALL	_gfx_PrintColor
 	POP	BC
 	POP	BC
 ;   27	
 ;   28		sprintf(buf, "Build %d.%d", kMajor, kMinor);
+.LINE 28
+
 	LD	BC,0
 	PUSH	BC
 	LD	BC,4
 	PUSH	BC
-	LD	BC,L__0
+	LD	BC,L__2
 	PUSH	BC
 	PEA	IX+-47
 	CALL	_sprintf
@@ -93,6 +744,8 @@ _main:
 	POP	BC
 	POP	BC
 ;   29		gfx_PrintStringXY(buf, 12, 56);
+.LINE 29
+
 	LD	BC,56
 	PUSH	BC
 	LD	BC,12
@@ -104,30 +757,9 @@ _main:
 	POP	BC
 ;   30	
 ;   31		gfx_PrintStringXY("1. Right", 12, 76);
+.LINE 31
+
 	LD	BC,76
-	PUSH	BC
-	LD	BC,12
-	PUSH	BC
-	LD	BC,L__1
-	PUSH	BC
-	CALL	_gfx_PrintStringXY
-	POP	BC
-	POP	BC
-	POP	BC
-;   32		gfx_PrintStringXY("2. Non-right", 12, 96);
-	LD	BC,96
-	PUSH	BC
-	LD	BC,12
-	PUSH	BC
-	LD	BC,L__2
-	PUSH	BC
-	CALL	_gfx_PrintStringXY
-	POP	BC
-	POP	BC
-	POP	BC
-;   33	
-;   34		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
-	LD	BC,136
 	PUSH	BC
 	LD	BC,12
 	PUSH	BC
@@ -137,13 +769,44 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
+;   32		gfx_PrintStringXY("2. Non-right", 12, 96);
+.LINE 32
+
+	LD	BC,96
+	PUSH	BC
+	LD	BC,12
+	PUSH	BC
+	LD	BC,L__4
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
+;   33	
+;   34		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
+.LINE 34
+
+	LD	BC,136
+	PUSH	BC
+	LD	BC,12
+	PUSH	BC
+	LD	BC,L__5
+	PUSH	BC
+	CALL	_gfx_PrintStringXY
+	POP	BC
+	POP	BC
+	POP	BC
 ;   35	
-;   36		lp_Print(&iopoint);
+;   36		gfx_Print(&iopoint);
+.LINE 36
+
 	LD	BC,_0iopoint
 	PUSH	BC
-	CALL	_lp_Print
+	CALL	_gfx_Print
 	POP	BC
 ;   37		r = io_gfx_ReadReal(&iopoint);
+.LINE 37
+
 	LD	BC,_0iopoint
 	PUSH	BC
 	PEA	IX+-74
@@ -151,55 +814,77 @@ _main:
 	POP	BC
 	POP	BC
 	LEA	DE,IX+-9
+	LD	BC,9
+	LDIR	
 ;   38	
 ;   39	
 ;   40		if (os_RealCompare(&real1, &r) == 0)
+.LINE 40
+
 	PEA	IX+-9
 	PEA	IX+-18
-	LD	BC,9
-	LDIR	
 	CALL	_os_RealCompare
 	POP	BC
 	POP	BC
 	CALL	__icmpzero
-	JR	NZ,L_10
+	JR	NZ,L_6
 ;   41		{
 ;   42			right_SolveTriangle();
+.LINE 42
+
 	CALL	_right_SolveTriangle
 ;   43		}
 ;   44		else if (os_RealCompare(&real2, &r) == 0)
-	JR	L_11
-L_10:
+.LINE 44
+
+	JR	L_7
+L_6:
 	PEA	IX+-9
 	PEA	IX+-27
 	CALL	_os_RealCompare
 	POP	BC
 	POP	BC
 	CALL	__icmpzero
-	JR	NZ,L_8
+	JR	NZ,L_4
 ;   45		{
 ;   46			trig_SolveTriangle();
+.LINE 46
+
 	CALL	_trig_SolveTriangle
 ;   47		}
 ;   48		else
-	JR	L_11
-L_8:
+.LINE 48
+
+	JR	L_7
+L_4:
 ;   49		{
 ;   50			gfx_End();
+.LINE 50
+
 	CALL	_gfx_End
-	OR	A,A
 ;   51			return 0;
+.LINE 51
+
+	OR	A,A
 	SBC	HL,HL
-	JR	L_12
+	JR	L_8
 ;   52		}
-L_11:
+L_7:
+.LINE 52
+
 ;   53	
 ;   54		gfx_End();
+.LINE 54
+
 	CALL	_gfx_End
-	OR	A,A
 ;   55		return 0;
+.LINE 55
+
+	OR	A,A
 	SBC	HL,HL
-L_12:
+L_8:
+.LINE 56
+
 	LD	SP,IX
 	POP	IX
 	RET	
@@ -213,17 +898,17 @@ L_12:
 ;_os_RealCompare                     IMPORT  -----   function
 ;_io_gfx_ReadReal                    IMPORT  -----   function
 ;_0iopoint                           STATIC     26   variable
-;_lp_Print                           IMPORT  -----   function
+;_gfx_Print                          IMPORT  -----   function
 ;_gfx_PrintStringXY                  IMPORT  -----   function
-;_sprintf                            IMPORT  -----   function
 ;_2author                            STATIC     26   variable
 ;_1title                             STATIC     26   variable
-;_lp_PrintColor                      IMPORT  -----   function
+;_gfx_PrintColor                     IMPORT  -----   function
 ;_gfx_Begin                          IMPORT  -----   function
 ;_asm_DrawStatusBar                  IMPORT  -----   function
 ;_asm_HomeUp                         IMPORT  -----   function
 ;_asm_ClrLCD                         IMPORT  -----   function
 ;__OS                                IMPORT  -----   function
+;_sprintf                            IMPORT  -----   function
 ;_os_Int24ToReal                     IMPORT  -----   function
 ;buf                                  IX-47     20   variable
 ;real2                                IX-27      9   variable
@@ -235,17 +920,25 @@ L_12:
 ;       Spill Code: 0 (instruction)
 
 
+.ENDFUNC "main",56,"_main"
 	SEGMENT STRSECT
 L__0:
+	DB	10
+	DB	"[----------------------------------------]"
+	DB	10,0
+L__1:
+	DB	"[TITrig] %d.%d"
+	DB	10,0
+L__2:
 	DB	"Build %d.%d"
 	DB	0
-L__1:
+L__3:
 	DB	"1. Right"
 	DB	0
-L__2:
+L__4:
 	DB	"2. Non-right"
 	DB	0
-L__3:
+L__5:
 	DB	"- Press Clear to quit"
 	DB	0
 	SEGMENT TEXT
@@ -327,9 +1020,9 @@ _2author:
 	XREF _trig_SolveTriangle:ROM
 	XREF _sprintf:ROM
 	XREF _right_SolveTriangle:ROM
+	XREF _gfx_PrintColor:ROM
 	XREF _io_gfx_ReadReal:ROM
-	XREF _lp_Print:ROM
-	XREF _lp_PrintColor:ROM
+	XREF _gfx_Print:ROM
 	XREF _asm_DrawStatusBar:ROM
 	XREF _asm_ClrLCD:ROM
 	XREF _asm_HomeUp:ROM
@@ -339,7 +1032,6 @@ _2author:
 	XREF _gfx_PrintStringXY:ROM
 	XREF _gfx_End:ROM
 	XREF _gfx_Begin:ROM
-	XREF __frameset:ROM
 	XREF __icmpzero:ROM
 	XDEF _main
 	END

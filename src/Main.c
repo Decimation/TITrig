@@ -11,9 +11,9 @@ int main(void)
 	real_t                    r;
 	const real_t              real1   = os_Int24ToReal(1);
 	const real_t              real2   = os_Int24ToReal(2);
-	const static labelpoint_t iopoint = {{12, 116}, "..."};
-	const static labelpoint_t title   = {{12, 16}, "TITrig"};
-	const static labelpoint_t author  = {{12, 36}, "By Decimation"};
+	const static superpoint_t iopoint = {{12, 116}, "..."};
+	const static superpoint_t title   = {{12, 16}, "TITrig"};
+	const static superpoint_t author  = {{12, 36}, "By Decimation"};
 
 	dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
 	dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
@@ -22,8 +22,8 @@ int main(void)
 	gfx_Begin();
 
 
-	lp_PrintColor(&title, gfx_blue);
-	lp_PrintColor(&author, gfx_green);
+	gfx_PrintColor(&title, gfx_blue);
+	gfx_PrintColor(&author, gfx_green);
 
 	sprintf(buf, "Build %d.%d", kMajor, kMinor);
 	gfx_PrintStringXY(buf, 12, 56);
@@ -33,7 +33,7 @@ int main(void)
 
 	gfx_PrintStringXY("- Press Clear to quit", 12, 136);
 
-	lp_Print(&iopoint);
+	gfx_Print(&iopoint);
 	r = io_gfx_ReadReal(&iopoint);
 
 

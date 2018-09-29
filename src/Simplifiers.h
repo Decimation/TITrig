@@ -8,9 +8,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
-void simp_SimplifyRadFromReal(real_t decimal, int24_t* out);
+void SimplifyRadicalFromDecimal(real_t decimal, int24_t* out);
 
-void simp_SimplifyRad(int24_t insideRoot, int24_t* out);
+void SimplifyRadical(int24_t insideRoot, int24_t out[2]);
 
 int IsEven(double d);
 

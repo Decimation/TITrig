@@ -19,15 +19,6 @@ int lib_StrCut(char* str, int begin, int len)
 	return len;
 }
 
-void os_RealToStrAuto(char* buf, real_t* p) {
-	os_RealToStr(buf,p,0,0,6);
-}
-void dbg_WeakAssert(bool cond) {
-	if (!cond) {
-		dbg_sprintf(dbgout, "[WARNING] Debug assertion failed\n");
-	}
-}
-
 int lib_StrIndexOf(char* values, char find)
 {
 	int index;

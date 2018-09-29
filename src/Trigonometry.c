@@ -4,7 +4,6 @@
 
 
 #include "Trigonometry.h"
-#include "Types.h"
 #include <math.h>
 
 static const float PI         = 3.141592654f;
@@ -96,42 +95,6 @@ real_t loc_Side_x(real_t a, real_t b, real_t angle)
 	return os_FloatToReal(sqrt((af * af) + (bf * bf) - 2 * af * bf * CosineDeg(anglef)));
 }
 
-void tri_SetSide(triangle_t* pTriangle, real_t r, trigstatus_t* pTriStatus, sidetype_t side)
-{
-	switch (side) {
-		case SIDE_A:
-			pTriangle->a  = r;
-			pTriStatus->a = true;
-			break;
-		case SIDE_B:
-			pTriangle->b  = r;
-			pTriStatus->b = true;
-			break;
-		case SIDE_C:
-			pTriangle->c = r;
-			pTriStatus->c = true;
-			break;
-	}
-}
-
-void tri_SetAngle(triangle_t* pTriangle, real_t r, trigstatus_t* pTriStatus, const angletype_t angletype)
-{
-	switch (angletype) {
-		case ANGLE_A:
-			pTriangle->A  = r;
-			pTriStatus->A = true;
-			break;
-		case ANGLE_B:
-			pTriangle->B  = r;
-			pTriStatus->B = true;
-			break;
-		case ANGLE_C90:
-			pTriangle->C  = r;
-			pTriStatus->C = true;
-			break;
-
-	}
-}
 
 real_t os_RealSinDeg(real_t r)
 {
