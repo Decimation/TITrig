@@ -5,28 +5,28 @@
 #include "Triangle.h"
 #include "debug.h"
 #include "Trigonometry.h"
-#include <string.h>
+#include "AutoTriangle/DynamicTriangle.h"
 
-static superpoint_t xangles[3] = {
+static labelpoint_t g_nXAngles[3] = {
 		{{30,       119 - 10}, "A"},   // AAA
 		{{10 + 155, 119 - 10}, "B"},   // BBB
 		{{135,      27},       "C"}   // CCC
 };
 
-static superpoint_t xsides[3] = {
+static labelpoint_t g_nXSides[3] = {
 		{{10 + 180, 60},  "a"},  // aaa
 		{{60,       55},  "b"},  // bbb
 		{{140 - 45, 130}, "c"}   // ccc
 };
 
 
-#define angle_A xangles[0]
-#define angle_B xangles[1]
-#define angle_C xangles[2]
+#define n_angle_A g_nXAngles[0]
+#define n_angle_B g_nXAngles[1]
+#define n_angle_C g_nXAngles[2]
 
-#define side_a xsides[0]
-#define side_b xsides[1]
-#define side_c xsides[2]
+#define n_side_a g_nXSides[0]
+#define n_side_b g_nXSides[1]
+#define n_side_c g_nXSides[2]
 
 static const char lbl_AngleMode[] = "ANGLE MODE";
 static const char lbl_SideMode[]  = "SIDE MODE";
@@ -46,44 +46,43 @@ static trigstatus_t trigstatus;
  */
 static bool ui_bDispMeasurements;
 
-static superpoint_t       ui_Mode      = {{230, 10}, "ANGLE MODE"};
-static superpoint_t       ui_Type      = {{230, 20}, "..."};
-static const superpoint_t ui_btn_Mode  = {280, 230, "Mode"};
-static const superpoint_t ui_btn_Clear = {215, 230, "Clear"};
-static const superpoint_t ui_btn_Data  = {145, 230, "Data"};
-static const superpoint_t ui_btn_Pref  = {70, 230, "Pref"};
+static labelpoint_t       ui_Mode      = {{230, 10}, "ANGLE MODE"};
+static labelpoint_t       ui_Type      = {{230, 20}, "..."};
+static const labelpoint_t ui_btn_Mode  = {280, 230, "Mode"};
+static const labelpoint_t ui_btn_Clear = {215, 230, "Clear"};
+static const labelpoint_t ui_btn_Data  = {145, 230, "Data"};
+static const labelpoint_t ui_btn_Pref  = {70, 230, "Pref"};
 
-static superpoint_t xmeasureData[2] = {
+static labelpoint_t xmeasureData[2] = {
 		{10, 155, "A = "},
 		{10, 175, "P = "},
 };
 
-static superpoint_t xanglesData[3] = {
+static labelpoint_t xanglesData[3] = {
 		{10, 155, "A = "},
 		{10, 175, "B = "},
 		{10, 195, "C = "}
 };
 
-static superpoint_t xsidesData[3] = {
+static labelpoint_t xsidesData[3] = {
 		{130, 155, "a = "},
 		{130, 175, "b = "},
 		{130, 195, "c = "}
 };
 
-static superpoint_t data_X_ex = {10, 215, "*X = "};
+static labelpoint_t data_X_ex = {10, 215, "*X = "};
 
 static void trig_Redraw()
 {
 	int index = 0;
-	for (index = 0; index < 3; index++)
-	{
-		gfx_Clear(&xangles[index]);
-		gfx_Clear(&xsides[index]);
+	for (index = 0; index < 3; index++) {
+		lp_Clear(&g_nXAngles[index]);
+		lp_Clear(&g_nXSides[index]);
 
-		gfx_Print(&xangles[index]);
-		gfx_Print(&xsides[index]);
+		lp_Print(&g_nXAngles[index]);
+		lp_Print(&g_nXSides[index]);
 
-		dbg_sprintf(dbgout, "[%s, %s]\n", xangles[index].label, xsides[index].label);
+		dbg_sprintf(dbgout, "[%s, %s]\n", g_nXAngles[index].label, g_nXSides[index].label);
 	}
 }
 
@@ -119,36 +118,30 @@ static void dbg_printTriangle()
 static void trig_Sync()
 {
 	dbg_sprintf(dbgout, "[Trig] Synchronizing...\n");
-	geo_RoundTriangle(&triangle, gRound);
+	__tri_Round(&triangle, g_round);
 	dbg_sprintf(dbgout, "[Trig] Rounded\n");
 
-	if (trigstatus.A)
-	{
-		os_RealToStr(angle_A.label, &triangle.A, 0, 0, 6);
+	if (trigstatus.A) {
+		os_RealToStr(n_angle_A.label, &triangle.A, 0, 0, 6);
 	}
-	if (trigstatus.B)
-	{
-		os_RealToStr(angle_B.label, &triangle.B, 0, 0, 6);
+	if (trigstatus.B) {
+		os_RealToStr(n_angle_B.label, &triangle.B, 0, 0, 6);
 	}
-	if (trigstatus.C)
-	{
-		os_RealToStr(angle_C.label, &triangle.C, 0, 0, 6);
+	if (trigstatus.C) {
+		os_RealToStr(n_angle_C.label, &triangle.C, 0, 0, 6);
 	}
-	if (trigstatus.a)
-	{
-		os_RealToStr(side_a.label, &triangle.a, 0, 0, 6);
+	if (trigstatus.a) {
+		os_RealToStr(n_side_a.label, &triangle.a, 0, 0, 6);
 	}
-	if (trigstatus.b)
-	{
-		os_RealToStr(side_b.label, &triangle.b, 0, 0, 6);
+	if (trigstatus.b) {
+		os_RealToStr(n_side_b.label, &triangle.b, 0, 0, 6);
 	}
-	if (trigstatus.c)
-	{
-		os_RealToStr(side_c.label, &triangle.c, 0, 0, 6);
+	if (trigstatus.c) {
+		os_RealToStr(n_side_c.label, &triangle.c, 0, 0, 6);
 	}
 
 	ui_DispData();
-	trig_TruncateLabels(gDigitThreshold);
+	trig_TruncateLabels(g_digitThreshold);
 	dbg_sprintf(dbgout, "[Trig] Truncated labels\n");
 	trig_Redraw();
 	dbg_printTriangle();
@@ -221,20 +214,17 @@ static void trig_SolveMissingAngle()
 	const real_t real180 = os_Int24ToReal(180);
 	real_t       buf;
 
-	if (trigstatus.A && trigstatus.B)
-	{
+	if (trigstatus.A && trigstatus.B) {
 		buf = os_RealAdd(&triangle.A, &triangle.B);
 		triangle.C   = os_RealSub(&real180, &buf);
 		trigstatus.C = true;
 	}
-	else if (trigstatus.A && trigstatus.C)
-	{
+	else if (trigstatus.A && trigstatus.C) {
 		buf = os_RealAdd(&triangle.A, &triangle.C);
 		triangle.B   = os_RealSub(&real180, &buf);
 		trigstatus.B = true;
 	}
-	else if (trigstatus.B && trigstatus.C)
-	{
+	else if (trigstatus.B && trigstatus.C) {
 		buf = os_RealAdd(&triangle.B, &triangle.C);
 		triangle.A   = os_RealSub(&real180, &buf);
 		trigstatus.A = true;
@@ -244,10 +234,9 @@ static void trig_SolveMissingAngle()
 static void trig_TruncateLabels(int len)
 {
 	int i = 0;
-	for (; i < 3; i++)
-	{
-		lib_StrCut(xangles[i].label, len, 20 - len);
-		lib_StrCut(xsides[i].label, len, 20 - len);
+	for (; i < 3; i++) {
+		lib_StrCut(g_nXAngles[i].label, len, 20 - len);
+		lib_StrCut(g_nXSides[i].label, len, 20 - len);
 	}
 }
 
@@ -266,19 +255,17 @@ static void trig_CheckSolvability()
 	trig_Sync();
 
 
-	if (trigstatus.complete)
-	{
+	if (trigstatus.complete) {
 		return;
 	}
 
 
 	// SSS
-	if (trigstatus.a && trigstatus.b && trigstatus.c)
-	{
-		dbg_sprintf(dbgout, "SSS detected [%s, %s, %s]\n", side_a.label, side_b.label, side_c.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_SSS);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	if (trigstatus.a && trigstatus.b && trigstatus.c) {
+		dbg_sprintf(dbgout, "SSS detected [%s, %s, %s]\n", n_side_a.label, n_side_b.label, n_side_c.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_SSS);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		trig_SolveSSS();
 		trigstatus.complete = true;
@@ -287,12 +274,11 @@ static void trig_CheckSolvability()
 
 	// AAS
 	// "AAS" is when we know two angles and one side (which is not between the angles).
-	if (trigstatus.A && trigstatus.C && trigstatus.c)
-	{
-		dbg_sprintf(dbgout, "AAS_1 detected [%s, %s, %s]\n", angle_A.label, angle_C.label, side_c.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_AAS);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	if (trigstatus.A && trigstatus.C && trigstatus.c) {
+		dbg_sprintf(dbgout, "AAS_1 detected [%s, %s, %s]\n", n_angle_A.label, n_angle_C.label, n_side_c.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_AAS);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		trig_SolveMissingAngle();
 		triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
@@ -306,12 +292,11 @@ static void trig_CheckSolvability()
 		ui_DispData();
 		return;
 	}
-	else if (trigstatus.B && trigstatus.C && trigstatus.b)
-	{
-		dbg_sprintf(dbgout, "AAS_2 detected [%s, %s, %s]\n", angle_B.label, angle_C.label, side_b.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_AAS);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	else if (trigstatus.B && trigstatus.C && trigstatus.b) {
+		dbg_sprintf(dbgout, "AAS_2 detected [%s, %s, %s]\n", n_angle_B.label, n_angle_C.label, n_side_b.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_AAS);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		trig_SolveMissingAngle();
 
@@ -327,12 +312,11 @@ static void trig_CheckSolvability()
 		ui_DispData();
 		return;
 	}
-	else if (trigstatus.A && trigstatus.B && trigstatus.b)
-	{
-		dbg_sprintf(dbgout, "AAS_3 detected [%s, %s, %s]\n", angle_A.label, angle_B.label, side_b.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_AAS);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	else if (trigstatus.A && trigstatus.B && trigstatus.b) {
+		dbg_sprintf(dbgout, "AAS_3 detected [%s, %s, %s]\n", n_angle_A.label, n_angle_B.label, n_side_b.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_AAS);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		trig_SolveMissingAngle();
 		triangle.c   = los_Side_x(triangle.C, triangle.b, triangle.B);
@@ -349,12 +333,11 @@ static void trig_CheckSolvability()
 
 	// ASA
 	// "ASA" is when we know two angles and a side between the angles.
-	if (trigstatus.A && trigstatus.c && trigstatus.B)
-	{
-		dbg_sprintf(dbgout, "ASA_1 detected [%s, %s, %s]\n", angle_A.label, side_c.label, angle_B.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_ASA);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	if (trigstatus.A && trigstatus.c && trigstatus.B) {
+		dbg_sprintf(dbgout, "ASA_1 detected [%s, %s, %s]\n", n_angle_A.label, n_side_c.label, n_angle_B.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_ASA);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		trig_SolveMissingAngle();
 		triangle.a   = los_Side_x(triangle.A, triangle.c, triangle.C);
@@ -370,10 +353,10 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.A && trigstatus.b && trigstatus.C) //todo: verify
 	{
-		dbg_sprintf(dbgout, "ASA_2 detected [%s, %s, %s]\n", angle_A.label, side_b.label, angle_C.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_ASA);
-		gfx_PrintColor(&ui_Type, gfx_green);
+		dbg_sprintf(dbgout, "ASA_2 detected [%s, %s, %s]\n", n_angle_A.label, n_side_b.label, n_angle_C.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_ASA);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		trig_SolveMissingAngle();
 		triangle.a   = los_Side_x(triangle.A, triangle.b, triangle.B);
@@ -389,10 +372,10 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.B && trigstatus.a && trigstatus.C) //todo: verify
 	{
-		dbg_sprintf(dbgout, "ASA_3 detected [%s, %s, %s]\n", angle_B.label, side_a.label, angle_C.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_ASA);
-		gfx_PrintColor(&ui_Type, gfx_green);
+		dbg_sprintf(dbgout, "ASA_3 detected [%s, %s, %s]\n", n_angle_B.label, n_side_a.label, n_angle_C.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_ASA);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		trig_SolveMissingAngle();
 		triangle.b   = los_Side_x(triangle.B, triangle.a, triangle.A);
@@ -409,12 +392,11 @@ static void trig_CheckSolvability()
 
 	// SAS
 	// "SAS" is when we know two sides and the angle between them.
-	if (trigstatus.b && trigstatus.A && trigstatus.c)
-	{
-		dbg_sprintf(dbgout, "SAS_1 detected [%s, %s, %s]\n", side_b.label, angle_A.label, side_c.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_SAS);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	if (trigstatus.b && trigstatus.A && trigstatus.c) {
+		dbg_sprintf(dbgout, "SAS_1 detected [%s, %s, %s]\n", n_side_b.label, n_angle_A.label, n_side_c.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_SAS);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		triangle.a   = loc_Side_x(triangle.b, triangle.c, triangle.A);
 		trigstatus.a = true;
@@ -433,10 +415,10 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.c && trigstatus.B && trigstatus.a) //todo: verify
 	{
-		dbg_sprintf(dbgout, "SAS_2 detected [%s, %s, %s]\n", side_c.label, angle_B.label, side_a.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_SAS);
-		gfx_PrintColor(&ui_Type, gfx_green);
+		dbg_sprintf(dbgout, "SAS_2 detected [%s, %s, %s]\n", n_side_c.label, n_angle_B.label, n_side_a.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_SAS);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		triangle.b   = loc_Side_x(triangle.a, triangle.c, triangle.B);
 		trigstatus.b = true;
@@ -452,12 +434,11 @@ static void trig_CheckSolvability()
 		ui_DispData();
 		return;
 	}
-	else if (trigstatus.b && trigstatus.C && trigstatus.a)
-	{
-		dbg_sprintf(dbgout, "SAS_3 detected [%s, %s, %s]\n", side_b.label, angle_C.label, side_a.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_SAS);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	else if (trigstatus.b && trigstatus.C && trigstatus.a) {
+		dbg_sprintf(dbgout, "SAS_3 detected [%s, %s, %s]\n", n_side_b.label, n_angle_C.label, n_side_a.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_SAS);
+		lp_PrintColor(&ui_Type, gfx_green);
 
 		triangle.c   = loc_Side_x(triangle.a, triangle.b, triangle.C);
 		trigstatus.c = true;
@@ -477,12 +458,11 @@ static void trig_CheckSolvability()
 	// SSA
 	// "SSA" is when we know two sides and an angle that is not the angle between the sides.
 	// todo: check if it has multiple answers
-	if (trigstatus.b && trigstatus.c && trigstatus.B)
-	{
-		dbg_sprintf(dbgout, "SSA_1 detected [%s, %s, %s]\n", side_b.label, side_c.label, angle_B.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_SSA);
-		gfx_PrintColor(&ui_Type, gfx_green);
+	if (trigstatus.b && trigstatus.c && trigstatus.B) {
+		dbg_sprintf(dbgout, "SSA_1 detected [%s, %s, %s]\n", n_side_b.label, n_side_c.label, n_angle_B.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_SSA);
+		lp_PrintColor(&ui_Type, gfx_green);
 		trigstatus.isSSA = true;
 
 		triangle.C   = los_Angle_x(triangle.c, triangle.B, triangle.b);
@@ -498,9 +478,9 @@ static void trig_CheckSolvability()
 		os_RealToStr(cbuf, &rbuf, 0, 0, 6);
 
 		sprintf(cbuf2, "*C = %s", cbuf);
-		sp_SetLabel(&data_X_ex, cbuf2);
-		gfx_Clear(&data_X_ex);
-		gfx_Print(&data_X_ex);
+		lp_SetLabel(&data_X_ex, cbuf2);
+		lp_Clear(&data_X_ex);
+		lp_Print(&data_X_ex);
 		dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
 		dbg_sprintf(dbgout, "Other possible solution for C = %s\n", cbuf);
 
@@ -512,10 +492,10 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.b && trigstatus.a && trigstatus.B) //todo: verify
 	{
-		dbg_sprintf(dbgout, "SSA_2 detected [%s, %s, %s]\n", side_b.label, side_a.label, angle_B.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_SSA);
-		gfx_PrintColor(&ui_Type, gfx_green);
+		dbg_sprintf(dbgout, "SSA_2 detected [%s, %s, %s]\n", n_side_b.label, n_side_a.label, n_angle_B.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_SSA);
+		lp_PrintColor(&ui_Type, gfx_green);
 		trigstatus.isSSA = true;
 
 		triangle.C   = los_Angle_x(triangle.c, triangle.B, triangle.b);
@@ -531,9 +511,9 @@ static void trig_CheckSolvability()
 		os_RealToStr(cbuf, &rbuf, 0, 0, 6);
 
 		sprintf(cbuf2, "*C = %s", cbuf);
-		sp_SetLabel(&data_X_ex, cbuf2);
-		gfx_Clear(&data_X_ex);
-		gfx_Print(&data_X_ex);
+		lp_SetLabel(&data_X_ex, cbuf2);
+		lp_Clear(&data_X_ex);
+		lp_Print(&data_X_ex);
 		dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
 		dbg_sprintf(dbgout, "Other possible solution for C = %s\n", cbuf);
 
@@ -545,10 +525,10 @@ static void trig_CheckSolvability()
 	}
 	else if (trigstatus.a && trigstatus.c && trigstatus.C) //todo: verify
 	{
-		dbg_sprintf(dbgout, "SSA_3 detected [%s, %s, %s]\n", side_a.label, side_c.label, angle_C.label);
-		gfx_Clear(&ui_Type);
-		sp_SetLabel(&ui_Type, lbl_SSA);
-		gfx_PrintColor(&ui_Type, gfx_green);
+		dbg_sprintf(dbgout, "SSA_3 detected [%s, %s, %s]\n", n_side_a.label, n_side_c.label, n_angle_C.label);
+		lp_Clear(&ui_Type);
+		lp_SetLabel(&ui_Type, lbl_SSA);
+		lp_PrintColor(&ui_Type, gfx_green);
 		trigstatus.isSSA = true;
 
 		triangle.B   = los_Angle_x(triangle.a, triangle.C, triangle.c);
@@ -564,9 +544,9 @@ static void trig_CheckSolvability()
 		os_RealToStr(cbuf, &rbuf, 0, 0, 6);
 
 		sprintf(cbuf2, "*B = %s", cbuf);
-		sp_SetLabel(&data_X_ex, cbuf2);
-		gfx_Clear(&data_X_ex);
-		gfx_Print(&data_X_ex);
+		lp_SetLabel(&data_X_ex, cbuf2);
+		lp_Clear(&data_X_ex);
+		lp_Print(&data_X_ex);
 		dbg_sprintf(dbgout, "data_X_ex = %s\n", data_X_ex.label);
 		dbg_sprintf(dbgout, "Other possible solution for B = %s\n", cbuf);
 
@@ -581,9 +561,8 @@ static void trig_CheckSolvability()
 static void ui_ClearMeasurements()
 {
 	int i = 0;
-	for (; i < 2; i++)
-	{
-		gfx_Clear(&xmeasureData[i]);
+	for (; i < 2; i++) {
+		lp_Clear(&xmeasureData[i]);
 	}
 	dbg_sprintf(dbgout, "[UI] Cleared measurements\n");
 }
@@ -591,10 +570,9 @@ static void ui_ClearMeasurements()
 static void ui_ClearAngleSideData()
 {
 	int i = 0;
-	for (; i < 3; i++)
-	{
-		gfx_Clear(&xsidesData[i]);
-		gfx_Clear(&xanglesData[i]);
+	for (; i < 3; i++) {
+		lp_Clear(&xsidesData[i]);
+		lp_Clear(&xanglesData[i]);
 	}
 	dbg_sprintf(dbgout, "[UI] Cleared angle and side data\n");
 }
@@ -602,108 +580,92 @@ static void ui_ClearAngleSideData()
 static void trig_SelectSide()
 {
 	uint8_t key;
-	superpoint_t* currentSelection = &side_b; // start at b
-	gfx_HighlightPoint(&side_b);
+	labelpoint_t* currentSelection = &n_side_b; // start at b
+	lp_HighlightPoint(&n_side_b);
 	RECURSE:
-	while ((key = os_GetCSC()) != sk_Enter)
-	{
-		if (key == sk_Clear)
-		{
+	while ((key = os_GetCSC()) != sk_Enter) {
+		if (key == sk_Clear) {
 			return;
 		}
 
-		if (key == sk_Zoom)
-		{
-			if (ui_bDispMeasurements)
-			{
+		if (key == sk_Zoom) {
+			if (ui_bDispMeasurements) {
 				ui_bDispMeasurements = false;
 				ui_ClearMeasurements();
 			}
-			else
-			{
+			else {
 				ui_bDispMeasurements = true;
 				ui_ClearAngleSideData();
 			}
 			ui_DispData();
 		}
 
-		if (key == sk_Trace)
-		{
+		if (key == sk_Trace) {
 			trig_Reset();
-			currentSelection = &side_b;
-			gfx_HighlightPoint(&side_b);
+			currentSelection = &n_side_b;
+			lp_HighlightPoint(&n_side_b);
 		}
 
-		if (key == sk_Graph)
-		{
-			gfx_Clear(&ui_Mode);
-			sp_SetLabel(&ui_Mode, lbl_AngleMode);
-			gfx_Print(&ui_Mode);
-			gfx_ClearHighlight(currentSelection);
+		if (key == sk_Graph) {
+			lp_Clear(&ui_Mode);
+			lp_SetLabel(&ui_Mode, lbl_AngleMode);
+			lp_Print(&ui_Mode);
+			lp_ClearHighlight(currentSelection);
 			trig_SelectAngle();
 			return;
 		}
 
 		/* bbb -> aaa */
-		if (key == sk_Right && PointEq(*currentSelection, side_b))
-		{
-			gfx_SetFocus(&currentSelection, &side_b, &side_a);
+		if (key == sk_Right && lp_Equals(*currentSelection, n_side_b)) {
+			lp_SetFocus(&currentSelection, &n_side_b, &n_side_a);
 		}
 
 		/* bbb -> ccc */
-		if (key == sk_Down && PointEq(*currentSelection, side_b))
-		{
-			gfx_SetFocus(&currentSelection, &side_b, &side_c);
+		if (key == sk_Down && lp_Equals(*currentSelection, n_side_b)) {
+			lp_SetFocus(&currentSelection, &n_side_b, &n_side_c);
 		}
 
 		/* ccc -> bbb */
-		if ((key == sk_Up || key == sk_Left) && PointEq(*currentSelection, side_c))
-		{
-			gfx_SetFocus(&currentSelection, &side_c, &side_b);
+		if ((key == sk_Up || key == sk_Left) && lp_Equals(*currentSelection, n_side_c)) {
+			lp_SetFocus(&currentSelection, &n_side_c, &n_side_b);
 		}
 
 		/* ccc -> aaa */
-		if (key == sk_Right && PointEq(*currentSelection, side_c))
-		{
-			gfx_SetFocus(&currentSelection, &side_c, &side_a);
+		if (key == sk_Right && lp_Equals(*currentSelection, n_side_c)) {
+			lp_SetFocus(&currentSelection, &n_side_c, &n_side_a);
 		}
 
 		/* aaa -> bbb */
-		if (key == sk_Left && PointEq(*currentSelection, side_a))
-		{
-			gfx_SetFocus(&currentSelection, &side_a, &side_b);
+		if (key == sk_Left && lp_Equals(*currentSelection, n_side_a)) {
+			lp_SetFocus(&currentSelection, &n_side_a, &n_side_b);
 		}
 
 		/* aaa -> ccc */
-		if (key == sk_Down && PointEq(*currentSelection, side_a))
-		{
-			gfx_SetFocus(&currentSelection, &side_a, &side_c);
+		if (key == sk_Down && lp_Equals(*currentSelection, n_side_a)) {
+			lp_SetFocus(&currentSelection, &n_side_a, &n_side_c);
 		}
 	}
 
-	if (PointEq(*currentSelection, side_a))
-	{
-		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_a.label);
-		triangle.a   = io_gfx_ReadReal(&side_a);
+	if (lp_Equals(*currentSelection, n_side_a)) {
+		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", n_side_a.label);
+		triangle.a   = io_gfx_ReadReal(&n_side_a);
 		trigstatus.a = true;
 	}
 
-	if (PointEq(*currentSelection, side_b))
-	{
-		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_b.label);
-		triangle.b   = io_gfx_ReadReal(&side_b);
+	if (lp_Equals(*currentSelection, n_side_b)) {
+		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", n_side_b.label);
+		triangle.b   = io_gfx_ReadReal(&n_side_b);
 		trigstatus.b = true;
 	}
 
-	if (PointEq(*currentSelection, side_c))
-	{
-		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", side_c.label);
-		triangle.c   = io_gfx_ReadReal(&side_c);
+	if (lp_Equals(*currentSelection, n_side_c)) {
+		dbg_sprintf(dbgout, "[Trig] User selected side %s\n", n_side_c.label);
+		triangle.c   = io_gfx_ReadReal(&n_side_c);
 		trigstatus.c = true;
 	}
 
 	trig_CheckSolvability();
-	gfx_HighlightPoint(currentSelection);
+	lp_HighlightPoint(currentSelection);
 	goto RECURSE;
 
 }
@@ -720,37 +682,34 @@ static void trig_Reset()
 	int i = 0;
 	bool  * bptr = (bool*) &trigstatus;
 	real_t* rptr = (real_t*) &triangle;
-	for (; i < sizeof(trigstatus) / sizeof(bool); i++)
-	{
+	for (; i < sizeof(trigstatus) / sizeof(bool); i++) {
 		bptr[i] = false;
 	}
-	for (i = 0; i < sizeof(triangle) / sizeof(real_t); i++)
-	{
+	for (i = 0; i < sizeof(triangle) / sizeof(real_t); i++) {
 		rptr[i] = os_Int24ToReal(0);
 	}
-	for (i = 0; i < 3; i++)
-	{
-		gfx_Clear(&xanglesData[i]);
+	for (i = 0; i < 3; i++) {
+		lp_Clear(&xanglesData[i]);
 		lib_MemZero(xanglesData[i].label + kLabelOffset, 16);
 
-		gfx_Clear(&xsidesData[i]);
+		lp_Clear(&xsidesData[i]);
 		lib_MemZero(xsidesData[i].label + kLabelOffset, 16);
 	}
-	gfx_Clear(&ui_Type);
-	gfx_Clear(&data_X_ex);
+	lp_Clear(&ui_Type);
+	lp_Clear(&data_X_ex);
 	lib_MemZero(data_X_ex.label + kLabelOffset, 16);
 
-	gfx_Clear(&xmeasureData[0]);
-	gfx_Clear(&xmeasureData[1]);
+	lp_Clear(&xmeasureData[0]);
+	lp_Clear(&xmeasureData[1]);
 	lib_MemZero(xmeasureData[0].label + kLabelOffset, 20 - kLabelOffset);
 	lib_MemZero(xmeasureData[1].label + kLabelOffset, 20 - kLabelOffset);
 
-	sp_SetLabel(&angle_A, "A");
-	sp_SetLabel(&angle_B, "B");
-	sp_SetLabel(&angle_C, "C");
-	sp_SetLabel(&side_a, "a");
-	sp_SetLabel(&side_b, "b");
-	sp_SetLabel(&side_c, "c");
+	lp_SetLabel(&n_angle_A, "A");
+	lp_SetLabel(&n_angle_B, "B");
+	lp_SetLabel(&n_angle_C, "C");
+	lp_SetLabel(&n_side_a, "a");
+	lp_SetLabel(&n_side_b, "b");
+	lp_SetLabel(&n_side_c, "c");
 	trig_Redraw();
 	trig_DrawTriangleSides();
 	trig_Sync();
@@ -781,20 +740,17 @@ static void trig_DrawTriangleSides()
 	trig_Redraw();
 
 	// Leg a, b, c
-	for (index = 0; index < 3; index++)
-	{
-		gfx_Print(&xsides[index]);
+	for (index = 0; index < 3; index++) {
+		lp_Print(&g_nXSides[index]);
 	}
 }
 
 static void ui_DispData()
 {
-	if (ui_bDispMeasurements)
-	{
+	if (ui_bDispMeasurements) {
 		ui_DispMeasurements();
 	}
-	else if (!ui_bDispMeasurements)
-	{
+	else if (!ui_bDispMeasurements) {
 		ui_DispAngleSideData();
 	}
 }
@@ -802,108 +758,92 @@ static void ui_DispData()
 static void trig_SelectAngle()
 {
 	uint8_t key;
-	superpoint_t* currentSelection = &angle_A;
-	gfx_HighlightPoint(&angle_A);
+	labelpoint_t* currentSelection = &n_angle_A;
+	lp_HighlightPoint(&n_angle_A);
 	RECURSE:
-	while ((key = os_GetCSC()) != sk_Enter)
-	{
-		if (key == sk_Clear)
-		{
+	while ((key = os_GetCSC()) != sk_Enter) {
+		if (key == sk_Clear) {
 			return;
 		}
 
-		if (key == sk_Zoom)
-		{
-			if (ui_bDispMeasurements)
-			{
+		if (key == sk_Zoom) {
+			if (ui_bDispMeasurements) {
 				ui_bDispMeasurements = false;
 				ui_ClearMeasurements();
 			}
-			else
-			{
+			else {
 				ui_bDispMeasurements = true;
 				ui_ClearAngleSideData();
 			}
 			ui_DispData();
 		}
 
-		if (key == sk_Trace)
-		{
+		if (key == sk_Trace) {
 			trig_Reset();
-			currentSelection = &angle_A;
-			gfx_HighlightPoint(&angle_A);
+			currentSelection = &n_angle_A;
+			lp_HighlightPoint(&n_angle_A);
 		}
 
-		if (key == sk_Graph)
-		{
-			gfx_Clear(&ui_Mode);
-			sp_SetLabel(&ui_Mode, lbl_SideMode);
-			gfx_Print(&ui_Mode);
-			gfx_ClearHighlight(currentSelection);
+		if (key == sk_Graph) {
+			lp_Clear(&ui_Mode);
+			lp_SetLabel(&ui_Mode, lbl_SideMode);
+			lp_Print(&ui_Mode);
+			lp_ClearHighlight(currentSelection);
 			trig_SelectSide();
 			return;
 		}
 
 		/* AAA -> BBB */
-		if (key == sk_Right && PointEq(*currentSelection, angle_A))
-		{
-			gfx_SetFocus(&currentSelection, &angle_A, &angle_B);
+		if (key == sk_Right && lp_Equals(*currentSelection, n_angle_A)) {
+			lp_SetFocus(&currentSelection, &n_angle_A, &n_angle_B);
 		}
 
 		/* AAA -> CCC */
-		if (key == sk_Up && PointEq(*currentSelection, angle_A))
-		{
-			gfx_SetFocus(&currentSelection, &angle_A, &angle_C);
+		if (key == sk_Up && lp_Equals(*currentSelection, n_angle_A)) {
+			lp_SetFocus(&currentSelection, &n_angle_A, &n_angle_C);
 		}
 
 		/* BBB -> AAA */
-		if (key == sk_Left && PointEq(*currentSelection, angle_B))
-		{
-			gfx_SetFocus(&currentSelection, &angle_B, &angle_A);
+		if (key == sk_Left && lp_Equals(*currentSelection, n_angle_B)) {
+			lp_SetFocus(&currentSelection, &n_angle_B, &n_angle_A);
 		}
 
 		/* BBB -> CCC */
-		if (key == sk_Up && PointEq(*currentSelection, angle_B))
-		{
-			gfx_SetFocus(&currentSelection, &angle_B, &angle_C);
+		if (key == sk_Up && lp_Equals(*currentSelection, n_angle_B)) {
+			lp_SetFocus(&currentSelection, &n_angle_B, &n_angle_C);
 		}
 
 		/* CCC -> AAA */
-		if (key == sk_Left && PointEq(*currentSelection, angle_C))
-		{
-			gfx_SetFocus(&currentSelection, &angle_C, &angle_A);
+		if (key == sk_Left && lp_Equals(*currentSelection, n_angle_C)) {
+			lp_SetFocus(&currentSelection, &n_angle_C, &n_angle_A);
 		}
 
 		/* CCC -> BBB */
-		if (key == sk_Down && PointEq(*currentSelection, angle_C))
-		{
-			gfx_SetFocus(&currentSelection, &angle_C, &angle_B);
+		if (key == sk_Down && lp_Equals(*currentSelection, n_angle_C)) {
+			lp_SetFocus(&currentSelection, &n_angle_C, &n_angle_B);
 		}
 	}
 
-	if (PointEq(*currentSelection, angle_A))
-	{
-		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_A.label);
-		triangle.A   = io_gfx_ReadReal(&angle_A);
+	if (lp_Equals(*currentSelection, n_angle_A)) {
+		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", n_angle_A.label);
+		triangle.A   = io_gfx_ReadReal(&n_angle_A);
 		trigstatus.A = true;
 	}
 
-	if (PointEq(*currentSelection, angle_B))
-	{
-		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_B.label);
-		triangle.B   = io_gfx_ReadReal(&angle_B);
+	if (lp_Equals(*currentSelection, n_angle_B)) {
+		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", n_angle_B.label);
+		triangle.B   = io_gfx_ReadReal(&n_angle_B);
 		trigstatus.B = true;
 	}
 
-	if (PointEq(*currentSelection, angle_C))
-	{
-		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", angle_C.label);
-		triangle.C   = io_gfx_ReadReal(&angle_C);
+	if (lp_Equals(*currentSelection, n_angle_C)) {
+		dbg_sprintf(dbgout, "[Trig] User selected angle %s\n", n_angle_C.label);
+		triangle.C   = io_gfx_ReadReal(&n_angle_C);
 		trigstatus.C = true;
 	}
 
 	trig_CheckSolvability();
-	gfx_HighlightPoint(currentSelection);
+	lp_HighlightPoint(currentSelection);
 	goto RECURSE;
 }
 
@@ -913,69 +853,60 @@ static void ui_DispMeasurements()
 	const real_t real0 = os_Int24ToReal(0);
 	int          i     = 0;
 
-	for (; i < 2; i++)
-	{
-		gfx_Clear(&xmeasureData[i]);
+	for (; i < 2; i++) {
+		lp_Clear(&xmeasureData[i]);
 	}
 
-	if (os_RealCompare(&triangle.area, &real0) == 0)
-	{
+	if (os_RealCompare(&triangle.area, &real0) == 0) {
 		strcpy(xmeasureData[0].label + kLabelOffset, lbl_Unknown);
 	}
-	else
-	{
+	else {
 		os_RealToStr(buffer, &triangle.area, 0, 0, 6);
 		strncpy(xmeasureData[0].label + kLabelOffset, buffer, 20 - kLabelOffset);
 	}
 
-	if (os_RealCompare(&triangle.perimeter, &real0) == 0)
-	{
+	if (os_RealCompare(&triangle.perimeter, &real0) == 0) {
 		strcpy(xmeasureData[1].label + kLabelOffset, lbl_Unknown);
 	}
-	else
-	{
+	else {
 		os_RealToStr(buffer, &triangle.perimeter, 0, 0, 6);
 		strncpy(xmeasureData[1].label + kLabelOffset, buffer, 20 - kLabelOffset);
 	}
 
 
-	for (i = 0; i < 2; i++)
-	{
-		gfx_Clear(&xmeasureData[i]);
-		gfx_Print(&xmeasureData[i]);
+	for (i = 0; i < 2; i++) {
+		lp_Clear(&xmeasureData[i]);
+		lp_Print(&xmeasureData[i]);
 	}
 }
 
 static void ui_DispAngleSideData()
 {
 	int i = 0;
-	for (; i < 3; i++)
-	{
-		gfx_Clear(&xsidesData[i]);
-		gfx_Clear(&xanglesData[i]);
+	for (; i < 3; i++) {
+		lp_Clear(&xsidesData[i]);
+		lp_Clear(&xanglesData[i]);
 
-		if (*xsides[i].label == 'a' || *xsides[i].label == 'b' || *xsides[i].label == 'c')
+		if (*g_nXSides[i].label == 'a' || *g_nXSides[i].label == 'b' || *g_nXSides[i].label == 'c')
 			strcpy(xsidesData[i].label + kLabelOffset, lbl_Unknown);
-		else strcpy(xsidesData[i].label + kLabelOffset, xsides[i].label);
+		else strcpy(xsidesData[i].label + kLabelOffset, g_nXSides[i].label);
 
-		if (*xangles[i].label == 'A' || *xangles[i].label == 'B' || *xangles[i].label == 'C')
+		if (*g_nXAngles[i].label == 'A' || *g_nXAngles[i].label == 'B' || *g_nXAngles[i].label == 'C')
 			strcpy(xanglesData[i].label + kLabelOffset, lbl_Unknown);
-		else strcpy(xanglesData[i].label + kLabelOffset, xangles[i].label);
+		else strcpy(xanglesData[i].label + kLabelOffset, g_nXAngles[i].label);
 
-		gfx_Clear(&xanglesData[i]);
-		gfx_Print(&xanglesData[i]);
+		lp_Clear(&xanglesData[i]);
+		lp_Print(&xanglesData[i]);
 
-		gfx_Clear(&xsidesData[i]);
-		gfx_Print(&xsidesData[i]);
+		lp_Clear(&xsidesData[i]);
+		lp_Print(&xsidesData[i]);
 	}
-	if (trigstatus.isSSA)
-	{
-		gfx_Clear(&data_X_ex);
-		gfx_Print(&data_X_ex);
+	if (trigstatus.isSSA) {
+		lp_Clear(&data_X_ex);
+		lp_Print(&data_X_ex);
 	}
-	else if (!trigstatus.isSSA)
-	{
-		gfx_Clear(&data_X_ex);
+	else if (!trigstatus.isSSA) {
+		lp_Clear(&data_X_ex);
 	}
 }
 
@@ -989,10 +920,10 @@ void trig_SolveTriangle()
 	gfx_SetColor(gfx_blue);
 	gfx_SetTextFGColor(gfx_black);
 
-	gfx_Print(&ui_Mode);
-	gfx_Print(&ui_btn_Mode);
-	gfx_Print(&ui_btn_Clear);
-	gfx_Print(&ui_btn_Data);
+	lp_Print(&ui_Mode);
+	lp_Print(&ui_btn_Mode);
+	lp_Print(&ui_btn_Clear);
+	lp_Print(&ui_btn_Data);
 
 	trig_Reset();
 

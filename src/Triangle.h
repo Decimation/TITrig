@@ -7,7 +7,7 @@
 
 #include "Library.h"
 #include "GraphicsExt.h"
-#include "Geometry.h"
+
 
 // Area = (1/2)|det[xA xB xC  ] |
 //				   [ yA yB yC ] |

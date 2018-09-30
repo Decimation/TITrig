@@ -5,6 +5,307 @@
 	.assume ADL=1
 .DEBUG "C"
 	SEGMENT CODE
+.BEGREC "NONAME0",9
+.DEFINE "sign"
+.VALUE 0
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "exp"
+.VALUE 1
+.CLASS 8
+.TYPE 2
+.ENDEF
+.DEFINE "mant"
+.VALUE 2
+.CLASS 8
+.DIM 7
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME0"
+.BEGREC "NONAME1",18
+.DEFINE "real"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "imag"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME1"
+.BEGREC "NONAME2",11
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME0"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME2"
+.BEGREC "NONAME3",20
+.DEFINE "dim"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME1"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME3"
+.BEGREC "NONAME4",11
+.DEFINE "cols"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "rows"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "items"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TAG "NONAME0"
+.TYPE 104
+.ENDEF
+.ENDREC "NONAME4"
+.BEGREC "NONAME5",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME5"
+.BEGREC "NONAME6",3
+.DEFINE "len"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME6"
+.BEGREC "NONAME7",3
+.DEFINE "size"
+.VALUE 0
+.CLASS 8
+.TYPE 13
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME7"
+.BEGREC "NONAME8",6
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "rem"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME8"
+.BEGREC "NONAME9",8
+.DEFINE "quot"
+.VALUE 0
+.CLASS 8
+.TYPE 5
+.ENDEF
+.DEFINE "rem"
+.VALUE 4
+.CLASS 8
+.TYPE 5
+.ENDEF
+.ENDREC "NONAME9"
+.BEGREC "header",6
+.DEFINE "s"
+.VALUE 0
+.CLASS 11
+.TAG "NONAME10"
+.TYPE 8
+.ENDEF
+.DEFINE "x"
+.VALUE 0
+.CLASS 11
+.TYPE 2
+.ENDEF
+.ENDREC "header"
+.BEGREC "NONAME10",6
+.DEFINE "ptr"
+.VALUE 0
+.CLASS 8
+.TAG "header"
+.TYPE 40
+.ENDEF
+.DEFINE "size"
+.VALUE 3
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME10"
+.BEGREC "NONAME11",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME11"
+.BEGREC "NONAME12",3
+.DEFINE "width"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "data"
+.VALUE 2
+.CLASS 8
+.DIM 1
+.TYPE 108
+.ENDEF
+.ENDREC "NONAME12"
+.BEGREC "NONAME13",6
+.DEFINE "x"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "y"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME13"
+.BEGREC "NONAME14",12
+.DEFINE "xmin"
+.VALUE 0
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymin"
+.VALUE 3
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "xmax"
+.VALUE 6
+.CLASS 8
+.TYPE 4
+.ENDEF
+.DEFINE "ymax"
+.VALUE 9
+.CLASS 8
+.TYPE 4
+.ENDEF
+.ENDREC "NONAME14"
+.BEGREC "NONAME15",18
+.DEFINE "map"
+.VALUE 0
+.CLASS 8
+.TYPE 44
+.ENDEF
+.DEFINE "tiles"
+.VALUE 3
+.CLASS 8
+.TAG "NONAME11"
+.TYPE 296
+.ENDEF
+.DEFINE "tile_height"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "tile_width"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_height"
+.VALUE 8
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "draw_width"
+.VALUE 9
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_width"
+.VALUE 10
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "type_height"
+.VALUE 11
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "height"
+.VALUE 12
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "width"
+.VALUE 13
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "y_loc"
+.VALUE 14
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "x_loc"
+.VALUE 15
+.CLASS 8
+.TYPE 14
+.ENDEF
+.ENDREC "NONAME15"
 .BEGREC "fmt_type",19
 .DEFINE "status"
 .VALUE 0
@@ -90,174 +391,6 @@
 .TYPE 108
 .ENDEF
 .ENDREC "flt_info"
-.BEGREC "NONAME0",6
-.DEFINE "quot"
-.VALUE 0
-.CLASS 8
-.TYPE 4
-.ENDEF
-.DEFINE "rem"
-.VALUE 3
-.CLASS 8
-.TYPE 4
-.ENDEF
-.ENDREC "NONAME0"
-.BEGREC "NONAME1",8
-.DEFINE "quot"
-.VALUE 0
-.CLASS 8
-.TYPE 5
-.ENDEF
-.DEFINE "rem"
-.VALUE 4
-.CLASS 8
-.TYPE 5
-.ENDEF
-.ENDREC "NONAME1"
-.BEGREC "header",6
-.DEFINE "s"
-.VALUE 0
-.CLASS 11
-.TAG "NONAME2"
-.TYPE 8
-.ENDEF
-.DEFINE "x"
-.VALUE 0
-.CLASS 11
-.TYPE 2
-.ENDEF
-.ENDREC "header"
-.BEGREC "NONAME2",6
-.DEFINE "ptr"
-.VALUE 0
-.CLASS 8
-.TAG "header"
-.TYPE 40
-.ENDEF
-.DEFINE "size"
-.VALUE 3
-.CLASS 8
-.TYPE 14
-.ENDEF
-.ENDREC "NONAME2"
-.BEGREC "NONAME3",9
-.DEFINE "sign"
-.VALUE 0
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "exp"
-.VALUE 1
-.CLASS 8
-.TYPE 2
-.ENDEF
-.DEFINE "mant"
-.VALUE 2
-.CLASS 8
-.DIM 7
-.TYPE 108
-.ENDEF
-.ENDREC "NONAME3"
-.BEGREC "NONAME4",18
-.DEFINE "real"
-.VALUE 0
-.CLASS 8
-.TAG "NONAME3"
-.TYPE 8
-.ENDEF
-.DEFINE "imag"
-.VALUE 9
-.CLASS 8
-.TAG "NONAME3"
-.TYPE 8
-.ENDEF
-.ENDREC "NONAME4"
-.BEGREC "NONAME5",11
-.DEFINE "dim"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME3"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME5"
-.BEGREC "NONAME6",20
-.DEFINE "dim"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME4"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME6"
-.BEGREC "NONAME7",11
-.DEFINE "cols"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "rows"
-.VALUE 1
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "items"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TAG "NONAME3"
-.TYPE 104
-.ENDEF
-.ENDREC "NONAME7"
-.BEGREC "NONAME8",3
-.DEFINE "len"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 98
-.ENDEF
-.ENDREC "NONAME8"
-.BEGREC "NONAME9",3
-.DEFINE "len"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 98
-.ENDEF
-.ENDREC "NONAME9"
-.BEGREC "NONAME10",3
-.DEFINE "size"
-.VALUE 0
-.CLASS 8
-.TYPE 13
-.ENDEF
-.DEFINE "data"
-.VALUE 2
-.CLASS 8
-.DIM 1
-.TYPE 108
-.ENDEF
-.ENDREC "NONAME10"
 .BEGREC "__stdio_file",1
 .DEFINE "slot"
 .VALUE 0
@@ -265,6 +398,98 @@
 .TYPE 12
 .ENDEF
 .ENDREC "__stdio_file"
+.BEGREC "NONAME16",72
+.DEFINE "A"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "B"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "C"
+.VALUE 18
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "a"
+.VALUE 27
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "b"
+.VALUE 36
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "c"
+.VALUE 45
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "area"
+.VALUE 54
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.DEFINE "perimeter"
+.VALUE 63
+.CLASS 8
+.TAG "NONAME0"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME16"
+.BEGREC "NONAME17",8
+.DEFINE "a"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "b"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "c"
+.VALUE 2
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "A"
+.VALUE 3
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "B"
+.VALUE 4
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "C"
+.VALUE 5
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "complete"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "isSSA"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.ENDREC "NONAME17"
 	SEGMENT TEXT
 _char_Neg:
 	DB	26
@@ -278,15 +503,14 @@ _char_Neg:
 ;    2	// Created by Decimation on 4/27/2018.
 ;    3	//
 ;    4	
-;    5	#include <debug.h>
-;    6	#include <string.h>
-;    7	#include "Library.h"
-;    8	
-;    9	const char char_Neg = (char) 26;
+;    5	
+;    6	#include "Library.h"
+;    7	
+;    8	const char char_Neg = (char) 26;
 	SEGMENT CODE
-;   10	
-;   11	int lib_StrCut(char* str, int begin, int len)
-;   12	{
+;    9	
+;   10	int lib_StrCut(char* str, int begin, int len)
+;   11	{
 _lib_StrCut:
 .DEFINE "_lib_StrCut"
 
@@ -298,9 +522,9 @@ _lib_StrCut:
 
 .ENDEF
 
-.BEGFUNC "lib_StrCut",12,"_lib_StrCut"
+.BEGFUNC "lib_StrCut",11,"_lib_StrCut"
 
-.LINE 12
+.LINE 11
 
 .DEFINE "str"
 
@@ -347,17 +571,17 @@ _lib_StrCut:
 	ADD	IX,SP
 	PUSH	BC
 	PUSH	BC
-;   13		int l = strlen(str);
-.LINE 13
+;   12		int l = strlen(str);
+.LINE 12
 
 	LD	BC,(IX+6)
 	PUSH	BC
 	CALL	_strlen
 	POP	BC
 	LD	(IX+-3),HL
-;   14	
-;   15		if (len < 0) len         = l - begin;
-.LINE 15
+;   13	
+;   14		if (len < 0) len         = l - begin;
+.LINE 14
 
 	LD	HL,(IX+12)
 	CALL	__icmpzero
@@ -369,8 +593,8 @@ _lib_StrCut:
 	SBC	HL,BC
 	LD	(IX+12),HL
 L_2:
-;   16		if (begin + len > l) len = l - begin;
-.LINE 16
+;   15		if (begin + len > l) len = l - begin;
+.LINE 15
 
 	LD	BC,(IX+12)
 	LD	HL,(IX+9)
@@ -387,8 +611,8 @@ L_2:
 	SBC	HL,BC
 	LD	(IX+12),HL
 L_3:
-;   17		memmove(str + begin, str + begin + len, l - len + 1);
-.LINE 17
+;   16		memmove(str + begin, str + begin + len, l - len + 1);
+.LINE 16
 
 	LD	BC,(IX+9)
 	LD	HL,(IX+6)
@@ -410,13 +634,13 @@ L_3:
 	POP	BC
 	POP	BC
 	POP	BC
-;   18	
-;   19		return len;
-.LINE 19
+;   17	
+;   18		return len;
+.LINE 18
 
 	LD	HL,(IX+12)
-;   20	}
-.LINE 20
+;   19	}
+.LINE 19
 
 	LD	SP,IX
 	POP	IX
@@ -437,10 +661,91 @@ L_3:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_StrCut",20,"_lib_StrCut"
-;   21	
-;   22	int lib_StrIndexOf(char* values, char find)
-;   23	{
+.ENDFUNC "lib_StrCut",19,"_lib_StrCut"
+;   20	
+;   21	void lib_WriteBuffer(char* buffer, real_t* value)
+;   22	{
+_lib_WriteBuffer:
+.DEFINE "_lib_WriteBuffer"
+
+.VALUE _lib_WriteBuffer
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "lib_WriteBuffer",22,"_lib_WriteBuffer"
+
+.LINE 22
+
+.DEFINE "buffer"
+
+.CLASS 65
+
+.VALUE 6
+
+.TYPE 34
+
+.ENDEF
+
+.DEFINE "value"
+
+.CLASS 65
+
+.VALUE 9
+
+.TAG "NONAME0"
+
+.TYPE 40
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;   23		os_RealToStr(buffer, value, 0, 0, 6);
+.LINE 23
+
+	LD	BC,6
+	PUSH	BC
+	LD	BC,0
+	PUSH	BC
+	PUSH	BC
+	LD	BC,(IX+9)
+	PUSH	BC
+	LD	BC,(IX+6)
+	PUSH	BC
+	CALL	_os_RealToStr
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   24	}
+.LINE 24
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _lib_WriteBuffer ***************************
+;Name                         Addr/Register   Size   Type
+;_os_RealToStr                       IMPORT  -----   function
+;value                                 IX+9      3   parameter
+;buffer                                IX+6      3   parameter
+
+
+; Stack Frame Size: 12 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "lib_WriteBuffer",24,"_lib_WriteBuffer"
+;   25	
+;   26	int lib_StrIndexOf(char* values, char find)
+;   27	{
 _lib_StrIndexOf:
 .DEFINE "_lib_StrIndexOf"
 
@@ -452,9 +757,9 @@ _lib_StrIndexOf:
 
 .ENDEF
 
-.BEGFUNC "lib_StrIndexOf",23,"_lib_StrIndexOf"
+.BEGFUNC "lib_StrIndexOf",27,"_lib_StrIndexOf"
 
-.LINE 23
+.LINE 27
 
 .DEFINE "values"
 
@@ -501,9 +806,9 @@ _lib_StrIndexOf:
 	ADD	IX,SP
 	PUSH	BC
 	PUSH	BC
-;   24		int index;
-;   25		const char* ptr = strchr(values, find);
-.LINE 25
+;   28		int index;
+;   29		const char* ptr = strchr(values, find);
+.LINE 29
 
 	LD	A,(IX+9)
 	SEXT	HL
@@ -515,35 +820,34 @@ _lib_StrIndexOf:
 	POP	BC
 	POP	BC
 	LD	(IX+-6),HL
-;   26		if (ptr)
-.LINE 26
+;   30		if (ptr) {
+.LINE 30
 
 	CALL	__icmpzero
-	JR	Z,L_6
-;   27		{
-;   28			index = (int) (ptr - values);
-.LINE 28
+	JR	Z,L_7
+;   31			index = (int) (ptr - values);
+.LINE 31
 
 	LD	BC,(IX+6)
 	LD	HL,(IX+-6)
 	OR	A,A
 	SBC	HL,BC
 	LD	(IX+-3),HL
-;   29		}
-;   30		else index = -1;
-.LINE 30
+;   32		}
+;   33		else index = -1;
+.LINE 33
 
-	JR	L_7
-L_6:
+	JR	L_8
+L_7:
 	LD	BC,16777215
 	LD	(IX+-3),BC
-L_7:
-;   31		return index;
-.LINE 31
+L_8:
+;   34		return index;
+.LINE 34
 
 	LD	HL,(IX+-3)
-;   32	}
-.LINE 32
+;   35	}
+.LINE 35
 
 	LD	SP,IX
 	POP	IX
@@ -563,10 +867,10 @@ L_7:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_StrIndexOf",32,"_lib_StrIndexOf"
-;   33	
-;   34	void lib_StrReplace(char* in, char c, char r)
-;   35	{
+.ENDFUNC "lib_StrIndexOf",35,"_lib_StrIndexOf"
+;   36	
+;   37	void lib_StrReplace(char* in, char c, char r)
+;   38	{
 _lib_StrReplace:
 .DEFINE "_lib_StrReplace"
 
@@ -578,9 +882,9 @@ _lib_StrReplace:
 
 .ENDEF
 
-.BEGFUNC "lib_StrReplace",35,"_lib_StrReplace"
+.BEGFUNC "lib_StrReplace",38,"_lib_StrReplace"
 
-.LINE 35
+.LINE 38
 
 .DEFINE "in"
 
@@ -626,8 +930,8 @@ _lib_StrReplace:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;   36		const int index = lib_StrIndexOf(in, c);
-.LINE 36
+;   39		const int index = lib_StrIndexOf(in, c);
+.LINE 39
 
 	LD	C,(IX+9)
 	LD	B,0
@@ -638,23 +942,23 @@ _lib_StrReplace:
 	POP	BC
 	POP	BC
 	LD	(IX+-3),HL
-;   37	
-;   38		if (index != -1) in[index] = r;
-.LINE 38
+;   40	
+;   41		if (index != -1) in[index] = r;
+.LINE 41
 
 	LD	BC,16777215
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
-	JR	Z,L_10
+	JR	Z,L_11
 	LD	BC,(IX+-3)
 	LD	HL,(IX+6)
 	ADD	HL,BC
 	LD	A,(IX+12)
 	LD	(HL),A
-;   39	}
-L_10:
-.LINE 39
+;   42	}
+L_11:
+.LINE 42
 
 	LD	SP,IX
 	POP	IX
@@ -674,10 +978,10 @@ L_10:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_StrReplace",39,"_lib_StrReplace"
-;   40	
-;   41	void lib_MemZero(char* ptr, int c)
-;   42	{
+.ENDFUNC "lib_StrReplace",42,"_lib_StrReplace"
+;   43	
+;   44	void lib_MemZero(char* const ptr, int c)
+;   45	{
 _lib_MemZero:
 .DEFINE "_lib_MemZero"
 
@@ -689,9 +993,9 @@ _lib_MemZero:
 
 .ENDEF
 
-.BEGFUNC "lib_MemZero",42,"_lib_MemZero"
+.BEGFUNC "lib_MemZero",45,"_lib_MemZero"
 
-.LINE 42
+.LINE 45
 
 .DEFINE "ptr"
 
@@ -727,13 +1031,13 @@ _lib_MemZero:
 	LD	IX,0
 	ADD	IX,SP
 	PUSH	BC
-;   43		int i = 0;
-.LINE 43
+;   46		int i = 0;
+.LINE 46
 
 	LD	BC,0
 	LD	(IX+-3),BC
-;   44		dbg_sprintf(dbgout, "[lib_MemZero] Zeroing memory from 0x%p to 0x%p\n", (void*) ptr, &ptr + c);
-.LINE 44
+;   47		dbg_sprintf(dbgout, "[lib_MemZero] Zeroing memory from 0x%p to 0x%p\n", (void*) ptr, &ptr + c);
+.LINE 47
 
 	LD	HL,(IX+9)
 	LD	BC,HL
@@ -745,7 +1049,7 @@ _lib_MemZero:
 	PUSH	HL
 	LD	BC,(IX+6)
 	PUSH	BC
-	LD	BC,L__7
+	LD	BC,L__8
 	PUSH	BC
 	LD	BC,16449536
 	PUSH	BC
@@ -754,14 +1058,13 @@ _lib_MemZero:
 	POP	BC
 	POP	BC
 	POP	BC
-;   45		for (; i < c; i++)
-.LINE 45
+;   48		for (; i < c; i++) {
+.LINE 48
 
-	JR	L_14
-L_12:
-;   46		{
-;   47			ptr[i] = (char) NULL;
-.LINE 47
+	JR	L_15
+L_13:
+;   49			ptr[i] = (char) NULL;
+.LINE 49
 
 	LD	BC,(IX+-3)
 	LD	HL,(IX+6)
@@ -770,17 +1073,17 @@ L_12:
 	LD	BC,(IX+-3)
 	INC	BC
 	LD	(IX+-3),BC
-;   48		}
-L_14:
-.LINE 48
+;   50		}
+L_15:
+.LINE 50
 
 	LD	BC,(IX+9)
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,BC
 	CALL	__setflag
-	JP	M,L_12
-.LINE 49
+	JP	M,L_13
+.LINE 51
 
 	LD	SP,IX
 	POP	IX
@@ -799,20 +1102,22 @@ L_14:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "lib_MemZero",49,"_lib_MemZero"
+.ENDFUNC "lib_MemZero",51,"_lib_MemZero"
 	SEGMENT STRSECT
-L__7:
+L__8:
 	DB	"[lib_MemZero] Zeroing memory from 0x%p to 0x%p"
 	DB	10,0
 	XREF _strlen:ROM
 	XREF _strchr:ROM
 	XREF _memmove:ROM
 	XREF _sprintf:ROM
+	XREF _os_RealToStr:ROM
 	XREF __setflag:ROM
 	XREF __icmpzero:ROM
 	XDEF _lib_MemZero
 	XDEF _lib_StrReplace
 	XDEF _lib_StrIndexOf
+	XDEF _lib_WriteBuffer
 	XDEF _lib_StrCut
 	XDEF _char_Neg
 	END

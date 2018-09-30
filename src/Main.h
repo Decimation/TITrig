@@ -5,11 +5,11 @@
 #ifndef TITRIG_MAIN_H
 #define TITRIG_MAIN_H
 
-#define kMajor 4
+#define kMajor 5
 #define kMinor 0
 
 #include "GraphicsExt.h"
-#include "RightTriangle.h"
+#include "Right/RightTriangle.h"
 #include "Triangle.h"
 #include "debug.h"
 

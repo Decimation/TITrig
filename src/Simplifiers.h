@@ -14,8 +14,7 @@ void SimplifyRadical(int24_t insideRoot, int24_t out[2]);
 
 int IsEven(double d);
 
-
-double RoundIEEE754(double d);
+void SimplifyFraction(real_t num, real_t denom, real_t out[2]);
 
 /**
  * Converts a decimal to a square root
@@ -23,7 +22,6 @@ double RoundIEEE754(double d);
  * @param d
  * @return
  */
-//float DecimalToRoot(float d);
 real_t DecimalToRoot(real_t r);
 
 float DecimalToPi(float f);

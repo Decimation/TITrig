@@ -306,112 +306,6 @@
 .TYPE 108
 .ENDEF
 .ENDREC "NONAME15"
-.BEGREC "NONAME16",26
-.DEFINE "point"
-.VALUE 0
-.CLASS 8
-.TAG "NONAME5"
-.TYPE 8
-.ENDEF
-.DEFINE "label"
-.VALUE 6
-.CLASS 8
-.DIM 20
-.TYPE 98
-.ENDEF
-.ENDREC "NONAME16"
-.BEGREC "NONAME17",72
-.DEFINE "A"
-.VALUE 0
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "B"
-.VALUE 9
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "C"
-.VALUE 18
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "a"
-.VALUE 27
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "b"
-.VALUE 36
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "c"
-.VALUE 45
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "area"
-.VALUE 54
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "perimeter"
-.VALUE 63
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.ENDREC "NONAME17"
-.BEGREC "NONAME18",8
-.DEFINE "a"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "b"
-.VALUE 1
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "c"
-.VALUE 2
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "A"
-.VALUE 3
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "B"
-.VALUE 4
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "C"
-.VALUE 5
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "complete"
-.VALUE 6
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "isSSA"
-.VALUE 7
-.CLASS 8
-.TYPE 12
-.ENDEF
-.ENDREC "NONAME18"
 .BEGREC "fmt_type",19
 .DEFINE "status"
 .VALUE 0
@@ -504,15 +398,136 @@
 .TYPE 12
 .ENDEF
 .ENDREC "__stdio_file"
+.BEGREC "NONAME16",72
+.DEFINE "A"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "B"
+.VALUE 9
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "C"
+.VALUE 18
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "a"
+.VALUE 27
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "b"
+.VALUE 36
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "c"
+.VALUE 45
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "area"
+.VALUE 54
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.DEFINE "perimeter"
+.VALUE 63
+.CLASS 8
+.TAG "NONAME8"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME16"
+.BEGREC "NONAME17",8
+.DEFINE "a"
+.VALUE 0
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "b"
+.VALUE 1
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "c"
+.VALUE 2
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "A"
+.VALUE 3
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "B"
+.VALUE 4
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "C"
+.VALUE 5
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "complete"
+.VALUE 6
+.CLASS 8
+.TYPE 12
+.ENDEF
+.DEFINE "isSSA"
+.VALUE 7
+.CLASS 8
+.TYPE 12
+.ENDEF
+.ENDREC "NONAME17"
+.BEGREC "NONAME18",26
+.DEFINE "point"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME5"
+.TYPE 8
+.ENDEF
+.DEFINE "label"
+.VALUE 6
+.CLASS 8
+.DIM 20
+.TYPE 98
+.ENDEF
+.ENDREC "NONAME18"
+.BEGREC "NONAME19",80
+.DEFINE "triangle"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME16"
+.TYPE 8
+.ENDEF
+.DEFINE "status"
+.VALUE 72
+.CLASS 8
+.TAG "NONAME17"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME19"
 ;    1	//
 ;    2	// Created by Decimation on 4/27/2018.
 ;    3	//
 ;    4	
 ;    5	#include "Main.h"
-;    6	
-;    7	
-;    8	int main(void)
-;    9	{
+;    6	#include "Library.h"
+;    7	#include "/LabelPoint/LabelPoint.h"
+;    8	
+;    9	int main(void)
+;   10	{
 _main:
 .DEFINE "_main"
 
@@ -524,9 +539,9 @@ _main:
 
 .ENDEF
 
-.BEGFUNC "main",9,"_main"
+.BEGFUNC "main",10,"_main"
 
-.LINE 9
+.LINE 10
 
 .DEFINE "r"
 
@@ -581,10 +596,10 @@ _main:
 	ADD	IX,SP
 	LEA	HL,IX+-74
 	LD	SP,HL
-;   10		char                      buf[20];
-;   11		real_t                    r;
-;   12		const real_t              real1   = os_Int24ToReal(1);
-.LINE 12
+;   11		char   buf[20];
+;   12		real_t r;
+;   13		LocalReal(1);
+.LINE 13
 
 	LD	BC,1
 	PUSH	BC
@@ -595,8 +610,8 @@ _main:
 	LEA	DE,IX+-18
 	LD	BC,9
 	LDIR	
-;   13		const real_t              real2   = os_Int24ToReal(2);
-.LINE 13
+;   14		LocalReal(2);
+.LINE 14
 
 	LD	BC,2
 	PUSH	BC
@@ -607,8 +622,10 @@ _main:
 	LEA	DE,IX+-27
 	LD	BC,9
 	LDIR	
-;   14		const static superpoint_t iopoint = {{12, 116}, "..."};
-.LINE 14
+;   15	
+;   16	
+;   17		const static labelpoint_t iopoint = {{12, 116}, "..."};
+.LINE 17
 
 .DEFINE "iopoint"
 
@@ -618,14 +635,14 @@ _main:
 
 .VALUE _0iopoint
 
-.TAG "NONAME16"
+.TAG "NONAME18"
 
 .TYPE 8
 
 .ENDEF
 
-;   15		const static superpoint_t title   = {{12, 16}, "TITrig"};
-.LINE 15
+;   18		const static labelpoint_t title   = {{12, 16}, "TITrig"};
+.LINE 18
 
 .DEFINE "title"
 
@@ -635,14 +652,14 @@ _main:
 
 .VALUE _1title
 
-.TAG "NONAME16"
+.TAG "NONAME18"
 
 .TYPE 8
 
 .ENDEF
 
-;   16		const static superpoint_t author  = {{12, 36}, "By Decimation"};
-.LINE 16
+;   19		const static labelpoint_t author  = {{12, 36}, "By Decimation"};
+.LINE 19
 
 .DEFINE "author"
 
@@ -652,15 +669,15 @@ _main:
 
 .VALUE _2author
 
-.TAG "NONAME16"
+.TAG "NONAME18"
 
 .TYPE 8
 
 .ENDEF
 
-;   17	
-;   18		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
-.LINE 18
+;   20	
+;   21		dbg_sprintf(dbgout, "\n[----------------------------------------]\n");
+.LINE 21
 
 	LD	BC,L__0
 	PUSH	BC
@@ -669,12 +686,12 @@ _main:
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;   19		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
-.LINE 19
+;   22		dbg_sprintf(dbgout, "[TITrig] %d.%d\n", kMajor, kMinor);
+.LINE 22
 
 	LD	BC,0
 	PUSH	BC
-	LD	BC,4
+	LD	BC,5
 	PUSH	BC
 	LD	BC,L__1
 	PUSH	BC
@@ -685,9 +702,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   20	
-;   21		os_ClrHome();
-.LINE 21
+;   23	
+;   24		os_ClrHome();
+.LINE 24
 
 	LD	BC,_asm_ClrLCD
 	PUSH	BC
@@ -701,39 +718,39 @@ _main:
 	PUSH	BC
 	CALL	__OS
 	POP	BC
-;   22		gfx_Begin();
-.LINE 22
+;   25		gfx_Begin();
+.LINE 25
 
 	CALL	_gfx_Begin
-;   23	
-;   24	
-;   25		gfx_PrintColor(&title, gfx_blue);
-.LINE 25
+;   26	
+;   27	
+;   28		lp_PrintColor(&title, gfx_blue);
+.LINE 28
 
 	LD	BC,16
 	PUSH	BC
 	LD	BC,_1title
 	PUSH	BC
-	CALL	_gfx_PrintColor
+	CALL	_lp_PrintColor
 	POP	BC
 	POP	BC
-;   26		gfx_PrintColor(&author, gfx_green);
-.LINE 26
+;   29		lp_PrintColor(&author, gfx_green);
+.LINE 29
 
 	LD	BC,3
 	PUSH	BC
 	LD	BC,_2author
 	PUSH	BC
-	CALL	_gfx_PrintColor
+	CALL	_lp_PrintColor
 	POP	BC
 	POP	BC
-;   27	
-;   28		sprintf(buf, "Build %d.%d", kMajor, kMinor);
-.LINE 28
+;   30	
+;   31		sprintf(buf, "Build %d.%d", kMajor, kMinor);
+.LINE 31
 
 	LD	BC,0
 	PUSH	BC
-	LD	BC,4
+	LD	BC,5
 	PUSH	BC
 	LD	BC,L__2
 	PUSH	BC
@@ -743,8 +760,8 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   29		gfx_PrintStringXY(buf, 12, 56);
-.LINE 29
+;   32		gfx_PrintStringXY(buf, 12, 56);
+.LINE 32
 
 	LD	BC,56
 	PUSH	BC
@@ -755,9 +772,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   30	
-;   31		gfx_PrintStringXY("1. Right", 12, 76);
-.LINE 31
+;   33	
+;   34		gfx_PrintStringXY("1. Right", 12, 76);
+.LINE 34
 
 	LD	BC,76
 	PUSH	BC
@@ -769,8 +786,8 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   32		gfx_PrintStringXY("2. Non-right", 12, 96);
-.LINE 32
+;   35		gfx_PrintStringXY("2. Non-right", 12, 96);
+.LINE 35
 
 	LD	BC,96
 	PUSH	BC
@@ -782,9 +799,9 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   33	
-;   34		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
-.LINE 34
+;   36	
+;   37		gfx_PrintStringXY("- Press Clear to quit", 12, 136);
+.LINE 37
 
 	LD	BC,136
 	PUSH	BC
@@ -796,16 +813,16 @@ _main:
 	POP	BC
 	POP	BC
 	POP	BC
-;   35	
-;   36		gfx_Print(&iopoint);
-.LINE 36
+;   38	
+;   39		lp_Print(&iopoint);
+.LINE 39
 
 	LD	BC,_0iopoint
 	PUSH	BC
-	CALL	_gfx_Print
+	CALL	_lp_Print
 	POP	BC
-;   37		r = io_gfx_ReadReal(&iopoint);
-.LINE 37
+;   40		r = io_gfx_ReadReal(&iopoint);
+.LINE 40
 
 	LD	BC,_0iopoint
 	PUSH	BC
@@ -816,10 +833,10 @@ _main:
 	LEA	DE,IX+-9
 	LD	BC,9
 	LDIR	
-;   38	
-;   39	
-;   40		if (os_RealCompare(&real1, &r) == 0)
-.LINE 40
+;   41	
+;   42	
+;   43		if (os_RealCompare(&real1, &r) == 0) {
+.LINE 43
 
 	PEA	IX+-9
 	PEA	IX+-18
@@ -827,63 +844,43 @@ _main:
 	POP	BC
 	POP	BC
 	CALL	__icmpzero
-	JR	NZ,L_6
-;   41		{
-;   42			right_SolveTriangle();
-.LINE 42
-
-	CALL	_right_SolveTriangle
-;   43		}
-;   44		else if (os_RealCompare(&real2, &r) == 0)
+	JR	NZ,L_5
+;   44			right_SolveTriangle();
 .LINE 44
 
-	JR	L_7
-L_6:
+	CALL	_right_SolveTriangle
+;   45		}
+;   46		else if (os_RealCompare(&real2, &r) == 0) {
+.LINE 46
+
+	JR	L_6
+L_5:
 	PEA	IX+-9
 	PEA	IX+-27
 	CALL	_os_RealCompare
 	POP	BC
 	POP	BC
 	CALL	__icmpzero
-	JR	NZ,L_4
-;   45		{
-;   46			trig_SolveTriangle();
-.LINE 46
+	JR	NZ,L_6
+;   47			trig_SolveTriangle();
+.LINE 47
 
 	CALL	_trig_SolveTriangle
-;   47		}
-;   48		else
+;   48		}
+L_6:
 .LINE 48
 
-	JR	L_7
-L_4:
-;   49		{
-;   50			gfx_End();
+;   49	
+;   50		gfx_End();
 .LINE 50
 
 	CALL	_gfx_End
-;   51			return 0;
+;   51		return 0;
 .LINE 51
 
 	OR	A,A
 	SBC	HL,HL
-	JR	L_8
-;   52		}
-L_7:
 .LINE 52
-
-;   53	
-;   54		gfx_End();
-.LINE 54
-
-	CALL	_gfx_End
-;   55		return 0;
-.LINE 55
-
-	OR	A,A
-	SBC	HL,HL
-L_8:
-.LINE 56
 
 	LD	SP,IX
 	POP	IX
@@ -898,11 +895,11 @@ L_8:
 ;_os_RealCompare                     IMPORT  -----   function
 ;_io_gfx_ReadReal                    IMPORT  -----   function
 ;_0iopoint                           STATIC     26   variable
-;_gfx_Print                          IMPORT  -----   function
+;_lp_Print                           IMPORT  -----   function
 ;_gfx_PrintStringXY                  IMPORT  -----   function
 ;_2author                            STATIC     26   variable
 ;_1title                             STATIC     26   variable
-;_gfx_PrintColor                     IMPORT  -----   function
+;_lp_PrintColor                      IMPORT  -----   function
 ;_gfx_Begin                          IMPORT  -----   function
 ;_asm_DrawStatusBar                  IMPORT  -----   function
 ;_asm_HomeUp                         IMPORT  -----   function
@@ -920,7 +917,7 @@ L_8:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "main",56,"_main"
+.ENDFUNC "main",52,"_main"
 	SEGMENT STRSECT
 L__0:
 	DB	10
@@ -1018,11 +1015,11 @@ _2author:
 	DB	0
 	DB	0
 	XREF _trig_SolveTriangle:ROM
-	XREF _sprintf:ROM
 	XREF _right_SolveTriangle:ROM
-	XREF _gfx_PrintColor:ROM
+	XREF _lp_PrintColor:ROM
 	XREF _io_gfx_ReadReal:ROM
-	XREF _gfx_Print:ROM
+	XREF _lp_Print:ROM
+	XREF _sprintf:ROM
 	XREF _asm_DrawStatusBar:ROM
 	XREF _asm_ClrLCD:ROM
 	XREF _asm_HomeUp:ROM

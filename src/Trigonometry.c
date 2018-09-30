@@ -4,6 +4,7 @@
 
 
 #include "Trigonometry.h"
+#include "Library.h"
 #include <math.h>
 
 static const float PI         = 3.141592654f;
@@ -37,7 +38,7 @@ real_t loc_Angle_x(real_t c, real_t a, real_t b)
 {
 	char   buf[20];
 	//cos B = (c2 + a2 − b2) / 2ca
-	real_t real2 = os_Int24ToReal(2);
+	LocalReal(2);
 	real_t csq, asq, bsq, res, term, term2, rbuf;
 
 	os_RealToStr(buf, &c, 0, 0, 6);
@@ -98,7 +99,7 @@ real_t loc_Side_x(real_t a, real_t b, real_t angle)
 
 real_t os_RealSinDeg(real_t r)
 {
-	const real_t real180 = os_Int24ToReal(180);
+	LocalReal(180);
 	const real_t realpi  = os_FloatToReal(PI);
 	real_t       buf     = os_RealDiv(&r, &real180);
 	real_t       buf2    = os_RealMul(&buf, &realpi);

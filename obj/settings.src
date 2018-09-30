@@ -412,179 +412,25 @@
 .TYPE 98
 .ENDEF
 .ENDREC "NONAME16"
-.BEGREC "NONAME17",72
-.DEFINE "A"
-.VALUE 0
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "B"
-.VALUE 9
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "C"
-.VALUE 18
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "a"
-.VALUE 27
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "b"
-.VALUE 36
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "c"
-.VALUE 45
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "area"
-.VALUE 54
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.DEFINE "perimeter"
-.VALUE 63
-.CLASS 8
-.TAG "NONAME8"
-.TYPE 8
-.ENDEF
-.ENDREC "NONAME17"
-.BEGREC "NONAME18",8
-.DEFINE "a"
-.VALUE 0
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "b"
-.VALUE 1
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "c"
-.VALUE 2
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "A"
-.VALUE 3
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "B"
-.VALUE 4
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "C"
-.VALUE 5
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "complete"
-.VALUE 6
-.CLASS 8
-.TYPE 12
-.ENDEF
-.DEFINE "isSSA"
-.VALUE 7
-.CLASS 8
-.TYPE 12
-.ENDEF
-.ENDREC "NONAME18"
 	SEGMENT DATA
-_gRound:
+_g_round:
 	DB	0
-.DEFINE "gRound"
-.ALIAS "_gRound"
+.DEFINE "g_round"
+.ALIAS "_g_round"
 .CLASS 69
-.VALUE _gRound
+.VALUE _g_round
 .TYPE 12
 .ENDEF
-_gDigitThreshold:
+_g_digitThreshold:
 	DB	6
-.DEFINE "gDigitThreshold"
-.ALIAS "_gDigitThreshold"
+.DEFINE "g_digitThreshold"
+.ALIAS "_g_digitThreshold"
 .CLASS 69
-.VALUE _gDigitThreshold
+.VALUE _g_digitThreshold
 .TYPE 12
 .ENDEF
-_spRound:
-	DW	20
-	DB	0
-	DW	20
-	DB	0
-	DB	82
-	DB	111
-	DB	117
-	DB	110
-	DB	100
-	DB	105
-	DB	110
-	DB	103
-	DB	32
-	DB	100
-	DB	105
-	DB	103
-	DB	105
-	DB	116
-	DB	115
-	DB	58
-	DB	32
-	DB	0
-	DB	0
-	DB	0
-.DEFINE "spRound"
-.ALIAS "_spRound"
-.CLASS 69
-.VALUE _spRound
-.TAG "NONAME16"
-.TYPE 8
-.ENDEF
-_spDigThreshold:
-	DW	20
-	DB	0
-	DW	40
-	DB	0
-	DB	68
-	DB	105
-	DB	103
-	DB	105
-	DB	116
-	DB	32
-	DB	116
-	DB	104
-	DB	114
-	DB	101
-	DB	115
-	DB	104
-	DB	111
-	DB	108
-	DB	100
-	DB	58
-	DB	32
-	DB	0
-	DB	0
-	DB	0
-.DEFINE "spDigThreshold"
-.ALIAS "_spDigThreshold"
-.CLASS 69
-.VALUE _spDigThreshold
-.TAG "NONAME16"
-.TYPE 8
-.ENDEF
+	XDEF _g_digitThreshold
+	XDEF _g_round
 ;    1	//
 ;    2	// Created by Decimation on 4/28/2018.
 ;    3	//
@@ -594,153 +440,8 @@ _spDigThreshold:
 ;    7	#include <stdio.h>
 ;    8	#include <string.h>
 ;    9	#include "Settings.h"
-;   10	#include "GraphicsExt.h"
-;   11	
-;   12	uint8_t gRound          = 0;
-;   13	uint8_t gDigitThreshold = 6;
-;   14	
-;   15	static superpoint_t spRound        = {{20, 20}, "Rounding digits: "};
-;   16	static superpoint_t spDigThreshold = {{20, 40}, "Digit threshold: "};
-	SEGMENT CODE
-;   17	
-;   18	//todo
-;   19	void set_Menu()
-;   20	{
-_set_Menu:
-.DEFINE "_set_Menu"
-
-.VALUE _set_Menu
-
-.CLASS 2
-
-.TYPE 65
-
-.ENDEF
-
-.BEGFUNC "set_Menu",20,"_set_Menu"
-
-.LINE 20
-
-.DEFINE "babybuf"
-
-.CLASS 65
-
-.VALUE -5
-
-.DIM 5
-
-.TYPE 98
-
-.ENDEF
-
-	PUSH	IX
-	LD	IX,0
-	ADD	IX,SP
-	PUSH	BC
-	DEC	SP
-	DEC	SP
-;   21		char babybuf[5];
-;   22		gfx_ZeroScreen();
-.LINE 22
-
-	CALL	_gfx_ZeroScreen
-;   23	
-;   24		sprintf(babybuf, "%d", gRound);
-.LINE 24
-
-	LD	A,(_gRound)
-	UEXT	HL
-	LD	L,A
-	PUSH	HL
-	LD	BC,L__0
-	PUSH	BC
-	PEA	IX+-5
-	CALL	_sprintf
-	POP	BC
-	POP	BC
-	POP	BC
-;   25		strncpy(spRound.label + 17, babybuf, strlen(babybuf));
-.LINE 25
-
-	PEA	IX+-5
-	CALL	_strlen
-	POP	BC
-	PUSH	HL
-	PEA	IX+-5
-	LD	BC,_spRound+23
-	PUSH	BC
-	CALL	_strncpy
-	POP	BC
-	POP	BC
-	POP	BC
-;   26	
-;   27		sprintf(babybuf, "%d", gDigitThreshold);
-.LINE 27
-
-	LD	A,(_gDigitThreshold)
-	UEXT	HL
-	LD	L,A
-	PUSH	HL
-	LD	BC,L__1
-	PUSH	BC
-	PEA	IX+-5
-	CALL	_sprintf
-	POP	BC
-	POP	BC
-	POP	BC
-;   28		strncpy(spDigThreshold.label + 17, babybuf, strlen(babybuf));
-.LINE 28
-
-	PEA	IX+-5
-	CALL	_strlen
-	POP	BC
-	PUSH	HL
-	PEA	IX+-5
-	LD	BC,_spDigThreshold+23
-	PUSH	BC
-	CALL	_strncpy
-	POP	BC
-	POP	BC
-	POP	BC
-;   29	
-;   30	}
-.LINE 30
-
-	LD	SP,IX
-	POP	IX
-	RET	
-
-
-;**************************** _set_Menu ***************************
-;Name                         Addr/Register   Size   Type
-;_spDigThreshold                     STATIC     26   variable
-;_gDigitThreshold                    STATIC      1   variable
-;_spRound                            STATIC     26   variable
-;_strlen                             IMPORT  -----   function
-;_strncpy                            IMPORT  -----   function
-;_gRound                             STATIC      1   variable
-;_sprintf                            IMPORT  -----   function
-;_gfx_ZeroScreen                     IMPORT  -----   function
-;babybuf                               IX-5      5   variable
-
-
-; Stack Frame Size: 11 (bytes)
-;       Spill Code: 0 (instruction)
-
-
-.ENDFUNC "set_Menu",30,"_set_Menu"
-	SEGMENT STRSECT
-L__0:
-	DB	"%d"
-	DB	0
-L__1:
-	DB	"%d"
-	DB	0
-	XREF _strlen:ROM
-	XREF _strncpy:ROM
-	XREF _sprintf:ROM
-	XREF _gfx_ZeroScreen:ROM
-	XDEF _set_Menu
-	XDEF _gDigitThreshold
-	XDEF _gRound
+;   10	
+;   11	#include "LabelPoint/LabelPoint.h"
+;   12	
+;   13	uint8_t g_round          = 0;
 	END
