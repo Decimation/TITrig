@@ -5,7 +5,7 @@ Triangle solver for the TI-84 Plus CE
 
 TITrig can solve for any type of triangle, right or non-right. TITrig also supports inputting inline square roots.
 
-[Square roots](https://raw.githubusercontent.com/Decimation/TITrig/master/sqrt.png)
+![Square roots](https://raw.githubusercontent.com/Decimation/TITrig/master/sqrt.png)
 
 # Non-right triangles
 - Displays any extraneous angles
@@ -25,4 +25,4 @@ TITrig can solve for any type of triangle, right or non-right. TITrig also suppo
 
 
 # Example
-[AAS](https://raw.githubusercontent.com/Decimation/TITrig/master/aas.png)
+![AAS](https://raw.githubusercontent.com/Decimation/TITrig/master/aas.png)
