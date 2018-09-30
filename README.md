@@ -25,4 +25,5 @@ TITrig can solve for any type of triangle, right or non-right. TITrig also suppo
 
 
 # Example
+AAS non-right triangle
 ![AAS](https://raw.githubusercontent.com/Decimation/TITrig/master/aas.png)
