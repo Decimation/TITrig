@@ -3,7 +3,9 @@ Triangle solver for the TI-84 Plus CE
 
 # Features
 
-TITrig can solve for any type of triangle, right or non-right.
+TITrig can solve for any type of triangle, right or non-right. TITrig also supports inputting inline square roots.
+
+[Square roots](https://raw.githubusercontent.com/Decimation/TITrig/master/sqrt.png)
 
 # Non-right triangles
 - Displays any extraneous angles
@@ -20,3 +22,7 @@ TITrig can solve for any type of triangle, right or non-right.
 - Can display the trigonometric ratios in either plain fractions (decimals) or as simplified radicals
 - Displays the simplified radical form of a decimal when a decimal is selected
 - Features adjustable rounding (0-9 digits) which can be turned off
+
+
+# Example
+[AAS](https://raw.githubusercontent.com/Decimation/TITrig/master/aas.png)
