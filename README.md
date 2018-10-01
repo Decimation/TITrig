@@ -7,6 +7,8 @@ TITrig can solve for any type of triangle, right or non-right.
 
 ![Square roots](https://raw.githubusercontent.com/Decimation/TITrig/master/sqrt.png)
 
+![45-45-90](https://raw.githubusercontent.com/Decimation/TITrig/master/45_45_90.png)
+
 # Non-right triangles
 
 - Displays any extraneous angles
@@ -32,3 +34,7 @@ TITrig can solve for any type of triangle, right or non-right.
 AAS non-right triangle:
 
 ![AAS](https://raw.githubusercontent.com/Decimation/TITrig/master/aas.png)
+
+![Actual](https://www.mathsisfun.com/algebra/images/trig-aasex1.gif)
+
+
