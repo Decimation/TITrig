@@ -513,8 +513,238 @@
 ;    7	#include "/LabelPoint/LabelPoint.h"
 ;    8	#include <string.h>
 ;    9	
-;   10	void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner)
+;   10	void ui_ClearFraction(gfx_point_t point)
 ;   11	{
+_ui_ClearFraction:
+.DEFINE "_ui_ClearFraction"
+
+.VALUE _ui_ClearFraction
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "ui_ClearFraction",11,"_ui_ClearFraction"
+
+.LINE 11
+
+.DEFINE "point"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME5"
+
+.TYPE 8
+
+.ENDEF
+
+;   12		static const uint8_t w = 60;
+.LINE 12
+
+.DEFINE "w"
+
+.ALIAS "_0w"
+
+.CLASS 84
+
+.VALUE _0w
+
+.TYPE 12
+
+.ENDEF
+
+;   13		static const uint8_t h = 35;
+.LINE 13
+
+.DEFINE "h"
+
+.ALIAS "_1h"
+
+.CLASS 84
+
+.VALUE _1h
+
+.TYPE 12
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;   14		point.x -= 1;
+.LINE 14
+
+	LD	DE,(IX+6)
+	DEC	DE
+	LD	(IX+6),DE
+;   15		point.y -= 16;
+.LINE 15
+
+	LD	IY,(IX+9)
+	LEA	IY,IY+-16
+	LD	(IX+9),IY
+;   16		ui_ClearArea(point, w, h);
+.LINE 16
+
+	LD	DE,35
+	PUSH	DE
+	LD	DE,60
+	PUSH	DE
+	PUSH	BC
+	PUSH	BC
+	OR	A,A
+	SBC	HL,HL
+	ADD	HL,SP
+	LD	DE,HL
+	LEA	HL,IX+6
+	LD	BC,6
+	LDIR	
+	CALL	_ui_ClearArea
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   17	}
+.LINE 17
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _ui_ClearFraction ***************************
+;Name                         Addr/Register   Size   Type
+;_ui_ClearArea                       IMPORT  -----   function
+;point                                 IX+6      6   parameter
+
+
+; Stack Frame Size: 12 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "ui_ClearFraction",17,"_ui_ClearFraction"
+	SEGMENT TEXT
+_0w:
+	DB	60
+_1h:
+	DB	35
+	SEGMENT CODE
+;   18	
+;   19	void ui_ClearArea(gfx_point_t point, uint8_t w, uint8_t h)
+;   20	{
+_ui_ClearArea:
+.DEFINE "_ui_ClearArea"
+
+.VALUE _ui_ClearArea
+
+.CLASS 2
+
+.TYPE 65
+
+.ENDEF
+
+.BEGFUNC "ui_ClearArea",20,"_ui_ClearArea"
+
+.LINE 20
+
+.DEFINE "point"
+
+.CLASS 65
+
+.VALUE 6
+
+.TAG "NONAME5"
+
+.TYPE 8
+
+.ENDEF
+
+.DEFINE "w"
+
+.CLASS 65
+
+.VALUE 12
+
+.TYPE 12
+
+.ENDEF
+
+.DEFINE "h"
+
+.CLASS 65
+
+.VALUE 15
+
+.TYPE 12
+
+.ENDEF
+
+	PUSH	IX
+	LD	IX,0
+	ADD	IX,SP
+;   21		gfx_SetColor(gfx_white);
+.LINE 21
+
+	LD	BC,255
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   22		gfx_FillRectangle(point.x, point.y, w, h);
+.LINE 22
+
+	LD	A,(IX+15)
+	UEXT	HL
+	LD	L,A
+	PUSH	HL
+	LD	A,(IX+12)
+	UEXT	HL
+	LD	L,A
+	PUSH	HL
+	LD	BC,(IX+9)
+	PUSH	BC
+	LD	BC,(IX+6)
+	PUSH	BC
+	CALL	_gfx_FillRectangle
+	POP	BC
+	POP	BC
+	POP	BC
+	POP	BC
+;   23		gfx_SetColor(gfx_black);
+.LINE 23
+
+	LD	BC,0
+	PUSH	BC
+	CALL	_gfx_SetColor
+	POP	BC
+;   24	}
+.LINE 24
+
+	LD	SP,IX
+	POP	IX
+	RET	
+
+
+;**************************** _ui_ClearArea ***************************
+;Name                         Addr/Register   Size   Type
+;_gfx_FillRectangle                  IMPORT  -----   function
+;_gfx_SetColor                       IMPORT  -----   function
+;h                                    IX+15      1   parameter
+;w                                    IX+12      1   parameter
+;point                                 IX+6      6   parameter
+
+
+; Stack Frame Size: 18 (bytes)
+;       Spill Code: 0 (instruction)
+
+
+.ENDFUNC "ui_ClearArea",24,"_ui_ClearArea"
+;   25	
+;   26	void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner)
+;   27	{
 _gfx_RadicalFraction:
 .DEFINE "_gfx_RadicalFraction"
 
@@ -526,9 +756,9 @@ _gfx_RadicalFraction:
 
 .ENDEF
 
-.BEGFUNC "gfx_RadicalFraction",11,"_gfx_RadicalFraction"
+.BEGFUNC "gfx_RadicalFraction",27,"_gfx_RadicalFraction"
 
-.LINE 11
+.LINE 27
 
 .DEFINE "point"
 
@@ -655,15 +885,15 @@ _gfx_RadicalFraction:
 	ADD	IX,SP
 	LEA	HL,IX+-53
 	LD	SP,HL
-;   12	
-;   13		char numInnerBuf[10], numOuterBuf[10];
-;   14		char denomInnerBuf[10], denomOuterBuf[10];
-;   15	
-;   16		int numLength, denomLength;
-;   17		dbg_sprintf(dbgout, "gfx - rad frac\n");
-.LINE 17
+;   28	
+;   29		char numInnerBuf[10], numOuterBuf[10];
+;   30		char denomInnerBuf[10], denomOuterBuf[10];
+;   31	
+;   32		int numLength, denomLength;
+;   33		dbg_sprintf(dbgout, "gfx - rad frac\n");
+.LINE 33
 
-	LD	DE,L__0
+	LD	DE,L__2
 	PUSH	DE
 	LD	DE,16449536
 	PUSH	DE
@@ -672,12 +902,12 @@ _gfx_RadicalFraction:
 	LD	BC,(IX+-49)
 	POP	DE
 	POP	DE
-;   18		sprintf(numOuterBuf, "%d", numOuter);
-.LINE 18
+;   34		sprintf(numOuterBuf, "%d", numOuter);
+.LINE 34
 
 	LD	DE,(IX+12)
 	PUSH	DE
-	LD	DE,L__1
+	LD	DE,L__3
 	PUSH	DE
 	PEA	IX+-26
 	LD	(IX+-49),BC
@@ -686,12 +916,12 @@ _gfx_RadicalFraction:
 	POP	DE
 	POP	DE
 	POP	DE
-;   19		sprintf(numInnerBuf, "%d", numInner);
-.LINE 19
+;   35		sprintf(numInnerBuf, "%d", numInner);
+.LINE 35
 
 	LD	DE,(IX+15)
 	PUSH	DE
-	LD	DE,L__2
+	LD	DE,L__4
 	PUSH	DE
 	PEA	IX+-16
 	LD	(IX+-49),BC
@@ -700,13 +930,13 @@ _gfx_RadicalFraction:
 	POP	DE
 	POP	DE
 	POP	DE
-;   20	
-;   21		sprintf(denomOuterBuf, "%d", denomOuter);
-.LINE 21
+;   36	
+;   37		sprintf(denomOuterBuf, "%d", denomOuter);
+.LINE 37
 
 	LD	DE,(IX+18)
 	PUSH	DE
-	LD	DE,L__3
+	LD	DE,L__5
 	PUSH	DE
 	PEA	IX+-46
 	LD	(IX+-49),BC
@@ -715,12 +945,12 @@ _gfx_RadicalFraction:
 	POP	DE
 	POP	DE
 	POP	DE
-;   22		sprintf(denomInnerBuf, "%d", denomInner);
-.LINE 22
+;   38		sprintf(denomInnerBuf, "%d", denomInner);
+.LINE 38
 
 	LD	DE,(IX+21)
 	PUSH	DE
-	LD	DE,L__4
+	LD	DE,L__6
 	PUSH	DE
 	PEA	IX+-36
 	LD	(IX+-49),BC
@@ -729,9 +959,9 @@ _gfx_RadicalFraction:
 	POP	DE
 	POP	DE
 	POP	DE
-;   23	
-;   24		numLength   = (strlen(numOuterBuf) + strlen(numInnerBuf));
-.LINE 24
+;   39	
+;   40		numLength   = (strlen(numOuterBuf) + strlen(numInnerBuf));
+.LINE 40
 
 	PEA	IX+-26
 	LD	(IX+-49),BC
@@ -750,8 +980,8 @@ _gfx_RadicalFraction:
 	POP	IY
 	ADD	HL,DE
 	LD	(IX+-3),HL
-;   25		denomLength = (strlen(denomOuterBuf) + strlen(denomInnerBuf));
-.LINE 25
+;   41		denomLength = (strlen(denomOuterBuf) + strlen(denomInnerBuf));
+.LINE 41
 
 	PEA	IX+-46
 	LD	(IX+-49),BC
@@ -770,20 +1000,19 @@ _gfx_RadicalFraction:
 	POP	IY
 	ADD	HL,DE
 	LD	(IX+-6),HL
-;   26	
-;   27		//todo: center the fractions in these two cases
-;   28		if (numLength > denomLength)
-.LINE 28
+;   42	
+;   43		//todo: center the fractions in these two cases
+;   44		if (numLength > denomLength) {
+.LINE 44
 
 	LD	DE,(IX+-3)
 	LD	HL,(IX+-6)
 	OR	A,A
 	SBC	HL,DE
 	CALL	__setflag
-	JP	P,L_3
-;   29		{
-;   30			gfx_HorizLine(point.x - 1, point.y, gfx_GetStringWidth(numInnerBuf) + gfx_GetStringWidth(numOuterBuf) + 7);
-.LINE 30
+	JP	P,L_5
+;   45			gfx_HorizLine(point.x - 1, point.y, gfx_GetStringWidth(numInnerBuf) + gfx_GetStringWidth(numOuterBuf) + 7);
+.LINE 45
 
 	PEA	IX+-16
 	LD	(IX+-49),BC
@@ -815,79 +1044,22 @@ _gfx_RadicalFraction:
 	POP	DE
 	POP	DE
 	POP	DE
-;   31	
-;   32			point.y -= 9;
-.LINE 32
+;   46	
+;   47	
+;   48		}
+;   49		else if (numLength < denomLength) {
+.LINE 49
 
-	LD	IY,(IX+9)
-	LEA	IY,IY+-9
-	LD	(IX+9),IY
-;   33			gfx_Sqrt(point, numOuter, numInner);
-.LINE 33
-
-	LD	DE,(IX+15)
-	PUSH	DE
-	LD	DE,(IX+12)
-	PUSH	DE
-	PUSH	BC
-	PUSH	BC
-	OR	A,A
-	SBC	HL,HL
-	ADD	HL,SP
-	LD	DE,HL
-	LEA	HL,IX+6
-	LD	BC,6
-	LDIR	
-	LD	(IX+-49),BC
-	CALL	_gfx_Sqrt
-	LD	BC,(IX+-49)
-	POP	DE
-	POP	DE
-	POP	DE
-	POP	DE
-;   34	
-;   35			point.y += 14;
-.LINE 35
-
-	LD	IY,(IX+9)
-	LEA	IY,IY+14
-	LD	(IX+9),IY
-;   36			gfx_Sqrt(point, denomOuter, denomInner);
-.LINE 36
-
-	LD	DE,(IX+21)
-	PUSH	DE
-	LD	DE,(IX+18)
-	PUSH	DE
-	PUSH	BC
-	PUSH	BC
-	OR	A,A
-	SBC	HL,HL
-	ADD	HL,SP
-	LD	DE,HL
-	LEA	HL,IX+6
-	LD	BC,6
-	LDIR	
-	CALL	_gfx_Sqrt
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-;   37		}
-;   38		else if (numLength < denomLength)
-.LINE 38
-
-	JR	L_4
-L_3:
+	JR	L_6
+L_5:
 	LD	DE,(IX+-6)
 	LD	HL,(IX+-3)
 	OR	A,A
 	SBC	HL,DE
 	CALL	__setflag
-	JP	P,L_1
-;   39		{
-;   40			gfx_HorizLine(point.x - 1, point.y, gfx_GetStringWidth(denomInnerBuf) + gfx_GetStringWidth(denomOuterBuf) + 7);
-.LINE 40
+	JP	P,L_3
+;   50			gfx_HorizLine(point.x - 1, point.y, gfx_GetStringWidth(denomInnerBuf) + gfx_GetStringWidth(denomOuterBuf) + 7);
+.LINE 50
 
 	PEA	IX+-36
 	LD	(IX+-49),BC
@@ -896,104 +1068,6 @@ L_3:
 	POP	DE
 	LD	DE,HL
 	PEA	IX+-46
-	LD	(IX+-49),BC
-	LD	(IX+-52),DE
-	LD	(IX+-53),D
-	CALL	_gfx_GetStringWidth
-	LD	BC,(IX+-49)
-	LD	DE,(IX+-52)
-	LD	D,(IX+-53)
-	POP	IY
-	ADD	HL,DE
-	LD	IY,HL
-	LEA	DE,IY+7
-	PUSH	DE
-	LD	DE,(IX+9)
-	PUSH	DE
-	LD	DE,(IX+6)
-	DEC	DE
-	PUSH	DE
-	LD	(IX+-49),BC
-	CALL	_gfx_HorizLine
-	LD	BC,(IX+-49)
-	POP	DE
-	POP	DE
-	POP	DE
-;   41	
-;   42			point.y -= 9;
-.LINE 42
-
-	LD	IY,(IX+9)
-	LEA	IY,IY+-9
-	LD	(IX+9),IY
-;   43			gfx_Sqrt(point, numOuter, numInner);
-.LINE 43
-
-	LD	DE,(IX+15)
-	PUSH	DE
-	LD	DE,(IX+12)
-	PUSH	DE
-	PUSH	BC
-	PUSH	BC
-	OR	A,A
-	SBC	HL,HL
-	ADD	HL,SP
-	LD	DE,HL
-	LEA	HL,IX+6
-	LD	BC,6
-	LDIR	
-	LD	(IX+-49),BC
-	CALL	_gfx_Sqrt
-	LD	BC,(IX+-49)
-	POP	DE
-	POP	DE
-	POP	DE
-	POP	DE
-;   44	
-;   45			point.y += 14;
-.LINE 45
-
-	LD	IY,(IX+9)
-	LEA	IY,IY+14
-	LD	(IX+9),IY
-;   46			gfx_Sqrt(point, denomOuter, denomInner);
-.LINE 46
-
-	LD	DE,(IX+21)
-	PUSH	DE
-	LD	DE,(IX+18)
-	PUSH	DE
-	PUSH	BC
-	PUSH	BC
-	OR	A,A
-	SBC	HL,HL
-	ADD	HL,SP
-	LD	DE,HL
-	LEA	HL,IX+6
-	LD	BC,6
-	LDIR	
-	CALL	_gfx_Sqrt
-	POP	BC
-	POP	BC
-	POP	BC
-	POP	BC
-;   47		}
-;   48		else
-.LINE 48
-
-	JR	L_4
-L_1:
-;   49		{
-;   50			gfx_HorizLine(point.x - 1, point.y, gfx_GetStringWidth(numInnerBuf) + gfx_GetStringWidth(numOuterBuf) + 7);
-.LINE 50
-
-	PEA	IX+-16
-	LD	(IX+-49),BC
-	CALL	_gfx_GetStringWidth
-	LD	BC,(IX+-49)
-	POP	DE
-	LD	DE,HL
-	PEA	IX+-26
 	LD	(IX+-49),BC
 	LD	(IX+-52),DE
 	LD	(IX+-53),D
@@ -1018,14 +1092,61 @@ L_1:
 	POP	DE
 	POP	DE
 ;   51	
-;   52			point.y -= 9;
-.LINE 52
+;   52	
+;   53		}
+;   54		else {
+.LINE 54
+
+	JR	L_6
+L_3:
+;   55			gfx_HorizLine(point.x - 1, point.y, gfx_GetStringWidth(numInnerBuf) + gfx_GetStringWidth(numOuterBuf) + 7);
+.LINE 55
+
+	PEA	IX+-16
+	LD	(IX+-49),BC
+	CALL	_gfx_GetStringWidth
+	LD	BC,(IX+-49)
+	POP	DE
+	LD	DE,HL
+	PEA	IX+-26
+	LD	(IX+-49),BC
+	LD	(IX+-52),DE
+	LD	(IX+-53),D
+	CALL	_gfx_GetStringWidth
+	LD	BC,(IX+-49)
+	LD	DE,(IX+-52)
+	LD	D,(IX+-53)
+	POP	IY
+	ADD	HL,DE
+	LD	IY,HL
+	LEA	DE,IY+7
+	PUSH	DE
+	LD	DE,(IX+9)
+	PUSH	DE
+	LD	DE,(IX+6)
+	DEC	DE
+	PUSH	DE
+	LD	(IX+-49),BC
+	CALL	_gfx_HorizLine
+	LD	BC,(IX+-49)
+	POP	DE
+	POP	DE
+	POP	DE
+;   56	
+;   57	
+;   58		}
+L_6:
+.LINE 58
+
+;   59	
+;   60		point.y -= 9;
+.LINE 60
 
 	LD	IY,(IX+9)
 	LEA	IY,IY+-9
 	LD	(IX+9),IY
-;   53			gfx_Sqrt(point, numOuter, numInner);
-.LINE 53
+;   61		gfx_Sqrt(point, numOuter, numInner);
+.LINE 61
 
 	LD	DE,(IX+15)
 	PUSH	DE
@@ -1047,15 +1168,15 @@ L_1:
 	POP	DE
 	POP	DE
 	POP	DE
-;   54	
-;   55			point.y += 14;
-.LINE 55
+;   62	
+;   63		point.y += 14;
+.LINE 63
 
 	LD	IY,(IX+9)
 	LEA	IY,IY+14
 	LD	(IX+9),IY
-;   56			gfx_Sqrt(point, denomOuter, denomInner);
-.LINE 56
+;   64		gfx_Sqrt(point, denomOuter, denomInner);
+.LINE 64
 
 	LD	DE,(IX+21)
 	PUSH	DE
@@ -1075,11 +1196,8 @@ L_1:
 	POP	BC
 	POP	BC
 	POP	BC
-;   57	
-;   58		}
-;   59	}
-L_4:
-.LINE 59
+;   65	}
+.LINE 65
 
 	LD	SP,IX
 	POP	IX
@@ -1110,27 +1228,27 @@ L_4:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_RadicalFraction",59,"_gfx_RadicalFraction"
+.ENDFUNC "gfx_RadicalFraction",65,"_gfx_RadicalFraction"
 	SEGMENT STRSECT
-L__0:
+L__2:
 	DB	"gfx - rad frac"
 	DB	10,0
-L__1:
-	DB	"%d"
-	DB	0
-L__2:
-	DB	"%d"
-	DB	0
 L__3:
 	DB	"%d"
 	DB	0
 L__4:
 	DB	"%d"
 	DB	0
+L__5:
+	DB	"%d"
+	DB	0
+L__6:
+	DB	"%d"
+	DB	0
 	SEGMENT CODE
-;   60	
-;   61	void gfx_Fraction(gfx_point_t point, real_t num, real_t denom)
-;   62	{
+;   66	
+;   67	void gfx_Fraction(gfx_point_t point, real_t num, real_t denom)
+;   68	{
 _gfx_Fraction:
 .DEFINE "_gfx_Fraction"
 
@@ -1142,9 +1260,9 @@ _gfx_Fraction:
 
 .ENDEF
 
-.BEGFUNC "gfx_Fraction",62,"_gfx_Fraction"
+.BEGFUNC "gfx_Fraction",68,"_gfx_Fraction"
 
-.LINE 62
+.LINE 68
 
 .DEFINE "point"
 
@@ -1186,9 +1304,9 @@ _gfx_Fraction:
 
 .CLASS 65
 
-.VALUE -10
+.VALUE -15
 
-.DIM 10
+.DIM 15
 
 .TYPE 98
 
@@ -1198,9 +1316,9 @@ _gfx_Fraction:
 
 .CLASS 65
 
-.VALUE -20
+.VALUE -30
 
-.DIM 10
+.DIM 15
 
 .TYPE 98
 
@@ -1209,51 +1327,53 @@ _gfx_Fraction:
 	PUSH	IX
 	LD	IX,0
 	ADD	IX,SP
-	LEA	HL,IX+-23
+	LEA	HL,IX+-33
 	LD	SP,HL
-;   63		char numbuf[10];
-;   64		char denombuf[10];
-;   65		os_RealToStr(numbuf, &num, 0, 0, 6);
-.LINE 65
+;   69		char numbuf[15];
+;   70		char denombuf[15];
+;   71		os_RealToStr(numbuf, &num, 7, 0, 6);
+.LINE 71
 
 	LD	DE,6
 	PUSH	DE
 	LD	DE,0
 	PUSH	DE
+	LD	DE,7
 	PUSH	DE
 	PEA	IX+12
-	PEA	IX+-10
-	LD	(IX+-23),BC
+	PEA	IX+-15
+	LD	(IX+-33),BC
 	CALL	_os_RealToStr
-	LD	BC,(IX+-23)
+	LD	BC,(IX+-33)
 	POP	DE
 	POP	DE
 	POP	DE
 	POP	DE
 	POP	DE
-;   66		os_RealToStr(denombuf, &denom, 0, 0, 6);
-.LINE 66
+;   72		os_RealToStr(denombuf, &denom, 7, 0, 6);
+.LINE 72
 
 	LD	DE,6
 	PUSH	DE
 	LD	DE,0
 	PUSH	DE
+	LD	DE,7
 	PUSH	DE
 	PEA	IX+21
-	PEA	IX+-20
-	LD	(IX+-23),BC
+	PEA	IX+-30
+	LD	(IX+-33),BC
 	CALL	_os_RealToStr
-	LD	BC,(IX+-23)
+	LD	BC,(IX+-33)
 	POP	DE
 	POP	DE
 	POP	DE
 	POP	DE
 	POP	DE
-;   67		gfx_FractionStr(point, numbuf, denombuf);
-.LINE 67
+;   73		gfx_FractionStr(point, numbuf, denombuf);
+.LINE 73
 
-	PEA	IX+-20
-	PEA	IX+-10
+	PEA	IX+-30
+	PEA	IX+-15
 	PUSH	BC
 	PUSH	BC
 	OR	A,A
@@ -1268,8 +1388,8 @@ _gfx_Fraction:
 	POP	BC
 	POP	BC
 	POP	BC
-;   68	}
-.LINE 68
+;   74	}
+.LINE 74
 
 	LD	SP,IX
 	POP	IX
@@ -1280,21 +1400,21 @@ _gfx_Fraction:
 ;Name                         Addr/Register   Size   Type
 ;_gfx_FractionStr                    IMPORT  -----   function
 ;_os_RealToStr                       IMPORT  -----   function
-;denombuf                             IX-20     10   variable
-;numbuf                               IX-10     10   variable
+;denombuf                             IX-30     15   variable
+;numbuf                               IX-15     15   variable
 ;denom                                IX+21      9   parameter
 ;num                                  IX+12      9   parameter
 ;point                                 IX+6      6   parameter
 
 
-; Stack Frame Size: 53 (bytes)
+; Stack Frame Size: 63 (bytes)
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_Fraction",68,"_gfx_Fraction"
-;   69	
-;   70	void gfx_FractionStr(gfx_point_t point, const char* num, const char* denom)
-;   71	{
+.ENDFUNC "gfx_Fraction",74,"_gfx_Fraction"
+;   75	
+;   76	void gfx_FractionStr(gfx_point_t point, const char* num, const char* denom)
+;   77	{
 _gfx_FractionStr:
 .DEFINE "_gfx_FractionStr"
 
@@ -1306,9 +1426,9 @@ _gfx_FractionStr:
 
 .ENDEF
 
-.BEGFUNC "gfx_FractionStr",71,"_gfx_FractionStr"
+.BEGFUNC "gfx_FractionStr",77,"_gfx_FractionStr"
 
-.LINE 71
+.LINE 77
 
 .DEFINE "point"
 
@@ -1347,10 +1467,8 @@ _gfx_FractionStr:
 	ADD	IX,SP
 	PUSH	BC
 	DEC	SP
-;   72	
-;   73	
-;   74		if (strlen(num) > strlen(denom))
-.LINE 74
+;   78		if (strlen(num) > strlen(denom)) {
+.LINE 78
 
 	LD	BC,(IX+12)
 	PUSH	BC
@@ -1365,10 +1483,9 @@ _gfx_FractionStr:
 	POP	DE
 	OR	A,A
 	SBC	HL,BC
-	JR	NC,L_9
-;   75		{
-;   76			gfx_HorizLine(point.x - 1, point.y + 3, gfx_GetStringWidth(num) + 1);
-.LINE 76
+	JR	NC,L_12
+;   79			gfx_HorizLine(point.x - 1, point.y + 3, gfx_GetStringWidth(num) + 1);
+.LINE 79
 
 	LD	BC,(IX+12)
 	PUSH	BC
@@ -1386,9 +1503,9 @@ _gfx_FractionStr:
 	POP	BC
 	POP	BC
 	POP	BC
-;   77	
-;   78			gfx_PrintStringXY(denom, point.x + ((gfx_GetStringWidth(denom) + 1) / 2), point.y + 5);
-.LINE 78
+;   80	
+;   81			gfx_PrintStringXY(denom, point.x + ((gfx_GetStringWidth(denom) + 1) / 2), point.y + 5);
+.LINE 81
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+5
@@ -1409,8 +1526,8 @@ _gfx_FractionStr:
 	POP	BC
 	POP	BC
 	POP	BC
-;   79			gfx_PrintStringXY(num, point.x, point.y - 5);
-.LINE 79
+;   82			gfx_PrintStringXY(num, point.x, point.y - 5);
+.LINE 82
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+-5
@@ -1423,12 +1540,12 @@ _gfx_FractionStr:
 	POP	BC
 	POP	BC
 	POP	BC
-;   80		}
-;   81		else if (strlen(num) < strlen(denom))
-.LINE 81
+;   83		}
+;   84		else if (strlen(num) < strlen(denom)) {
+.LINE 84
 
-	JR	L_10
-L_9:
+	JR	L_13
+L_12:
 	LD	BC,(IX+12)
 	PUSH	BC
 	CALL	_strlen
@@ -1446,10 +1563,9 @@ L_9:
 	LD	HL,DE
 	OR	A,A
 	SBC	HL,BC
-	JR	NC,L_7
-;   82		{
-;   83			gfx_HorizLine(point.x - 1, point.y + 3, gfx_GetStringWidth(denom) + 1);
-.LINE 83
+	JR	NC,L_10
+;   85			gfx_HorizLine(point.x - 1, point.y + 3, gfx_GetStringWidth(denom) + 1);
+.LINE 85
 
 	LD	BC,(IX+15)
 	PUSH	BC
@@ -1467,9 +1583,9 @@ L_9:
 	POP	BC
 	POP	BC
 	POP	BC
-;   84	
-;   85			gfx_PrintStringXY(num, point.x + ((gfx_GetStringWidth(num) + 1) / 2), point.y - 5);
-.LINE 85
+;   86	
+;   87			gfx_PrintStringXY(num, point.x + ((gfx_GetStringWidth(num) + 1) / 2), point.y - 5);
+.LINE 87
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+-5
@@ -1490,8 +1606,8 @@ L_9:
 	POP	BC
 	POP	BC
 	POP	BC
-;   86			gfx_PrintStringXY(denom, point.x, point.y + 5);
-.LINE 86
+;   88			gfx_PrintStringXY(denom, point.x, point.y + 5);
+.LINE 88
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+5
@@ -1504,15 +1620,14 @@ L_9:
 	POP	BC
 	POP	BC
 	POP	BC
-;   87		}
-;   88		else
-.LINE 88
-
-	JR	L_10
-L_7:
-;   89		{
-;   90			gfx_HorizLine(point.x - 1, point.y + 3, gfx_GetStringWidth(denom) + 1);
+;   89		}
+;   90		else {
 .LINE 90
+
+	JR	L_13
+L_10:
+;   91			gfx_HorizLine(point.x - 1, point.y + 3, gfx_GetStringWidth(denom) + 1);
+.LINE 91
 
 	LD	BC,(IX+15)
 	PUSH	BC
@@ -1530,9 +1645,9 @@ L_7:
 	POP	BC
 	POP	BC
 	POP	BC
-;   91	
-;   92			gfx_PrintStringXY(num, point.x, point.y - 5);
-.LINE 92
+;   92	
+;   93			gfx_PrintStringXY(num, point.x, point.y - 5);
+.LINE 93
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+-5
@@ -1545,8 +1660,8 @@ L_7:
 	POP	BC
 	POP	BC
 	POP	BC
-;   93			gfx_PrintStringXY(denom, point.x, point.y + 5);
-.LINE 93
+;   94			gfx_PrintStringXY(denom, point.x, point.y + 5);
+.LINE 94
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+5
@@ -1559,10 +1674,10 @@ L_7:
 	POP	BC
 	POP	BC
 	POP	BC
-;   94		}
-;   95	}
-L_10:
-.LINE 95
+;   95		}
+;   96	}
+L_13:
+.LINE 96
 
 	LD	SP,IX
 	POP	IX
@@ -1584,10 +1699,10 @@ L_10:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_FractionStr",95,"_gfx_FractionStr"
-;   96	
-;   97	void gfx_Sqrt(gfx_point_t point, int24_t outer, int24_t inner)
-;   98	{
+.ENDFUNC "gfx_FractionStr",96,"_gfx_FractionStr"
+;   97	
+;   98	void gfx_Sqrt(gfx_point_t point, int24_t outer, int24_t inner)
+;   99	{
 _gfx_Sqrt:
 .DEFINE "_gfx_Sqrt"
 
@@ -1599,9 +1714,9 @@ _gfx_Sqrt:
 
 .ENDEF
 
-.BEGFUNC "gfx_Sqrt",98,"_gfx_Sqrt"
+.BEGFUNC "gfx_Sqrt",99,"_gfx_Sqrt"
 
-.LINE 98
+.LINE 99
 
 .DEFINE "point"
 
@@ -1662,41 +1777,41 @@ _gfx_Sqrt:
 	ADD	IX,SP
 	LEA	HL,IX+-23
 	LD	SP,HL
-;   99		char buf[20];
-;  100		int  strW;
-;  101		dbg_sprintf(dbgout, "[GFX] Drawing sqrt\n");
-.LINE 101
+;  100		char buf[20];
+;  101		int  strW;
+;  102		dbg_sprintf(dbgout, "[GFX] Drawing sqrt\n");
+.LINE 102
 
-	LD	BC,L__12
+	LD	BC,L__14
 	PUSH	BC
 	LD	BC,16449536
 	PUSH	BC
 	CALL	_sprintf
 	POP	BC
 	POP	BC
-;  102		sprintf(buf, "%d", outer);
-.LINE 102
+;  103		sprintf(buf, "%d", outer);
+.LINE 103
 
 	LD	BC,(IX+12)
 	PUSH	BC
-	LD	BC,L__13
+	LD	BC,L__15
 	PUSH	BC
 	PEA	IX+-23
 	CALL	_sprintf
 	POP	BC
 	POP	BC
 	POP	BC
-;  103		strW = gfx_GetStringWidth(buf);
-.LINE 103
+;  104		strW = gfx_GetStringWidth(buf);
+.LINE 104
 
 	PEA	IX+-23
 	CALL	_gfx_GetStringWidth
 	POP	BC
 	LD	(IX+-3),HL
-;  104	
-;  105		//190, 155
-;  106		gfx_PrintStringXY(buf, point.x, point.y);
-.LINE 106
+;  105	
+;  106		//190, 155
+;  107		gfx_PrintStringXY(buf, point.x, point.y);
+.LINE 107
 
 	LD	BC,(IX+9)
 	PUSH	BC
@@ -1707,10 +1822,10 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  107	
-;  108		//198, 158 -> 200, 160
-;  109		gfx_Line(point.x + strW, point.y + 3, point.x + strW + 2, point.y + 7);
-.LINE 109
+;  108	
+;  109		//198, 158 -> 200, 160
+;  110		gfx_Line(point.x + strW, point.y + 3, point.x + strW + 2, point.y + 7);
+.LINE 110
 
 	LD	IY,(IX+9)
 	LEA	BC,IY+7
@@ -1732,10 +1847,10 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  110	
-;  111		//205, 155
-;  112		gfx_VertLine(point.x + strW + 3, point.y - 3, 11);
-.LINE 112
+;  111	
+;  112		//205, 155
+;  113		gfx_VertLine(point.x + strW + 3, point.y - 3, 11);
+.LINE 113
 
 	LD	BC,11
 	PUSH	BC
@@ -1752,21 +1867,21 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  113	
-;  114		sprintf(buf, "%d", inner);
-.LINE 114
+;  114	
+;  115		sprintf(buf, "%d", inner);
+.LINE 115
 
 	LD	BC,(IX+15)
 	PUSH	BC
-	LD	BC,L__14
+	LD	BC,L__16
 	PUSH	BC
 	PEA	IX+-23
 	CALL	_sprintf
 	POP	BC
 	POP	BC
 	POP	BC
-;  115		gfx_PrintStringXY(buf, point.x + strW + 6, point.y);
-.LINE 115
+;  116		gfx_PrintStringXY(buf, point.x + strW + 6, point.y);
+.LINE 116
 
 	LD	BC,(IX+9)
 	PUSH	BC
@@ -1781,9 +1896,9 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  116	
-;  117		gfx_HorizLine(point.x + strW + 3, point.y - 3, gfx_GetStringWidth(buf) + 3);
-.LINE 117
+;  117	
+;  118		gfx_HorizLine(point.x + strW + 3, point.y - 3, gfx_GetStringWidth(buf) + 3);
+.LINE 118
 
 	PEA	IX+-23
 	CALL	_gfx_GetStringWidth
@@ -1804,8 +1919,8 @@ _gfx_Sqrt:
 	POP	BC
 	POP	BC
 	POP	BC
-;  118	}
-.LINE 118
+;  119	}
+.LINE 119
 
 	LD	SP,IX
 	POP	IX
@@ -1831,15 +1946,15 @@ _gfx_Sqrt:
 ;       Spill Code: 0 (instruction)
 
 
-.ENDFUNC "gfx_Sqrt",118,"_gfx_Sqrt"
+.ENDFUNC "gfx_Sqrt",119,"_gfx_Sqrt"
 	SEGMENT STRSECT
-L__12:
+L__14:
 	DB	"[GFX] Drawing sqrt"
 	DB	10,0
-L__13:
+L__15:
 	DB	"%d"
 	DB	0
-L__14:
+L__16:
 	DB	"%d"
 	DB	0
 	XREF _strlen:ROM
@@ -1847,13 +1962,17 @@ L__14:
 	XREF _os_RealToStr:ROM
 	XREF _gfx_GetStringWidth:ROM
 	XREF _gfx_PrintStringXY:ROM
+	XREF _gfx_FillRectangle:ROM
 	XREF _gfx_VertLine:ROM
 	XREF _gfx_HorizLine:ROM
 	XREF _gfx_Line:ROM
+	XREF _gfx_SetColor:ROM
 	XREF __setflag:ROM
 	XREF __ishru_b:ROM
 	XDEF _gfx_Sqrt
 	XDEF _gfx_FractionStr
 	XDEF _gfx_Fraction
 	XDEF _gfx_RadicalFraction
+	XDEF _ui_ClearArea
+	XDEF _ui_ClearFraction
 	END

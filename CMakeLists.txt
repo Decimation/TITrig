@@ -8,7 +8,7 @@ include_directories(C:/CEdev/include/)
 add_executable(TITrig
         src/Triangle.c src/Triangle.h
         src/GraphicsExt.c src/GraphicsExt.h
-        src/Library.c src/Library.h
+        src/System.c src/System.h
         src/Trigonometry.h src/Trigonometry.c
         src/Main.c src/Main.h
         src/Settings.c src/Settings.h
@@ -17,5 +17,5 @@ add_executable(TITrig
         src/Types.h
         src/Right/RightOperability.c src/Right/RightOperability.h
         src/Right/RightDrawFunctions.c src/Right/RightDrawFunctions.h
-        src/AutoTriangle/DynamicTriangle.c src/AutoTriangle/DynamicTriangle.h
-        src/LabelPoint/LabelPoint.c src/LabelPoint/LabelPoint.h)
+        src/DynamicTriangle/DynamicTriangle.c src/DynamicTriangle/DynamicTriangle.h
+        src/LabelPoint/LabelPoint.c src/LabelPoint/LabelPoint.h src/LabelPoint/DataPoint.c src/LabelPoint/DataPoint.h)

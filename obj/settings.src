@@ -421,11 +421,12 @@ _g_round:
 .VALUE _g_round
 .TYPE 12
 .ENDEF
+	SEGMENT TEXT
 _g_digitThreshold:
-	DB	6
+	DB	9
 .DEFINE "g_digitThreshold"
 .ALIAS "_g_digitThreshold"
-.CLASS 69
+.CLASS 84
 .VALUE _g_digitThreshold
 .TYPE 12
 .ENDEF

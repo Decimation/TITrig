@@ -16,6 +16,10 @@
 // To make CLion happy
 extern void trig_SolveTriangle();
 
+/**
+ * @brief Entry point
+ * @return 0 on program success
+ */
 int main(void);
 
 #endif //TITRIG_MAIN_H

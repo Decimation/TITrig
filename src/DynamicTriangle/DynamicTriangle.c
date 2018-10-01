@@ -5,25 +5,11 @@
 #include "DynamicTriangle.h"
 #include "../Types.h"
 
-#include "../Library.h"
+#include "../System.h"
 #include "../Right/RightTriangle.h"
 
 bool g_enableRounding;
 
-void lib_NameOfAngle(char* buf, angle_t angle)
-{
-	switch (angle) {
-		case ANGLE_A:
-			sprintf(buf, "%s", "A");
-			break;
-		case ANGLE_B:
-			sprintf(buf, "%s", "B");
-			break;
-		case ANGLE_C90:
-			sprintf(buf, "%s", "C");
-			break;
-	}
-}
 
 void tri_Reset(dynamictriangle_t* this)
 {
@@ -42,13 +28,18 @@ void tri_Reset(dynamictriangle_t* this)
 void __tri_Round(triangle_t* this, uint8_t places)
 {
 	int i = 0;
+	real_t oldVal;
+	char buf[20], buf2[20];
 	real_t* const mem = (real_t*) this;
 	if (!g_enableRounding) {
 		return;
 	}
 	for (; i < sizeof(*this) / sizeof(real_t); i++) {
+		oldVal = mem[i];
 		mem[i] = os_RealRound(&mem[i], places);
-		dbg_sprintf(dbgout, "[Geo] Rounded real_t memory @ 0x%p\n", &mem[i]);
+		sys_WriteBuffer(buf, &oldVal);
+		sys_WriteBuffer(buf2, &mem[i]);
+		dbg_sprintf(dbgout, "[Dyn] Rounded real_t memory @ 0x%p [%s] -> [%s]\n", &mem[i], buf,buf2);
 	}
 }
 
@@ -122,22 +113,22 @@ real_t tri_MulSide(dynamictriangle_t* this, side_t side, real_t val)
 void tri_UpdateBuffers(dynamictriangle_t* this)
 {
 	if (this->status.A) {
-		lib_WriteBuffer(r_angle_A.label, &this->triangle.A);
+		sys_WriteBuffer(r_angle_A.label, &this->triangle.A);
 	}
 	if (this->status.B) {
-		lib_WriteBuffer(r_angle_B.label, &this->triangle.B);
+		sys_WriteBuffer(r_angle_B.label, &this->triangle.B);
 	}
 	if (this->status.C) {
-		lib_WriteBuffer(r_angle_C.label, &this->triangle.C);
+		sys_WriteBuffer(r_angle_C.label, &this->triangle.C);
 	}
 	if (this->status.a) {
-		lib_WriteBuffer(r_side_a.label, &this->triangle.a);
+		sys_WriteBuffer(r_side_a.label, &this->triangle.a);
 	}
 	if (this->status.b) {
-		lib_WriteBuffer(r_side_b.label, &this->triangle.b);
+		sys_WriteBuffer(r_side_b.label, &this->triangle.b);
 	}
 	if (this->status.c) {
-		lib_WriteBuffer(r_side_c.label, &this->triangle.c);
+		sys_WriteBuffer(r_side_c.label, &this->triangle.c);
 	}
 }
 

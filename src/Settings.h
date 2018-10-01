@@ -7,11 +7,9 @@
 
 #include <stdint.h>
 
-extern uint8_t g_round;
-extern uint8_t g_digitThreshold;
+extern uint8_t       g_round;
+extern const uint8_t g_digitThreshold;
 
 #define kLabelOffset 4
-
-void set_Menu();
 
 #endif //TITRIG_SETTINGS_H

@@ -21,20 +21,22 @@
 
 #define THROW(Msg)                                \
     dbg_sprintf(dbgout,"THROW [%s]", Msg);        \
-    assert(false);                                \
+    abort();                                      \
 
 
-void lib_WriteBuffer(char* buffer, real_t* value);
 
-void lib_MemZero(char* ptr, int c);
+void sys_WriteBuffer(char* buffer, real_t* value);
 
-void lib_StrReplace(char* in, char c, char r);
+void sys_MemZero(char* ptr, int c);
 
-int lib_StrIndexOf(char* values, char find);
+void syc_StrReplace(char* in, char c, char r);
 
-int lib_StrCut(char* str, int begin, int len);
+int sys_StrIndexOf(char* values, char find);
+
+int sys_StrCut(char* str, int begin, int len);
 
 #define Wait() while (!os_GetCSC());
+
 extern const char char_Neg;
 
 #endif //TITRIG_LIBRARY_H

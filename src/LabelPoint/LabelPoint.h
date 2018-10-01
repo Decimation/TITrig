@@ -18,6 +18,8 @@ typedef struct
 	char        label[kLabelPointLabelSize];
 } labelpoint_t;
 
+static void io_InitChars();
+
 void lp_ZeroLabel(const labelpoint_t* p);
 
 void lp_Clear(const labelpoint_t* p);
@@ -26,9 +28,13 @@ void lp_Print(const labelpoint_t* p);
 
 void lp_SetLabel(const labelpoint_t* p, const char* s);
 
+static void io_HandleDel(labelpoint_t* point, int i);
+
 real_t io_gfx_ReadSqrt(labelpoint_t* point);
 
-real_t io_gfx_ReadReal(labelpoint_t* vBuffer);
+void lp_ClrPrint(const labelpoint_t* p);
+
+real_t io_gfx_ReadReal(labelpoint_t* point);
 
 bool lp_Equals(labelpoint_t a, labelpoint_t b);
 

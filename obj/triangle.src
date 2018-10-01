@@ -1273,7 +1273,7 @@ _data_X_ex:
 ;    5	#include "Triangle.h"
 ;    6	#include "debug.h"
 ;    7	#include "Trigonometry.h"
-;    8	#include "AutoTriangle/DynamicTriangle.h"
+;    8	#include "DynamicTriangle/DynamicTriangle.h"
 ;    9	
 ;   10	static labelpoint_t g_nXAngles[3] = {
 ;   11			{{30,       119 - 10}, "A"},   // AAA

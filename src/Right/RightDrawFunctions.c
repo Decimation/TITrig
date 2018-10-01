@@ -10,7 +10,7 @@
 #include "RightDrawFunctions.h"
 #include "../Types.h"
 #include "RightTriangle.h"
-#include "../Library.h"
+#include "../System.h"
 
 void ui_DrawFunctions_A()
 {
@@ -56,19 +56,19 @@ void ui_DrawFunctions_A()
 static void ui_RedrawFunctionPoints()
 {
 	int index = 0;
-	for (index = 0; index < CountOf(g_rXSides_OAH); index++) {
+	for (; index < CountOf(g_rXSides_OAH); index++) {
 		lp_PrintColor(&g_rXSides_OAH[index], gfx_green);
-		lp_PrintColor(&funcData[index], gfx_blue);
-		lp_PrintColor(&funcData2[index], gfx_blue);
+		lp_PrintColor(&r_func[index].left, gfx_blue);
+		lp_PrintColor(&r_func2[index].left, gfx_blue);
 	}
 }
 
 static void ui_ClearFunctionPoints()
 {
 	int index = 0;
-	for (index = 0; index < CountOf(funcFracPoints); index++) {
-		ui_ClearFraction(funcFracPoints[index]);
-		ui_ClearFraction(func2FracPoints[index]);
+	for (; index < CountOf(r_func); index++) {
+		gfx_ClearFraction(r_func[index].data);
+		gfx_ClearFraction(r_func2[index].data);
 	}
 }
 
@@ -131,12 +131,10 @@ void ui_DrawFunctions_90()
 	lp_SetLabel(&g_rXSides_OAH[1], "A"); // aaa
 	lp_SetLabel(&g_rXSides_OAH[2], "C"); // ccc
 
-	for (index = 0; index < CountOf(g_rXSides_OAH); index++) {
+	for (; index < CountOf(g_rXSides_OAH); index++) {
 		lp_Clear(&g_rXSides_OAH[index]);
-		lp_Clear(&funcData[index]);
-		lp_Clear(&funcData2[index]);
-		ui_ClearFraction(funcFracPoints[index]);
-		ui_ClearFraction(func2FracPoints[index]);
+		dp_Clear(&r_func[index]);
+		dp_Clear(&r_func2[index]);
 	}
 }
 #pragma clang diagnostic pop

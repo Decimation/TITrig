@@ -7,12 +7,13 @@
 
 #include <debug.h>
 #include "RightTriangle.h"
-#include "../Library.h"
+#include "../System.h"
 #include "../Simplifiers.h"
 #include "../Types.h"
 #include "RightOperability.h"
 #include "RightDrawFunctions.h"
 #include "../LabelPoint/LabelPoint.h"
+#include "../LabelPoint/DataPoint.h"
 
 
 labelpoint_t g_rXAngles[3] = {
@@ -52,7 +53,6 @@ const char        lbl_ADJ[]       = "ADJ";
 const char        lbl_HYP[]       = "HYP";
 const char        lbl_OPP[]       = "OPP";
 
-
 dynamictriangle_t g_rAutoTriangle;
 
 static bool is45_45_90;
@@ -72,28 +72,17 @@ const int r_verts[6] = {
 		189, 129, /* (x2, y2) */
 };
 
-const labelpoint_t funcData[3] = {
-		{10,  175, "sin = "},
-		{110, 175, "cos = "},
-		{210, 175, "tan = "}
+const datapoint_t r_func[3] = {
+		{{10,  175, "sin = "}, {10 + 35,  175}},
+		{{110, 175, "cos = "}, {110 + 35, 175}},
+		{{210, 175, "tan = "}, {210 + 35, 175}},
 };
 
-const gfx_point_t funcFracPoints[3] = {
-		{10 + 35,  175},
-		{110 + 35, 175},
-		{210 + 35, 175}
-};
 
-const labelpoint_t funcData2[3] = {
-		{10,  210, "csc = "},
-		{110, 210, "sec = "},
-		{210, 210, "cot = "}
-};
-
-const gfx_point_t func2FracPoints[3] = {
-		{10 + 35,  210},
-		{110 + 35, 210},
-		{210 + 35, 210}
+const datapoint_t r_func2[3] = {
+		{{10,  210, "csc = "}, {10 + 35,  210}},
+		{{110, 210, "sec = "}, {110 + 35, 210}},
+		{{210, 210, "cot = "}, {210 + 35, 210}},
 };
 
 
@@ -127,16 +116,7 @@ static void ui_SetRounding()
 
 }
 
-/**
- * Uses basic heuristics to automatically detect if a triangle is
- * a special right triangle (45-45-90, 30-60-90)
- *
- * An SRT will automatically be detected if
- *  - Its angles are detected
- *  - Sides of a 45-45-90 are detected
- *
- * A 30-60-90 will not be detected by its sides.
- */
+
 static void right_Sync()
 {
 	LocalReal(45);
@@ -145,8 +125,9 @@ static void right_Sync()
 	LocalReal(2);
 	LocalReal(3);
 
-	const real_t sqrt2 = os_RealSqrt(&real2);
-	const real_t sqrt3 = os_RealSqrt(&real3);
+	const real_t sqrt2  = os_RealSqrt(&real2);
+	const real_t sqrt3  = os_RealSqrt(&real3);
+	gfx_point_t  origin = {0, 0};
 
 
 	dbg_sprintf(dbgout, "[RightTrig] Synchronizing right triangle...\n");
@@ -239,9 +220,11 @@ static void right_Sync()
 	if (available_c && is45_45_90) {
 		right_SetSide(SIDE_a, right_DivSide(SIDE_c, sqrt2));
 		right_SetSide(SIDE_b, right_GetSide(SIDE_a));
-
 	}
 
+
+	// 0, 0 -> 210, 155
+	gfx_ClearArea(origin, 210, 155);
 
 	right_UpdateBuffers();
 	right_TruncateLabels(g_digitThreshold);
@@ -249,12 +232,13 @@ static void right_Sync()
 	ui_AutoDrawFunctions();
 }
 
+
 static void right_TruncateLabels(int len)
 {
 	int i = 0;
 	for (; i < CountOf(g_rXSides); i++) {
-		lib_StrCut(g_rXAngles[i].label, len, kLabelPointLabelSize - len);
-		lib_StrCut(g_rXSides[i].label, len, kLabelPointLabelSize - len);
+		sys_StrCut(g_rXAngles[i].label, len, kLabelPointLabelSize - len);
+		sys_StrCut(g_rXSides[i].label, len, kLabelPointLabelSize - len);
 	}
 }
 
@@ -273,8 +257,6 @@ static void pythag_CheckSolvability()
 		bpow = right_SquareSide(SIDE_b);
 		cpow = os_RealAdd(&apow, &bpow);
 		right_SetSide(SIDE_c, os_RealSqrt(&cpow));
-
-
 		return;
 	}
 	else if (!available_a && available_b && available_b) {
@@ -297,23 +279,6 @@ static void pythag_CheckSolvability()
 	}
 }
 
-void ui_ClearFraction(gfx_point_t point)
-{
-	static const uint8_t w = 60;
-	static const uint8_t h = 35;
-	point.x -= 1;
-	point.y -= 16;
-	ui_ClearArea(point, w, h);
-}
-
-static void ui_DispFunctionRatioRoot(gfx_point_t pt, real_t x, real_t y)
-{
-	int24_t rad[2], rad2[2];
-
-	SimplifyRadicalFromDecimal(x, rad);
-	SimplifyRadicalFromDecimal(y, rad2);
-	gfx_RadicalFraction(pt, rad[0], rad[1], rad2[0], rad2[1]);
-}
 
 void right_DrawFraction(gfx_point_t pt, side_t num, side_t denom)
 {
@@ -323,14 +288,14 @@ void right_DrawFraction(gfx_point_t pt, side_t num, side_t denom)
 
 void right_DispFunctionRatioRoot(gfx_point_t pt, side_t num, side_t denom)
 {
-	ui_DispFunctionRatioRoot(pt, *right_GetSideValuePtr(num), *right_GetSideValuePtr(denom));
+	gfx_DispFunctionRatioRoot(pt, *right_GetSideValuePtr(num), *right_GetSideValuePtr(denom));
 }
 
 
 static void dbgSide(char* lbl, side_t side)
 {
 	char sideBuf[20];
-	lib_WriteBuffer(sideBuf, right_GetSideValuePtr(side));
+	sys_WriteBuffer(sideBuf, right_GetSideValuePtr(side));
 	dbg_sprintf(dbgout, "[%s] Side: %s\n", lbl, sideBuf);
 }
 
@@ -342,7 +307,7 @@ static void dbgPt(char* lbl, labelpoint_t pt)
 static void dbgAngle(char* lbl, angle_t angle)
 {
 	char angleBuf[20];
-	lib_WriteBuffer(angleBuf, right_GetAngleValuePtr(angle));
+	sys_WriteBuffer(angleBuf, right_GetAngleValuePtr(angle));
 	dbg_sprintf(dbgout, "[%s] Angle: %s\n", lbl, angleBuf);
 }
 
@@ -370,11 +335,8 @@ static void right_Redraw()
 	int index = 0;
 
 	for (; index < CountOf(g_rXAngles); index++) {
-		lp_Clear(&g_rXAngles[index]);
-		lp_Print(&g_rXAngles[index]);
-
-		lp_Clear(&g_rXSides[index]);
-		lp_Print(&g_rXSides[index]);
+		lp_ClrPrint(&g_rXAngles[index]);
+		lp_ClrPrint(&g_rXSides[index]);
 	}
 
 	right_DrawSides();
@@ -392,7 +354,7 @@ void ui_DispSimplified(real_t* r)
 
 	dbg_sprintf(dbgout, "[RightTrig] Simplifying radical...\n");
 	*r = os_RealRound(r, g_round);
-	SimplifyRadicalFromDecimal(*r, rad);
+	sp_SimplifyRadicalFromDecimal(*r, rad);
 
 	ui_ClearDispSimpRoot();
 
@@ -400,17 +362,11 @@ void ui_DispSimplified(real_t* r)
 	lp_Clear(&ui_Wait);
 }
 
-static void ui_ClearArea(gfx_point_t point, uint8_t w, uint8_t h)
-{
-	gfx_SetColor(gfx_white);
-	gfx_FillRectangle(point.x, point.y, w, h);
-	gfx_SetColor(gfx_black);
-}
 
 static void ui_ClearDispSimpRoot()
 {
 	static const gfx_point_t point = {230, 20};
-	ui_ClearArea(point, 70, 35);
+	gfx_ClearArea(point, 70, 35);
 }
 
 /**

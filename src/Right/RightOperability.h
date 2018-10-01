@@ -7,7 +7,7 @@
 
 #include "../Types.h"
 #include "RightTriangle.h"
-#include "../AutoTriangle/DynamicTriangle.h"
+#include "../DynamicTriangle/DynamicTriangle.h"
 #include "../LabelPoint/LabelPoint.h"
 
 #define available_A g_rAutoTriangle.status.A

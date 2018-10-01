@@ -10,5 +10,10 @@
 
 #include "LabelPoint/LabelPoint.h"
 
-uint8_t g_round          = 0;
-uint8_t g_digitThreshold = 6;
+uint8_t g_round = 0;
+
+
+/**
+ * @brief Max rounding places and max digits displayed
+ */
+const uint8_t g_digitThreshold = 9;

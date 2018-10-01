@@ -5,7 +5,7 @@
 #include "Triangle.h"
 #include "debug.h"
 #include "Trigonometry.h"
-#include "AutoTriangle/DynamicTriangle.h"
+#include "DynamicTriangle/DynamicTriangle.h"
 
 static labelpoint_t g_nXAngles[3] = {
 		{{30,       119 - 10}, "A"},   // AAA
@@ -235,8 +235,8 @@ static void trig_TruncateLabels(int len)
 {
 	int i = 0;
 	for (; i < 3; i++) {
-		lib_StrCut(g_nXAngles[i].label, len, 20 - len);
-		lib_StrCut(g_nXSides[i].label, len, 20 - len);
+		sys_StrCut(g_nXAngles[i].label, len, 20 - len);
+		sys_StrCut(g_nXSides[i].label, len, 20 - len);
 	}
 }
 
@@ -690,19 +690,19 @@ static void trig_Reset()
 	}
 	for (i = 0; i < 3; i++) {
 		lp_Clear(&xanglesData[i]);
-		lib_MemZero(xanglesData[i].label + kLabelOffset, 16);
+		sys_MemZero(xanglesData[i].label + kLabelOffset, 16);
 
 		lp_Clear(&xsidesData[i]);
-		lib_MemZero(xsidesData[i].label + kLabelOffset, 16);
+		sys_MemZero(xsidesData[i].label + kLabelOffset, 16);
 	}
 	lp_Clear(&ui_Type);
 	lp_Clear(&data_X_ex);
-	lib_MemZero(data_X_ex.label + kLabelOffset, 16);
+	sys_MemZero(data_X_ex.label + kLabelOffset, 16);
 
 	lp_Clear(&xmeasureData[0]);
 	lp_Clear(&xmeasureData[1]);
-	lib_MemZero(xmeasureData[0].label + kLabelOffset, 20 - kLabelOffset);
-	lib_MemZero(xmeasureData[1].label + kLabelOffset, 20 - kLabelOffset);
+	sys_MemZero(xmeasureData[0].label + kLabelOffset, 20 - kLabelOffset);
+	sys_MemZero(xmeasureData[1].label + kLabelOffset, 20 - kLabelOffset);
 
 	lp_SetLabel(&n_angle_A, "A");
 	lp_SetLabel(&n_angle_B, "B");

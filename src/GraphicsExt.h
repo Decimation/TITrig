@@ -12,6 +12,11 @@
 #include "Types.h"
 #include "LabelPoint/LabelPoint.h"
 
+void gfx_DispFunctionRatioRoot(gfx_point_t pt, real_t x, real_t y);
+
+void gfx_ClearArea(gfx_point_t point, uint8_t w, uint8_t h);
+
+void gfx_ClearFraction(gfx_point_t point);
 
 void gfx_RadicalFraction(gfx_point_t point, int24_t numOuter, int24_t numInner, int24_t denomOuter, int24_t denomInner);
 

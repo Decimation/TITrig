@@ -3,13 +3,17 @@
 //
 
 #include "LabelPoint.h"
-#include "../Library.h"
+#include "../System.h"
 #include "../Settings.h"
 
+void lp_ClrPrint(const labelpoint_t* p) {
+	lp_Clear(p);
+	lp_Print(p);
+}
 
 void lp_ZeroLabel(const labelpoint_t* p)
 {
-	lib_MemZero(p->label, kLabelPointLabelSize);
+	sys_MemZero(p->label, kLabelPointLabelSize);
 }
 
 void lp_Clear(const labelpoint_t* p)
@@ -32,15 +36,34 @@ void lp_SetLabel(const labelpoint_t* p, const char* s)
 	strncpy(p->label, s, strlen(s));
 }
 
-real_t io_gfx_ReadSqrt(labelpoint_t* point)
+static char io_chars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+
+static void io_InitChars()
 {
-	real_t      tmp, initialValue;
-	uint8_t     key;
-	int         i       = 0;
-	const int   strW    = gfx_GetStringWidth(point->label);
-	static char chars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
-	chars[33] = '0';
-	chars[18] = '3';
+	static bool init = false;
+
+	if (!init) {
+		io_chars[33] = '0';
+		io_chars[18] = '3';
+		init = true;
+	}
+
+}
+
+static void io_HandleDel(labelpoint_t* point, int i) {
+	lp_Clear(point);
+	point->label[--i] = '\0';
+	lp_ClrPrint(point);
+}
+
+real_t io_gfx_ReadSqrt(labelpoint_t* const point)
+{
+	real_t    tmp, initialValue;
+	uint8_t   key;
+	int       i    = 0;
+	const int strW = gfx_GetStringWidth(point->label);
+
+	io_InitChars();
 
 	if (strlen(point->label) != 0) {
 		initialValue = os_StrToReal(point->label, NULL);
@@ -49,8 +72,7 @@ real_t io_gfx_ReadSqrt(labelpoint_t* point)
 		initialValue = os_Int24ToReal(1);
 	}
 
-	lp_Clear(point);
-	lp_Print(point);
+	lp_ClrPrint(point);
 
 	gfx_Line(point->point.x + strW, point->point.y + 3, point->point.x + strW + 2, point->point.y + 7);
 
@@ -63,14 +85,11 @@ real_t io_gfx_ReadSqrt(labelpoint_t* point)
 
 	while ((key = os_GetCSC()) != sk_Enter) {
 		if (key == sk_Del) {
-			lp_Clear(point);
-			point->label[--i] = '\0';
-			lp_Clear(point);
-			lp_Print(point);
+			io_HandleDel(point, i);
 		}
 
-		else if (chars[key] && i + 1 <= g_digitThreshold) {
-			point->label[i++] = chars[key];
+		else if (io_chars[key] && i + 1 <= g_digitThreshold) {
+			point->label[i++] = io_chars[key];
 			gfx_PrintStringXY(point->label, point->point.x + strW + 6, point->point.y);
 		}
 		gfx_HorizLine(point->point.x + strW + 3, point->point.y - 3, gfx_GetStringWidth(point->label) + 3);
@@ -86,43 +105,38 @@ real_t io_gfx_ReadSqrt(labelpoint_t* point)
 	return os_RealMul(&initialValue, &tmp);
 }
 
-real_t io_gfx_ReadReal(labelpoint_t* point)
+real_t io_gfx_ReadReal(labelpoint_t* const point)
 {
-	bool        isNeg   = false;
-	uint8_t     key, i  = 0;
-	real_t      rbuffer;
-	static char chars[] = "\0\0\0\0\0\0\0\0\0\0\"-RMH\0\0?[69LG\0\0.258KFC\0 147JEB\0\0XSNIDA\0\0\0\0\0\0\0\0";
+	bool    isNeg  = false;
+	uint8_t key, i = 0;
+	real_t  rbuffer;
+	io_InitChars();
 	lp_Clear(point);
-	lib_MemZero(point->label, 20);
-	chars[33] = '0';
-	chars[18] = '3';
+	lp_ZeroLabel(point);
+
 
 	while ((key = os_GetCSC()) != sk_Enter) {
 
 		if (key == sk_Del) {
-			lp_Clear(point);
-			point->label[--i] = '\0';
-			lp_Clear(point);
-			lp_Print(point);
+			io_HandleDel(point,i);
 		}
 
 		if (key == 0x11) // todo: remove negative number support in GFX as our triangles can't have signed values
 		{
 			dbg_sprintf(dbgout, "Negative sign detected\n");
 			point->label[i++] = char_Neg;
-			lp_Clear(point);
-			lp_Print(point);
+			lp_ClrPrint(point);
 			isNeg = true;
 		}
 
-		if (chars[key] == 'I') {
+		if (io_chars[key] == 'I') {
 
 			rbuffer = io_gfx_ReadSqrt(point);
 			return rbuffer;
 		}
 
-		else if (chars[key] && i + 1 <= g_digitThreshold) {
-			point->label[i++] = chars[key];
+		else if (io_chars[key] && i + 1 <= g_digitThreshold) {
+			point->label[i++] = io_chars[key];
 		}
 		lp_Print(point);
 		gfx_HorizLine(point->point.x, point->point.y + 8, gfx_GetStringWidth(point->label));

@@ -3,11 +3,11 @@
 //
 
 
-#include "Library.h"
+#include "System.h"
 
 const char char_Neg = (char) 26;
 
-int lib_StrCut(char* str, int begin, int len)
+int sys_StrCut(char* str, int begin, int len)
 {
 	int l = strlen(str);
 
@@ -18,12 +18,13 @@ int lib_StrCut(char* str, int begin, int len)
 	return len;
 }
 
-void lib_WriteBuffer(char* buffer, real_t* value)
+
+void sys_WriteBuffer(char* buffer, real_t* value)
 {
 	os_RealToStr(buffer, value, 0, 0, 6);
 }
 
-int lib_StrIndexOf(char* values, char find)
+int sys_StrIndexOf(char* values, char find)
 {
 	int index;
 	const char* ptr = strchr(values, find);
@@ -34,14 +35,14 @@ int lib_StrIndexOf(char* values, char find)
 	return index;
 }
 
-void lib_StrReplace(char* in, char c, char r)
+void syc_StrReplace(char* in, char c, char r)
 {
-	const int index = lib_StrIndexOf(in, c);
+	const int index = sys_StrIndexOf(in, c);
 
 	if (index != -1) in[index] = r;
 }
 
-void lib_MemZero(char* const ptr, int c)
+void sys_MemZero(char* ptr, int c)
 {
 	int i = 0;
 	dbg_sprintf(dbgout, "[lib_MemZero] Zeroing memory from 0x%p to 0x%p\n", (void*) ptr, &ptr + c);

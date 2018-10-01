@@ -8,6 +8,9 @@
 #include "../Types.h"
 #include <stdbool.h>
 
+/**
+ * @brief Represents a triangle
+ */
 typedef struct
 {
 	triangle_t   triangle;
@@ -23,7 +26,9 @@ typedef struct
 #define tri_GetValueInternal(Auto, V)           \
     return Auto->triangle.V;                    \
 
-
+/**
+ * todo: convert this into a function: this macro will be statically inlined which generates massive code bloat
+ */
 #define tri_SetAngle(this, angle, value)    \
     switch (angle) {                        \
 		case ANGLE_A:                       \
@@ -41,6 +46,9 @@ typedef struct
 	}                                       \
 
 
+/**
+ * todo: convert this into a function: this macro will be statically inlined which generates massive code bloat
+ */
 #define tri_SetSide(this, side, value)    	\
 	switch (side) {                         \
 		case SIDE_a:                        \
@@ -59,10 +67,9 @@ typedef struct
 
 // @formatter:on
 
+extern bool g_enableRounding;
 
 void __tri_Round(triangle_t* this, uint8_t places);
-
-void lib_NameOfAngle(char* buf, angle_t angle);
 
 void tri_Reset(dynamictriangle_t* this);
 
@@ -96,6 +103,5 @@ real_t tri_GetAngleValue(dynamictriangle_t* this, angle_t angle);
 
 real_t tri_GetSideValue(dynamictriangle_t* this, side_t side);
 
-extern bool g_enableRounding;
 
 #endif

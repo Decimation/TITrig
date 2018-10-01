@@ -518,6 +518,20 @@
 .TYPE 8
 .ENDEF
 .ENDREC "NONAME19"
+.BEGREC "NONAME20",32
+.DEFINE "left"
+.VALUE 0
+.CLASS 8
+.TAG "NONAME18"
+.TYPE 8
+.ENDEF
+.DEFINE "data"
+.VALUE 26
+.CLASS 8
+.TAG "NONAME5"
+.TYPE 8
+.ENDEF
+.ENDREC "NONAME20"
 ;    1	//
 ;    2	// Created by Decimation on 4/27/2018.
 ;    3	//

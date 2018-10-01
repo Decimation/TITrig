@@ -5,7 +5,7 @@
 #ifndef TITRIG_RIGHTTRIANGLE_H
 #define TITRIG_RIGHTTRIANGLE_H
 
-#include "Library.h"
+#include "System.h"
 #include "GraphicsExt.h"
 
 
