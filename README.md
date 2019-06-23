@@ -1,6 +1,8 @@
 # TITrig
 Triangle solver for the TI-84 Plus CE
 
+Note: this code is extremely inefficient and a rewrite is warranted.
+
 # Features
 
 TITrig can solve for any type of triangle, right or non-right. 
