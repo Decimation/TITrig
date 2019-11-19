@@ -1,7 +1,7 @@
 # TITrig
 Triangle solver for the TI-84 Plus CE
 
-Note: this code is extremely inefficient and a rewrite is warranted.
+**Note: this code is *extremely* inefficient and a rewrite is warranted.** You should also be careful when inputting data as illegal characters may cause an access violation.
 
 # Features
 
@@ -39,4 +39,6 @@ AAS non-right triangle:
 
 ![Actual](https://www.mathsisfun.com/algebra/images/trig-aasex1.gif)
 
+# Notice
 
+I am not responsible if you use this to cheat and get caught. I am also not responsible if your calculator resets because you caused a segmentation fault or any form of an access violation.
